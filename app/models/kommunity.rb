@@ -1,0 +1,2 @@
+class Kommunity < ApplicationRecord
+end
