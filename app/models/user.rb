@@ -5,6 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
 
+  has_many :user_user_roles
+  has_many :users_roles, through: :user_user_roles
+  has_many :kommunities
+
+
 
   def self.from_omniauth(access_token)
     data = access_token.info
