@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180609155643) do
+ActiveRecord::Schema.define(version: 20180609164026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180609155643) do
     t.bigint "entity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_open", default: false
     t.index ["data_form_id"], name: "index_data_form_entities_on_data_form_id"
     t.index ["entity_type", "entity_id"], name: "index_data_form_entities_on_entity_type_and_entity_id"
   end
@@ -33,6 +34,18 @@ ActiveRecord::Schema.define(version: 20180609155643) do
     t.datetime "updated_at", null: false
     t.index ["kommunity_id"], name: "index_data_forms_on_kommunity_id"
     t.index ["user_id"], name: "index_data_forms_on_user_id"
+  end
+
+  create_table "event_users", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "shortlisted", default: false
+    t.boolean "rsvp", default: false
+    t.boolean "attended", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_users_on_event_id"
+    t.index ["user_id"], name: "index_event_users_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -139,6 +152,8 @@ ActiveRecord::Schema.define(version: 20180609155643) do
   add_foreign_key "data_form_entities", "data_forms"
   add_foreign_key "data_forms", "kommunities"
   add_foreign_key "data_forms", "users"
+  add_foreign_key "event_users", "events"
+  add_foreign_key "event_users", "users"
   add_foreign_key "events", "kommunities"
   add_foreign_key "form_responses", "data_form_entities"
   add_foreign_key "form_responses", "users"
