@@ -12,7 +12,7 @@ class User < ApplicationRecord
     # the token is access_token.user.credentials
     # Create the user if not already present
     unless user
-        user = User.create(email: data['email'],
+        user = User.create(
            email: data['email'],
            password: Devise.friendly_token[0,20]
         )
