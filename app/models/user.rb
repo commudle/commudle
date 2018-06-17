@@ -5,14 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
 
-<<<<<<< Updated upstream
-=======
   has_many :user_roles_users
   has_many :user_roles, through: :user_roles_users
   has_many :kommunities
 
-
->>>>>>> Stashed changes
 
   def self.from_omniauth(access_token)
     data = access_token.info

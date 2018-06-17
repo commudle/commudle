@@ -1,14 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'data_forms/index'
-
-  get 'data_forms/new'
-
-  get 'data_forms/create'
-
-  get 'data_forms/edit'
-
-  get 'data_forms/update'
+  resources :events, only: [:index, :new, :create, :edit, :update]
 
 
   resources :data_forms, only: [:index, :new, :create, :edit, :update]

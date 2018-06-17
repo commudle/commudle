@@ -13,7 +13,10 @@ class DataFormsController < ApplicationController
 
     1.times do
       question = @data_form.questions.build
-      5.times {question.question_choices.build}
+      1.times do
+        question.question_choices.build
+
+      end
     end
 
   end
@@ -32,11 +35,12 @@ class DataFormsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
 
-    byebug
+
 
     @data_form.update_attributes(data_form_params)
 
@@ -54,7 +58,7 @@ class DataFormsController < ApplicationController
   private
 
   def set_data_form
-    @data_form = DataForm.find(params[:id])
+    @data_form = DataForm.includes(questions: :question_choices).find(params[:id])
   end
 
 

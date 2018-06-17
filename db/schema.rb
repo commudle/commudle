@@ -10,17 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< Updated upstream
-ActiveRecord::Schema.define(version: 20180226131700) do
-=======
 ActiveRecord::Schema.define(version: 20180616014217) do
->>>>>>> Stashed changes
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< Updated upstream
-=======
+
   create_table "data_form_entities", force: :cascade do |t|
     t.bigint "data_form_id", null: false
     t.string "entity_type", null: false
@@ -130,7 +126,7 @@ ActiveRecord::Schema.define(version: 20180616014217) do
     t.index ["user_id", "user_role_id"], name: "index_user_roles_users_on_user_id_and_user_role_id", unique: true
   end
 
->>>>>>> Stashed changes
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

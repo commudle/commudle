@@ -7,13 +7,16 @@
   </div>
   <div class="field">
     <%= f.label :question_type %>
-    <%= f.select :question_type_id, options_for_select(QuestionType.all.collect{|m| [m.name, m.id]}) %>
+    <%= f.select :question_type_id, options_for_select(QuestionType.all.collect{|m| [m.name, m.id]}, f.object.question_type_id) %>
   </div>
 
   <div>
 
-    <% f.fields_for :question_choices do |builder| %>
-    <%= render "question_choice_fields", f: builder %>
+
+
+    <%= f.fields_for :question_choices do |choice_builder| %>
+    <%= render "question_choice_fields", f: choice_builder %>
+
     <% end %>
   </div>
 
