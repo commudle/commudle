@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data_form: one
+  entity: one
+  entity_type: Entity
+
+two:
+  data_form: two
+  entity: two
+  entity_type: Entity

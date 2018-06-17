@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  user: one
+  shortlisted: false
+  rsvp: false
+  attended: false
+
+two:
+  event: two
+  user: two
+  shortlisted: false
+  rsvp: false
+  attended: false

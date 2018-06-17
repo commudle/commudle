@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update]
 
   def index
-    @events = Event.includes(kommunity: :user).where('kommunities.user_id = ?', current_user.id)
+    @events = Event.includes(kommunity: :user).joins(kommunity: :user).where('kommunities.user_id = ?', current_user.id)
   end
 
   def show
@@ -31,6 +31,14 @@ class EventsController < ApplicationController
   end
 
   def update
+    @event.update_attributes(event_params)
+
+
+    if @event.save
+      redirect_to action: :index, notice: "Successfully created survey."
+    else
+      render :edit
+    end
 
   end
 

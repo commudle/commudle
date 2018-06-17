@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :user_roles_users
   has_many :user_roles, through: :user_roles_users
   has_many :kommunities
+  has_many :events
 
 
   def self.from_omniauth(access_token)
@@ -16,7 +17,7 @@ class User < ApplicationRecord
     # the token is access_token.user.credentials
     # Create the user if not already present
     unless user
-        user = User.create(email: data['email'],
+        user = User.create(
            email: data['email'],
            password: Devise.friendly_token[0,20]
         )

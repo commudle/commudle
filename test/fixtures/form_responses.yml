@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  data_form_entity: one
+  parent: one
+  parent_type: Parent
+
+two:
+  user: two
+  data_form_entity: two
+  parent: two
+  parent_type: Parent

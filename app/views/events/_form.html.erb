@@ -1,0 +1,36 @@
+<%= form_for @event do |f| %>
+<fieldset>
+  <div class="field">
+    <%= f.label :kommunity %>
+    <%= f.select :kommunity_id, options_for_select(current_user.kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id) %>
+
+  </div>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_time, "Start Date & Time" %>
+    <%= f.datetime_select(:start_time, :default => { :hour => 10, :minute => 30 }) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_time, "End Date & Time" %>
+    <%= f.datetime_select(:end_time, :default => { :hour => 10, :minute => 30 }) %>
+  </div>
+
+
+  <%= f.submit %>
+
+
+
+
+</fieldset>
+
+<% end %>
