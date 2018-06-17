@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :user_roles, through: :user_roles_users
   has_many :kommunities
   has_many :events
+  has_many :data_forms
 
 
   def self.from_omniauth(access_token)

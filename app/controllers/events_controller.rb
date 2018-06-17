@@ -46,7 +46,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.includes(:user, data_form_entities: :data_form).find(params[:id])
   end
 
   def event_params

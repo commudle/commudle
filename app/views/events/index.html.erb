@@ -5,7 +5,7 @@
   <% @events.each do |event| %>
 
   <div>
-    <p><%= event.name %>  <%= link_to 'Edit', edit_event_path(event) %></p>
+    <p><%= event.name %>  <%= link_to 'Edit', edit_event_path(event) %>  <%= link_to 'Show', event_path(event) %></p>
 
   </div>
 
@@ -14,3 +14,4 @@
 </div>
 
 <%=  link_to "Create Event", new_event_path %>
+

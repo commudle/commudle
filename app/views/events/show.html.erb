@@ -8,9 +8,34 @@
 
     </div>
 
-    <div>
-      <h5>Assign Forms</h5>
 
+    <div>
+      <h4>Assigned Forms</h4>
+      <% @event.data_form_entities.each do |dfe| %>
+      <div>
+
+        <%= dfe.data_form.name %>
+      </div>
+      <% end %>
+
+
+    </div>
+
+    <div>
+<!--Assign the forms using JS requests, create a page to fill the assigned form and create a user's entry-->
+      <%= form_with url: assign_data_form_event_path, method: 'post', remote: true do |f| %>
+        <fieldset>
+          <h5>Assign Form</h5>
+          <div class="field">
+            <%= f.label :data_form %>
+            <%= f.select :data_form_id, options_for_select(@event.user.data_forms.all.collect{|m| [m.name, m.id]}) %>
+            <%= f.submit "Assign Form" %>
+          </div>
+
+
+
+        </fieldset>
+      <% end %>
     </div>
 
 
