@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap', '~> 4.1.1'
+
+gem 'jquery-rails'
+
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'omniauth-google-oauth2'

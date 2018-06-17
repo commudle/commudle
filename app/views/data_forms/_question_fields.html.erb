@@ -1,0 +1,32 @@
+
+<fieldset>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+
+  </div>
+  <div class="field">
+    <%= f.label :question_type %>
+    <%= f.select :question_type_id, options_for_select(QuestionType.all.collect{|m| [m.name, m.id]}) %>
+  </div>
+
+  <div>
+
+    <% f.fields_for :question_choices do |builder| %>
+    <%= render "question_choice_fields", f: builder %>
+    <% end %>
+  </div>
+
+
+  <%= link_to_add_fields "Add Choice", f, :question_choices %>
+
+  <div class="field">
+    <%= f.hidden_field :_destroy %>
+    <%= link_to "Remove Question", '#', class: "remove_fields" %>
+
+  </div>
+
+</fieldset>
+
+
+

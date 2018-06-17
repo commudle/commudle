@@ -10,11 +10,127 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 20180226131700) do
+=======
+ActiveRecord::Schema.define(version: 20180616014217) do
+>>>>>>> Stashed changes
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< Updated upstream
+=======
+  create_table "data_form_entities", force: :cascade do |t|
+    t.bigint "data_form_id", null: false
+    t.string "entity_type", null: false
+    t.bigint "entity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_open", default: false
+    t.index ["data_form_id"], name: "index_data_form_entities_on_data_form_id"
+    t.index ["entity_type", "entity_id"], name: "index_data_form_entities_on_entity_type_and_entity_id"
+  end
+
+  create_table "data_forms", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "kommunity_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kommunity_id"], name: "index_data_forms_on_kommunity_id"
+    t.index ["user_id"], name: "index_data_forms_on_user_id"
+  end
+
+  create_table "event_users", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "shortlisted", default: false
+    t.boolean "rsvp", default: false
+    t.boolean "attended", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_users_on_event_id"
+    t.index ["user_id"], name: "index_event_users_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.bigint "kommunity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["end_time"], name: "index_events_on_end_time"
+    t.index ["kommunity_id"], name: "index_events_on_kommunity_id"
+    t.index ["name"], name: "index_events_on_name"
+    t.index ["start_time"], name: "index_events_on_start_time"
+  end
+
+  create_table "form_responses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "data_form_entity_id", null: false
+    t.string "parent_type", null: false
+    t.bigint "parent_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["data_form_entity_id"], name: "index_form_responses_on_data_form_entity_id"
+    t.index ["parent_type", "parent_id"], name: "index_form_responses_on_parent_type_and_parent_id"
+    t.index ["user_id"], name: "index_form_responses_on_user_id"
+  end
+
+  create_table "kommunities", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "about"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_kommunities_on_name"
+    t.index ["user_id"], name: "index_kommunities_on_user_id"
+  end
+
+  create_table "question_choices", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.text "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_question_choices_on_question_id"
+  end
+
+  create_table "question_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_question_types_on_name", unique: true
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.bigint "question_type_id", null: false
+    t.bigint "data_form_id", null: false
+    t.text "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["data_form_id"], name: "index_questions_on_data_form_id"
+    t.index ["question_type_id"], name: "index_questions_on_question_type_id"
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_user_roles_on_name", unique: true
+  end
+
+  create_table "user_roles_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "user_role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "user_role_id"], name: "index_user_roles_users_on_user_id_and_user_role_id", unique: true
+  end
+
+>>>>>>> Stashed changes
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

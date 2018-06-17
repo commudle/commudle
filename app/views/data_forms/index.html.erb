@@ -1,0 +1,16 @@
+<h1>DataForms#index</h1>
+<p>Find me in app/views/data_forms/index.html.erb</p>
+
+
+<div>
+  <% @data_forms.each do |df| %>
+
+  <div>
+    <p><%= df.name %>  <%= link_to 'Edit', edit_data_form_path(df) %></p>
+
+  </div>
+
+  <% end %>
+
+
+</div>

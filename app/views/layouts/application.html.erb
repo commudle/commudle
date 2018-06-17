@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Gdgapp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,21 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <div class="container-fluid">
+      <header id="body-header" class="row">
+        <% if current_user %>
+        <p><%= current_user.email %></p>
+        <% end %>
+
+      </header>
+      <main class="">
+        <%= yield %>
+
+
+      </main>
+      <footer></footer>
+
+    </div>
   </body>
 </html>

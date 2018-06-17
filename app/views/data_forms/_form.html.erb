@@ -1,0 +1,32 @@
+<%= form_for @data_form do |f| %>
+
+  <% if @data_form.errors.any? %>
+    <%= @data_form.errors.full_messages %>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :kommunity, "Community" %>
+    <%= f.select :kommunity_id, options_for_select(current_user.kommunities.collect{|m| [m.name, m.id]}) %>
+  </div>
+
+
+  <div>
+    <p>Questions</p>
+
+    <%= f.fields_for :questions do |builder| %>
+      <%= render "question_fields", f: builder %>
+
+    <% end %>
+  </div>
+  <%= link_to_add_fields "Add Question", f, :questions %>
+
+
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>

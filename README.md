@@ -17,7 +17,7 @@ Clone/Download
 
 * bundle install
 
-* rails db:setup
+* rails db:setup (though this will load the seed as well, but you can run rake db:seed, just in case)
 
 * rails s
 
