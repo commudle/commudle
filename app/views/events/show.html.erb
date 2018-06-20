@@ -15,6 +15,12 @@
       <div>
 
         <%= dfe.data_form.name %>
+
+        &nbsp
+
+        <% if dfe.data_form_responses.length == 0 %>
+          <%= link_to 'Remove', remove_data_form_entity_event(dfe.id), remote: true, method: :delete %>
+        <% end %>
       </div>
       <% end %>
 
@@ -23,6 +29,7 @@
 
     <div>
 <!--Assign the forms using JS requests, create a page to fill the assigned form and create a user's entry-->
+      <!--add feature to enable/disable the new data_form_entity-->
       <%= form_with url: assign_data_form_event_path, method: 'post', remote: true do |f| %>
         <fieldset>
           <h5>Assign Form</h5>
@@ -40,3 +47,4 @@
 
 
 </div>
+

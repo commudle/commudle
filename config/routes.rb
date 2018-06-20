@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :events, only: [:index, :new, :create, :edit, :update, :show] do
     member do
       post 'assign_form', as: 'assign_data_form'
+      delete 'remove_data_form_entity/:entity_id', to: 'events#remove_data_form_entity'
     end
   end
 

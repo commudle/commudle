@@ -129,6 +129,8 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    paranoia (2.4.0)
+      activerecord (>= 4.0, < 5.2)
     pg (1.0.0)
     popper_js (1.12.9)
     public_suffix (3.0.2)
@@ -232,6 +234,7 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   omniauth-google-oauth2
+  paranoia (~> 2.2)
   pg
   puma (~> 3.7)
   rack-cors

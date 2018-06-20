@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update]
+  before_action :authenticate_user!
+  before_action :set_event, only: [:show, :edit, :update, :assign_data_form, :remove_data_form_entity]
 
   def index
     @events = Event.includes(kommunity: :user).joins(kommunity: :user).where('kommunities.user_id = ?', current_user.id)
@@ -38,6 +39,39 @@ class EventsController < ApplicationController
       redirect_to action: :index, notice: "Successfully created survey."
     else
       render :edit
+    end
+
+  end
+
+
+  def assign_data_form
+    data_form = DataForm.find_by(id: params[:data_form_id], kommunity_id: @event.kommunity_id)
+
+    if data_form
+      dfe = DataFormEntity.new(entity: @event, data_form: data_form)
+
+      if (dfe.save)
+
+        response.js {
+
+        }
+
+      end
+
+
+    end
+    response.js{
+
+    }
+
+
+  end
+
+  def remove_data_form_entity
+    dfe = DataFormEntity.find_by(id: params[:entity_id].to_i, entity: @event)
+
+    if (!dfe.blank && dfe.form_responses.length == 0)
+      dfe.destroy
     end
 
   end
