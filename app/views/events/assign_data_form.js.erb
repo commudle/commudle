@@ -1,0 +1,19 @@
+{
+
+ function addAssignedForm(){
+     let newAssignedFormListItem = $('#assigned-forms-list').append("<%= escape_javascript render 'assigned_form_list_item', dfe: @dfe %>");
+
+
+     let notification = new Noty({
+         text: 'New Form Assigned',
+         theme: 'relax',
+         type: 'success'
+     }).show();
+ }
+
+
+ addAssignedForm();
+
+}
+
+

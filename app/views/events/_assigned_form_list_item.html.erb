@@ -1,0 +1,10 @@
+<li class="data-form-entity-<%= dfe.id %>">
+  <%= dfe.data_form.name %>
+
+  &nbsp
+
+  <% if dfe.form_responses.length == 0 %>
+  <%= link_to 'Remove', remove_data_form_entity_event_path(id: @event, entity_id: dfe), remote: true, method: :delete %>
+  <% end %>
+
+</li>

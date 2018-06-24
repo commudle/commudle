@@ -1,0 +1,19 @@
+{
+
+    function removeAssignedForm(){
+        $('#assigned-forms-list .data-form-entity-<%= @dfe.id %>').remove();
+
+
+
+        let notification = new Noty({
+            text: 'Assigned Form Removed',
+            theme: 'relax',
+            type: 'warning'
+        }).show();
+    }
+
+
+    removeAssignedForm();
+
+}
+

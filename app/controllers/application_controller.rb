@@ -9,8 +9,9 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def throw_error(error_notification_code)
-    return render html: error_notification_code
+  def error_response(response_type, error_code, message, data={})
+    @message = message
+    return render response_type, file: 'application/error_response', status: error_code
   end
 
 end

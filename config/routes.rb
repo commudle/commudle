@@ -4,10 +4,12 @@ Rails.application.routes.draw do
 
   resources :events, only: [:index, :new, :create, :edit, :update, :show] do
     member do
-      post 'assign_form', as: 'assign_data_form'
-      delete 'remove_data_form_entity/:entity_id', to: 'events#remove_data_form_entity'
+      post 'assign_data_form', as: :assign_data_form
+      delete 'remove_data_form_entity/:entity_id', to: 'events#remove_data_form_entity', as: :remove_data_form_entity
     end
   end
+
+
 
 
   resources :data_forms, only: [:index, :new, :create, :edit, :update]
@@ -15,6 +17,16 @@ Rails.application.routes.draw do
   match '*all', to: proc { [204, {}, ['']] }, via: :options
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+
+
+
+  # INDIVIDUAL URLS
+
+  # form_responses_controller
+  get '/:event_id/:data_form_entity_id/fill-form', to: 'form_responses#fill_form'
+
+
 
 
   root "application#hello_gdg"

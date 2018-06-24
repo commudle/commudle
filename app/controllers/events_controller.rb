@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
-      redirect_to action: :index, notice: "Successfully created survey."
+      redirect_to action: :index
     else
       render :new
     end
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
 
 
     if @event.save
-      redirect_to action: :index, notice: "Successfully created survey."
+      redirect_to action: :index
     else
       render :edit
     end
@@ -48,31 +48,38 @@ class EventsController < ApplicationController
     data_form = DataForm.find_by(id: params[:data_form_id], kommunity_id: @event.kommunity_id)
 
     if data_form
-      dfe = DataFormEntity.new(entity: @event, data_form: data_form)
+      @dfe = DataFormEntity.new(entity: @event, data_form: data_form, name: data_form.name)
 
-      if (dfe.save)
+      if (@dfe.save)
 
-        response.js {
+        respond_to do |format|
 
-        }
+          format.js
+        end
+
 
       end
 
 
     end
-    response.js{
-
-    }
 
 
   end
 
   def remove_data_form_entity
-    dfe = DataFormEntity.find_by(id: params[:entity_id].to_i, entity: @event)
 
-    if (!dfe.blank && dfe.form_responses.length == 0)
-      dfe.destroy
-    end
+    @dfe = DataFormEntity.find_by(id: params[:entity_id].to_i, entity: @event)
+
+    # if (!@dfe.blank? && @dfe.form_responses.length == 0)
+    #   @dfe.destroy
+    # 
+    #   respond_to do |format|
+    # 
+    # 
+    #     format.js
+    #   end
+    # end
+    return error_response(ErrorNotification::ResponseTypes::JS, ErrorNotification::ErrorCodes::INVALID_INPUT, "Cannot be deleted, it has form responses attached to it.")
 
   end
 
@@ -80,7 +87,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.includes(:user, data_form_entities: :data_form).find(params[:id])
+    @event = Event.includes(:user, data_form_entities: :data_form).friendly.find(params[:id])
   end
 
   def event_params

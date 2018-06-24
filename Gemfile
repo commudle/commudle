@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+
+gem 'friendly_id', '~> 5.1.0'
+
 gem 'paranoia', '~> 2.2'
 
 gem 'bootstrap', '~> 4.1.1'
