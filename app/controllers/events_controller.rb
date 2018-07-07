@@ -68,18 +68,20 @@ class EventsController < ApplicationController
 
   def remove_data_form_entity
 
-    @dfe = DataFormEntity.find_by(id: params[:entity_id].to_i, entity: @event)
+    @dfe = DataFormEntity.find_by(slug: params[:entity_id], entity: @event)
 
-    # if (!@dfe.blank? && @dfe.form_responses.length == 0)
-    #   @dfe.destroy
-    # 
-    #   respond_to do |format|
-    # 
-    # 
-    #     format.js
-    #   end
-    # end
-    return error_response(ErrorNotification::ResponseTypes::JS, ErrorNotification::ErrorCodes::INVALID_INPUT, "Cannot be deleted, it has form responses attached to it.")
+    if (!@dfe.blank? && @dfe.form_responses.length == 0)
+      @dfe.destroy
+
+      respond_to do |format|
+
+
+        return format.js
+      end
+    else
+      return error_response(ErrorNotification::ResponseTypes::JS, ErrorNotification::ErrorCodes::INVALID_INPUT, "Cannot be deleted, it has form responses attached to it.")
+    end
+
 
   end
 

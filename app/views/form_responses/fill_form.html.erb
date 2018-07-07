@@ -1,7 +1,61 @@
 <div id="fillable-form">
 
+    <%= form_with url: submit_form_response_path do |f| %>
+      <% @data_form_entity.data_form.questions.each_with_index do |question, index| %>
+
+        <div>
+            <div><%= index %></div>
+            <div>
+
+              <div><%= question.title %></div>
 
 
+              <% case question.question_type.name %>
+              <% when "short_answer" %>
+              <div>
+                <%= f.text_field :short_answer, placeholder: "Short Answer" %>
+              </div>
+              <% when "long_answer" %>
+              <div>
+                <%= f.text_area :long_answer, placeholder: "Long Answer" %>
+              </div>
 
+              <% when "number" %>
+              <div>
+                <%= f.number_field :number, placeholder: "Number" %>
+              </div>
+
+              <% when "single_choice" %>
+              <div>
+               <% question.question_choices.each do |choice| %>
+
+                  <div>
+                    <%=  f.label choice %>
+                    <%= f.radio_button choice.title %>
+                  </div>
+
+                <% end %>
+              </div>
+
+              <% end %>
+              <% when "multiple_choice" %>
+              <div>
+                <% question.question_choices.each do |choice| %>
+
+                <div>
+                  <%=  f.label choice %>
+                  <%= f.checkbox choice.title %>
+                </div>
+
+                <% end %>
+              </div>
+
+              <% end %>
+            </div>
+
+        </div>
+
+      <% end %>
+    <% end %>
 
 </div>

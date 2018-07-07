@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   # form_responses_controller
   get '/:event_id/:data_form_entity_id/fill-form', to: 'form_responses#fill_form'
-
+  post '/:event_id/:data_form_entity/response', to: 'form_responses#submit_form', as: :submit_form_response
 
 
 

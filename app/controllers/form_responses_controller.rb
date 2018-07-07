@@ -11,6 +11,11 @@ class FormResponsesController < ApplicationController
   end
 
 
+  def submit_form
+
+  end
+
+
   private
 
   def set_event_and_data_form_entity
