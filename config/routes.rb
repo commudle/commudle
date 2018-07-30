@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
 
 
-  resources :data_forms, only: [:index, :new, :create, :edit, :update]
+  resources :data_forms, :path => 'data-forms', only: [:index, :new, :create, :edit, :update]
 
   match '*all', to: proc { [204, {}, ['']] }, via: :options
 
@@ -23,9 +23,9 @@ Rails.application.routes.draw do
 
   # INDIVIDUAL URLS
 
-  # form_responses_controller
-  get '/:event_id/:data_form_entity_id/fill-form', to: 'form_responses#fill_form'
-  post '/:event_id/:data_form_entity/response', to: 'form_responses#submit_form', as: :submit_form_response
+  # data_form_entity_responses_controller
+  get '/:event_id/:data_form_entity_id/fill-form', to: 'data_form_entity_responses#fill_form', as: :fill_form_response
+  post '/:event_id/:data_form_entity_id/response', to: 'data_form_entity_responses#submit_form', as: :submit_form_response
 
 
 

@@ -1,4 +1,4 @@
 class QuestionChoice < ApplicationRecord
   belongs_to :question
-  has_many :form_responses, as: :parent
+  has_many :data_form_entity_response_values
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180624143152) do
+ActiveRecord::Schema.define(version: 2018_07_30_125215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,27 @@ ActiveRecord::Schema.define(version: 20180624143152) do
     t.string "name"
     t.index ["data_form_id"], name: "index_data_form_entities_on_data_form_id"
     t.index ["entity_type", "entity_id"], name: "index_data_form_entities_on_entity_type_and_entity_id"
+  end
+
+  create_table "data_form_entity_response_values", force: :cascade do |t|
+    t.integer "data_form_entity_response_id", null: false
+    t.bigint "question_id", null: false
+    t.text "text_response"
+    t.bigint "question_choice_id"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_choice_id"], name: "index_data_form_entity_response_values_on_question_choice_id"
+    t.index ["question_id"], name: "index_data_form_entity_response_values_on_question_id"
+  end
+
+  create_table "data_form_entity_responses", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "data_form_entity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["data_form_entity_id"], name: "index_data_form_entity_responses_on_data_form_entity_id"
+    t.index ["user_id"], name: "index_data_form_entity_responses_on_user_id"
   end
 
   create_table "data_forms", force: :cascade do |t|
@@ -66,18 +87,6 @@ ActiveRecord::Schema.define(version: 20180624143152) do
     t.index ["name"], name: "index_events_on_name"
     t.index ["start_time"], name: "index_events_on_start_time"
     t.index ["user_id"], name: "index_events_on_user_id"
-  end
-
-  create_table "form_responses", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "data_form_entity_id", null: false
-    t.string "parent_type", null: false
-    t.bigint "parent_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["data_form_entity_id"], name: "index_form_responses_on_data_form_entity_id"
-    t.index ["parent_type", "parent_id"], name: "index_form_responses_on_parent_type_and_parent_id"
-    t.index ["user_id"], name: "index_form_responses_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -124,6 +133,7 @@ ActiveRecord::Schema.define(version: 20180624143152) do
     t.text "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "required", default: false, null: false
     t.index ["data_form_id"], name: "index_questions_on_data_form_id"
     t.index ["question_type_id"], name: "index_questions_on_question_type_id"
   end
@@ -170,14 +180,17 @@ ActiveRecord::Schema.define(version: 20180624143152) do
   end
 
   add_foreign_key "data_form_entities", "data_forms"
+  add_foreign_key "data_form_entity_response_values", "data_form_entity_responses", name: "index_dfe_response_values_on_dfe_response_id"
+  add_foreign_key "data_form_entity_response_values", "question_choices"
+  add_foreign_key "data_form_entity_response_values", "questions"
+  add_foreign_key "data_form_entity_responses", "data_form_entities"
+  add_foreign_key "data_form_entity_responses", "users"
   add_foreign_key "data_forms", "kommunities"
   add_foreign_key "data_forms", "users"
   add_foreign_key "event_users", "events"
   add_foreign_key "event_users", "users"
   add_foreign_key "events", "kommunities"
   add_foreign_key "events", "users"
-  add_foreign_key "form_responses", "data_form_entities"
-  add_foreign_key "form_responses", "users"
   add_foreign_key "kommunities", "users"
   add_foreign_key "question_choices", "questions"
   add_foreign_key "questions", "data_forms"

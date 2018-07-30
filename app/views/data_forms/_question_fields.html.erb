@@ -9,6 +9,11 @@
     <%= f.label :question_type %>
     <%= f.select :question_type_id, options_for_select(QuestionType.all.collect{|m| [m.name, m.id]}, f.object.question_type_id) %>
   </div>
+  <div class="field">
+    <%= f.label :required %>
+    <%= f.check_box :required %>
+
+  </div>
 
   <div>
 

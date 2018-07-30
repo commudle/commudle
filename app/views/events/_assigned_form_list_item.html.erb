@@ -5,6 +5,7 @@
 
   <% if dfe.form_responses.length == 0 %>
   <%= link_to 'Remove', remove_data_form_entity_event_path(id: @event, entity_id: dfe), remote: true, method: :delete %>
+  <%= link_to 'Fill', fill_form_response_path(event_id: @event, data_form_entity_id: dfe) %>
   <% end %>
 
 </li>

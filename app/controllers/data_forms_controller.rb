@@ -40,11 +40,7 @@ class DataFormsController < ApplicationController
 
   def update
 
-
-
     @data_form.update_attributes(data_form_params)
-
-
     if @data_form.save
       redirect_to action: :index, notice: "Successfully created survey."
     else
@@ -58,7 +54,7 @@ class DataFormsController < ApplicationController
   private
 
   def set_data_form
-    @data_form = DataForm.includes(questions: :question_choices).find(params[:id])
+    @data_form = DataForm.includes(questions: :question_choices).friendly.find(params[:id])
   end
 
 
@@ -69,7 +65,7 @@ class DataFormsController < ApplicationController
   end
 
   def data_form_params
-    params.require(:data_form).permit(:name, :kommunity_id, questions_attributes: [:id, :title, :question_type_id, :_destroy, question_choices_attributes: [:id, :title, :_destroy]])
+    params.require(:data_form).permit(:name, :kommunity_id, questions_attributes: [:id, :title, :question_type_id, :required, :_destroy, question_choices_attributes: [:id, :title, :_destroy]])
   end
 
 end

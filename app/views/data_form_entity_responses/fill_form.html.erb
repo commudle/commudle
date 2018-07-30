@@ -1,7 +1,7 @@
 <div id="fillable-form">
 
-    <%= form_with url: submit_form_response_path do |f| %>
-      <% @data_form_entity.data_form.questions.each_with_index do |question, index| %>
+    <%= form_with scope: :data_form_entity_response, url: submit_form_response_path do |f| %>
+      <% @data_form_entity.data_form.questions.each.with_index(1) do |question, index| %>
 
         <div>
             <div><%= index %></div>
@@ -13,16 +13,17 @@
               <% case question.question_type.name %>
               <% when "short_answer" %>
               <div>
-                <%= f.text_field :short_answer, placeholder: "Short Answer" %>
+                <%= f.text_field question.id, placeholder: "Short Answer", required: question.required%>
+
               </div>
               <% when "long_answer" %>
               <div>
-                <%= f.text_area :long_answer, placeholder: "Long Answer" %>
+                <%= f.text_area question.id, placeholder: "Long Answer", required: question.required  %>
               </div>
 
               <% when "number" %>
               <div>
-                <%= f.number_field :number, placeholder: "Number" %>
+                <%= f.number_field question.id, placeholder: "Number", required: question.required  %>
               </div>
 
               <% when "single_choice" %>
@@ -30,24 +31,18 @@
                <% question.question_choices.each do |choice| %>
 
                   <div>
-                    <%=  f.label choice %>
-                    <%= f.radio_button choice.title %>
+                    <%= f.radio_button question.id, question.id, id: choice.id, required: question.required  %>
+                    <%=  f.label choice.id, choice.title %>
                   </div>
-
                 <% end %>
               </div>
 
-              <% end %>
               <% when "multiple_choice" %>
               <div>
-                <% question.question_choices.each do |choice| %>
-
                 <div>
-                  <%=  f.label choice %>
-                  <%= f.checkbox choice.title %>
-                </div>
+                  <%= f.collection_check_boxes question.id, question.question_choices.all, :id, :title, required: question.required  %>
 
-                <% end %>
+                </div>
               </div>
 
               <% end %>
@@ -56,6 +51,7 @@
         </div>
 
       <% end %>
+        <%= f.submit 'Submit' %>
     <% end %>
 
 </div>

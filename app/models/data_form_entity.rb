@@ -4,8 +4,8 @@ class DataFormEntity < ApplicationRecord
   friendly_id :name, use: :slugged
   belongs_to :data_form
   belongs_to :entity, polymorphic: true
-  has_many :form_responses
-
+  has_many :questions, through: :data_form
+  has_many :data_form_entity_responses
 
 
 
