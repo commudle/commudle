@@ -13,17 +13,17 @@
               <% case question.question_type.name %>
               <% when "short_answer" %>
               <div>
-                <%= f.text_field question.id, placeholder: "Short Answer", required: question.required%>
+                <%= f.text_field question.id, placeholder: "Short Answer", required: question.required, value: @existing_response[question.id] %>
 
               </div>
               <% when "long_answer" %>
               <div>
-                <%= f.text_area question.id, placeholder: "Long Answer", required: question.required  %>
+                <%= f.text_area question.id, placeholder: "Long Answer", required: question.required, value: @existing_response[question.id]  %>
               </div>
 
               <% when "number" %>
               <div>
-                <%= f.number_field question.id, placeholder: "Number", required: question.required  %>
+                <%= f.number_field question.id, placeholder: "Number", required: question.required, value: @existing_response[question.id]  %>
               </div>
 
               <% when "single_choice" %>
@@ -31,8 +31,9 @@
                <% question.question_choices.each do |choice| %>
 
                   <div>
-                    <%= f.radio_button question.id, question.id, id: choice.id, required: question.required  %>
+                    <%= f.radio_button question.id, choice.id, id: choice.id, required: question.required, checked: (@existing_response[question.id] == choice.id)  %>
                     <%=  f.label choice.id, choice.title %>
+
                   </div>
                 <% end %>
               </div>
@@ -40,7 +41,7 @@
               <% when "multiple_choice" %>
               <div>
                 <div>
-                  <%= f.collection_check_boxes question.id, question.question_choices.all, :id, :title, required: question.required  %>
+                  <%= f.collection_check_boxes question.id, question.question_choices.all, :id, :title, (@existing_responses[question.id].blank? ? false : @existing_responses[question.id].map(&:to_param)), required: question.required,   %>
 
                 </div>
               </div>

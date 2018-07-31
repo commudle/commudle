@@ -6,9 +6,11 @@ class DataFormEntityResponsesController < ApplicationController
   # update or fill a data form for an event
   def fill_form
 
-    @existing_response = @data_form_entity.data_form_entity_responses.includes(data_form_entity: {data_form: {questions: :question_type}}, data_form_entity_response_values: :question).find_by(user_id: current_user.id)
-    if @existing_response
-      @existing_response = @existing_response.get_response_hash
+    existing_response = @data_form_entity.data_form_entity_responses.includes(data_form_entity: {data_form: {questions: :question_type}}, data_form_entity_response_values: :question).find_by(user_id: current_user.id)
+    @existing_response = Hash.new
+    if existing_response
+      @existing_response = existing_response.get_response_hash
+      puts(@existing_response)
     end
   end
 

@@ -26,6 +26,7 @@ class DataFormEntityResponse < ApplicationRecord
       # mark all the existing user responses as inactive because it might be possible that the type of a question changes
       DataFormEntityResponseValue.where(data_form_entity_response: self, question_id: question.id).update(active: false)
       current_response = response_params[question.id.to_s]
+
       if !current_response.blank?
         case question.name
 
