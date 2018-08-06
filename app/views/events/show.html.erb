@@ -13,10 +13,7 @@
       <h4>Assigned Forms</h4>
 
       <ul id="assigned-forms-list">
-        <% @event.data_form_entities.each do |dfe| %>
-
-        <%= render 'assigned_form_list_item', {dfe: dfe} %>
-        <% end %>
+        <%= render partial: 'assigned_form_list_item', collection: @event.data_form_entities, as: :dfe, locals: {event: @event} %>
       </ul>
 
 

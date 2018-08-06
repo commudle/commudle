@@ -1,0 +1,28 @@
+{
+
+    function toggleRegistrationFormLinkText(){
+//        hide all the registration toggle links if a form is now a registration form, else show all the links
+        if ("<%= @form_added %>" == "true"){
+            $('.event-reg-form-toggle-link').addClass('hidden-item');
+        }else{
+            $('.event-reg-form-toggle-link').removeClass('hidden-item');
+        }
+
+
+
+        $('#event-reg-form-toggle-link-<%= @dfe.id %>').html('<%= "#{@event.registration_form_link_text(@dfe)}" %>').removeClass('hidden-item');
+
+
+
+
+        let notification = new Noty({
+            text: "<%= @message %>",
+            theme: 'relax',
+            type: 'success'
+        }).show();
+    }
+
+
+    toggleRegistrationFormLinkText();
+
+}

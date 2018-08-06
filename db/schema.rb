@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_30_125215) do
+ActiveRecord::Schema.define(version: 2018_08_06_111811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,9 +82,11 @@ ActiveRecord::Schema.define(version: 2018_07_30_125215) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "slug"
+    t.bigint "registration_form_id"
     t.index ["end_time"], name: "index_events_on_end_time"
     t.index ["kommunity_id"], name: "index_events_on_kommunity_id"
     t.index ["name"], name: "index_events_on_name"
+    t.index ["registration_form_id"], name: "index_events_on_registration_form_id"
     t.index ["start_time"], name: "index_events_on_start_time"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -189,6 +191,7 @@ ActiveRecord::Schema.define(version: 2018_07_30_125215) do
   add_foreign_key "data_forms", "users"
   add_foreign_key "event_users", "events"
   add_foreign_key "event_users", "users"
+  add_foreign_key "events", "data_form_entities", column: "registration_form_id"
   add_foreign_key "events", "kommunities"
   add_foreign_key "events", "users"
   add_foreign_key "kommunities", "users"

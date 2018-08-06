@@ -48,7 +48,12 @@ class EventsController < ApplicationController
     data_form = DataForm.find_by(id: params[:data_form_id], kommunity_id: @event.kommunity_id)
 
     if data_form
-      @dfe = DataFormEntity.new(entity: @event, data_form: data_form, name: data_form.name)
+      # if event already has a data form, then don't add, else add that data form, this just a safety measure to prevent duplicacy
+      if @event.data_form_entities.where(data_form: data_form).blank?
+        @dfe = DataFormEntity.new(entity: @event, data_form: data_form, name: data_form.name)
+      else
+        return error_response(ErrorNotification::ResponseTypes::JS, ErrorNotification::ErrorCodes::CONFLICT, "This form is already added to the event")
+      end
 
       if (@dfe.save)
 
@@ -66,24 +71,7 @@ class EventsController < ApplicationController
 
   end
 
-  def remove_data_form_entity
 
-    @dfe = DataFormEntity.find_by(slug: params[:entity_id], entity: @event)
-
-    if (!@dfe.blank? && @dfe.form_responses.length == 0)
-      @dfe.destroy
-
-      respond_to do |format|
-
-
-        return format.js
-      end
-    else
-      return error_response(ErrorNotification::ResponseTypes::JS, ErrorNotification::ErrorCodes::INVALID_INPUT, "Cannot be deleted, it has form responses attached to it.")
-    end
-
-
-  end
 
 
   private
@@ -95,4 +83,7 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:name, :kommunity_id, :start_time, :end_time, :description)
   end
+
+
+
 end

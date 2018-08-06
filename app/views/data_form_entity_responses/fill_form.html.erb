@@ -1,3 +1,7 @@
+
+<% if !@existing_response.blank? %>
+<div> You have already filled the form, please feel free to update your responses!</div>
+<% end %>
 <div id="fillable-form">
 
     <%= form_with scope: :data_form_entity_response, url: submit_form_response_path do |f| %>
@@ -40,8 +44,9 @@
 
               <% when "multiple_choice" %>
               <div>
+                <p><%= question.id %></p>
                 <div>
-                  <%= f.collection_check_boxes question.id, question.question_choices.all, :id, :title, (@existing_responses[question.id].blank? ? false : @existing_responses[question.id].map(&:to_param)), required: question.required,   %>
+                  <%= f.collection_check_boxes question.id, question.question_choices.all, :id, :title, required: question.required, checked: (@existing_response[question.id].blank? ? false : @existing_response[question.id].map(&:to_param))  %>
 
                 </div>
               </div>
