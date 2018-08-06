@@ -13,5 +13,10 @@ UserRole.create([{ :name => 'system_administrator' }, { :name => 'organizer'}, {
 QuestionType.create([{ :name => 'short_answer' }, { :name => 'long_answer'}, { :name => 'number' }, { :name => 'single_choice' }, { :name => 'multiple_choice' }])
 
 
+RegistrationStatus.create([{ name: "waiting"}, { name: "shortlisted"}, { name: "confirmed"}, { name: "cancelled"}])
+
+EventStatus.create([{ name: "draft"}, { name: "announce"}, { name: "registrations_open"}, { name: "registrations_closed"}, { name: "rsvp_open"}, { name: "rsvp_closed"}, { name: "entry_passes_rolling_out"}, { name: "entry_passes_completed"}, { name: "ongoing"}, { name: "completed"} ])
+
+
 
 

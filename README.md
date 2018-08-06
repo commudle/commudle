@@ -4,7 +4,7 @@ Prerequisites
 
 * Ruby version: 2.5.0
 
-* Rails version: 5.1.0
+* Rails version: 5.2.0
 
 * Database Used: Postgres (both development and production)
 
@@ -24,4 +24,5 @@ Clone/Download
 * Run: gem pristine --all
 
 * https://gist.github.com/dhoelzgen/cd7126b8652229d32eb4
+
 

@@ -1,8 +1,14 @@
 class DataFormEntityResponse < ApplicationRecord
   belongs_to :user
   belongs_to :data_form_entity
+  belongs_to :registration_status
+
   has_many :data_form_entity_response_values
-  # parent is either a question or a choice
+
+
+
+  # setting the default value of registration_status
+  attribute :registration_status, :integer, default: RegistrationStatus.find("waiting")
 
 
 

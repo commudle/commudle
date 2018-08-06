@@ -33,42 +33,6 @@ class DataFormEntitiesEventsController < EventsController
 
 
 
-  def toggle_registration_form
-
-    registration_form = @event.registration_form
-
-
-
-    # check if there is an existing registration form assigned
-    # if registration form is absent for the event, the mark this data form entity as registration form
-    if registration_form.blank?
-      @event.registration_form = @dfe
-      @event.save
-      @form_added = true
-      @message = "Registration Form Assigned"
-    else
-    # if the registration form exists and is the same form, then remove it
-      if registration_form == @dfe
-        @event.registration_form = nil
-        @event.save
-        @form_added = false
-        @message = "Registration Form Removed"
-
-      else
-
-        return error_response(
-            ErrorNotification::ResponseTypes::JS,
-            ErrorNotification::ErrorCodes::CONFLICT,
-            "This event already has a registration form"
-        )
-
-      end
-
-
-    end
-
-
-  end
 
 
   private
