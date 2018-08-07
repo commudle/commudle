@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_06_140411) do
+ActiveRecord::Schema.define(version: 2018_08_07_010803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,10 @@ ActiveRecord::Schema.define(version: 2018_08_06_140411) do
     t.boolean "is_open", default: false
     t.string "slug"
     t.string "name"
+    t.bigint "registration_type_id"
     t.index ["data_form_id"], name: "index_data_form_entities_on_data_form_id"
     t.index ["entity_type", "entity_id"], name: "index_data_form_entities_on_entity_type_and_entity_id"
+    t.index ["registration_type_id"], name: "index_data_form_entities_on_registration_type_id"
   end
 
   create_table "data_form_entity_response_registration_status_logs", force: :cascade do |t|
@@ -176,6 +178,13 @@ ActiveRecord::Schema.define(version: 2018_08_06_140411) do
     t.index ["name"], name: "index_registration_statuses_on_name"
   end
 
+  create_table "registration_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_registration_types_on_name"
+  end
+
   create_table "user_roles", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -218,6 +227,7 @@ ActiveRecord::Schema.define(version: 2018_08_06_140411) do
   end
 
   add_foreign_key "data_form_entities", "data_forms"
+  add_foreign_key "data_form_entities", "registration_types"
   add_foreign_key "data_form_entity_response_registration_status_logs", "data_form_entity_responses", name: "index_data_form_entity_response_reg_status"
   add_foreign_key "data_form_entity_response_registration_status_logs", "users", name: "index_data_form_entity_response_reg_status_user"
   add_foreign_key "data_form_entity_response_values", "data_form_entity_responses", name: "index_dfe_response_values_on_dfe_response_id"

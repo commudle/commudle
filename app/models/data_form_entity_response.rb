@@ -4,6 +4,7 @@ class DataFormEntityResponse < ApplicationRecord
   belongs_to :registration_status
 
   has_many :data_form_entity_response_values
+  has_many :data_form_entity_response_registration_status_logs
 
 
 
