@@ -1,0 +1,13 @@
+<div>
+
+  <p>
+    Select Event Status
+
+  </p>
+  <% @event_statuses.each do |est| %>
+
+  <%= link_to est.name, update_event_status_event_path(event_id: event, event_status: est.id), method: :put, class: "#{'active-event-status' if(est == event.event_status)}" %>
+
+  <% end %>
+
+</div>

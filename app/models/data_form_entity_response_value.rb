@@ -6,15 +6,27 @@ class DataFormEntityResponseValue < ApplicationRecord
 
 
 
-  def self.get_response_value(data_form_entity_response, question_id, question_type)
-    qresponses = d.data_form_entity_response_values.select{ |qres| (qres.active && qres.question_id == question_id) }
+  def self.get_response_text(question, data_form_entity_response)
+    qresponses = DataFormEntityResponseValue.joins(
+        "LEFT OUTER JOIN question_choices ON data_form_entity_response_values.question_choice_id = question_choices.id"
+    ).where(
+        'active = ? and data_form_entity_response_values.question_id = ? and data_form_entity_response_id = ?',
+        true, question.id, data_form_entity_response.id
+    ).select("question_choices.title, text_response")
 
-    case question_type
-      when "short_answer", "long_answer", "number", "single_choice"
-        return qresponses[0]
-      else
-        return qresponses
+    if qresponses.length > 0
+      case question.question_type.name
+        when "short_answer", "long_answer", "number"
+          return qresponses[0].text_response.html_safe
+        when "single_choice"
+          return qresponses[0].title.html_safe
+        else
+          return qresponses.map(&:title).join("<br>").html_safe
+      end
     end
+
+    return ".."
+
   end
 
 end

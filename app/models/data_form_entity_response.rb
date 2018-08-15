@@ -9,9 +9,26 @@ class DataFormEntityResponse < ApplicationRecord
 
 
   # setting the default value of registration_status
-  attribute :registration_status, :integer, default: RegistrationStatus.find("waiting")
+  # TODO make this dynamic, to be set during assigning a form to an event
+  attribute :registration_status, :integer, default: RegistrationStatus.find_by_name("waiting")
 
+  before_save :create_log, if: :will_save_change_to_registration_status?
 
+  def create_log(current_user = nil)
+    current_user = CurrentAccess.user.blank? ? current_user : CurrentAccess.user
+    if current_user
+
+      DataFormEntityRegistrationStatusLog.create(
+          user: current_user,
+          data_form_entity_response: self,
+          registration_status: self.registration_status
+      )
+
+    else
+      return "Registration Status Change Log Not Created"
+
+    end
+  end
 
 
   def self.create_or_find_user_response(data_form_entity,  user, response_params)

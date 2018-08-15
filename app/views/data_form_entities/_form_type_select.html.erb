@@ -1,0 +1,13 @@
+<div>
+
+  <p>
+    Select Registration Type
+
+  </p>
+  <% @registration_types.each do |reg| %>
+
+    <%= link_to reg.name, change_responses_registration_type_path(event_id: event, data_form_entity_id: dfe, registration_type: reg.id), method: :put, class: "#{'active-registration-type' if(reg == dfe.registration_type)}" %>
+
+  <% end %>
+
+</div>

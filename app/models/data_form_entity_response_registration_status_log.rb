@@ -5,4 +5,8 @@ class DataFormEntityRegistrationStatusLog < ApplicationRecord
   belongs_to :registration_status
 
 
+
+
+
+
 end

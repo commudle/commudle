@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 
+gem 'rails-erd', group: :development
+
 gem 'friendly_id', '~> 5.1.0'
 
 gem 'paranoia', '~> 2.2'

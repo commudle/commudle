@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_07_010803) do
+ActiveRecord::Schema.define(version: 2018_08_15_164323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "communication_emails", force: :cascade do |t|
+    t.text "subject"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "data_form_entities", force: :cascade do |t|
     t.bigint "data_form_id", null: false
@@ -58,6 +65,15 @@ ActiveRecord::Schema.define(version: 2018_08_07_010803) do
     t.index ["data_form_entity_id"], name: "index_data_form_entity_responses_on_data_form_entity_id"
     t.index ["registration_status_id"], name: "index_data_form_entity_responses_on_registration_status_id"
     t.index ["user_id"], name: "index_data_form_entity_responses_on_user_id"
+  end
+
+  create_table "data_form_entry_response_email_users", force: :cascade do |t|
+    t.integer "data_form_entity_response_id"
+    t.integer "registration_status_id"
+    t.integer "event_status_id"
+    t.integer "communication_email_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "data_forms", force: :cascade do |t|
@@ -178,6 +194,15 @@ ActiveRecord::Schema.define(version: 2018_08_07_010803) do
     t.index ["name"], name: "index_registration_statuses_on_name"
   end
 
+  create_table "registration_type_statuses", force: :cascade do |t|
+    t.bigint "registration_status_id"
+    t.bigint "registration_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["registration_status_id"], name: "index_registration_type_statuses_on_registration_status_id"
+    t.index ["registration_type_id"], name: "index_registration_type_statuses_on_registration_type_id"
+  end
+
   create_table "registration_types", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -236,6 +261,10 @@ ActiveRecord::Schema.define(version: 2018_08_07_010803) do
   add_foreign_key "data_form_entity_responses", "data_form_entities"
   add_foreign_key "data_form_entity_responses", "registration_statuses"
   add_foreign_key "data_form_entity_responses", "users"
+  add_foreign_key "data_form_entry_response_email_users", "communication_emails", name: "index_dfereu_communication_status"
+  add_foreign_key "data_form_entry_response_email_users", "data_form_entity_responses", name: "index_dfereu_response"
+  add_foreign_key "data_form_entry_response_email_users", "event_statuses", name: "index_dfereu_event_status"
+  add_foreign_key "data_form_entry_response_email_users", "registration_statuses", name: "index_dfereu_registration_status"
   add_foreign_key "data_forms", "kommunities"
   add_foreign_key "data_forms", "users"
   add_foreign_key "event_status_logs", "event_statuses"
@@ -251,4 +280,6 @@ ActiveRecord::Schema.define(version: 2018_08_07_010803) do
   add_foreign_key "question_choices", "questions"
   add_foreign_key "questions", "data_forms"
   add_foreign_key "questions", "question_types"
+  add_foreign_key "registration_type_statuses", "registration_statuses"
+  add_foreign_key "registration_type_statuses", "registration_types"
 end

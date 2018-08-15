@@ -1,0 +1,49 @@
+
+<div>
+  <div>
+    <%= render 'form_type_select', dfe: @data_form_entity, event: @event %>
+
+  </div>
+
+
+  <table>
+    <thead>
+      <% @data_form_entity.data_form.questions.each do |question| %>
+      <th>
+        <p>
+          <%= question.title %>
+        </p>
+      </th>
+      <% end %>
+      <th>
+        Registration Status
+      </th>
+    </thead>
+    <!--TODO Optimize the query to show responses-->
+    <tbody>
+
+      <% @data_form_entity.data_form_entity_responses.each do |dfer| %>
+      <% @data_form_entity.data_form.questions.each do |question| %>
+
+      <td>
+        <%= DataFormEntityResponseValue.get_response_text(question, dfer) %>
+
+      </td>
+
+
+      <% end %>
+      <td>
+        <% if(!@data_form_entity.registration_type.blank?) %>
+        <%= render 'data_form_entity_responses/registration_status_actions', dfer: dfer %>
+        <% end %>
+      </td>
+
+      <% end %>
+
+    </tbody>
+
+  </table>
+
+
+
+</div>

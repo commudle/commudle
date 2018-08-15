@@ -17,7 +17,14 @@ RegistrationStatus.create([{ name: "waiting"}, { name: "shortlisted"}, { name: "
 
 RegistrationType.create([{ name: "attendee"}, { name: "speaker"}, {name: "feedback"}, {name: "communication"}])
 
-EventStatus.create([{ name: "draft"}, { name: "announce"}, { name: "registrations_open"}, { name: "registrations_closed"}, { name: "rsvp_open"}, { name: "rsvp_closed"}, { name: "entry_passes_rolling_out"}, { name: "entry_passes_completed"}, { name: "ongoing"}, { name: "completed"} ])
+EventStatus.create([{ name: "draft"}, { name: "announced"}, {name: "announced_with_email"}, { name: "registrations_open"}, { name: "registrations_closed"}, { name: "rsvp_open"}, { name: "rsvp_closed"}, { name: "entry_passes_rolling_out"}, { name: "entry_passes_completed"}, { name: "ongoing"}, { name: "completed"} ])
+
+
+RegistrationType.where("name in (?)", ["attendee", "speaker"]).each do |rt|
+  RegistrationStatus.all.each do |rst|
+    rst.registration_types << rt
+  end
+end
 
 
 
