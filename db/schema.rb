@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2018_08_15_164323) do
     t.index ["registration_type_id"], name: "index_data_form_entities_on_registration_type_id"
   end
 
+  create_table "data_form_entity_response_email_users", force: :cascade do |t|
+    t.integer "data_form_entity_response_id"
+    t.integer "registration_status_id"
+    t.integer "event_status_id"
+    t.integer "communication_email_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "data_form_entity_response_registration_status_logs", force: :cascade do |t|
     t.integer "data_form_entity_response_id", null: false
     t.integer "user_id", null: false
@@ -65,15 +74,6 @@ ActiveRecord::Schema.define(version: 2018_08_15_164323) do
     t.index ["data_form_entity_id"], name: "index_data_form_entity_responses_on_data_form_entity_id"
     t.index ["registration_status_id"], name: "index_data_form_entity_responses_on_registration_status_id"
     t.index ["user_id"], name: "index_data_form_entity_responses_on_user_id"
-  end
-
-  create_table "data_form_entry_response_email_users", force: :cascade do |t|
-    t.integer "data_form_entity_response_id"
-    t.integer "registration_status_id"
-    t.integer "event_status_id"
-    t.integer "communication_email_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "data_forms", force: :cascade do |t|
@@ -253,6 +253,10 @@ ActiveRecord::Schema.define(version: 2018_08_15_164323) do
 
   add_foreign_key "data_form_entities", "data_forms"
   add_foreign_key "data_form_entities", "registration_types"
+  add_foreign_key "data_form_entity_response_email_users", "communication_emails", name: "index_dfereu_communication_status"
+  add_foreign_key "data_form_entity_response_email_users", "data_form_entity_responses", name: "index_dfereu_response"
+  add_foreign_key "data_form_entity_response_email_users", "event_statuses", name: "index_dfereu_event_status"
+  add_foreign_key "data_form_entity_response_email_users", "registration_statuses", name: "index_dfereu_registration_status"
   add_foreign_key "data_form_entity_response_registration_status_logs", "data_form_entity_responses", name: "index_data_form_entity_response_reg_status"
   add_foreign_key "data_form_entity_response_registration_status_logs", "users", name: "index_data_form_entity_response_reg_status_user"
   add_foreign_key "data_form_entity_response_values", "data_form_entity_responses", name: "index_dfe_response_values_on_dfe_response_id"
@@ -261,10 +265,6 @@ ActiveRecord::Schema.define(version: 2018_08_15_164323) do
   add_foreign_key "data_form_entity_responses", "data_form_entities"
   add_foreign_key "data_form_entity_responses", "registration_statuses"
   add_foreign_key "data_form_entity_responses", "users"
-  add_foreign_key "data_form_entry_response_email_users", "communication_emails", name: "index_dfereu_communication_status"
-  add_foreign_key "data_form_entry_response_email_users", "data_form_entity_responses", name: "index_dfereu_response"
-  add_foreign_key "data_form_entry_response_email_users", "event_statuses", name: "index_dfereu_event_status"
-  add_foreign_key "data_form_entry_response_email_users", "registration_statuses", name: "index_dfereu_registration_status"
   add_foreign_key "data_forms", "kommunities"
   add_foreign_key "data_forms", "users"
   add_foreign_key "event_status_logs", "event_statuses"
