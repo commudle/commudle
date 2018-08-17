@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
 
-gem 'rails-erd', group: :development
+group :development do
+  gem "rails-erd"
+end
 
 gem 'friendly_id', '~> 5.1.0'
 
