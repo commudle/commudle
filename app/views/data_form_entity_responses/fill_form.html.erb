@@ -4,7 +4,7 @@
 <% end %>
 <div id="fillable-form">
 
-    <%= form_with scope: :data_form_entity_response, url: submit_form_response_path do |f| %>
+    <%= form_with scope: :data_form_entity_response, url: submit_form_response_path(data_form_entity_id: @data_form_entity) do |f| %>
       <% @data_form_entity.data_form.questions.each.with_index(1) do |question, index| %>
 
         <div>

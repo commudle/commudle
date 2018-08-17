@@ -5,11 +5,19 @@ Rails.application.routes.draw do
   resources :events, only: [:index, :new, :create, :edit, :update, :show] do
     member do
       post 'assign-data-form',
-           to: 'events#assign_data_form',
+           to: 'event_data_form_entity_groups#assign_data_form_entity',
            as: :assign_data_form
 
+      post 'create-form-set',
+           to: 'event_data_form_entity_groups#create',
+           as: :create_form_set
 
-      delete 'remove-data-form-entity/:entity_id',
+      delete 'destroy-form-set',
+             to: 'event_data_form_entity_groups#destroy',
+             as: :destroy_form_set
+
+
+      delete 'remove-data-form-entity',
              to: 'data_form_entities_events#remove_data_form_entity',
              as: :remove_data_form_entity
 
@@ -21,6 +29,8 @@ Rails.application.routes.draw do
 
     end
   end
+
+
 
 
   resources :data_forms, :path => 'data-forms', only: [:index, :new, :create, :edit, :update]
@@ -36,12 +46,12 @@ Rails.application.routes.draw do
   # INDIVIDUAL URLS
 
   # data_form_entity_responses_controller
-  get '/:event_id/:data_form_entity_id/fill-form',
+  get 'fill-form',
       to: 'data_form_entity_responses#fill_form',
       as: :fill_form_response
 
 
-  post '/:event_id/:data_form_entity_id/response',
+  post 'response',
        to: 'data_form_entity_responses#submit_form',
        as: :submit_form_response
 
@@ -52,7 +62,7 @@ Rails.application.routes.draw do
 
 
   # data_form_entities_controller
-  get '/:event_id/:data_form_entity_id/form-responses',
+  get 'form-responses',
       to: 'data_form_entities#form_responses',
       as: :form_responses
 

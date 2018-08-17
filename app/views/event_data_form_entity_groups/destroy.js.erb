@@ -1,0 +1,19 @@
+{
+
+    function removeFormSet(){
+        $('#event-data-form-entity-group-<%= @edfeg.id %>').remove();
+
+
+        let notification = new Noty({
+            text: 'Form set deleted',
+            theme: 'relax',
+            type: 'warning'
+        }).show();
+    }
+
+
+    removeFormSet();
+
+}
+
+

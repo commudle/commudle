@@ -7,17 +7,11 @@ class DataFormEntitiesEventsController < EventsController
 
   def remove_data_form_entity
 
-    @dfe = DataFormEntity.find_by(slug: params[:entity_id], entity: @event)
+    @dfe = DataFormEntity.find_by(id: params[:entity_id])
 
-    if (!@dfe.blank? && @dfe.data_form_entity_responses.length == 0 && @event.registration_form_id != @dfe.id)
+    if (!@dfe.blank? && @dfe.data_form_entity_responses.length == 0)
       @dfe.destroy
 
-    elsif (@event.registration_form_id == @dfe.id)
-      return error_response(
-          ErrorNotification::ResponseTypes::JS,
-          ErrorNotification::ErrorCodes::INVALID_INPUT,
-          "Registration forms cannot be deleted."
-      )
     else
 
 

@@ -1,0 +1,35 @@
+<li id="event-data-form-entity-group-<%= edfeg.id %>">
+  <p><%= edfeg.name %>
+    &nbsp
+    <span>
+      <%= link_to 'Delete', destroy_form_set_event_path(id: event, event_data_form_entity_group_id: edfeg), method: :delete, remote: true %>
+    </span>
+  </p>
+
+  <ul id="event-data-form-entities-<%= edfeg.id %>">
+
+    <%= render partial: 'event_data_form_entity_groups/assigned_form_list_item', collection: edfeg.data_form_entities, as: :dfe, locals: {edfeg: edfeg} %>
+
+  </ul>
+
+  <div>
+    <!--Assign the forms using JS requests, create a page to fill the assigned form and create a user's entry-->
+    <!--add feature to enable/disable the new data_form_entity-->
+    <%= form_with url: assign_data_form_event_path(id: event, event_data_form_entity_group_id: edfeg), method: 'post', remote: true do |f| %>
+    <fieldset>
+      <h5>Add Form</h5>
+      <div class="field">
+        <%= f.label :data_form %>
+        <%= f.select :data_form_id, options_for_select(edfeg.event.user.data_forms.all.collect{|m| [m.name, m.id]}) %>
+        <%= f.submit "Assign Form" %>
+      </div>
+
+
+
+    </fieldset>
+    <% end %>
+  </div>
+
+
+
+</li>

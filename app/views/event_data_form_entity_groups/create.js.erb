@@ -1,0 +1,19 @@
+{
+
+    function addFormSet(){
+        let newAssignedFormListItem = $('#form-set-list').append("<%= escape_javascript render 'event_data_form_entity_groups/form_set', edfeg: @edfeg, event: @event %>");
+
+
+        let notification = new Noty({
+            text: 'New Form Set Created',
+            theme: 'relax',
+            type: 'success'
+        }).show();
+    }
+
+
+    addFormSet();
+
+}
+
+

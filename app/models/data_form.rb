@@ -1,6 +1,6 @@
 class DataForm < ApplicationRecord
-  extend FriendlyId
-  friendly_id :name, use: :slugged
+  # extend FriendlyId
+  # friendly_id :name, use: :slugged
   belongs_to :user
   belongs_to :kommunity
   has_many :questions, dependent: :destroy

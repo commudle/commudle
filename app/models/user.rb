@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :kommunities
   has_many :events
   has_many :data_forms
+  has_many :event_data_form_entity_groups
+  has_many :data_form_entity_response_groups
 
 
   def self.from_omniauth(access_token)

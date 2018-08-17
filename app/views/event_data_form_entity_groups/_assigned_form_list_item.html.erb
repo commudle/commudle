@@ -9,7 +9,7 @@
   <% end %>
 
 
-  <%= link_to 'Fill', fill_form_response_path(event_id: @event, data_form_entity_id: dfe) %>
+  <%= link_to 'Fill', fill_form_response_path(data_form_entity_id: dfe) %>
 
-  <%= link_to 'View Responses', form_responses_path(event_id: @event, data_form_entity_id: dfe) %>
+  <%= link_to 'View Responses', form_responses_path(event_data_form_entity_group_id: edfeg) %>
 </li>

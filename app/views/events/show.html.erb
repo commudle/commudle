@@ -14,31 +14,37 @@
     <div>
       <h4>Assigned Forms</h4>
 
-      <ul id="assigned-forms-list">
-        <%= render partial: 'assigned_form_list_item', collection: @event.data_form_entities, as: :dfe, locals: {event: @event} %>
+      <ul class="form-set-list">
+        <%= render partial: 'event_data_form_entity_groups/form_set', collection: @event.event_data_form_entity_groups, as: :edfeg, locals: {event: @event} %>
+
       </ul>
 
 
 
     </div>
 
+
     <div>
-<!--Assign the forms using JS requests, create a page to fill the assigned form and create a user's entry-->
-      <!--add feature to enable/disable the new data_form_entity-->
-      <%= form_with url: assign_data_form_event_path(id: @event), method: 'post', remote: true do |f| %>
-        <fieldset>
-          <h5>Assign Form</h5>
-          <div class="field">
-            <%= f.label :data_form %>
-            <%= f.select :data_form_id, options_for_select(@event.user.data_forms.all.collect{|m| [m.name, m.id]}) %>
-            <%= f.submit "Assign Form" %>
-          </div>
+      <%= form_with url: create_form_set_event_path(id: @event), scope: :event_data_form_entity_group, method: 'post', remote: true do |f| %>
+      <h5>Create Form Set</h5>
+      <fieldset>
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :registration_type %>
+          <%= f.select :registration_type_id, options_for_select(RegistrationType.all.collect{|m| [m.name, m.id]}) %>
 
+        </div>
+        <%= f.submit "Create Form Set" %>
 
+      </fieldset>
 
-        </fieldset>
       <% end %>
     </div>
+
+
 
 
 </div>

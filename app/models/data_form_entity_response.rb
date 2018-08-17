@@ -1,17 +1,11 @@
 class DataFormEntityResponse < ApplicationRecord
-  belongs_to :user
   belongs_to :data_form_entity
+  belongs_to :data_form_entity_response_group
 
   has_many :data_form_entity_response_values
   has_many :data_form_entity_response_registration_status_logs
 
 
-
-  # setting the default value of registration_status
-  # TODO make this dynamic, to be set during assigning a form to an event
-  attribute :registration_status, :integer, default: RegistrationStatus.find_by_name("waiting")
-
-  before_save :create_log, if: :will_save_change_to_registration_status?
 
   def create_log(current_user = nil)
     current_user = CurrentAccess.user.blank? ? current_user : CurrentAccess.user
@@ -32,7 +26,10 @@ class DataFormEntityResponse < ApplicationRecord
 
   def self.create_or_find_user_response(data_form_entity,  user, response_params)
 
-    form_response = DataFormEntityResponse.find_or_create_by(user_id: user.id, data_form_entity_id: data_form_entity.id)
+    form_response_group = DataFormEntityResponseGroup.find_or_create_by(user_id: user.id, event_data_form_entity_group_id: data_form_entity.entity_id)
+
+    form_response = DataFormEntityResponse.find_or_create_by(data_form_entity_response_group_id: form_response_group.id, data_form_entity_id: data_form_entity.id)
+
 
     form_response.create_or_update_question_response(response_params)
 

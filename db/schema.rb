@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_17_010049) do
+ActiveRecord::Schema.define(version: 2018_08_17_163729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2018_08_17_010049) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "data_form_entity_response_groups", force: :cascade do |t|
+    t.integer "event_data_form_entity_group_id"
+    t.integer "registration_status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_data_form_entity_response_groups_on_user_id"
+  end
+
   create_table "data_form_entity_response_registration_status_logs", force: :cascade do |t|
     t.integer "data_form_entity_response_id", null: false
     t.integer "user_id", null: false
@@ -64,12 +73,11 @@ ActiveRecord::Schema.define(version: 2018_08_17_010049) do
   end
 
   create_table "data_form_entity_responses", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "data_form_entity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "data_form_entity_response_group_id"
     t.index ["data_form_entity_id"], name: "index_data_form_entity_responses_on_data_form_entity_id"
-    t.index ["user_id"], name: "index_data_form_entity_responses_on_user_id"
   end
 
   create_table "data_forms", force: :cascade do |t|
@@ -89,9 +97,13 @@ ActiveRecord::Schema.define(version: 2018_08_17_010049) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "registration_type_id"
+    t.bigint "user_id"
+    t.string "slug"
     t.index ["event_id"], name: "index_event_data_form_entity_groups_on_event_id"
+    t.index ["name", "event_id"], name: "index_event_data_form_entity_groups_on_name_and_event_id", unique: true
     t.index ["name"], name: "index_event_data_form_entity_groups_on_name"
     t.index ["registration_type_id"], name: "index_event_data_form_entity_groups_on_registration_type_id"
+    t.index ["user_id"], name: "index_event_data_form_entity_groups_on_user_id"
   end
 
   create_table "event_status_logs", force: :cascade do |t|
@@ -122,13 +134,11 @@ ActiveRecord::Schema.define(version: 2018_08_17_010049) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "slug"
-    t.bigint "registration_form_id"
     t.bigint "event_status_id"
     t.index ["end_time"], name: "index_events_on_end_time"
     t.index ["event_status_id"], name: "index_events_on_event_status_id"
     t.index ["kommunity_id"], name: "index_events_on_kommunity_id"
     t.index ["name"], name: "index_events_on_name"
-    t.index ["registration_form_id"], name: "index_events_on_registration_form_id"
     t.index ["start_time"], name: "index_events_on_start_time"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
@@ -205,15 +215,6 @@ ActiveRecord::Schema.define(version: 2018_08_17_010049) do
     t.index ["name"], name: "index_registration_types_on_name"
   end
 
-  create_table "user_event_data_form_entity_response_groups", force: :cascade do |t|
-    t.integer "event_data_form_entity_group_id"
-    t.integer "registration_status_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_user_event_data_form_entity_response_groups_on_user_id"
-  end
-
   create_table "user_roles", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -260,21 +261,24 @@ ActiveRecord::Schema.define(version: 2018_08_17_010049) do
   add_foreign_key "data_form_entity_response_email_users", "data_form_entity_responses", name: "index_dfereu_response"
   add_foreign_key "data_form_entity_response_email_users", "event_statuses", name: "index_dfereu_event_status"
   add_foreign_key "data_form_entity_response_email_users", "registration_statuses", name: "index_dfereu_registration_status"
+  add_foreign_key "data_form_entity_response_groups", "event_data_form_entity_groups", name: "index_user_repsponse_group_event_dfe_group"
+  add_foreign_key "data_form_entity_response_groups", "registration_statuses", name: "index_user_repsponse_group_event_reg_status"
+  add_foreign_key "data_form_entity_response_groups", "users"
   add_foreign_key "data_form_entity_response_registration_status_logs", "data_form_entity_responses", name: "index_data_form_entity_response_reg_status"
   add_foreign_key "data_form_entity_response_registration_status_logs", "users", name: "index_data_form_entity_response_reg_status_user"
   add_foreign_key "data_form_entity_response_values", "data_form_entity_responses", name: "index_dfe_response_values_on_dfe_response_id"
   add_foreign_key "data_form_entity_response_values", "question_choices"
   add_foreign_key "data_form_entity_response_values", "questions"
   add_foreign_key "data_form_entity_responses", "data_form_entities"
-  add_foreign_key "data_form_entity_responses", "users"
+  add_foreign_key "data_form_entity_responses", "data_form_entity_response_groups", name: "index_user_repsponse_group_event_dfe_group"
   add_foreign_key "data_forms", "kommunities"
   add_foreign_key "data_forms", "users"
   add_foreign_key "event_data_form_entity_groups", "events"
   add_foreign_key "event_data_form_entity_groups", "registration_types"
+  add_foreign_key "event_data_form_entity_groups", "users"
   add_foreign_key "event_status_logs", "event_statuses"
   add_foreign_key "event_status_logs", "events"
   add_foreign_key "event_status_logs", "users"
-  add_foreign_key "events", "data_form_entities", column: "registration_form_id"
   add_foreign_key "events", "event_statuses"
   add_foreign_key "events", "kommunities"
   add_foreign_key "events", "users"
@@ -284,7 +288,4 @@ ActiveRecord::Schema.define(version: 2018_08_17_010049) do
   add_foreign_key "questions", "question_types"
   add_foreign_key "registration_type_statuses", "registration_statuses"
   add_foreign_key "registration_type_statuses", "registration_types"
-  add_foreign_key "user_event_data_form_entity_response_groups", "event_data_form_entity_groups", name: "index_user_repsponse_group_event_dfe_group"
-  add_foreign_key "user_event_data_form_entity_response_groups", "registration_statuses", name: "index_user_repsponse_group_event_reg_status"
-  add_foreign_key "user_event_data_form_entity_response_groups", "users"
 end

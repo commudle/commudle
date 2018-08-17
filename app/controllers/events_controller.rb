@@ -46,34 +46,6 @@ class EventsController < ApplicationController
   end
 
 
-  def assign_data_form
-    data_form = DataForm.find_by(id: params[:data_form_id], kommunity_id: @event.kommunity_id)
-
-    if data_form
-      # if event already has a data form, then don't add, else add that data form, this just a safety measure to prevent duplicacy
-      if @event.data_form_entities.where(data_form: data_form).blank?
-        @dfe = DataFormEntity.new(entity: @event, data_form: data_form, name: data_form.name)
-      else
-        return error_response(ErrorNotification::ResponseTypes::JS, ErrorNotification::ErrorCodes::CONFLICT, "This form is already added to the event")
-      end
-
-      if (@dfe.save)
-
-        respond_to do |format|
-
-          format.js
-        end
-
-
-      end
-
-
-    end
-
-
-  end
-
-
 
   def update_event_status
     @event.event_status = EventStatus.find(params[:event_status])
@@ -90,7 +62,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.includes(:user, data_form_entities: :data_form).friendly.find(params[:id])
+    @event = Event.includes(:user, event_data_form_entity_groups: {data_form_entities: :data_form}).find(params[:id])
   end
 
   def event_params

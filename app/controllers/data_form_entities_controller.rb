@@ -1,6 +1,6 @@
 class DataFormEntitiesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_event_and_data_form_entity
+  before_action :set_event_data_form_entity_group, only: [:form_responses]
   before_action :set_registration_type, only: [:change_responses_registration_type]
 
 
@@ -8,8 +8,8 @@ class DataFormEntitiesController < ApplicationController
   def form_responses
     @form_responses = DataFormEntityResponseValue.joins(
         question: :question_type,
-        data_form_entity_response: :data_form_entity
-    ).where('data_form_entity_responses.data_form_entity_id = ?', @data_form_entity.id).order('questions.created_at')
+        data_form_entity_response: {data_form_entity: :event_data_form_entity_response_group}
+    ).where('event_data_form_entity_response_groups.id = ?', @edfeg.id).order('questions.created_at')
 
     @registration_types = RegistrationType.all
 
@@ -32,10 +32,8 @@ class DataFormEntitiesController < ApplicationController
 
   private
 
-  def set_event_and_data_form_entity
-    @event = Event.friendly.find(params[:event_id])
-
-    @data_form_entity = DataFormEntity.includes(data_form: {questions: [:question_choices, :data_form_entity_response_values]}).friendly.find_by(slug: params[:data_form_entity_id], entity: @event)
+  def set_event_data_form_entity_group
+    @edfeg = EventDataFormEntityGroup.includes(data_form_entities: {data_form: {questions: [:question_choices, :data_form_entity_response_values]}}).find(params[:event_data_form_entity_group_id])
 
   end
 

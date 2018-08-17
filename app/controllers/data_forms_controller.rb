@@ -54,7 +54,7 @@ class DataFormsController < ApplicationController
   private
 
   def set_data_form
-    @data_form = DataForm.includes(questions: :question_choices).friendly.find(params[:id])
+    @data_form = DataForm.includes(questions: :question_choices).find(params[:id])
   end
 
 
