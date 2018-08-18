@@ -55,8 +55,8 @@ Rails.application.routes.draw do
        to: 'data_form_entity_responses#submit_form',
        as: :submit_form_response
 
-  put 'form-responses/:id/update-registration_status',
-      to: 'data_form_entity_responses#update_registration_status',
+  put 'form-responses/update-registration_status',
+      to: 'data_form_entity_response_groups#update_registration_status',
       as: :update_response_registration_status
 
 

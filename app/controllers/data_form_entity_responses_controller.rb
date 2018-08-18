@@ -1,7 +1,7 @@
 class DataFormEntityResponsesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_data_form_entity, except: [:update_registration_status]
-  before_action :set_data_form_entity_response, only: [:update_registration_status]
+
 
 
   # update or fill a data form for an event
@@ -23,14 +23,6 @@ class DataFormEntityResponsesController < ApplicationController
   end
 
 
-  def update_registration_status
-    @dfe_response.registration_status = RegistrationStatus.find(params[:registration_status])
-
-    @dfe_response.save
-
-
-  end
-
 
   private
 
@@ -39,10 +31,6 @@ class DataFormEntityResponsesController < ApplicationController
 
     @data_form_entity = DataFormEntity.find(params[:data_form_entity_id])
 
-  end
-
-  def set_data_form_entity_response
-    @dfe_response = DataFormEntityResponse.find(params[:id])
   end
 
 
