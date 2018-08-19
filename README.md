@@ -26,3 +26,8 @@ Clone/Download
 * https://gist.github.com/dhoelzgen/cd7126b8652229d32eb4
 
 
+
+Setting up auto generation of uuid in psql
+* add superuser permission to the postgres user 'gdgapp'
+
+

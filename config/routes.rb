@@ -60,6 +60,11 @@ Rails.application.routes.draw do
       as: :update_response_registration_status
 
 
+  get 'update-rsvp',
+      to: 'data_form_entity_response_groups#update_rsvp',
+      as: :update_rsvp
+
+
 
   # data_form_entities_controller
   get 'form-responses',
@@ -67,7 +72,7 @@ Rails.application.routes.draw do
       as: :form_responses
 
 
-  put '/:event_id/:data_form_entity_id/change-responses-registration_type',
+  put 'change-responses-registration_type',
       to: 'data_form_entities#change_responses_registration_type',
       as: :change_responses_registration_type
 

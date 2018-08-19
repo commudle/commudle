@@ -7,6 +7,6 @@ class DataFormEntityResponseGroup < ApplicationRecord
 
 
   # setting the default value of registration_status
-  attribute :registration_status, :integer, default: RegistrationStatus.find_by_name("waiting")
+  # attribute :registration_status, :integer, default: RegistrationStatus.find_by_name("waiting")
 
 end

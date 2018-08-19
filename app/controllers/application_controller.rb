@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def manual_user_authentication(user_id)
+    sign_in(User.find(user_id), event: :authentication)
+  end
+
+
 
   def hello_gdg
 
