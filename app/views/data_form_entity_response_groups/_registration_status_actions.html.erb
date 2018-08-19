@@ -1,7 +1,18 @@
 <div id="registration-response-status-actions-<%= dferg.id %>">
-
-  <% dferg.event_data_form_entity_group.registration_type.registration_statuses.each do |regst| %>
+  <div>
+    <% dferg.event_data_form_entity_group.registration_type.registration_statuses.each do |regst| %>
     <%= link_to regst.name, update_response_registration_status_path(id: dferg, registration_status: regst), method: :put, remote: true, class: "#{'active-registration-status' if(dferg.registration_status == regst)}"  %>
-  <% end %>
+    <% end %>
+
+  </div>
+
+  <div>
+    <%= render 'data_form_entity_response_groups/registration_status_communication_actions', dferg: dferg %>
+
+  </div>
+
+
+
+
 
 </div>

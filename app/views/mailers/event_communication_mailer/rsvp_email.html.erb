@@ -1,17 +1,24 @@
 <div>
 
   <p>
-     <%= link_to "YES", change_responses_registration_type_path(token: @dferg.rsvp_token, rsvp_status: "1") %>
+    <a href="<%=  update_rsvp_url(token: @dferg.rsvp_token, rsvp_status: '1').html_safe %>">
+      YES
+    </a>
+
   </p>
 
 
   <p>
-    <%= link_to "NO", change_responses_registration_type_path(token: @dferg.rsvp_token, rsvp_status: "0") %>
+    <a href="<%= update_rsvp_url(token: @dferg.rsvp_token, rsvp_status: '0').html_safe %>">
+      NO
+    </a>
+
+
   </p>
 
-
+  <% if @message %>
   <h3>Your Organizer has included a message</h3>
-  <p><%= message %></p>
-
+  <p><%= @message %></p>
+  <% end %>
 
 </div>

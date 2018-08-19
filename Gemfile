@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'tinymce-rails'
 
 group :development do
   gem "rails-erd"

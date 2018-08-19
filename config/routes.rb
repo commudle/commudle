@@ -77,6 +77,19 @@ Rails.application.routes.draw do
       as: :change_responses_registration_type
 
 
+  #event_communications_mailer
+  resources :event_communication_mailers, path: "event-communication-mailer" do
+    collection do
+      get :event_data_form_entity_response_group_rsvp_email, path: "user-rsvp-email"
+      post :send_data_form_entity_response_group_rsvp_email, path: "send-user-rsvp-email"
+      get :event_data_form_entity_response_group_rsvp_email, path: "user-rsvp-email"
+      post :send_data_form_entity_response_group_rsvp_email, path: "send-user-rsvp-email"
+      post :send_data_form_entity_response_group_entry_pass_email, path: "send-user-entry-pass-email"
+      post :send_data_form_entity_group_entry_pass_email, path: "send-user-group-entry-pass-email"
+    end
+  end
+
+
 
   root "application#hello_gdg"
 

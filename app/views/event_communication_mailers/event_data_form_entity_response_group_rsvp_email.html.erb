@@ -7,10 +7,24 @@
   <p>You are sending an RSVP confirmation email.</p>
 
   <div class="email-format-container">
-    <%%>
-    <div class="email-subject">
+    <%= form_with url: send_data_form_entity_response_group_rsvp_email_event_communication_mailers_path(id: @dferg), method: :post, remote: true do |f| %>
+    <h5>Select Subject and Any Specific Message to Embed</h5>
+    <fieldset>
+      <div class="field email-subject">
+        <%= f.label :subject %>
+        <%= f.text_field :subject, value: "#{@event.kommunity.name} :: #{@event.name} :: RSVP" %>
+      </div>
+      <div class="field">
+        <%= f.label :message, "Add Some Message (Optional)" %>
+        <%= f.text_area :message, :class => "tinymce editor", :rows => 3, :cols => 50 %>
 
-    </div>
+      </div>
+      <%= f.submit "Send Email" %>
+
+    </fieldset>
+
+    <% end %>
+
 
 
 

@@ -14,5 +14,16 @@
 //= require turbolinks
 //= require jquery3
 //= require popper
+//= require tinymce
 //= require_tree .
 // require bootstrap
+
+
+{
+    window.addEventListener('load', function(){
+        tinyMCE.init({
+            selector: 'textarea.tinymce.editor',
+            branding: false
+        });
+    });
+}

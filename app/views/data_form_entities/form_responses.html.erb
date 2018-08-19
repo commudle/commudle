@@ -7,6 +7,7 @@
 
   <table>
     <thead>
+      <th>Name</th>
       <% @edfeg.data_form_entities.each do |dfe| %>
       <%  dfe.data_form.questions.each do |question| %>
       <th style="width: 100px; overflow: hidden; border-left: 1px solid;">
@@ -17,7 +18,9 @@
       <% end %>
       <% end %>
       <th style="width: 100px; overflow: hidden; border-left: 1px solid;">
-        Registration Status
+        <p>
+          Registration Status / Actions
+        </p>
       </th>
     </thead>
     <!--TODO Optimize the query to show responses-->
@@ -25,6 +28,12 @@
 
 
       <% @edfeg.data_form_entity_response_groups.each do |dferg| %>
+
+      <td>
+        <p>
+          <%= dferg.user.name %>
+        </p>
+      </td>
       <% @edfeg.data_form_entities.each do |dfe| %>
       <% dfe.data_form.questions.each do |question| %>
       <% dferg.data_form_entity_responses.each do |dfer| %>
@@ -33,7 +42,9 @@
 
       <td style="width: 100px; overflow: hidden; border-left: 1px solid;">
 
-        <%= DataFormEntityResponseValue.get_response_text(question, dfer) %>
+        <p>
+          <%= DataFormEntityResponseValue.get_response_text(question, dfer) %>
+        </p>
 
       </td>
 
@@ -45,6 +56,9 @@
         <% if(!@edfeg.registration_type.blank?) %>
         <%= render 'data_form_entity_response_groups/registration_status_actions', dferg: dferg %>
         <% end %>
+      </td>
+      <td>
+
       </td>
 
       <% end %>
