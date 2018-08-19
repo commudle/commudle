@@ -1,0 +1,17 @@
+<div>
+
+  <p>
+     <%= link_to "YES", change_responses_registration_type_path(token: @dferg.rsvp_token, rsvp_status: "1") %>
+  </p>
+
+
+  <p>
+    <%= link_to "NO", change_responses_registration_type_path(token: @dferg.rsvp_token, rsvp_status: "0") %>
+  </p>
+
+
+  <h3>Your Organizer has included a message</h3>
+  <p><%= message %></p>
+
+
+</div>

@@ -5,6 +5,9 @@ class DataFormEntityResponseGroup < ApplicationRecord
 
   has_many :data_form_entity_responses
 
+  has_many :fixed_email_dfe_response_groups
+  has_many :fixed_emails, through: :fixed_email_dfe_response_groups
+
 
   # setting the default value of registration_status
   # attribute :registration_status, :integer, default: RegistrationStatus.find_by_name("waiting")

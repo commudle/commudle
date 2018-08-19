@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_18_030653) do
+ActiveRecord::Schema.define(version: 2018_08_19_120310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -146,6 +146,22 @@ ActiveRecord::Schema.define(version: 2018_08_18_030653) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "fixed_email_dfe_response_groups", force: :cascade do |t|
+    t.integer "data_form_entity_response_group_id", null: false
+    t.bigint "fixed_email_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fixed_email_id"], name: "index_fixed_email_dfe_response_groups_on_fixed_email_id"
+  end
+
+  create_table "fixed_emails", force: :cascade do |t|
+    t.string "type"
+    t.string "subject"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -253,6 +269,7 @@ ActiveRecord::Schema.define(version: 2018_08_18_030653) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -285,6 +302,8 @@ ActiveRecord::Schema.define(version: 2018_08_18_030653) do
   add_foreign_key "events", "event_statuses"
   add_foreign_key "events", "kommunities"
   add_foreign_key "events", "users"
+  add_foreign_key "fixed_email_dfe_response_groups", "data_form_entity_response_groups", name: "index_fixed_email_dfe_group"
+  add_foreign_key "fixed_email_dfe_response_groups", "fixed_emails"
   add_foreign_key "kommunities", "users"
   add_foreign_key "question_choices", "questions"
   add_foreign_key "questions", "data_forms"

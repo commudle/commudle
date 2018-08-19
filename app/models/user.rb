@@ -21,6 +21,7 @@ class User < ApplicationRecord
     # Create the user if not already present
     unless user
         user = User.create(
+           name: "#{data['first_name']} #{data['last_name']}",
            email: data['email'],
            password: Devise.friendly_token[0,20]
         )
