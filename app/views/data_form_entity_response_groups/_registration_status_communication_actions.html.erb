@@ -1,7 +1,7 @@
 <div id="registration-communication-actions-<%= dferg.id %>">
   <br>
   <% if !(["confirmed", "cancelled"].include? dferg.registration_status.name) %>
-  <br>
+
     <%= link_to "Send RSVP Email", data_form_entity_response_group_rsvp_email_event_communication_mailers_path(data_form_entity_response_group: dferg.id) %>
 
   <% end %>

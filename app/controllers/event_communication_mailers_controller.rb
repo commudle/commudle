@@ -13,7 +13,7 @@ class EventCommunicationMailersController<ApplicationController
 
   def send_data_form_entity_response_group_rsvp_email
 
-    DataFormEntityResponseGroup.send_rsvp_email([params[:id]], params[:subject], params[:message], true)
+    DataFormEntityResponseGroup.send_rsvp_email([params[:data_form_entity_response_group]], params[:subject], params[:message], true)
 
   end
 
