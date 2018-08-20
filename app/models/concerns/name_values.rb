@@ -8,6 +8,15 @@ module NameValues
     SHORTLISTED = "shortlisted"
     CONFIRMED = "confirmed"
     CANCELLED = "cancelled"
+
+    RSVP_DONE = [CONFIRMED, CANCELLED]
+
+  end
+
+
+  class FixedEmailType
+    RSVP = "rsvp"
+    ENTRY_PASS = "entry_pass"
   end
 
 

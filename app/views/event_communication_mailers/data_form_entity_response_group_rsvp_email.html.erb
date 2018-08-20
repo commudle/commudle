@@ -12,7 +12,7 @@
     <fieldset>
       <div class="field email-subject">
         <%= f.label :subject %>
-        <%= f.text_field :subject, value: "#{@event.kommunity.name} :: #{@event.name} :: RSVP" %>
+        <%= f.text_field :subject, value: "#{@event.kommunity.name} :: #{@event.name} :: RSVP", required: true %>
       </div>
       <div class="field">
         <%= f.label :message, "Add Some Message (Optional)" %>

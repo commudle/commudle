@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 2018_08_19_120310) do
   end
 
   create_table "fixed_emails", force: :cascade do |t|
-    t.string "type"
+    t.string "mail_type"
     t.string "subject"
     t.text "message"
     t.datetime "created_at", null: false
