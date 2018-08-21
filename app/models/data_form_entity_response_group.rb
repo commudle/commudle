@@ -26,6 +26,18 @@ class DataFormEntityResponseGroup < ApplicationRecord
   end
 
 
+  def self.send_entry_pass_email(dferg_ids, subject, message, force = false)
+
+    dfergs = DataFormEntityResponseGroup.includes(:registration_status, :user).where("id in (?)", dferg_ids)
+
+    dfergs.each do |dferg|
+      if(force || dferg.fixed_email_sent?(NameValues::FixedEmailType::ENTRY_PASS)[0] == false)
+        EventCommunicationMailer.entry_pass_email(dferg, subject, message).deliver_now
+      end
+    end
+  end
+
+
   def rsvp_link(type)
     type == "confirmed" ? change_responses_registration_type_path(token: self.rsvp_token, rsvp_status: "1") : change_responses_registration_type_path(token: self.rsvp_token, rsvp_status: "0")
   end
@@ -33,7 +45,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
 
   def fixed_email_sent?(type)
     fixed_emails = self.fixed_emails
-    if(fixed_emails.map(&:type) == type)
+    if(fixed_emails.map(&:mail_type).include? type)
       return true, fixed_emails.length
     end
 

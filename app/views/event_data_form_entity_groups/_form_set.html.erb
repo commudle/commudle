@@ -3,6 +3,8 @@
     &nbsp
     <span>
       <%= link_to 'Delete', destroy_form_set_event_path(id: event, event_data_form_entity_group_id: edfeg), method: :delete, remote: true %>
+      <%= link_to 'View Responses', form_responses_path(event_data_form_entity_group_id: edfeg) %>
+
     </span>
   </p>
 

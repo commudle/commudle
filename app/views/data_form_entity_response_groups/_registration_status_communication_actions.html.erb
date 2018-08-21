@@ -8,7 +8,7 @@
 
   <% if !(["cancelled"].include? dferg.registration_status.name) %>
   <br>
-  <%= link_to "Send Entry Pass", send_data_form_entity_group_entry_pass_email_event_communication_mailers_path(data_form_entity_response_group: dferg.id) %>
+  <%= link_to "Send Entry Pass", data_form_entity_response_group_entry_pass_email_event_communication_mailers_path(data_form_entity_response_group: dferg.id) %>
 
   <% end %>
 

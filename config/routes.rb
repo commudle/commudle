@@ -84,8 +84,10 @@ Rails.application.routes.draw do
       post :send_data_form_entity_response_group_rsvp_email, path: "send-user-rsvp-email"
       get :event_data_form_entity_group_rsvp_email, path: "event-users-rsvp-email"
       post :send_event_data_form_entity_group_rsvp_email, path: "send-event-users-rsvp-email"
+      get :data_form_entity_response_group_entry_pass_email, path: "user-entry-pass-email"
       post :send_data_form_entity_response_group_entry_pass_email, path: "send-user-entry-pass-email"
-      post :send_data_form_entity_group_entry_pass_email, path: "send-user-group-entry-pass-email"
+      get :event_data_form_entity_group_entry_pass_email, path: "event-users-entry-pass-email"
+      post :send_event_data_form_entity_group_entry_pass_email, path: "send-event-users-entry-pass-email"
     end
   end
 
