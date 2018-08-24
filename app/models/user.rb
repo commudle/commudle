@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :data_forms
   has_many :event_data_form_entity_groups
   has_many :data_form_entity_response_groups
+  has_many :event_entry_passes
+  has_many :event_entry_passes, foreign_key: :created_by_id
 
 
   def self.from_omniauth(access_token)

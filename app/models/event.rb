@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   belongs_to :event_status
 
   has_many :event_data_form_entity_groups
+  has_many :event_entry_passes
 
 
   before_save :create_log, if: :will_save_change_to_event_status_id?

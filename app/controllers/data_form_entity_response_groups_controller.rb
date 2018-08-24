@@ -6,8 +6,9 @@ class DataFormEntityResponseGroupsController<ApplicationController
   # to be used by admin
   def update_registration_status
     @dfe_response_group.registration_status_id = params[:registration_status]
-
     @dfe_response_group.save
+
+    @entry_pass = EventEntryPass.find_by(event: @dfe_response_group.event_data_form_entity_group.event, user: @dfe_response_group.user)
 
 
   end
@@ -23,6 +24,7 @@ class DataFormEntityResponseGroupsController<ApplicationController
     if(!@dferg.blank?)
       if(rsvp_status == "1" && @dferg.registration_status.name != "confirmed")
         @dferg.update(registration_status: RegistrationStatus.find_by_name(NameValues::RegistrationStatus::CONFIRMED))
+        EventEntryPass.find_or_create(@dferg.event_data_form_entity_group.event, @dferg.user, current_user)
       elsif(rsvp_status == "0" && @dferg.registration_status.name != "cancelled")
         @dferg.update(registration_status: RegistrationStatus.find_by_name(NameValues::RegistrationStatus::CANCELLED))
       end
@@ -31,7 +33,7 @@ class DataFormEntityResponseGroupsController<ApplicationController
       return error_response(
           ErrorNotification::ResponseTypes::HTML,
           ErrorNotification::ErrorCodes::NOT_FOUND,
-          "Welcome to the community! We're looking for the page you requested, someone will get back to you shortly!"
+          "Welcome to Kommunity! We're looking for the page you requested, someone will get back to you shortly!"
       )
 
     end

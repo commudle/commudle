@@ -55,7 +55,7 @@
       <% end %>
       <td style="width: 100px; overflow: hidden; border-left: 1px solid;">
         <% if(!@edfeg.registration_type.blank?) %>
-        <%= render 'data_form_entity_response_groups/registration_status_actions', dferg: dferg %>
+        <%= render 'data_form_entity_response_groups/registration_status_actions', dferg: dferg, entry_pass: @entry_passes.select{|ep| ep.user == dferg.user && ep.event == @edfeg.event}.first %>
         <% end %>
       </td>
       <td>

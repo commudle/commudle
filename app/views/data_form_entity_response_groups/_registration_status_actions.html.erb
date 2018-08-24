@@ -12,6 +12,15 @@
   </div>
 
 
+  <% if dferg.registration_status.confirmed? && !entry_pass.blank? %>
+  <div class="event-entry-pass-actions">
+    <p>
+      <%= entry_pass.unique_code %>
+    </p>
+  </div>
+  <% end %>
+
+
 
 
 

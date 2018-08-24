@@ -2,7 +2,7 @@
 
   <p>Entry Pass: <%= @dferg.user.email %></p>
 
-  <p>Your Unique Code</p>
+  <p>Your Unique Code : <%= @dferg.event_data_form_entity_group.event.event_entry_passes.find_by(user: @dferg.user) %></p>
 
   <!--add event details-->
   <!--add event address-->

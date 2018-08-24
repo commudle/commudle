@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_19_120310) do
+ActiveRecord::Schema.define(version: 2018_08_22_013501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -109,6 +109,23 @@ ActiveRecord::Schema.define(version: 2018_08_19_120310) do
     t.index ["user_id"], name: "index_event_data_form_entity_groups_on_user_id"
   end
 
+  create_table "event_entry_passes", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.string "unique_code", null: false
+    t.bigint "created_by_id"
+    t.boolean "attendance", default: false, null: false
+    t.boolean "uninvited", default: false, null: false
+    t.boolean "on_the_spot_registration", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_event_entry_passes_on_created_by_id"
+    t.index ["event_id", "unique_code"], name: "index_event_entry_passes_on_event_id_and_unique_code", unique: true
+    t.index ["event_id", "user_id"], name: "index_event_entry_passes_on_event_id_and_user_id", unique: true
+    t.index ["event_id"], name: "index_event_entry_passes_on_event_id"
+    t.index ["user_id"], name: "index_event_entry_passes_on_user_id"
+  end
+
   create_table "event_status_logs", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "event_status_id", null: false
@@ -138,6 +155,7 @@ ActiveRecord::Schema.define(version: 2018_08_19_120310) do
     t.bigint "user_id", null: false
     t.string "slug"
     t.bigint "event_status_id"
+    t.integer "seats", default: 0
     t.index ["end_time"], name: "index_events_on_end_time"
     t.index ["event_status_id"], name: "index_events_on_event_status_id"
     t.index ["kommunity_id"], name: "index_events_on_kommunity_id"
@@ -296,6 +314,9 @@ ActiveRecord::Schema.define(version: 2018_08_19_120310) do
   add_foreign_key "event_data_form_entity_groups", "events"
   add_foreign_key "event_data_form_entity_groups", "registration_types"
   add_foreign_key "event_data_form_entity_groups", "users"
+  add_foreign_key "event_entry_passes", "events"
+  add_foreign_key "event_entry_passes", "users"
+  add_foreign_key "event_entry_passes", "users", column: "created_by_id"
   add_foreign_key "event_status_logs", "event_statuses"
   add_foreign_key "event_status_logs", "events"
   add_foreign_key "event_status_logs", "users"

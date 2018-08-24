@@ -12,6 +12,7 @@ class DataFormEntitiesController < ApplicationController
     ).where('event_data_form_entity_response_groups.id = ?', @edfeg.id).order('questions.created_at')
 
     @registration_types = RegistrationType.all
+    @entry_passes = @edfeg.event.event_entry_passes
 
 
   end

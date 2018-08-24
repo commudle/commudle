@@ -4,4 +4,10 @@ class RegistrationStatus < ApplicationRecord
   has_many :registration_type_statuses
   has_many :registration_types, through: :registration_type_statuses
 
+
+
+  def confirmed?
+    self.name == 'confirmed'
+  end
+
 end

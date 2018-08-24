@@ -16,6 +16,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :seats %>
+    <%= f.number_field :seats %>
+  </div>
+
+  <div class="field">
     <%= f.label :start_time, "Start Date & Time" %>
     <%= f.datetime_select(:start_time, :default => { :hour => 10, :minute => 30 }) %>
   </div>

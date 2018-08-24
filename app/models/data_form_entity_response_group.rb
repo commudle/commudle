@@ -31,6 +31,8 @@ class DataFormEntityResponseGroup < ApplicationRecord
     dfergs = DataFormEntityResponseGroup.includes(:registration_status, :user).where("id in (?)", dferg_ids)
 
     dfergs.each do |dferg|
+      EventEntryPass.find_or_create(dferg.event_data_form_entity_group.event, dferg.user, CurrentAccess.user)
+
       if(force || dferg.fixed_email_sent?(NameValues::FixedEmailType::ENTRY_PASS)[0] == false)
         EventCommunicationMailer.entry_pass_email(dferg, subject, message).deliver_now
       end
@@ -52,5 +54,6 @@ class DataFormEntityResponseGroup < ApplicationRecord
 
     return false, 0
   end
+
 
 end
