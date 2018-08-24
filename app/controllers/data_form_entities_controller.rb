@@ -1,4 +1,5 @@
 class DataFormEntitiesController < ApplicationController
+  before_action :set_kommunity
   before_action :authenticate_user!
   before_action :set_event_data_form_entity_group, only: [:form_responses]
   before_action :set_registration_type, only: [:change_responses_registration_type]

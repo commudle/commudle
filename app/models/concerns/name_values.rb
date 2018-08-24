@@ -3,6 +3,15 @@ module NameValues
 
   # put all the names which have to remain static here
 
+
+  class UserRole
+    ORGANIZER = "organizer"
+    MEMBER = "member"
+    SYS_ADMIN = "system_administrator"
+
+  end
+
+
   class RegistrationStatus
     WAITING = "waiting"
     SHORTLISTED = "shortlisted"

@@ -1,5 +1,5 @@
 class DataFormEntityResponseEmailUsersController < ApplicationController
-
+  before_action :set_kommunity
 
   def email_details
 

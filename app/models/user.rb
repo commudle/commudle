@@ -32,4 +32,9 @@ class User < ApplicationRecord
   end
 
 
+  def organizer?(kommunity_id)
+    return self.user_roles_user.select{|uru| uru.kommunity_id == kommunity_id }.pluck(:name).include? NameValues::UserRole::ORGANIZER
+  end
+
+
 end

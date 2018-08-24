@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :set_kommunity
   before_action :authenticate_user!
   before_action :set_event, only: [:show, :edit, :update, :assign_data_form, :remove_data_form_entity, :update_event_status]
 

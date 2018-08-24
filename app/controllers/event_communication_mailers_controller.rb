@@ -1,4 +1,5 @@
 class EventCommunicationMailersController<ApplicationController
+  before_action :set_kommunity
   before_action :authenticate_user!
 
 

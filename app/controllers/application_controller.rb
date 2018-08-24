@@ -28,4 +28,9 @@ class ApplicationController < ActionController::Base
     return render response_type, file: 'application/error_response', status: error_code
   end
 
+
+  def set_kommunity
+    @kommunity = Kommunity.friendly.find(params[:kommunity])
+  end
+
 end
