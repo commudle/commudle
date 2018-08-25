@@ -47,6 +47,19 @@ class Event < ApplicationRecord
 
   end
 
+  def open_forms
+
+    open_forms = []
+    self.event_data_form_entity_groups.each do |edfeg|
+      edfeg.data_form_entities.where(visibility: :open).each do |dfe|
+        open_forms << dfe
+      end
+    end
+
+    open_forms
+
+  end
+
 
 
 end

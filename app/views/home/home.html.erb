@@ -38,9 +38,21 @@
 
 
             </div>
+            <% if !event.open_forms.empty? %>
             <div class="card-footer text-muted">
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <ul class="list-group list-group-flush">
+                <% event.open_forms.each do |dfe| %>
+                <li class="list-group-item">
+
+                  <%= link_to dfe.name.titlecase, fill_form_response_path(kommunity: event.kommunity, data_form_entity_id: dfe), class: "badge badge-primary" %>
+                </li>
+                <% end %>
+
+              </ul>
+
             </div>
+            <% end %>
+
           </div>
 
 
