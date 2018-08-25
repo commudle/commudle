@@ -19,18 +19,6 @@ class DataFormEntitiesController < ApplicationController
   end
 
 
-  def change_responses_registration_type
-
-    @data_form_entity.registration_type = @registration_type
-    @data_form_entity.save
-
-    return redirect_back fallback_location: root_path
-
-
-  end
-
-
-
 
   private
 

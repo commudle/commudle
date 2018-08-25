@@ -4,12 +4,27 @@
 <% end %>
 <div id="fillable-form">
 
-    <%= form_with scope: :data_form_entity_response, url: submit_form_response_path(data_form_entity_id: @data_form_entity) do |f| %>
+    <%= form_with scope: :data_form_entity_response, url: submit_form_response_path(data_form_entity_id: @data_form_entity, for_other_user: @for_other_user) do |f| %>
+
+      <% if @organizer_logged_in && @for_other_user %>
+        <h3>Add user information</h3>
+        <fieldset>
+          <%= f.label :user_email %>
+          <%= f.text_field :user_email, placeholder: "Other User Email", required: true %>
+        </fieldset>
+        <fieldset>
+          <%= f.label :user_name %>
+          <%= f.text_field :user_name, placeholder: "Name", required: true %>
+        </fieldset>
+      <% end %>
+
+
       <% @data_form_entity.data_form.questions.each.with_index(1) do |question, index| %>
 
         <div>
-            <div><%= index %></div>
-            <div>
+
+            <fieldset>
+              <div><%= index %></div>
 
               <div><%= question.title %></div>
 
@@ -52,7 +67,7 @@
               </div>
 
               <% end %>
-            </div>
+            </fieldset>
 
         </div>
 

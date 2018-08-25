@@ -24,10 +24,10 @@ class DataFormEntityResponseGroupsController<ApplicationController
     manual_user_authentication(@dferg.user_id)
     if(!@dferg.blank?)
       if(rsvp_status == "1" && @dferg.registration_status.name != "confirmed")
-        @dferg.update(registration_status: RegistrationStatus.find_by_name(NameValues::RegistrationStatus::CONFIRMED))
+        @dferg.update(registration_status: RegistrationStatus.find_by_name(NameValues::RegistrationStatusType::CONFIRMED))
         EventEntryPass.find_or_create(@dferg.event_data_form_entity_group.event, @dferg.user, current_user)
       elsif(rsvp_status == "0" && @dferg.registration_status.name != "cancelled")
-        @dferg.update(registration_status: RegistrationStatus.find_by_name(NameValues::RegistrationStatus::CANCELLED))
+        @dferg.update(registration_status: RegistrationStatus.find_by_name(NameValues::RegistrationStatusType::CANCELLED))
       end
 
     else

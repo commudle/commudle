@@ -1,9 +1,7 @@
 class DataFormEntitiesEventsController < EventsController
   before_action :set_kommunity
   before_action :authenticate_user!
-  before_action :set_event, only: [:remove_data_form_entity, :toggle_registration_form, :toggle_speaker_form]
-  before_action :set_data_form_entity, only: [:toggle_registration_form, :toggle_speaker_form]
-
+  before_action :set_event, only: [:remove_data_form_entity]
 
 
   def remove_data_form_entity
@@ -24,6 +22,12 @@ class DataFormEntitiesEventsController < EventsController
     end
 
 
+  end
+
+
+  def update_visibility
+    @dfe = DataFormEntity.find(params[:data_form_entity])
+    @dfe.update(visibility: params[:visibility])
   end
 
 

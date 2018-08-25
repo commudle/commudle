@@ -31,5 +31,22 @@ class Event < ApplicationRecord
   end
 
 
+  def self.upcoming(community_id = nil)
+
+    if(community_id.blank?)
+      return Event.joins(:event_status, :kommunity).where(
+                      "event_statuses.name = ?",
+                      NameValues::EventStatusType::ANNOUNCED
+      ).order("start_time asc")
+    else
+      return Event.joins(:event_status).where(
+          "event_statuses.name = ? and kommunity_id = ?",
+          NameValues::EventStatusType::ANNOUNCED, community_id
+      ).order("start_time asc")
+    end
+
+  end
+
+
 
 end

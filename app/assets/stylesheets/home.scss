@@ -1,0 +1,30 @@
+#home-home{
+
+  .event.card{
+
+    .card-body{
+      position: relative;
+
+      .clickable-card:hover{
+        box-shadow: 1px 1px 4px 2px lightgrey;
+      }
+    }
+
+
+
+
+    .event-timing{
+      span:first-child{
+        background-color: lightgrey;
+        padding: 5px;
+      }
+
+    }
+
+
+    .description{
+      margin-top: 15px;
+    }
+  }
+
+}

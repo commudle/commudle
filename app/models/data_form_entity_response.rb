@@ -24,9 +24,14 @@ class DataFormEntityResponse < ApplicationRecord
   end
 
 
-  def self.create_or_find_user_response(data_form_entity,  user, response_params)
+  def self.create_or_find_user_response(data_form_entity,  user, response_params, from_organizer = false)
 
-    form_response_group = DataFormEntityResponseGroup.find_or_create_by(user_id: user.id, event_data_form_entity_group_id: data_form_entity.entity_id)
+    form_user = user
+    if (from_organizer)
+      form_user = User.find_or_create(response_params[:user_email], response_params[:name])
+    end
+
+    form_response_group = DataFormEntityResponseGroup.find_or_create_by(user_id: form_user.id, event_data_form_entity_group_id: data_form_entity.entity_id)
 
     form_response = DataFormEntityResponse.find_or_create_by(data_form_entity_response_group_id: form_response_group.id, data_form_entity_id: data_form_entity.id)
 

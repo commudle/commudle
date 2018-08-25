@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_24_012857) do
+ActiveRecord::Schema.define(version: 2018_08_25_011223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2018_08_24_012857) do
     t.boolean "is_open", default: false
     t.string "slug"
     t.string "name"
+    t.integer "visibility", default: 0
     t.index ["data_form_id"], name: "index_data_form_entities_on_data_form_id"
     t.index ["entity_type", "entity_id"], name: "index_data_form_entities_on_entity_type_and_entity_id"
   end

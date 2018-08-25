@@ -4,7 +4,7 @@ module NameValues
   # put all the names which have to remain static here
 
 
-  class UserRole
+  class UserRoleType
     ORGANIZER = "organizer"
     MEMBER = "member"
     SYS_ADMIN = "system_administrator"
@@ -12,7 +12,8 @@ module NameValues
   end
 
 
-  class RegistrationStatus
+  class RegistrationStatusType
+    REGISTERED = "registered"
     WAITING = "waiting"
     SHORTLISTED = "shortlisted"
     CONFIRMED = "confirmed"
@@ -20,6 +21,15 @@ module NameValues
 
     RSVP_DONE = [CONFIRMED, CANCELLED]
 
+  end
+
+
+  class EventStatusType
+    DRAFT = "draft"
+    ANNOUNCED = "announced"
+    ONGOING = "ongoing"
+    COMPLETED = "completed"
+    CANCELED = "canceled"
   end
 
 

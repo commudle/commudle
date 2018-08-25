@@ -18,22 +18,27 @@ class User < ApplicationRecord
 
   def self.from_omniauth(access_token)
     data = access_token.info
-    user = User.where(email: data['email']).first
+    return User.find_or_create(data['email'], "#{data['first_name']} #{data['last_name']}", )
+  end
+
+
+  def self.find_or_create(email, name = nil, password = Devise.friendly_token[0,20])
+    user = User.where(email: email).first
     # the token is access_token.user.credentials
     # Create the user if not already present
     unless user
-        user = User.create(
-           name: "#{data['first_name']} #{data['last_name']}",
-           email: data['email'],
-           password: Devise.friendly_token[0,20]
-        )
+      user = User.create(
+          email: email,
+          name: name,
+          password: password
+      )
     end
     user
   end
 
 
   def organizer?(kommunity_id)
-    return self.user_roles_user.select{|uru| uru.kommunity_id == kommunity_id }.pluck(:name).include? NameValues::UserRole::ORGANIZER
+    return self.user_roles_users.includes(:user_role).select{|uru| uru.kommunity_id == kommunity_id && uru.user_role.name == NameValues::UserRoleType::ORGANIZER }.length > 0
   end
 
 

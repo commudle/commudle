@@ -16,13 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-
-  def hello_gdg
-
-    return render html: "<strong>Welcome To GDG</strong>".html_safe
-  end
-
-
   def error_response(response_type, error_code, message, data={})
     @message = message
     return render response_type, file: 'application/error_response', status: error_code
@@ -32,5 +25,12 @@ class ApplicationController < ActionController::Base
   def set_kommunity
     @kommunity = Kommunity.friendly.find(params[:kommunity])
   end
+
+
+
+  def organizer_logged_in?
+    return current_user.organizer?(@kommunity.id)
+  end
+
 
 end

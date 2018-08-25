@@ -1,0 +1,15 @@
+<div>
+  Visible to:
+  <%= form_with url: update_form_visibility_event_path(data_form_entity: dfe), method: :post, remote: true do |f| %>
+    <%= f.select :visibility, options_for_select(DataFormEntity.visibilities.keys, dfe.visibility), {}, :onchange => 'Rails.fire(this.form, "submit")' %>
+  <% end %>
+
+  <div>
+
+  </div>
+  <%= link_to 'Fill', fill_form_response_path(data_form_entity_id: dfe) %>
+
+  <%= link_to 'Fill For Other User', fill_form_response_path(data_form_entity_id: dfe, for_other_user: true) %>
+
+  <%= link_to 'Fill For Other User', fill_form_response_path(data_form_entity_id: dfe, for_other_user: true) %>
+</div>

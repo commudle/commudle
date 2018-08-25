@@ -10,7 +10,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
 
 
   # setting the default value of registration_status
-  # attribute :registration_status, :integer, default: RegistrationStatus.find_by_name("waiting")
+  attribute :registration_status_id, :integer, default: RegistrationStatus.find_by(name: "registered").id
 
 
   # this method should go to the resque_worker
@@ -18,7 +18,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
     dfergs = DataFormEntityResponseGroup.includes(:registration_status, :user).where("id in (?)", dferg_ids)
 
     dfergs.each do |dferg|
-      if(force || !NameValues::RegistrationStatus::RSVP_DONE.include?(dferg.registration_status.name))
+      if(force || !NameValues::RegistrationStatusType::RSVP_DONE.include?(dferg.registration_status.name))
         EventCommunicationMailer.rsvp_email(dferg, subject, message).deliver_now
       end
     end

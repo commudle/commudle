@@ -21,6 +21,10 @@ Rails.application.routes.draw do
                to: 'data_form_entities_events#remove_data_form_entity',
                as: :remove_data_form_entity
 
+        post 'form/update-visibility',
+            to: 'data_form_entities_events#update_visibility',
+            as: :update_form_visibility
+
 
         put 'update-event-status',
             to: 'events#update_event_status',
@@ -62,10 +66,6 @@ Rails.application.routes.draw do
         as: :form_responses
 
 
-    put 'change-responses-registration_type',
-        to: 'data_form_entities#change_responses_registration_type',
-        as: :change_responses_registration_type
-
 
     #event_communications_mailer
     resources :event_communication_mailers, path: "event-communication-mailers" do
@@ -100,7 +100,7 @@ Rails.application.routes.draw do
 
 
 
-  root "application#hello_gdg"
+  root "home#home"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

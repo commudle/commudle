@@ -2,8 +2,14 @@
 <html lang="en">
   <head>
     <title>Kommunity</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
     <%= csrf_meta_tags %>
+
+
+    <!--materializecss-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,14 +18,32 @@
   </head>
 
   <body>
-
-    <div class="container-fluid">
-      <header id="body-header" class="row">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow bg-white rounded">
+      <a class="navbar-brand" href="#">
+        <%= image_tag '/images/gdglogo.png', width: 30 %>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Communities</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
         <% if current_user %>
-        <p><%= current_user.email %></p>
+          <%= current_user.email %>
+          &nbsp
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Google Sign In", user_google_oauth2_omniauth_authorize_path %>
         <% end %>
+      </span>
+      </div>
+    </nav>
 
-      </header>
+    <div id="body-main-container" class="container-fluid">
       <main class="">
         <%= yield %>
 
@@ -29,6 +53,7 @@
 
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
   </body>
 </html>
