@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_25_011223) do
+ActiveRecord::Schema.define(version: 2018_08_26_174805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 2018_08_25_011223) do
     t.string "slug"
     t.bigint "event_status_id"
     t.integer "seats", default: 0
+    t.string "timezone"
     t.index ["end_time"], name: "index_events_on_end_time"
     t.index ["event_status_id"], name: "index_events_on_event_status_id"
     t.index ["kommunity_id"], name: "index_events_on_kommunity_id"

@@ -1,13 +1,19 @@
-<div>
+<div id="event-status-select">
 
-  <p>
-    Select Event Status
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Event Status</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Click on a status below to update</h6>
+      <ul class="list-group d-flex flex-row flex-wrap justify-content-start align-content-start">
+        <% event_statuses.each do |est| %>
 
-  </p>
-  <% @event_statuses.each do |est| %>
+        <li class="list-group-item ">
+          <%= link_to est.name.titlecase, update_event_status_event_path(event_id: event, event_status: est.id), method: :put, remote: true, class: "#{'active-event-status' if(est == event.event_status)}" %>
+        </li>
 
-  <%= link_to est.name, update_event_status_event_path(event_id: event, event_status: est.id), method: :put, class: "#{'active-event-status' if(est == event.event_status)}" %>
-
-  <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
 </div>

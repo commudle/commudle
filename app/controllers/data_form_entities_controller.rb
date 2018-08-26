@@ -2,7 +2,6 @@ class DataFormEntitiesController < ApplicationController
   before_action :set_kommunity
   before_action :authenticate_user!
   before_action :set_event_data_form_entity_group, only: [:form_responses]
-  before_action :set_registration_type, only: [:change_responses_registration_type]
 
 
   # get the list of all entries filled for an event
@@ -24,6 +23,8 @@ class DataFormEntitiesController < ApplicationController
 
   def set_event_data_form_entity_group
     @edfeg = EventDataFormEntityGroup.includes(data_form_entities: {data_form: {questions: [:question_choices, :data_form_entity_response_values]}}).find(params[:event_data_form_entity_group_id])
+
+    RolePermission.event = @edfeg.event
 
   end
 

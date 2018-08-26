@@ -1,12 +1,53 @@
-<h1>Events#show</h1>
+<section id="events-show">
 
-
-<div>
     <div>
-      <h1><%= @event.name %></h1>
-      <p><% @event.description %></p>
+      <div>
+        <div>
+          <% if allowed_view?(:events, :edit) %>
+          <h5><%= link_to "Edit",  edit_event_path(id: @event), class: "badge badge-primary" %></h5>
+          <% end %>
 
-      <%= render 'event_status_select', event: @event %>
+        </div>
+        <h1>
+          <%= @event.name %>
+        </h1>
+
+      </div>
+      <div>
+        <p class="badge badge-info badge-pill">Seats: <%= @event.seats %></p>
+
+      </div>
+
+      <hr>
+      <p><%= @event.description.html_safe %></p>
+      <hr>
+
+      <div>
+        <div class="event-timing">
+          <% if @event.start_time.to_date != @event.end_time.to_date %>
+          <span>
+            <span><%= @event.start_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= @event.start_time.strftime('%I:%M %p') %></span> -
+
+            <span><%= @event.end_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= @event.end_time.strftime('%I:%M %p') %></span>
+
+          </span>
+          <% else %>
+          <span>
+            <span><%= @event.start_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= @event.start_time.strftime('%I:%M %p') %> To <%= @event.end_time.strftime('%I:%M %p') %></span>
+          </span>
+          <% end %>
+
+        </div>
+
+      </div>
+      <hr>
+
+      <div class="mt-3">
+        <% if allowed_view?(:events, :update_event_status) %>
+        <%= render 'event_status_select', event: @event, event_statuses: @event_statuses %>
+        <% end %>
+      </div>
+
 
     </div>
 
@@ -47,5 +88,5 @@
 
 
 
-</div>
+</section>
 

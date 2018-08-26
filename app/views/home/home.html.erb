@@ -15,7 +15,8 @@
               <div class="event-timing">
                 <% if event.start_time.to_date != event.end_time.to_date %>
                 <span>
-                  <span><%= event.start_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= event.start_time.strftime('%I:%M %p') %></span> -
+                  <span>
+                    <%= event.start_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= event.start_time.strftime('%I:%M %p') %></span> -
 
                   <span><%= event.end_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= event.end_time.strftime('%I:%M %p') %></span>
 

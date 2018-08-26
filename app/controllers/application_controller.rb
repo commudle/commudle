@@ -1,9 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  include CheckPermission
+  include RolePermission
+  helper_method :allowed_view?
 
   around_action :set_current_user
+  after_action :allowed?
+
   def set_current_user
     CurrentAccess.user = current_user
     yield

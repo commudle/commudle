@@ -63,5 +63,15 @@ class Event < ApplicationRecord
   end
 
 
+  def start_time
+    self[:start_time].in_time_zone(self.timezone)
+  end
+
+
+  def end_time
+    self[:end_time].in_time_zone(self.timezone)
+  end
+
+
 
 end

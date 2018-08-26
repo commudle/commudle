@@ -1,41 +1,86 @@
-<%= form_for @event do |f| %>
-<fieldset>
-  <div class="field">
-    <%= f.label :kommunity %>
-    <%= f.select :kommunity_id, options_for_select(current_user.kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id) %>
+<div class="row" id="event-create-edit-form">
+  <div class="card col-md-6 offset-md-3">
+    <div class="card-body">
+      <h5 class="card-title">Edit Event Details</h5>
+      <%= form_for @event do |f| %>
+      <fieldset>
+        <div class="form-group">
+          <%= f.label :kommunity, class: "badge badge-secondary" %>
+          <%= f.select :kommunity_id, options_for_select(current_user.kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id), {}, class: 'form-control' %>
 
+        </div>
+        <div class="form-group">
+          <%= f.label :name, class: "badge badge-secondary" %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description, class: "badge badge-secondary" %>
+          <%= f.text_area :description, class: 'form-control tinymce editor', rows: 10 %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :seats, class: "badge badge-secondary" %>
+          <%= f.number_field :seats, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :start_time, "Start Date & Time", class: "badge badge-secondary" %>
+
+          <div style="overflow:hidden;">
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <%= f.hidden_field :start_time %>
+                </div>
+              </div>
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $('#event_start_time').datetimepicker({
+                        inline: true,
+                        sideBySide: true,
+                        format: 'DD-MM-YYYY hh:mm A Z',
+                        defaultDate: moment("<%= @event.start_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : @event.start_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
+                    });
+                });
+            </script>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <%= f.label :end_time, "End Date & Time", class: "badge badge-secondary" %>
+          <div style="overflow:hidden;">
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <%= f.hidden_field :end_time %>
+                </div>
+              </div>
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $('#event_end_time').datetimepicker({
+                        inline: true,
+                        sideBySide: true,
+                        format: 'DD-MM-YYYY hh:mm A Z',
+                        defaultDate: moment("<%= @event.end_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : @event.end_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
+                    });
+                });
+            </script>
+          </div>
+        </div>
+
+
+        <%= f.submit "Submit", class: "btn btn-warning" %>
+
+
+
+
+      </fieldset>
+
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :seats %>
-    <%= f.number_field :seats %>
-  </div>
-
-  <div class="field">
-    <%= f.label :start_time, "Start Date & Time" %>
-    <%= f.datetime_select(:start_time, :default => { :hour => 10, :minute => 30 }) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :end_time, "End Date & Time" %>
-    <%= f.datetime_select(:end_time, :default => { :hour => 10, :minute => 30 }) %>
-  </div>
-
-
-  <%= f.submit %>
-
-
-
-
-</fieldset>
-
-<% end %>
+</div>

@@ -2,4 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+section#events-show{
+
+  .event-timing span:first-child{
+    background-color: lightgrey;
+    padding: 5px;
+  }
+}
+
+
 
