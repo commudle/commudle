@@ -43,8 +43,11 @@
               <ul class="list-group list-group-flush">
                 <% event.open_forms.each do |dfe| %>
                 <li class="list-group-item">
+                  <p><%= dfe.entity.name %></p>
+                  <div>
+                    <%= link_to dfe.name.titlecase, fill_form_response_path(kommunity: event.kommunity, data_form_entity_id: dfe), class: "btn btn-primary" %>
+                  </div>
 
-                  <%= link_to dfe.name.titlecase, fill_form_response_path(kommunity: event.kommunity, data_form_entity_id: dfe), class: "badge badge-primary" %>
                 </li>
                 <% end %>
 

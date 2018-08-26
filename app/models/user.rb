@@ -15,6 +15,13 @@ class User < ApplicationRecord
   has_many :event_entry_passes
   has_many :event_entry_passes, foreign_key: :created_by_id
 
+  after_create :assign_default_role
+
+
+  def assign_default_role
+    self.user_roles << UserRole.default_role
+  end
+
 
   def self.from_omniauth(access_token)
     data = access_token.info
@@ -39,6 +46,12 @@ class User < ApplicationRecord
 
   def organizer?(kommunity_id)
     return self.user_roles_users.includes(:user_role).select{|uru| uru.kommunity_id == kommunity_id && uru.user_role.name == NameValues::UserRoleType::ORGANIZER }.length > 0
+  end
+
+
+
+  def role?(role_sym, kommunity_id)
+    user_roles_users.includes(:user_role).any? { |r| r.user_role.name.underscore.to_sym == role_sym && r.kommunity_id == kommunity_id }
   end
 
 

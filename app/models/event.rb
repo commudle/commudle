@@ -47,6 +47,8 @@ class Event < ApplicationRecord
 
   end
 
+  # change this function to permitted forms
+  # send if a user has already filled a form along with the list of permitted forms
   def open_forms
 
     open_forms = []

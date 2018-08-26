@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  include CheckPermission
+
   around_action :set_current_user
   def set_current_user
     CurrentAccess.user = current_user
