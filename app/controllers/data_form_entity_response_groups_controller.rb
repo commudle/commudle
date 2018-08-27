@@ -49,7 +49,11 @@ class DataFormEntityResponseGroupsController<ApplicationController
 
 
   def set_data_form_entity_response_group
-    @dfe_response_group = DataFormEntityResponseGroup.find(params[:id])
+    @dfe_response_group = DataFormEntityResponseGroup.includes(event_data_form_entity_group: :event).find(params[:id])
+
+    @event = @dfe_response_group.event_data_form_entity_group.event
+
+    RolePermission.event = @event
   end
 
 

@@ -1,0 +1,38 @@
+<div id="event-data-form-entity-response-group-rsvp-email">
+
+
+  <h5>To: <%= @user.email %></h5>
+  <h4>Event: <%= @event.name %></h4>
+
+
+
+  <div class="email-format-container">
+    <%= form_with url: send_data_form_entity_response_group_rsvp_email_event_communication_mailers_path(id: @dferg), method: :post, remote: true do |f| %>
+    <fieldset>
+      <div class="alert alert-info" role="alert">
+        We'll add the event details automatically to the email!
+      </div>
+      <div class="form-group">
+        <%= f.label :subject %>
+        <%= f.text_field :subject, value: "#{@event.kommunity.name} :: #{@event.name} :: RSVP", required: true, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :message, "Any Additional Message (Optional)" %>
+        <%= f.text_area :message, :class => "tinymce editor", :rows => 3, :cols => 50 %>
+
+      </div>
+      <div class="form-group d-flex justify-content-center">
+        <%= f.submit "Send Email", class: "btn-outline-primary" %>
+      </div>
+
+    </fieldset>
+
+    <% end %>
+
+
+
+
+  </div>
+
+
+</div>

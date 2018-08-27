@@ -1,12 +1,13 @@
 <div id="registration-response-status-actions-<%= dferg.id %>">
-  <div>
+  <ul class="list-group d-flex flex-row">
     <% dferg.event_data_form_entity_group.registration_type.registration_statuses.each do |regst| %>
-    <%= link_to regst.name, update_response_registration_status_path(id: dferg, registration_status: regst), method: :put, remote: true, class: "#{'active-registration-status' if(dferg.registration_status == regst)}"  %>
-    <% end %>
+    <li class="list-group-item">
+      <%= link_to regst.name, update_response_registration_status_path(id: dferg, registration_status: regst), method: :put, remote: true, class: "#{'active-registration-status' if(dferg.registration_status == regst)}"  %>
+      <% end %>
+    </li>
+  </ul>
 
-  </div>
-
-  <div>
+  <div class="p-2">
     <%= render 'data_form_entity_response_groups/registration_status_communication_actions', dferg: dferg %>
 
   </div>
@@ -14,9 +15,9 @@
 
   <% if dferg.registration_status.confirmed? && !entry_pass.blank? %>
   <div class="event-entry-pass-actions">
-    <p>
-      <%= entry_pass.unique_code %>
-    </p>
+    <h5>
+      Unique Code: <%= entry_pass.unique_code %>
+    </h5>
   </div>
   <% end %>
 

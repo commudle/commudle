@@ -1,13 +1,14 @@
 <div id="registration-communication-group-actions-<%= edfeg.id %>">
-  <br>
-  <br>
-  <%= link_to "Send Remaining RSVP Emails", event_data_form_entity_group_rsvp_email_event_communication_mailers_path(event_data_form_entity_group: edfeg.id) %>
-
-  <br>
-  <%= link_to "Resend All RSVP Emails", event_data_form_entity_group_rsvp_email_event_communication_mailers_path(event_data_form_entity_group: edfeg.id, force: true) %>
-
-  <br>
-  <%= link_to "Send All Entry Passes", event_data_form_entity_group_entry_pass_email_event_communication_mailers_path(event_data_form_entity_group: edfeg.id) %>
-
+  <ul class="list-group d-flex flex-row">
+    <li class="list-group-item">
+      <%= link_to "Send Remaining RSVP Emails", event_data_form_entity_group_rsvp_email_event_communication_mailers_path(event_data_form_entity_group: edfeg.id), remote: true %>
+    </li>
+    <li class="list-group-item">
+      <%= link_to "Resend All RSVP Emails", event_data_form_entity_group_rsvp_email_event_communication_mailers_path(event_data_form_entity_group: edfeg.id, force: true), remote: true %>
+    </li>
+    <li class="list-group-item">
+      <%= link_to "Send All Entry Passes", event_data_form_entity_group_entry_pass_email_event_communication_mailers_path(event_data_form_entity_group: edfeg.id), remote: true %>
+    </li>
+  </ul>
 
 </div>

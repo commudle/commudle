@@ -1,76 +1,121 @@
-
-<div>
+<section class="container-fluid" id="data-form-entities-form-responses">
   <div>
-    <h3>Email Controls</h3>
-    <%= render 'group_email_controls', edfeg: @edfeg %>
+
+    <div class="card">
+      <div class="card-header">
+        <%= @edfeg.event.name %> :: Responses :: <strong><%= @edfeg.name %></strong>
+      </div>
+      <div class="card-body">
+
+        <div class="response-group-email-controls">
+          <%= render 'group_email_controls', edfeg: @edfeg %>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="table-responsive">
+      <table class="table table-hover table-fixed">
+        <thead>
+        <tr>
+          <th scope="col">
+            <p>#</p>
+          </th>
+          <th scope="col">
+            <p>Name</p>
+          </th>
+          <% @edfeg.data_form_entities.each do |dfe| %>
+          <%  dfe.data_form.questions.each do |question| %>
+          <th scope="col">
+            <p>
+              <%= question.title %>
+            </p>
+          </th>
+          <% end %>
+          <% end %>
+          <th scope="col">
+            <p>
+              Registration Status / Actions
+            </p>
+          </th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <!--TODO Optimize the query to show responses-->
+
+
+        <% @edfeg.data_form_entity_response_groups.each.with_index(1) do |dferg, index| %>
+        <tr>
+          <td class="pt-2 pb-0">
+            <p>
+              <%= index %>
+            </p>
+          </td>
+
+          <th scope="row" class="pt-2 pb-0">
+            <p>
+              <%= dferg.user.name %>
+            </p>
+          </th>
+          <% @edfeg.data_form_entities.each do |dfe| %>
+          <% dfe.data_form.questions.each do |question| %>
+          <% dferg.data_form_entity_responses.each do |dfer| %>
+
+
+
+          <td class="pt-2 pb-0">
+
+            <p>
+              <%= DataFormEntityResponseValue.get_response_text(question, dfer) %>
+            </p>
+
+          </td>
+
+
+          <% end %>
+          <% end %>
+          <% end %>
+          <td class="pt-2 pb-0">
+            <% if(!@edfeg.registration_type.blank?) %>
+            <%= render 'data_form_entity_response_groups/registration_status_actions', dferg: dferg, entry_pass: @entry_passes.select{|ep| ep.user == dferg.user && ep.event == @edfeg.event}.first %>
+            <% end %>
+          </td>
+          <td class="pt-2 pb-0">
+
+          </td>
+        </tr>
+
+        <% end %>
+
+
+        </tbody>
+
+      </table>
+    </div>
+
+
+
+
   </div>
 
 
-  <table>
-    <thead>
-      <th>Name</th>
-      <% @edfeg.data_form_entities.each do |dfe| %>
-      <%  dfe.data_form.questions.each do |question| %>
-      <th style="width: 100px; overflow: hidden; border-left: 1px solid;">
-        <p>
-          <%= question.title %>
-        </p>
-      </th>
-      <% end %>
-      <% end %>
-      <th style="width: 100px; overflow: hidden; border-left: 1px solid;">
-        <p>
-          Registration Status / Actions
-        </p>
-      </th>
-    </thead>
-    <tbody>
-    <!--TODO Optimize the query to show responses-->
+  <div class="modal fade" id="send-mails-modal" tabindex="-1" role="dialog" aria-labelledby="send-status-emails" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="send-status-emails">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
 
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <% @edfeg.data_form_entity_response_groups.each do |dferg| %>
-      <tr>
-
-        <td>
-          <p>
-            <%= dferg.user.name %>
-          </p>
-        </td>
-        <% @edfeg.data_form_entities.each do |dfe| %>
-        <% dfe.data_form.questions.each do |question| %>
-        <% dferg.data_form_entity_responses.each do |dfer| %>
-
-
-
-        <td style="width: 100px; overflow: hidden; border-left: 1px solid;">
-
-          <p>
-            <%= DataFormEntityResponseValue.get_response_text(question, dfer) %>
-          </p>
-
-        </td>
-
-
-        <% end %>
-        <% end %>
-        <% end %>
-        <td style="width: 100px; overflow: hidden; border-left: 1px solid;">
-          <% if(!@edfeg.registration_type.blank?) %>
-          <%= render 'data_form_entity_response_groups/registration_status_actions', dferg: dferg, entry_pass: @entry_passes.select{|ep| ep.user == dferg.user && ep.event == @edfeg.event}.first %>
-          <% end %>
-        </td>
-        <td>
-
-        </td>
-      </tr>
-
-      <% end %>
-
-
-    </tbody>
-
-  </table>
-
-
-
-</div>
+</section>

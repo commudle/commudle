@@ -1,0 +1,16 @@
+{
+  let form = $("<%= escape_javascript render 'data_form_entity_response_group_rsvp_email_form' %>");
+
+  let modal = $('#send-mails-modal');
+
+  $(' .modal-title', modal).html("Send RSVP Email");
+
+  $(' .modal-body', modal).empty().append(form);
+
+  tinyMCE.init({
+      selector: '.tinymce.editor'
+  });
+
+  modal.modal('show');
+
+}

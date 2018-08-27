@@ -31,3 +31,8 @@ Setting up auto generation of uuid in psql
 * add superuser permission to the postgres user 'gdgapp'
 
 
+Defining User Permissions
+* create a permission in role_permission.rb for each controller and user_role
+* if the permission is conditional, that is, requires an object to check where it is owned by a user, pass that object into an thread_mattr_accessor by calling RolePermission.<object_name>
+
+

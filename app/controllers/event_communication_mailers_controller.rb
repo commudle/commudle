@@ -1,6 +1,7 @@
 class EventCommunicationMailersController<ApplicationController
   before_action :set_kommunity
   before_action :authenticate_user!
+  before_action :set_permission_object
 
 
   def data_form_entity_response_group_rsvp_email
@@ -59,6 +60,14 @@ class EventCommunicationMailersController<ApplicationController
 
     edfeg = EventDataFormEntityGroup.includes(data_form_entity_response_groups: :user).find(params[:event_data_form_entity_group])
     DataFormEntityResponseGroup.send_entry_pass_email(edfeg.data_form_entity_response_groups.map(&:id), params[:subject], params[:message], (params[:force] == "true"))
+  end
+
+
+  private
+
+
+  def set_permission_object
+    RolePermission.kommunity = @kommunity
   end
 
 
