@@ -1,78 +1,92 @@
-
-<% if !@existing_response.blank? %>
-<div> You have already filled the form, please feel free to update your responses!</div>
-<% end %>
-<div id="fillable-form">
-
-    <%= form_with scope: :data_form_entity_response, url: submit_form_response_path(data_form_entity_id: @data_form_entity, for_other_user: @for_other_user) do |f| %>
-
-      <% if @organizer_logged_in && @for_other_user %>
-        <h3>Add user information</h3>
-        <fieldset>
-          <%= f.label :user_email %>
-          <%= f.text_field :user_email, placeholder: "Other User Email", required: true %>
-        </fieldset>
-        <fieldset>
-          <%= f.label :user_name %>
-          <%= f.text_field :user_name, placeholder: "Name", required: true %>
-        </fieldset>
+<section id="fill-form">
+  <div class="row justify-content-center">
+    <div class="col-md-8 p-2">
+      <% if !@existing_response.blank? %>
+      <div class="alert alert-info" role="alert">
+        You have already filled the form, please feel free to update your response!
+      </div>
       <% end %>
+      <div id="fillable-form" class="card">
 
+        <div class="card-body">
+          <%= form_with scope: :data_form_entity_response, url: submit_form_response_path(data_form_entity_id: @data_form_entity, for_other_user: @for_other_user) do |f| %>
 
-      <% @data_form_entity.data_form.questions.each.with_index(1) do |question, index| %>
+          <% if @organizer_logged_in && @for_other_user %>
+          <h3>Add user information</h3>
+          <div class="form-group">
+            <%= f.label :user_email %>
+            <%= f.text_field :user_email, placeholder: "Other User Email", required: true %>
+          </div>
+          <div class="form-group">
+            <%= f.label :user_name %>
+            <%= f.text_field :user_name, placeholder: "Name", required: true %>
+          </div>
+          <% end %>
 
-        <div>
+          <ul class="list-group">
+          <% @data_form_entity.data_form.questions.each.with_index(1) do |question, index| %>
 
-            <fieldset>
-              <div><%= index %></div>
+          <li class="list-group-item">
 
-              <div><%= question.title %></div>
+            <div class="form-group">
+              <h5><%= question.title %></h5>
 
 
               <% case question.question_type.name %>
               <% when "short_answer" %>
               <div>
-                <%= f.text_field question.id, placeholder: "Short Answer", required: question.required, value: @existing_response[question.id] %>
+                <%= f.text_field question.id, placeholder: "Short Answer", required: question.required, value: @existing_response[question.id], class: "form-control" %>
 
               </div>
               <% when "long_answer" %>
               <div>
-                <%= f.text_area question.id, placeholder: "Long Answer", required: question.required, value: @existing_response[question.id]  %>
+                <%= f.text_area question.id, placeholder: "Long Answer", required: question.required, value: @existing_response[question.id], class: "form-control" %>
               </div>
 
               <% when "number" %>
               <div>
-                <%= f.number_field question.id, placeholder: "Number", required: question.required, value: @existing_response[question.id]  %>
+                <%= f.number_field question.id, placeholder: "Number", required: question.required, value: @existing_response[question.id], class: "form-control" %>
               </div>
 
               <% when "single_choice" %>
               <div>
-               <% question.question_choices.each do |choice| %>
+                <% question.question_choices.each do |choice| %>
 
-                  <div>
-                    <%= f.radio_button question.id, choice.id, id: choice.id, required: question.required, checked: (@existing_response[question.id] == choice.id)  %>
-                    <%=  f.label choice.id, choice.title %>
+                <div class="d-flex flex-row justify-content-start">
+                  <%= f.radio_button question.id, choice.id, id: choice.id, required: question.required, checked: (@existing_response[question.id] == choice.id), class: 'mt-2'  %>
+                  <%=  f.label choice.id, choice.title, class: 'pl-2 mt-1' %>
 
-                  </div>
+                </div>
                 <% end %>
               </div>
 
               <% when "multiple_choice" %>
-              <div>
-                <p><%= question.id %></p>
-                <div>
-                  <%= f.collection_check_boxes question.id, question.question_choices.all, :id, :title, required: question.required, checked: (@existing_response[question.id].blank? ? false : @existing_response[question.id].map(&:to_param))  %>
 
-                </div>
+              <div class="d-flex flex-column">
+                <%= f.collection_check_boxes question.id, question.question_choices.all, :id, :title, required: question.required, checked: (@existing_response[question.id].blank? ? false : @existing_response[question.id].map(&:to_param)), class: "form-control"  %>
+
               </div>
 
+
               <% end %>
-            </fieldset>
+            </div>
+
+          </li>
+          <hr>
+          <% end %>
+
+          </ul>
+          <%= f.submit 'Submit', class: 'btn btn-outline-info' %>
+          <% end %>
+
 
         </div>
 
-      <% end %>
-        <%= f.submit 'Submit' %>
-    <% end %>
 
-</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

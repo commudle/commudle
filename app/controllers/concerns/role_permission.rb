@@ -2,8 +2,8 @@ module RolePermission
   extend ActiveSupport::Concern
 
   # included do
-  #   before_action :user_signed_in?, unless: :devise_controller?
-  # #   before_action :allowed?, unless: :devise_controller?
+    # befrore_action :user_signed_in?, unless: :devise_controller?
+    # before_action :allowed?, unless: :devise_controller?
   # end
 
   thread_mattr_accessor :event, :kommunity
@@ -16,27 +16,28 @@ module RolePermission
 
 
     {
-        home: {
-            all: [:home],
-        },
-
-        events: {
-          all: [:index, :show],
-          organizer: (
-          [:new, :create] + ([:edit, :update, :update_event_status] if (!event.blank? && current_user.role?(:organizer, event.kommunity_id))).to_a
-          )
-        },
-
         data_form_entities: {
             organizer: (
             [:form_responses] if (!event.blank? && current_user.role?(:organizer, event.kommunity_id))
             ).to_a
         },
 
+        data_form_entity_responses: {
+          member: [:fill_form, :submit_form],
+          organizer: [:fill_form, :submit_form]
+        },
+
         data_form_entity_response_groups: {
             organizer: (
             [:update_registration_status] if (!event.blank? && current_user.role?(:organizer, event.kommunity_id))
             ).to_a
+        },
+
+        events: {
+            all: [:index, :show],
+            organizer: (
+            [:new, :create] + ([:edit, :update, :update_event_status] if (!event.blank? && current_user.role?(:organizer, event.kommunity_id))).to_a
+            )
         },
 
         event_communication_mailers: {
@@ -52,7 +53,11 @@ module RolePermission
               :event_data_form_entity_group_entry_pass_email,
               :send_event_data_form_entity_group_entry_pass_email] if (!kommunity.blank? && current_user.role?(:organizer, kommunity.id))).to_a
             )
-        }
+        },
+        home: {
+            all: [:home],
+        },
+
 
     }
   end

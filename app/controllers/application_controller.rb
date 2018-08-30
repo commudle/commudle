@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :allowed_view?
 
   around_action :set_current_user
-  after_action :allowed?
+  after_action :allowed?, unless: :devise_controller?
 
   def set_current_user
     CurrentAccess.user = current_user
