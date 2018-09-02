@@ -6,7 +6,7 @@
   <% @data_forms.each do |df| %>
 
   <div>
-    <p><%= df.name %>  <%= link_to 'Edit', edit_data_form_path(df) %></p>
+    <p><%= df.name %>  <%= link_to 'Edit', edit_data_form_path(@kommunity, df) %></p>
 
   </div>
 

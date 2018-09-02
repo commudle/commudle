@@ -1,7 +1,11 @@
 {
 
  function addAssignedForm(){
-     let newAssignedFormListItem = $('#event-data-form-entities-<%= @edfeg.id %>').append("<%= escape_javascript render 'assigned_form_list_item', dfe: @dfe, event: @event %>");
+     let newAssignedFormListItem = $('#event-data-form-entities-<%= @edfeg.id %>');
+
+     newAssignedFormListItem.append("<%= escape_javascript render 'assigned_form_list_item', dfe: @dfe, event: @event %>");
+
+     newAssignedFormListItem.siblings('.add-form-container').addClass('d-none');
 
 
      let notification = new Noty({

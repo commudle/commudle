@@ -10,8 +10,13 @@ class Event < ApplicationRecord
   has_many :event_entry_passes
 
 
-  before_save :create_log, if: :will_save_change_to_event_status_id?
+  after_save :create_log, if: :will_save_change_to_event_status_id?
 
+  before_validation :init
+
+  def init
+    self.event_status  ||= EventStatus.find_by_name(NameValues::EventStatusType::DRAFT)
+  end
 
 
   def create_log(current_user = nil)
@@ -64,12 +69,12 @@ class Event < ApplicationRecord
 
 
   def start_time
-    self[:start_time].in_time_zone(self.timezone)
+    self[:start_time].blank? ? Time.now : self[:start_time].in_time_zone(self.timezone)
   end
 
 
   def end_time
-    self[:end_time].in_time_zone(self.timezone)
+    self[:end_time].blank? ? Time.now : self[:start_time].in_time_zone(self.timezone)
   end
 
 

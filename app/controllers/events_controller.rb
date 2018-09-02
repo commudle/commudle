@@ -25,7 +25,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     @event.timezone = ActiveSupport::TimeZone.all.collect{|z| z.tzinfo.name if z.utc_offset == event_params[:start_time].utc_offset}.compact![0]
     if @event.save
-      redirect_to action: :index
+      redirect_to action: :show, id: @event.id
     else
       render :new
     end

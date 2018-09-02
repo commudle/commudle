@@ -1,12 +1,17 @@
-<li id="event-data-form-entity-group-<%= edfeg.id %>">
-  <p><%= edfeg.name %>
-    &nbsp
-    <span>
-      <%= link_to 'Delete', destroy_form_set_event_path(id: event, event_data_form_entity_group_id: edfeg), method: :delete, remote: true %>
-      <%= link_to 'View Responses', form_responses_path(event_data_form_entity_group_id: edfeg) %>
+<li class="list-group-item list-group-item-action flex-column align-items-start" id="event-data-form-entity-group-<%= edfeg.id %>">
+  <div class="d-flex justify-content-start">
+    <h5 class="mb-1 mr-3">
+      <%= edfeg.name %>
+      <small>(<%= edfeg.registration_type.name %>)</small>
 
-    </span>
-  </p>
+    </h5>
+    <div>
+      <%= link_to 'View Responses', form_responses_path(event_data_form_entity_group_id: edfeg), class: 'btn btn-outline-info' %>
+      <%= link_to 'Delete', destroy_form_set_event_path(id: event, event_data_form_entity_group_id: edfeg), method: :delete, remote: true, class: 'btn btn-outline-warning' %>
+
+
+    </div>
+  </div>
 
   <ul id="event-data-form-entities-<%= edfeg.id %>">
 
@@ -14,21 +19,18 @@
 
   </ul>
 
-  <div>
+  <div class="add-form-container <% if edfeg.data_form_entities.length > 0 %>d-none<% end %>">
     <!--Assign the forms using JS requests, create a page to fill the assigned form and create a user's entry-->
     <!--add feature to enable/disable the new data_form_entity-->
     <%= form_with url: assign_data_form_event_path(id: event, event_data_form_entity_group_id: edfeg), method: 'post', remote: true do |f| %>
-    <fieldset>
-      <h5>Add Form</h5>
-      <div class="field">
+
+      <h6>Select Form</h6>
+      <div class="form-group">
         <%= f.label :data_form %>
-        <%= f.select :data_form_id, options_for_select(edfeg.event.user.data_forms.all.collect{|m| [m.name, m.id]}) %>
-        <%= f.submit "Assign Form" %>
+        <%= f.select :data_form_id, options_for_select(edfeg.event.user.data_forms.all.collect{|m| [m.name, m.id]}), {required: true}, class: 'form-control' %>
+        <%= f.submit "Assign Form", class: 'btn btn-info' %>
       </div>
 
-
-
-    </fieldset>
     <% end %>
   </div>
 

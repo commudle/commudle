@@ -1,11 +1,49 @@
-<h1>Events#index</h1>
+<h4 class="card-header text-center"><%= @kommunity.name %></h4>
 
+<div class="card mt-3 p-3 d-flex">
+  <%=  link_to new_event_path do %>
+    <span><i class="fas fa-plus-circle fa-1x text-success"></i> Create Event</span>
+  <% end %>
+</div>
 
 <div>
   <% @events.each do |event| %>
 
-  <div>
-    <p><%= event.name %>  <%= link_to 'Edit', edit_event_path(kommunity: @kommunity, id: event) %>  <%= link_to 'Show', event_path(kommunity: @kommunity, id: event) %></p>
+  <div class="card event">
+
+
+    <div class="card-body">
+      <h5 class="card-title"><%= event.name %></h5>
+
+      <%= render 'events/event_time_display', event: event %>
+
+      <div class="card-text mt-3">
+        <div class="description">
+          <%= event.description.html_safe %>
+        </div>
+
+
+      </div>
+
+
+    </div>
+    <% if !event.open_forms.empty? %>
+    <div class="card-footer text-muted">
+      <ul class="list-group list-group-flush">
+        <% event.open_forms.each do |dfe| %>
+        <li class="list-group-item">
+          <p><%= dfe.entity.name %></p>
+          <div>
+            <%= link_to dfe.name.titlecase, fill_form_response_path(kommunity: event.kommunity, data_form_entity_id: dfe), class: "btn btn-primary" %>
+          </div>
+
+        </li>
+        <% end %>
+
+      </ul>
+
+    </div>
+    <% end %>
 
   </div>
 
@@ -13,5 +51,5 @@
 
 </div>
 
-<%=  link_to "Create Event", new_event_path %>
+
 

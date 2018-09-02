@@ -13,16 +13,9 @@
         </h1>
 
       </div>
-      <div>
-        <p class="badge badge-info badge-pill">Seats: <%= @event.seats %></p>
-
-      </div>
 
       <hr>
-      <p><%= @event.description.html_safe %></p>
-      <hr>
-
-      <div>
+      <div class="d-flex">
         <div class="event-timing">
           <% if @event.start_time.to_date != @event.end_time.to_date %>
           <span>
@@ -39,8 +32,14 @@
 
         </div>
 
+
       </div>
+      <p class="badge badge-info badge">Seats: <%= @event.seats %></p>
+      <hr class="m-0">
+      <div><%= @event.description.html_safe %></div>
       <hr>
+
+
 
       <div class="mt-3">
         <% if allowed_view?(:events, :update_event_status) %>
@@ -51,11 +50,32 @@
 
     </div>
 
+    <% if allowed_view?(:data_form_entities, :form_responses) %>
+  <div class="d-flex row .flex-wrap ">
+    <div class=" p-3 m-2 col-md-3">
+      <%= form_with url: create_form_set_event_path(id: @event), scope: :event_data_form_entity_group, method: 'post', remote: true do |f| %>
+      <h5>Create Form Set</h5>
+      <small>Something like registration form, feedback form, etc..</small>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :registration_type %>
+          <%= f.select :registration_type_id, options_for_select(RegistrationType.all.collect{|m| [m.name, m.id]}), {}, class: 'form-control' %>
 
-    <div>
-      <h4>Assigned Forms</h4>
+        </div>
+        <%= f.submit "Create Form Set", class: 'btn' %>
 
-      <ul id="form-set-list">
+      </div>
+
+      <% end %>
+    </div>
+    <div class=" p-2 mt-3">
+
+
+      <ul class="list-group" id="form-set-list">
         <%= render partial: 'event_data_form_entity_groups/form_set', collection: @event.event_data_form_entity_groups, as: :edfeg, locals: {event: @event} %>
 
       </ul>
@@ -64,26 +84,12 @@
 
     </div>
 
+  </div>
 
-    <div>
-      <%= form_with url: create_form_set_event_path(id: @event), scope: :event_data_form_entity_group, method: 'post', remote: true do |f| %>
-      <h5>Create Form Set</h5>
-      <fieldset>
-        <div class="field">
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-        </div>
-        <div class="field">
-          <%= f.label :registration_type %>
-          <%= f.select :registration_type_id, options_for_select(RegistrationType.all.collect{|m| [m.name, m.id]}) %>
 
-        </div>
-        <%= f.submit "Create Form Set" %>
 
-      </fieldset>
 
-      <% end %>
-    </div>
+    <% end %>
 
 
 

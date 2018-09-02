@@ -27,7 +27,7 @@ class DataFormEntityResponse < ApplicationRecord
   def self.create_or_find_user_response(data_form_entity,  user, response_params, from_organizer = false)
 
     form_user = user
-    if (from_organizer)
+    if (from_organizer && response_params[:user_email])
       form_user = User.find_or_create(response_params[:user_email], response_params[:name])
     end
 

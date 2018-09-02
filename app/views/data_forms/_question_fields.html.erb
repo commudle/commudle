@@ -1,23 +1,25 @@
 
 <fieldset>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+  <div class="row">
+    <div class="form-group col-6">
+      <strong><%= f.label :question %></strong>
+      <%= f.text_field :title, class: 'form-control' %>
+
+    </div>
+    <div class="form-group col-2">
+      <%= f.label :question_type %>
+      <%= f.select :question_type_id, options_for_select(QuestionType.all.collect{|m| [m.name, m.id]}, f.object.question_type_id), {}, class: 'form-control' %>
+    </div>
+    <div class="form-group col-1">
+      <%= f.label :required %>
+      <%= f.check_box :required, class: 'form-control' %>
+
+    </div>
 
   </div>
-  <div class="field">
-    <%= f.label :question_type %>
-    <%= f.select :question_type_id, options_for_select(QuestionType.all.collect{|m| [m.name, m.id]}, f.object.question_type_id) %>
-  </div>
-  <div class="field">
-    <%= f.label :required %>
-    <%= f.check_box :required %>
-
-  </div>
-
-  <div>
 
 
+  <div class="d-flex flex-row flex-wrap">
 
     <%= f.fields_for :question_choices do |choice_builder| %>
     <%= render "question_choice_fields", f: choice_builder %>
@@ -33,7 +35,9 @@
     <%= link_to "Remove Question", '#', class: "remove_fields" %>
 
   </div>
-
+  <hr>
+  <hr>
+  <hr>
 </fieldset>
 
 

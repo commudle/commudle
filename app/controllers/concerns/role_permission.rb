@@ -1,10 +1,10 @@
 module RolePermission
   extend ActiveSupport::Concern
 
-  # included do
+  included do
     # befrore_action :user_signed_in?, unless: :devise_controller?
-    # before_action :allowed?, unless: :devise_controller?
-  # end
+    before_action :access_allowed?, unless: :devise_controller?
+  end
 
   thread_mattr_accessor :event, :kommunity
 
@@ -16,27 +16,40 @@ module RolePermission
 
 
     {
-        data_form_entities: {
+        data_forms: {
             organizer: (
-            [:form_responses] if (!event.blank? && current_user.role?(:organizer, event.kommunity_id))
+            [:index, :new, :create, :edit, :update] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))
             ).to_a
         },
 
+        data_form_entities: {
+            organizer: (
+            [:form_responses] if (!event.blank? && user_signed_in? && current_user.role?(:organizer, event.kommunity_id))
+            ).to_a
+        },
+
+        data_form_entities_events: {
+          organizer: (
+          [:remove_data_form_entity] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))
+          ).to_a
+        },
+
         data_form_entity_responses: {
-          member: [:fill_form, :submit_form],
-          organizer: [:fill_form, :submit_form]
+          all: [:fill_form],
+          member: [:submit_form],
+          organizer: ([:submit_form] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
         },
 
         data_form_entity_response_groups: {
             organizer: (
-            [:update_registration_status] if (!event.blank? && current_user.role?(:organizer, event.kommunity_id))
+            [:update_registration_status] if (!event.blank? && user_signed_in? && current_user.role?(:organizer, event.kommunity_id))
             ).to_a
         },
 
         events: {
             all: [:index, :show],
             organizer: (
-            [:new, :create] + ([:edit, :update, :update_event_status] if (!event.blank? && current_user.role?(:organizer, event.kommunity_id))).to_a
+            [:new, :create] + ([:edit, :update, :update_event_status] if (!event.blank? && user_signed_in? && current_user.role?(:organizer, event.kommunity_id))).to_a
             )
         },
 
@@ -51,7 +64,13 @@ module RolePermission
               :data_form_entity_response_group_entry_pass_email,
               :send_data_form_entity_response_group_entry_pass_email,
               :event_data_form_entity_group_entry_pass_email,
-              :send_event_data_form_entity_group_entry_pass_email] if (!kommunity.blank? && current_user.role?(:organizer, kommunity.id))).to_a
+              :send_event_data_form_entity_group_entry_pass_email] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+            )
+        },
+
+        event_data_form_entity_groups: {
+            organizer: (
+              ([:create, :destroy, :assign_data_form_entity] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
             )
         },
         home: {
@@ -66,11 +85,9 @@ module RolePermission
   def has_permission(controller = nil, action = nil)
     controller = controller.blank? ? controller_name : controller
     action = action.blank? ? action_name : action
-
     controller_permissions = permissions[controller.to_sym]
     roles = user_signed_in? ? (current_user.user_roles.pluck(:name).map &:to_sym) : []
     roles << :all
-
     if (controller_permissions)
       available_permissions = controller_permissions.keys & roles
       if !available_permissions.empty?
@@ -93,11 +110,11 @@ module RolePermission
   end
 
 
-  def allowed?
+  def access_allowed?
     if(!has_permission)
       return head 403
     end
-
+    return true
 
   end
 

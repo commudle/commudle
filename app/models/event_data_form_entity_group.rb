@@ -10,4 +10,7 @@ class EventDataFormEntityGroup < ApplicationRecord
   has_many :data_form_entity_response_groups
 
 
+  validates_length_of :data_form_entities, maximum: 1
+
+
 end

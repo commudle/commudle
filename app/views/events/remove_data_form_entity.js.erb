@@ -1,8 +1,14 @@
 {
 
     function removeAssignedForm(){
-        $('#form-set-list .data-form-entity-<%= @dfe.id %>').remove();
+        let dfe = $('#form-set-list .data-form-entity-<%= @dfe.id %>')
 
+        if (<%= @dfe.entity.data_form_entities.length == 0 %>){
+            dfe.parent().siblings('.add-form-container').removeClass('d-none');
+
+        }
+
+        dfe.remove();
 
 
         let notification = new Noty({

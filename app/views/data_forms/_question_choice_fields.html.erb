@@ -1,12 +1,12 @@
-<fieldset>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+<fieldset class="m-3">
+  <div class="form-group">
+    <%= f.label :title, 'Choice' %>
+    <%= f.text_field :title, class: 'form-control' %>
     <%= link_to "Remove Choice", '#', class: "remove_fields" %>
 
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.hidden_field :_destroy %>
 
 

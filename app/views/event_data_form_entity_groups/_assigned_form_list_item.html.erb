@@ -1,15 +1,22 @@
 <li class="data-form-entity-<%= dfe.id %>">
-  <%= dfe.data_form.name %>
+  <div class="mt-2 d-flex">
+    <p class="d-flex justify-content-start">
+      <%= dfe.data_form.name %>
+    </p>
 
-  &nbsp
+    <div class="card p-3 ml-3 mr-3">
+      <%= render 'event_data_form_entity_groups/assigned_form_list_item_actions', dfe: dfe %>
+    </div>
 
-  <% if dfe.data_form_entity_responses.length == 0 %>
-  <%= link_to 'Remove', remove_data_form_entity_event_path(id: @event, entity_id: dfe), remote: true, method: :delete %>
+    <% if dfe.data_form_entity_responses.length == 0 %>
+    <%= link_to remove_data_form_entity_event_path(id: @event, entity_id: dfe), remote: true, method: :delete, class: "close ml-2 text-danger", 'aria-label': 'Remove' do %>
 
-  <% end %>
+    <span aria-hidden="true">&times;</span>
+    <% end %>
+    <% end %>
 
-  <%= render 'event_data_form_entity_groups/assigned_form_list_item_actions', dfe: dfe %>
 
+  </div>
 
 
 </li>
