@@ -3,6 +3,7 @@ module RolePermission
 
   included do
     # befrore_action :user_signed_in?, unless: :devise_controller?
+    before_action :set_kommunity
     before_action :access_allowed?, unless: :devise_controller?
   end
 
@@ -41,6 +42,7 @@ module RolePermission
         },
 
         data_form_entity_response_groups: {
+            all: [:update_rsvp],
             organizer: (
             [:update_registration_status] if (!event.blank? && user_signed_in? && current_user.role?(:organizer, event.kommunity_id))
             ).to_a

@@ -1,5 +1,5 @@
-class EventCommunicationMailersController<ApplicationController
-  before_action :set_kommunity
+class EventCommunicationMailersController < ApplicationController
+  # before_action :set_kommunity
   before_action :authenticate_user!
   before_action :set_permission_object
 
@@ -15,7 +15,7 @@ class EventCommunicationMailersController<ApplicationController
 
   def send_data_form_entity_response_group_rsvp_email
 
-    DataFormEntityResponseGroup.send_rsvp_email([params[:data_form_entity_response_group]], params[:subject], params[:message], true)
+    DataFormEntityResponseGroup.send_rsvp_email([params[:id]], params[:subject], params[:message], true)
 
   end
 

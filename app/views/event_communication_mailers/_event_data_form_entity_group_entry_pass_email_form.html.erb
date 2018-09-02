@@ -1,7 +1,7 @@
 <div id="event-data-form-entity-response-group-rsvp-email">
 
 
-  <h3>Form Set: <%= @edfeg.name %></h3>
+  <h3><%= @edfeg.name %></h3>
   <h4>Event: <%= @event.name %></h4>
 
   <% if @force %>
@@ -15,17 +15,22 @@
     <%= form_with url: send_event_data_form_entity_group_entry_pass_email_event_communication_mailers_path(event_data_form_entity_group: @edfeg), method: :post, remote: true do |f| %>
     <h5>Subject and Any Specific Message to Embed</h5>
     <fieldset>
-      <div class="field email-subject">
+      <div class="alert alert-info" role="alert">
+        We'll add the event details & Entry Pass Code automatically to the email!
+      </div>
+      <div class="field email-subject form-group">
         <%= f.label :subject %>
-        <%= f.text_field :subject, value: "#{@event.kommunity.name} :: #{@event.name} :: RSVP", required: true %>
+        <%= f.text_field :subject, value: "#{@event.kommunity.name} :: #{@event.name} :: ENTRY PASS", required: true, class: 'form-control' %>
         <%= f.hidden_field :force, value: @force %>
       </div>
-      <div class="field">
+      <div class="field form-group">
         <%= f.label :message, "Add Some Message (Optional)" %>
         <%= f.text_area :message, :class => "tinymce editor", :rows => 3, :cols => 50 %>
 
       </div>
-      <%= f.submit "Send Email" %>
+      <div class="form-group d-flex justify-content-center">
+        <%= f.submit "Send Entry Passes", class: "btn-outline-primary" %>
+      </div>
 
     </fieldset>
 

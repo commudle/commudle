@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'resque'
+
 gem 'font-awesome-rails'
 
 gem 'momentjs-rails'

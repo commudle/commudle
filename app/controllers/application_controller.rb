@@ -34,17 +34,18 @@ class ApplicationController < ActionController::Base
   end
 
 
+
+  protected
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+  end
+
+
   private
 
   def set_kommunity
     @kommunity = Kommunity.friendly.find(params[:kommunity])
     RolePermission.kommunity = @kommunity
-  end
-
-
-  protected
-  def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
   end
 
 

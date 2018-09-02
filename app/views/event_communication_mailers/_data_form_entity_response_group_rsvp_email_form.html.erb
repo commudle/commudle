@@ -7,7 +7,7 @@
 
 
   <div class="email-format-container">
-    <%= form_with url: send_data_form_entity_response_group_rsvp_email_event_communication_mailers_path(id: @dferg), method: :post, remote: true do |f| %>
+    <%= form_with url: send_data_form_entity_response_group_rsvp_email_event_communication_mailers_path(id: @dferg, force: true), method: :post, remote: true do |f| %>
     <fieldset>
       <div class="alert alert-info" role="alert">
         We'll add the event details automatically to the email!
@@ -22,7 +22,7 @@
 
       </div>
       <div class="form-group d-flex justify-content-center">
-        <%= f.submit "Send Email", class: "btn-outline-primary" %>
+        <%= f.submit "Send RSVP", class: "btn-outline-primary" %>
       </div>
 
     </fieldset>

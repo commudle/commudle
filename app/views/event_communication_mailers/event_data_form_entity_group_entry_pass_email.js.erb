@@ -1,0 +1,16 @@
+{
+    let form = $("<%= escape_javascript render 'event_data_form_entity_group_entry_pass_email_form' %>");
+
+    let modal = $('#send-mails-modal');
+
+    $(' .modal-title', modal).html("Send Entry Pass Email");
+
+    $(' .modal-body', modal).empty().append(form);
+
+    tinyMCE.init({
+        selector: '.tinymce.editor'
+    });
+
+    modal.modal('show');
+
+}

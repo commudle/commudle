@@ -18,6 +18,7 @@ class EventCommunicationMailer < ApplicationMailer
     )
 
     @message = message.html_safe
+    @event = @dferg.event_data_form_entity_group.event
 
     mail(
         to: @dferg.user.email,
