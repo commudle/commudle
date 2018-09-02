@@ -38,6 +38,8 @@ class DataFormEntityResponse < ApplicationRecord
 
     form_response.create_or_update_question_response(response_params)
 
+    return form_response
+
   end
 
 

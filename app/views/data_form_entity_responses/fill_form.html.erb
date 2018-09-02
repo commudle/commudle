@@ -34,7 +34,7 @@
               <%= @data_form_entity.entity.name %>
             </h5>
             <div class="card-body">
-              <%= form_with scope: :data_form_entity_response, url: submit_form_response_path(data_form_entity_id: @data_form_entity, for_other_user: @for_other_user) do |f| %>
+              <%= form_with scope: :data_form_entity_response, url: submit_form_response_path(data_form_entity_id: @data_form_entity, for_other_user: @for_other_user, ots: @ots) do |f| %>
 
               <% if user_signed_in? &&  current_user.role?(:organizer, @kommunity.id) && @for_other_user %>
               <h3>Add user information</h3>

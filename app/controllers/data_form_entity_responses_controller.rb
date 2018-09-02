@@ -20,6 +20,7 @@ class DataFormEntityResponsesController < ApplicationController
 
     @event = @data_form_entity.entity.event
 
+    @ots = params[:ots].blank? ? '' : params[:ots]
 
 
   end
@@ -36,12 +37,19 @@ class DataFormEntityResponsesController < ApplicationController
       )
     end
 
-    DataFormEntityResponse.create_or_find_user_response(
+    dfer = DataFormEntityResponse.create_or_find_user_response(
         @data_form_entity,
         current_user,
         params[:data_form_entity_response],
         from_organizer = true
     )
+
+
+
+    if (params[:ots] && params[:ots] == 'true')
+      new_entry_pass = EventEntryPass.find_or_create(dfer.data_form_entity_response_group.event_data_form_entity_group.event, dfer.data_form_entity_response_group.user,  current_user, true, true, true)
+
+    end
 
   end
 

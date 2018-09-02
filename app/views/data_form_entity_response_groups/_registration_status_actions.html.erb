@@ -1,4 +1,6 @@
+
 <div id="registration-response-status-actions-<%= dferg.id %>">
+
   <ul class="list-group d-flex flex-row">
     <% dferg.event_data_form_entity_group.registration_type.registration_statuses.each do |regst| %>
     <li class="list-group-item">
@@ -7,19 +9,36 @@
     </li>
   </ul>
 
-  <div class="p-2">
+  <div class="event-entry-pass-actions d-flex justify-content-space-around">
+    <% if dferg.registration_status.confirmed? && !entry_pass.blank? %>
+    <p class="m-1">
+      Entry Pass Code: <strong><%= entry_pass.unique_code %></strong>
+    </p>
+
+    <p class="m-1">
+      <%= link_to 'Uninvited', toggle_uninvited_event_entry_pass_path(id: entry_pass, data_form_entity_response_group: dferg), method: :patch, remote: true, class: "badge #{entry_pass.uninvited ? 'badge-success' : 'badge-light'}" %>
+    </p>
+
+    <p class="m-1">
+      <%= link_to 'Attendance', toggle_attendance_event_entry_pass_path(id: entry_pass, data_form_entity_response_group: dferg), method: :patch, remote: true, class: "badge #{entry_pass.attendance ? 'badge-success' : 'badge-light'}"  %>
+    </p>
+    <% end %>
+
+
+    <% if dferg.registration_status.confirmed? && entry_pass.blank? %>
+    <p class="badge badge-success mt-2 mb-2">
+      <%= link_to 'Generate Entry Pass', event_entry_passes_path(data_form_entity_response_group: dferg), method: :post, remote: true, class: 'text-white' %>
+    </p>
+    <% end %>
+
+  </div>
+
+
+  <div class="">
     <%= render 'data_form_entity_response_groups/registration_status_communication_actions', dferg: dferg %>
 
   </div>
 
-
-  <% if dferg.registration_status.confirmed? && !entry_pass.blank? %>
-  <div class="event-entry-pass-actions">
-    <h5>
-      Entry Pass Code: <%= entry_pass.unique_code %>
-    </h5>
-  </div>
-  <% end %>
 
 
 

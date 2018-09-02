@@ -7,7 +7,6 @@ class DataFormEntityResponseGroupsController < ApplicationController
   def update_registration_status
     @dfe_response_group.registration_status_id = params[:registration_status]
     @dfe_response_group.save
-
     @entry_pass = EventEntryPass.find_by(event: @dfe_response_group.event_data_form_entity_group.event, user: @dfe_response_group.user)
 
 

@@ -9,13 +9,16 @@ class EventEntryPass < ApplicationRecord
   validates :unique_code, uniqueness: { scope: :event }
 
 
-  def self.find_or_create(event, user, created_by)
+  def self.find_or_create(event, user, created_by, ots = false, uninvited = false, attendance = false)
     entry_pass = EventEntryPass.find_by(event: event, user: user)
 
     if(entry_pass.blank?)
       entry_pass = EventEntryPass.new(event: event, user: user, created_by: created_by)
 
     #   generate a code based on the number of seats available (one digit more)
+      on_the_spot_registration = ots
+      uninvited = uninvited
+      attendance = attendance
       entry_pass.unique_code = EventEntryPass.generate_code(event)
       entry_pass.save
     end

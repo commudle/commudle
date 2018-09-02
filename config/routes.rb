@@ -34,8 +34,20 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :data_forms, :path => 'data-forms', only: [:index, :new, :create, :edit, :update]
+    resources :data_forms, path: 'data-forms', only: [:index, :new, :create, :edit, :update]
 
+
+    resources :event_entry_passes, path: 'event-entry-passes', only: [:create] do
+      member do
+        patch :toggle_attendance, as: 'toggle-attendance'
+        patch :toggle_uninvited, as: 'toggle-uninvited'
+      end
+
+      collection do
+        get :auto_attendance, as: 'auto-attendance'
+        patch :mark_attendance, as: 'mark-attendance'
+      end
+    end
 
     # INDIVIDUAL URLS
 

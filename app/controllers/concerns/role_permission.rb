@@ -75,6 +75,13 @@ module RolePermission
               ([:create, :destroy, :assign_data_form_entity] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
             )
         },
+
+        event_entry_passes: {
+            organizer: (
+            ([:create, :toggle_attendance, :toggle_uninvited, :auto_attendance, :mark_attendance] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+            )
+        },
+
         home: {
             all: [:home],
         },

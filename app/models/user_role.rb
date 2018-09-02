@@ -4,6 +4,6 @@ class UserRole < ApplicationRecord
 
 
   def self.default_role
-    return UserRole.find_by_name("attendee")
+    return UserRole.find_by_name("member")
   end
 end

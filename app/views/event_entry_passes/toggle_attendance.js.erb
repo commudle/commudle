@@ -1,0 +1,3 @@
+{
+    $("#registration-response-status-actions-<%= @dfe_response_group.id %>").replaceWith($("<%= escape_javascript render 'data_form_entity_response_groups/registration_status_actions', dferg: @dfe_response_group, entry_pass: @entry_pass %>"));
+}
