@@ -31,7 +31,7 @@ module RolePermission
 
         data_form_entities_events: {
           organizer: (
-          [:remove_data_form_entity] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))
+          [:remove_data_form_entity, :update_visibility] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))
           ).to_a
         },
 

@@ -2,7 +2,7 @@
   <div class="d-flex">
     <span class="mr-2">Visible to:</span>
     <%= form_with url: update_form_visibility_event_path(data_form_entity: dfe), method: :post, remote: true do |f| %>
-    <%= f.select :visibility, options_for_select(DataFormEntity.visibilities.keys.map { |string| string.gsub('_', " ").humanize.titleize }, dfe.visibility), {}, :onchange => 'Rails.fire(this.form, "submit")', class: 'form-control' %>
+    <%= f.select :visibility, options_for_select(DataFormEntity.visibilities.keys, dfe.visibility), {}, :onchange => 'Rails.fire(this.form, "submit")', class: 'form-control' %>
     <% end %>
   </div>
 

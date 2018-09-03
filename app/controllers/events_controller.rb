@@ -11,6 +11,9 @@ class EventsController < ApplicationController
   def show
 
     @event_statuses = EventStatus.all
+
+
+
   end
 
 

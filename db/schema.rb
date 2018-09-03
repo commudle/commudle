@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_26_174805) do
+ActiveRecord::Schema.define(version: 2018_09_03_030819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -125,6 +125,15 @@ ActiveRecord::Schema.define(version: 2018_08_26_174805) do
     t.index ["event_id", "user_id"], name: "index_event_entry_passes_on_event_id_and_user_id", unique: true
     t.index ["event_id"], name: "index_event_entry_passes_on_event_id"
     t.index ["user_id"], name: "index_event_entry_passes_on_user_id"
+  end
+
+  create_table "event_location_tracks", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_location_tracks_on_event_id"
   end
 
   create_table "event_status_logs", force: :cascade do |t|
@@ -255,6 +264,18 @@ ActiveRecord::Schema.define(version: 2018_08_26_174805) do
     t.index ["name"], name: "index_registration_types_on_name"
   end
 
+  create_table "track_slots", force: :cascade do |t|
+    t.bigint "event_location_track_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "session_title"
+    t.bigint "speaker_registration_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_location_track_id"], name: "index_track_slots_on_event_location_track_id"
+    t.index ["speaker_registration_id"], name: "index_track_slots_on_speaker_registration_id"
+  end
+
   create_table "user_roles", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -322,6 +343,7 @@ ActiveRecord::Schema.define(version: 2018_08_26_174805) do
   add_foreign_key "event_entry_passes", "events"
   add_foreign_key "event_entry_passes", "users"
   add_foreign_key "event_entry_passes", "users", column: "created_by_id"
+  add_foreign_key "event_location_tracks", "events"
   add_foreign_key "event_status_logs", "event_statuses"
   add_foreign_key "event_status_logs", "events"
   add_foreign_key "event_status_logs", "users"
@@ -336,5 +358,7 @@ ActiveRecord::Schema.define(version: 2018_08_26_174805) do
   add_foreign_key "questions", "question_types"
   add_foreign_key "registration_type_statuses", "registration_statuses"
   add_foreign_key "registration_type_statuses", "registration_types"
+  add_foreign_key "track_slots", "data_form_entity_response_groups", column: "speaker_registration_id"
+  add_foreign_key "track_slots", "event_location_tracks"
   add_foreign_key "user_roles_users", "kommunities"
 end

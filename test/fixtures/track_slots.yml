@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_location_track: one
+  start_time: 2018-09-03 08:38:19
+  end_time: 2018-09-03 08:38:19
+  session_title: MyString
+  speaker: one
+
+two:
+  event_location_track: two
+  start_time: 2018-09-03 08:38:19
+  end_time: 2018-09-03 08:38:19
+  session_title: MyString
+  speaker: two

@@ -12,6 +12,13 @@ module NameValues
   end
 
 
+  class RegistrationsType
+    SPEAKER = "speaker"
+    ATTENDEE = "attendee"
+    FEEDBACK = "feedback"
+  end
+
+
   class RegistrationStatusType
     REGISTERED = "registered"
     WAITING = "waiting"

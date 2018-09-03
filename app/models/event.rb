@@ -79,4 +79,19 @@ class Event < ApplicationRecord
 
 
 
+  def shortlisted_speaker_registrations_group
+    entity_groups = self.event_data_form_entity_groups.includes(:registration_type, data_form_entity_response_groups: [:user, :registration_status]).joins(:registration_type).where("registration_types.name = ?", NameValues::RegistrationsType::SPEAKER)
+
+    responses = []
+
+    entity_groups.each do |eg|
+      responses << eg.data_form_entity_response_groups
+    end
+
+    return responses
+
+  end
+
+
+
 end
