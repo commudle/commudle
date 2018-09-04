@@ -30,7 +30,8 @@ Rails.application.routes.draw do
             to: 'events#update_event_status',
             as: :update_event_status
 
-
+        resources :event_location_tracks, path: 'event-location-tracks', only: [:create, :destroy]
+        resources :track_slots, path: 'track-slots', only: [:create, :destroy]
       end
     end
 
@@ -48,6 +49,9 @@ Rails.application.routes.draw do
         patch :mark_attendance, as: 'mark-attendance'
       end
     end
+
+
+
 
     # INDIVIDUAL URLS
 

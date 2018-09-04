@@ -11,8 +11,8 @@ class EventsController < ApplicationController
   def show
 
     @event_statuses = EventStatus.all
-
-
+    @event_location_track = EventLocationTrack.new
+    @track_slot = TrackSlot.new
 
   end
 

@@ -7,6 +7,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
 
   has_many :fixed_email_dfe_response_groups
   has_many :fixed_emails, through: :fixed_email_dfe_response_groups
+  has_many :track_slots
 
 
   # setting the default value of registration_status

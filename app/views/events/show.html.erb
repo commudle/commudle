@@ -50,7 +50,7 @@
 
     </div>
 
-    <% if allowed_view?(:data_form_entities, :form_responses) %>
+  <% if allowed_view?(:data_form_entities, :form_responses) %>
   <div class="d-flex row .flex-wrap ">
     <div class=" p-3 m-2 col-md-3">
       <%= form_with url: create_form_set_event_path(id: @event), scope: :event_data_form_entity_group, method: 'post', remote: true do |f| %>
@@ -85,11 +85,25 @@
     </div>
 
   </div>
+  <div id="event-tracks-creator-<%= @event.id %>">
+    <div class="card p-2 mt-2">
+      <%= render 'event_location_tracks/form', event: @event, event_location_tack: @event_location_tack %>
+
+      <div>
+        <ul class="list-group" id="tracks-list-<%=@event.id%>">
+          <% @event.event_location_tracks.each do |elt| %>
+          <%= render 'events/event_location_track', event: @event, event_location_track: elt %>
+          <% end %>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
 
 
-
-
-    <% end %>
+  <% end %>
 
 
 

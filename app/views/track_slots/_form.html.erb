@@ -1,0 +1,22 @@
+<div>
+  <%= form_with url: track_slots_path, scope: :event_data_form_entity_group, method: 'post', remote: true do |f| %>
+  <h5>Create Form Set</h5>
+  <small>Something like registration form, feedback form, etc..</small>
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :registration_type %>
+      <%= f.select :registration_type_id, options_for_select(RegistrationType.all.collect{|m| [m.name, m.id]}), {}, class: 'form-control' %>
+
+    </div>
+    <%= f.submit "Create Form Set", class: 'btn' %>
+
+  </div>
+
+  <% end %>
+
+
+</div>

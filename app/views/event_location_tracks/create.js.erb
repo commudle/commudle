@@ -1,0 +1,13 @@
+{
+
+    $('#tracks-list-<%= @event_location_track.event_id %>').append($("<%= escape_javascript render 'events/event_location_track', event_location_track: @event_location_track %>"));
+
+    $('#event-location-track-form').trigger('reset');
+
+    let notification = new Noty({
+        text: 'Track created, please add speakers to it',
+        theme: 'relax',
+        type: 'success',
+        timeout: 1500
+    }).show();
+}

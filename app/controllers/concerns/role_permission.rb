@@ -82,8 +82,19 @@ module RolePermission
             )
         },
 
+        event_location_tracks: {
+            organizer: (
+            ([:create, :destroy] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+            )
+        },
         home: {
             all: [:home],
+        },
+
+        track_slots: {
+            organizer: (
+            ([:create, :destroy] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+            )
         },
 
 

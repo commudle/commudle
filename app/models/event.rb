@@ -8,6 +8,7 @@ class Event < ApplicationRecord
 
   has_many :event_data_form_entity_groups
   has_many :event_entry_passes
+  has_many :event_location_tracks
 
 
   after_save :create_log, if: :will_save_change_to_event_status_id?
@@ -90,6 +91,11 @@ class Event < ApplicationRecord
 
     return responses
 
+  end
+
+
+  def get_available_speakers
+    DataFormEntityResponseGroup.includes(:user).joins(:registration_status, event_data_form_entity_group: [:event, :registration_type]).where('events.id = ? and registration_types.name = ? and registration_statuses.name = ?', self.id, NameValues::RegistrationsType::SPEAKER, NameValues::RegistrationStatusType::CONFIRMED)
   end
 
 
