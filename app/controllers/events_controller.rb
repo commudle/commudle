@@ -28,7 +28,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     @event.timezone = ActiveSupport::TimeZone.all.collect{|z| z.tzinfo.name if z.utc_offset == event_params[:start_time].utc_offset}.compact![0]
     if @event.save
-      redirect_to action: :show, id: @event.id
+      redirect_to action: :show, id: @event
     else
       render :new
     end
@@ -67,14 +67,13 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.includes(:user, event_data_form_entity_groups: {data_form_entities: :data_form}).find(params[:id])
+    @event = Event.includes(:user, event_data_form_entity_groups: {data_form_entities: :data_form}).find_by(slug: params[:id], kommunity_id: @kommunity.id)
     RolePermission.event = @event
   end
 
   def event_params
     params[:event][:start_time] = params[:event][:start_time].to_datetime
     params[:event][:end_time] = params[:event][:end_time].to_datetime
-    params[:event][:timezone]
     params.require(:event).permit(:name, :kommunity_id, :start_time, :end_time, :description, :seats)
   end
 

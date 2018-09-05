@@ -1,22 +1,52 @@
 <div>
-  <%= form_with url: track_slots_path, scope: :event_data_form_entity_group, method: 'post', remote: true do |f| %>
-  <h5>Create Form Set</h5>
-  <small>Something like registration form, feedback form, etc..</small>
-  <div class="form-group">
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
-    <div class="field">
-      <%= f.label :registration_type %>
-      <%= f.select :registration_type_id, options_for_select(RegistrationType.all.collect{|m| [m.name, m.id]}), {}, class: 'form-control' %>
+  <%= form_for track_slot, url: event_location_track_track_slots_path(event_location_track_id: event_location_track.id), html: {id: "track-slot-form-#{event_location_track.id}"}, method: 'post', remote: true do |f| %>
+  <h6>Add Speaker Slot</h6>
+  <div>
+    <div class="form-group">
+
+      <div class="">
+        <!--<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>-->
+        <%= f.text_field :start_time, class: 'form-control datetimepicker-input', id: "track_slot_start_time_#{event_location_track.id}", 'data-toggle': 'datetimepicker', 'data-target': "#track_slot_start_time_#{event_location_track.id}", placeholder: 'Start Time', required: true %>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $("#track_slot_start_time_<%=event_location_track.id%>").datetimepicker(
+                  {
+                      format: 'DD-MM-YYYY hh:mm A Z'
+
+                  }
+              );
+          });
+      </script>
 
     </div>
-    <%= f.submit "Create Form Set", class: 'btn' %>
+    <div class="form-group">
+      <div>
+        <!--<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>-->
+        <%= f.text_field :end_time, class: 'form-control datetimepicker-input', id: "track_slot_end_time_#{event_location_track.id}", 'data-toggle': 'datetimepicker', 'data-target': "#track_slot_end_time_#{event_location_track.id}", placeholder: 'End Time', required: true %>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $("#track_slot_end_time_<%=event_location_track.id%>").datetimepicker({
+                      format: 'DD-MM-YYYY hh:mm A Z'
+
+                  }
+              );
+          });
+      </script>
+
+    </div>
+
 
   </div>
+    <div class="form-group">
+      <%= f.text_field :session_title, class: 'form-control', required: true, placeholder: "Session Title" %>
+    </div>
+    <div class="form-group">
+      <%= f.select :speaker_registration_id, options_for_select(event_location_track.event.get_available_speakers.collect{|m| [m.user.name, m.id]}), {:include_blank => 'Select a speaker'}, class: 'form-control', required: true %>
 
+    </div>
+    <%= f.submit "Add Speaker Slot", class: 'btn btn-outline-info' %>
   <% end %>
-
-
 </div>
+

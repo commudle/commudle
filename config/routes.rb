@@ -30,8 +30,10 @@ Rails.application.routes.draw do
             to: 'events#update_event_status',
             as: :update_event_status
 
-        resources :event_location_tracks, path: 'event-location-tracks', only: [:create, :destroy]
-        resources :track_slots, path: 'track-slots', only: [:create, :destroy]
+        resources :event_location_tracks, path: 'event-location-tracks', only: [:create, :destroy], shallow: true do
+          resources :track_slots, path: 'track-slots', only: [:create, :destroy], shallow: true
+
+        end
       end
     end
 

@@ -12,7 +12,8 @@ class EventLocationTracksController < ApplicationController
 
 
   def destroy
-
+    @event_location_track = EventLocationTrack.find(params[:id])
+    @event_location_track.destroy
   end
 
 

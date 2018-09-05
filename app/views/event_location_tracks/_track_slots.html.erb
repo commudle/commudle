@@ -1,0 +1,34 @@
+<div>
+  <ul class="list-group list-group-flush text-dark">
+    <% event_location_track.track_slots.each do |ts| %>
+    <li class="list-group-item" id="track-slot-<%= ts.id %>">
+      <div class="row">
+        <p class="col-4">
+          <small><%= ts.start_time.strftime('%H:%M') %> to <%= ts.end_time.strftime('%H:%M') %></small>
+        </p>
+        <h6 class="col-8">
+          <span>
+             <%= ts.session_title %>
+
+             <% if allowed_view?(:track_slots, :destroy) %>
+
+             <%= link_to track_slot_path(id: ts), remote: true, method: :delete, class: "close ml-2 text-danger", 'aria-label': 'Remove' do %>
+
+             <span aria-hidden="true">&times;</span>
+             <% end %>
+            <% end %>
+          </span>
+          <br>
+          <small>
+            <%= ts.speaker_registration.user.email %>
+
+          </small>
+        </h6>
+      </div>
+
+    </li>
+    <% end %>
+  </ul>
+
+
+</div>

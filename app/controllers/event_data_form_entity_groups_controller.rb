@@ -58,7 +58,7 @@ class EventDataFormEntityGroupsController < ApplicationController
   private
 
   def set_event
-    @event = Event.includes(:user, event_data_form_entity_groups: {data_form_entities: :data_form}).find(params[:id])
+    @event = Event.includes(:user, event_data_form_entity_groups: {data_form_entities: :data_form}).find_by(slug: params[:id], kommunity_id: @kommunity.id)
     RolePermission.event = @event
   end
 

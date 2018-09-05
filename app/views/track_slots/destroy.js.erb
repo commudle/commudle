@@ -1,3 +1,10 @@
 {
+  $('#track-slot-<%= @track_slot.id %>').remove();
 
+    let notification = new Noty({
+        text: 'Slot Removed!',
+        theme: 'relax',
+        type: 'warning',
+        timeout: 1500
+    }).show();
 }

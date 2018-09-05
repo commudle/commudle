@@ -1,3 +1,10 @@
 {
+    $('#event-location-track-<%= @event_location_track.id %>').remove();
 
+    let notification = new Noty({
+        text: 'Track Removed!',
+        theme: 'relax',
+        type: 'warning',
+        timeout: 1500
+    }).show();
 }
