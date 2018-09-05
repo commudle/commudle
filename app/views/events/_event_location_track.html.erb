@@ -4,7 +4,7 @@
       <%= event_location_track.name %>
       <% if allowed_view?(:event_location_tracks, :destroy) %>
 
-      <%= link_to event_location_track_path(id: event_location_track), remote: true, method: :delete, class: "close ml-2 text-danger", 'aria-label': 'Remove' do %>
+      <%= link_to event_location_track_path(id: event_location_track.id, event: @event), remote: true, method: :delete, class: "close ml-2 text-danger", 'aria-label': 'Remove' do %>
 
       <span aria-hidden="true">&times;</span>
       <% end %>

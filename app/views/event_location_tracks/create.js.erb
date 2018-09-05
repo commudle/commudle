@@ -1,6 +1,5 @@
 {
-
-    $('#tracks-list-<%= @event_location_track.event_id %>').append($("<%= escape_javascript render 'events/event_location_track', event_location_track: @event_location_track %>"));
+    $('#tracks-list-<%= @event_location_track.event_id %>').append($("<%= escape_javascript render 'events/event_location_track', event_location_track: @event_location_track, track_slot: @track_slot %>"));
 
     $('#event-location-track-form').trigger('reset');
 

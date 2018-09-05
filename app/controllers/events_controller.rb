@@ -5,7 +5,9 @@ class EventsController < ApplicationController
 
 
   def index
-    @events = Event.includes(kommunity: :user).joins(kommunity: :user).where('kommunities.user_id = ?', current_user.id)
+    @events = Event.includes(:kommunity).joins(:kommunity).where('kommunity_id = ?', @kommunity.id).order('start_time asc')
+    @event_location_track = EventLocationTrack.new
+    @track_slot = TrackSlot.new
   end
 
   def show

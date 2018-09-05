@@ -33,14 +33,13 @@ class EventEntryPassesController < ApplicationController
 
 
   def auto_attendance
-    @event = Event.find(params[:event])
+    @event = Event.find_by(slug: params[:event])
   end
 
 
   def mark_attendance
 
-    @entry_pass = EventEntryPass.find_by(unique_code: params[:unique_code], event_id: params[:event])
-
+    @entry_pass = EventEntryPass.joins(:event).where(unique_code: params[:unique_code]).where('events.slug = ?', params[:event]).first
     @already_marked = @entry_pass.attendance
 
     if !@already_marked

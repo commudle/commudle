@@ -88,29 +88,7 @@
 
   <% end %>
 
-
-  <div id="event-tracks-creator-<%= @event.id %>">
-    <div class="card p-2 mt-2 border-info">
-      <h5 class="card-header">Event Sessions/Tracks</h5>
-      <% if allowed_view?(:event_location_tracks, :create) %>
-
-      <div class="col-md-4 offset-md-4">
-        <%= render 'event_location_tracks/form', event: @event, event_location_tack: @event_location_tack %>
-      </div>
-      <% end %>
-
-      <div>
-        <ul class="list-group d-flex flex-row justify-content-space-around flex-wrap" id="tracks-list-<%=@event.id%>">
-          <% @event.event_location_tracks.each do |elt| %>
-          <%= render 'events/event_location_track', event: @event, event_location_track: elt, track_slot: @track_slot %>
-          <% end %>
-        </ul>
-
-      </div>
-
-    </div>
-
-  </div>
+  <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
 
 
 

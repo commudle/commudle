@@ -1,5 +1,5 @@
 <div class="card">
-  <%= form_for :event_location_track, url: event_location_tracks_path, method: 'post', remote: true, html: {id: 'event-location-track-form'} do |f| %>
+  <%= form_for :event_location_track, url: event_location_tracks_path(id: event), method: 'post', remote: true, html: {id: 'event-location-track-form'} do |f| %>
   <h5 class="card-header">Create Track</h5>
   <div class="card-body">
     <p>
