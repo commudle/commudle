@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+group :production do
+  gem 'unicorn', '~> 5.2'
+end
+
 gem 'resque'
 
 gem 'font-awesome-rails'
