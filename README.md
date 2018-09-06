@@ -10,6 +10,8 @@ Prerequisites
 
   * Setting up postgres
     * create role myapp with createdb login password 'password1';
+    
+* bundle install --deployment
    
 
 
