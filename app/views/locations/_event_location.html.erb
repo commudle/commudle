@@ -1,0 +1,18 @@
+<div class="event-location" id="event-location-<%= location.id %>">
+
+  <h5><%= location.name %></h5>
+  <!--The div element for the map -->
+  <%= link_to event_location_path(event_id: event, id: location), remote: true, method: :delete, class: "close ml-2 text-danger", 'aria-label': 'Remove' do %>
+
+  <span aria-hidden="true">&times;</span>
+  <% end %>
+  <div>
+    <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDlkZfMj6a4lr7Y0GO4fIgT4PQsZfL-Ols&q=<%= location.url_escaped_address %>" allowfullscreen>
+    </iframe>
+  </div>
+
+</div>

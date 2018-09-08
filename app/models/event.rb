@@ -17,6 +17,12 @@ class Event < ApplicationRecord
 
   before_validation :init
 
+
+  # scopes
+  default_scope { includes(:event_status, :kommunity) }
+
+  ##
+
   def init
     self.event_status  ||= EventStatus.find_by_name(NameValues::EventStatusType::DRAFT)
   end
@@ -53,6 +59,11 @@ class Event < ApplicationRecord
       ).order("start_time asc")
     end
 
+  end
+
+
+  def status? (event_status_names)
+    return event_status_names.include? self.event_status.name
   end
 
   # change this function to permitted forms

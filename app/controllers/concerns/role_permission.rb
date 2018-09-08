@@ -91,6 +91,9 @@ module RolePermission
             all: [:home],
         },
 
+        kommunities: {
+          all: [:show]
+        },
         locations: {
             organizer: (
             ([:create, :destroy] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a

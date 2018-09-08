@@ -75,12 +75,12 @@
 
   <% end %>
 
-
-  <div class="mt-3 mb-3">
-    <div class="card">
+  <% if allowed_view?(:locations, :create) %>
+  <div class="mt-3 mb-3 d-flex">
+    <div class="card col-md-4">
       <div class="card-header">Add Location</div>
       <div class="card-body">
-        <%= form_for @location do |f| %>
+        <%= form_for @location, url: event_locations_path(event_id: @event), remote: true do |f| %>
         <div class="form-group">
           <%= f.label :name %>
           <%= f.text_field :name, class: 'form-control' %>
@@ -101,7 +101,16 @@
 
     </div>
 
+    <div class="col-md-6" id="event-locations">
+      <% if @event.locations  %>
+      <% @event.locations.each do |location| %>
+      <%= render 'locations/event_location', location: location, event: @event %>
+      <% end %>
+      <% end %>
+    </div>
+
   </div>
+  <% end %>
 
   <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
 

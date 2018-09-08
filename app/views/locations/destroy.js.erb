@@ -1,10 +1,9 @@
 {
-
+    $('#event-location-<%= @location.id %>').remove();
     let notification = new Noty({
-        text: "<%=  @message %>",
+        text: 'Location Removed!',
         theme: 'relax',
         type: 'warning',
         timeout: 1500
     }).show();
-
 }

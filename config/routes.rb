@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
 
   scope ':kommunity' do
+
+    get '/',
+        to: 'kommunities#show',
+        as: :kommunity
+
     resources :events, only: [:index, :new, :create, :edit, :update, :show] do
       member do
         post 'assign-data-form',
@@ -34,8 +39,10 @@ Rails.application.routes.draw do
           resources :track_slots, path: 'track-slots', only: [:create, :destroy], shallow: true
         end
 
-        resources :locations, only: [:create, :destroy], shallow: true
+
       end
+
+      resources :locations, only: [:create, :destroy]
     end
 
     resources :data_forms, path: 'data-forms', only: [:index, :new, :create, :edit, :update]

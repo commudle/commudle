@@ -7,6 +7,7 @@ class LocationsController < ApplicationController
     # TODO check if a location already exists, add it to the event
     @location = Location.create(location_params)
 
+
     @event.locations << @location
   end
 
@@ -14,18 +15,18 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
 
     if @event.locations.include? @location
-      @event.event_locations.find(location: @location).destroy
+      @event.event_locations.find_by(location_id: @location.id).destroy
     end
   end
 
 
   private
   def set_event
-    @event = Event.friendly.find(params[:event])
+    @event = Event.friendly.find(params[:event_id])
   end
 
   def location_params
-    params.require(:location).permit(:name, :address, :link)
+    params.require(:location).permit(:name, :address, :map_link)
   end
 
 
