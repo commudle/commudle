@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_03_030819) do
+ActiveRecord::Schema.define(version: 2018_09_07_013858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -136,6 +136,15 @@ ActiveRecord::Schema.define(version: 2018_09_03_030819) do
     t.index ["event_id"], name: "index_event_location_tracks_on_event_id"
   end
 
+  create_table "event_locations", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_locations_on_event_id"
+    t.index ["location_id"], name: "index_event_locations_on_location_id"
+  end
+
   create_table "event_status_logs", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "event_status_id", null: false
@@ -213,6 +222,14 @@ ActiveRecord::Schema.define(version: 2018_09_03_030819) do
     t.index ["name"], name: "index_kommunities_on_name", unique: true
     t.index ["slug"], name: "index_kommunities_on_slug", unique: true
     t.index ["user_id"], name: "index_kommunities_on_user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "address", null: false
+    t.text "map_link", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "question_choices", force: :cascade do |t|
@@ -344,6 +361,8 @@ ActiveRecord::Schema.define(version: 2018_09_03_030819) do
   add_foreign_key "event_entry_passes", "users"
   add_foreign_key "event_entry_passes", "users", column: "created_by_id"
   add_foreign_key "event_location_tracks", "events"
+  add_foreign_key "event_locations", "events"
+  add_foreign_key "event_locations", "locations"
   add_foreign_key "event_status_logs", "event_statuses"
   add_foreign_key "event_status_logs", "events"
   add_foreign_key "event_status_logs", "users"

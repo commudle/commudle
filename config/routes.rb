@@ -32,8 +32,9 @@ Rails.application.routes.draw do
 
         resources :event_location_tracks, path: 'event-location-tracks', only: [:create, :destroy], shallow: true do
           resources :track_slots, path: 'track-slots', only: [:create, :destroy], shallow: true
-
         end
+
+        resources :locations, only: [:create, :destroy], shallow: true
       end
     end
 

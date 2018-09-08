@@ -14,41 +14,28 @@
 
       </div>
 
+
+
       <hr>
       <div class="d-flex">
-        <div class="event-timing">
-          <% if @event.start_time.to_date != @event.end_time.to_date %>
-          <span>
-            <span><%= @event.start_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= @event.start_time.strftime('%I:%M %p') %></span> -
-
-            <span><%= @event.end_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= @event.end_time.strftime('%I:%M %p') %></span>
-
-          </span>
-          <% else %>
-          <span>
-            <span><%= @event.start_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= @event.start_time.strftime('%I:%M %p') %> To <%= @event.end_time.strftime('%I:%M %p') %></span>
-          </span>
-          <% end %>
-
-        </div>
+        <%= render 'events/event_time_display', event: @event %>
 
 
       </div>
-      <p class="badge badge-info badge">Seats: <%= @event.seats %></p>
-      <hr class="m-0">
-      <div><%= @event.description.html_safe %></div>
-      <hr>
+      <!--<p class="badge badge-info badge">Seats: <%= @event.seats %></p>-->
+      <hr class="">
 
-
-
-      <div class="mt-3">
+      <div class="mt-3 mb-3">
         <% if allowed_view?(:events, :update_event_status) %>
         <%= render 'event_status_select', event: @event, event_statuses: @event_statuses %>
         <% end %>
       </div>
 
+      <div><%= @event.description.html_safe %></div>
+      <hr>
 
     </div>
+
 
   <% if allowed_view?(:data_form_entities, :form_responses) %>
   <div class="d-flex row .flex-wrap ">
@@ -87,6 +74,34 @@
   </div>
 
   <% end %>
+
+
+  <div class="mt-3 mb-3">
+    <div class="card">
+      <div class="card-header">Add Location</div>
+      <div class="card-body">
+        <%= form_for @location do |f| %>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :address %>
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :map_link %>
+          <%= f.text_field :map_link, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'Add Location', class: 'btn btn-outline-info' %>
+        </div>
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>
 
   <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
 

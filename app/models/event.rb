@@ -9,6 +9,8 @@ class Event < ApplicationRecord
   has_many :event_data_form_entity_groups
   has_many :event_entry_passes
   has_many :event_location_tracks
+  has_many :event_locations
+  has_many :locations, through: :event_locations
 
 
   after_save :create_log, if: :will_save_change_to_event_status_id?
