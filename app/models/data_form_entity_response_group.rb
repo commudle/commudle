@@ -23,6 +23,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
   # this method should go to the resque_worker
   def self.send_rsvp_email(dferg_ids, subject, message, force = false, event_details_options = {})
     dfergs = DataFormEntityResponseGroup.includes(:registration_status, :user).where("id in (?)", dferg_ids)
+
     dfergs.each do |dferg|
       if(force || !NameValues::RegistrationStatusType::RSVP_DONE.include?(dferg.registration_status.name))
         Resque.enqueue(RsvpMailerWorker, dferg.id, subject, message, event_details_options)

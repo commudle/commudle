@@ -1,4 +1,4 @@
-<% if @event_details_options[:timings] %>
+<% if @event_details_options["timings"] %>
 <div>
   <div>
     <p style="background-color: grey; padding: 5px; color: white;">
@@ -28,11 +28,11 @@
 
 
 
-<% if @event_details_options[:event_description] %>
+<% if @event_details_options["event_description"] %>
 <div style="padding: 5px;"><%= @event.description.html_safe %></div>
 <% end %>
 
-<% if @event_details_options[:location] %>
+<% if @event_details_options["location"] %>
 <div style="border-bottom: 1px dotted grey; border-top: 1px dotted grey; padding: 5px 0;">
   <p><strong>Venue Details: </strong></p>
   <% @event.locations.each do |el| %>
@@ -51,7 +51,7 @@
 <% end %>
 
 
-<% if @event_details_options[:sessions_list] %>
+<% if @event_details_options["sessions_list"] %>
 <div>
   <p>
     <strong>Here's the list of the amazing sessions!</strong>

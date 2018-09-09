@@ -16,6 +16,7 @@ class EventCommunicationMailer < ApplicationMailer
                                   data_form_entity_response_group_id: @dferg.id,
                                   fixed_email_id: fixed_email.id
     )
+
     @message = message.html_safe
     @event = @dferg.event_data_form_entity_group.event
     @event_details_options = event_details_options

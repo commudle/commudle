@@ -1,20 +1,3 @@
-<div>
-
-  <p>Entry Pass: <%= @dferg.user.email %></p>
-
-  <p>Your Unique Code : <%= @dferg.event_data_form_entity_group.event.event_entry_passes.find_by(user: @dferg.user).unique_code %></p>
-
-  <!--add event details-->
-  <!--add event address-->
-
-  <% if @message %>
-  <p>Organizer Message</p>
-
-  <p><%= @message %></p>
-  <% end %>
-
-</div>
-
 <table style="width: 550px; margin: 0 auto; background-color: white; border-radius: 5px; padding: 25px;">
   <tbody>
 

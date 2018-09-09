@@ -3,7 +3,7 @@ class EventCommunicationMailerPreview < ActionMailer::Preview
 
   def rsvp_email
     EventCommunicationMailer.rsvp_email(DataFormEntityResponseGroup.first, "What's Up Kommunity", "<p>lkjsfbvld</p>", {
-        event_description: false,
+        event_description: true,
         sessions_list: true,
         timings: true,
         location: true
@@ -12,7 +12,7 @@ class EventCommunicationMailerPreview < ActionMailer::Preview
 
   def entry_pass_email
     EventCommunicationMailer.entry_pass_email(DataFormEntityResponseGroup.first, "What's Up Kommunity", "<p>lkjsfbvld</p>", {
-        event_description: false,
+        event_description: true,
         sessions_list: true,
         timings: true,
         location: true

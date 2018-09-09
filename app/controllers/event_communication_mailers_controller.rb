@@ -85,7 +85,6 @@ class EventCommunicationMailersController < ApplicationController
 
   def set_event_details_options
     @event_details_options = Hash.new
-
     @event_details_options[:event_description] = (params[:event_description] == '1' ? true : false)
     @event_details_options[:sessions_list] = (params[:sessions_list] == '1' ? true : false)
     @event_details_options[:timings] = (params[:timings] == '1' ? true : false)
