@@ -1,0 +1,104 @@
+<section id="kommunity-<%= @kommunity.id %>">
+  <h1 class="bg-info p-3 text-white"><%= @kommunity.name %></h1>
+  <% if allowed_view?(:events, :create) %>
+  <div class="card my-4 p-3 d-flex flex-row justify-content-start">
+    <%=  link_to new_event_path, class: 'mr-4 btn btn-outline-secondary', target: "_blank" do %>
+    <span><i class="fas fa-plus-circle fa-1x text-success"></i> Create Event</span>
+    <% end %>
+
+    <%=  link_to new_data_form_path, class: 'mr-4 btn btn-outline-secondary', target: "_blank" do %>
+    <span><i class="fas fa-plus-circle fa-1x text-success"></i> Create Data Form</span>
+    <% end %>
+  </div>
+  <% end %>
+  <div class="row">
+    <div class="accordion col-md-4" id="kommunity-events">
+      <!--upcoming events-->
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Upcoming/Current Events
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#kommunity-events">
+          <div class="card-body">
+            <ul class="list-group">
+              <% @events.select{|ev| ev.start_time >= Time.now.beginning_of_day && ev.status?([NameValues::EventStatusType::ANNOUNCED, NameValues::EventStatusType::OPEN])}.each do |event| %>
+              <li class="list-group-item">
+                <%= link_to event.name.titleize, event_path(event), target: "_blank" %>
+                <%= render 'events/event_time_display', event: event %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- drafts -->
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Event Drafts
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#kommunity-events">
+          <div class="card-body">
+            <ul class="list-group">
+              <% @events.select{|ev| ev.status?([NameValues::EventStatusType::DRAFT])}.each do |event| %>
+              <li class="list-group-item">
+                <%= link_to event.name.titleize, event_path(id: event), target: "_blank", class: 'text-secondary' %>
+                <%= render 'events/event_time_display', event: event %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- past + cancelled events -->
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Past Events
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#kommunity-events">
+          <div class="card-body">
+            <ul class="list-group">
+              <% @events.select{|ev| ev.start_time < Time.now.beginning_of_day && !ev.status?([NameValues::EventStatusType::DRAFT])}.each do |event| %>
+              <li class="list-group-item bg-light">
+                <%= link_to event.name.titleize, event_path(id: event), target: "_blank", class: 'text-muted' %>
+                <%= render 'events/event_time_display', event: event %>
+              </li>
+              <% end %>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 card p-0">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item list-group-item-primary">
+          <h5 class="m-0">Forms</h5>
+        </li>
+        <% @kommunity.data_forms.each do |df| %>
+        <li class="list-group-item">
+          <%= link_to df.name, edit_data_form_path(@kommunity, df) %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+
+</section>
+

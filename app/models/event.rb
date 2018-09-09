@@ -9,11 +9,19 @@ class Event < ApplicationRecord
   has_many :event_data_form_entity_groups
   has_many :event_entry_passes
   has_many :event_location_tracks
+  has_many :event_locations
+  has_many :locations, through: :event_locations
 
 
   after_save :create_log, if: :will_save_change_to_event_status_id?
 
   before_validation :init
+
+
+  # scopes
+  default_scope { includes(:event_status, :kommunity) }
+
+  ##
 
   def init
     self.event_status  ||= EventStatus.find_by_name(NameValues::EventStatusType::DRAFT)
@@ -51,6 +59,11 @@ class Event < ApplicationRecord
       ).order("start_time asc")
     end
 
+  end
+
+
+  def status? (event_status_names)
+    return event_status_names.include? self.event_status.name
   end
 
   # change this function to permitted forms

@@ -6,7 +6,7 @@
       <fieldset>
         <div class="form-group">
           <%= f.label :kommunity, class: "badge badge-secondary" %>
-          <%= f.select :kommunity_id, options_for_select(current_user.kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id), {}, class: 'form-control' %>
+          <%= f.select :kommunity_id, options_for_select(current_user.kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id), {:include_blank => 'Select a Kommunity'}, class: 'form-control' , required: true %>
 
         </div>
         <div class="form-group">
@@ -19,10 +19,10 @@
           <%= f.text_area :description, class: 'form-control tinymce editor', rows: 10 %>
         </div>
 
-        <div class="form-group">
-          <%= f.label :seats, class: "badge badge-secondary" %>
-          <%= f.number_field :seats, class: 'form-control' %>
-        </div>
+        <!--<div class="form-group">-->
+          <!--<%= f.label :seats, class: "badge badge-secondary" %>-->
+          <!--<%= f.number_field :seats, class: 'form-control' %>-->
+        <!--</div>-->
 
         <div class="form-group">
           <%= f.label :start_time, "Start Date & Time", class: "badge badge-secondary" %>

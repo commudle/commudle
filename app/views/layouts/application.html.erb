@@ -17,12 +17,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 
 
   </head>
 
   <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow bg-white rounded">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow bg-white rounded pt-0 pb-0">
       <a class="navbar-brand" href="#">
         <%= image_tag '/images/gdglogo.png', width: 30 %>
       </a>
@@ -35,22 +36,27 @@
             <a class="nav-link" href="#">Communities</a>
           </li>
         </ul>
-        <div class="navbar-text d-flex align-items-center">
+        <div class="navbar-text d-flex align-items-center p-0">
         <% if current_user %>
-          <%= current_user.email %>
-          <!--<div class="dropdown">-->
-            <!--<a class="btn btn-info dropdown-toggle text-white" href="#" role="button" id="current-user-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-              <!--<%= current_user.email %>-->
-            <!--</a>-->
+          <!--<%= current_user.email %>-->
+          <div class="dropdown mr-3">
+            <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="current-user-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.email %>
+            </a>
 
-            <!--<div class="dropdown-menu" aria-labelledby="current-user-menu-link">-->
-              <!--<a class="dropdown-item" href="#">Create Event</a>-->
-            <!--</div>-->
-          <!--</div>-->
-          &nbsp
+            <% if current_user.role?(:system_administrator, nil) %>
+            <div class="dropdown-menu" aria-labelledby="current-user-menu-link">
+              <%= link_to 'Create Kommunity', new_kommunity_path, class: "dropdown-item" %>
+            </div>
+            <% end %>
+          </div>
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "align-middle" %>
         <% else %>
-          <%= link_to "Google Sign In", user_google_oauth2_omniauth_authorize_path %>
+          <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+            <p id="google-auth-button" class="mb-0">
+             <%= image_tag '/images/btn_google_light_normal.svg', width: 45 %> <span class="buttonText">Sign In / Sign Up</span>
+            </p>
+          <% end %>
         <% end %>
       </div>
       </div>

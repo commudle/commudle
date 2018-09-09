@@ -1,0 +1,12 @@
+{
+
+    $('#event-locations').append($("<%= escape_javascript render 'locations/event_location', location: @location, event: @event %>"))
+
+
+    let notification = new Noty({
+        text: 'Location Added',
+        theme: 'relax',
+        type: 'success',
+        timeout: 1500
+    }).show();
+}

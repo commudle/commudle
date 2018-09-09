@@ -5,10 +5,9 @@ module NameValues
 
 
   class UserRoleType
+    SYS_ADMIN = "system_administrator"
     ORGANIZER = "organizer"
     MEMBER = "member"
-    SYS_ADMIN = "system_administrator"
-
   end
 
 

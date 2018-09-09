@@ -53,6 +53,17 @@
   display: none;
 }
 
+#google-auth-button{
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 1px 1px 1px 1px lightgrey;
+  color: grey;
+  .buttonText{
+    padding-right: 10px;
+    font-size: 0.9rem;
+  }
+
+}
+
 
 .active-registration-type{
   color: green;

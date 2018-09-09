@@ -48,7 +48,7 @@
             </p>
           </th>
           <% @edfeg.data_form_entities.each do |dfe| %>
-          <%  dfe.data_form.questions.each do |question| %>
+          <%  dfe.data_form.questions.with_deleted.each do |question| %>
           <th scope="col">
             <p>
               <%= question.title %>
@@ -84,7 +84,7 @@
             <% end %>
           </td>
           <% @edfeg.data_form_entities.each do |dfe| %>
-          <% dfe.data_form.questions.each do |question| %>
+          <% dfe.data_form.questions.with_deleted.each do |question| %>
           <% dferg.data_form_entity_responses.each do |dfer| %>
 
 

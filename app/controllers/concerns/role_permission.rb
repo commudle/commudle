@@ -91,6 +91,17 @@ module RolePermission
             all: [:home],
         },
 
+        kommunities: {
+          system_administrator: [:new, :edit, :create, :update],
+          organizer: (
+          ([:show] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+          )
+        },
+        locations: {
+            organizer: (
+            ([:create, :destroy] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+            )
+        },
         track_slots: {
             organizer: (
             ([:create, :destroy] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a

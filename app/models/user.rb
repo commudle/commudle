@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
+  # :confirmable, :lockable, :timeoutable and :omniauthable, :recoverable, , :registerable
+  devise :database_authenticatable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
+
 
 
   has_many :user_roles_users
@@ -51,7 +51,7 @@ class User < ApplicationRecord
 
 
   def role?(role_sym, kommunity_id)
-    user_roles_users.includes(:user_role).any? { |r| r.user_role.name.underscore.to_sym == role_sym && r.kommunity_id == kommunity_id }
+    user_roles_users.includes(:user_role).any? { |r| r.user_role.name.underscore.to_sym == role_sym && (role_sym == :system_administrator || r.kommunity_id == kommunity_id) }
   end
 
 
