@@ -75,8 +75,9 @@
 
   <% end %>
 
-  <% if allowed_view?(:locations, :create) %>
+
   <div class="mt-3 mb-3 d-flex">
+    <% if allowed_view?(:locations, :create) %>
     <div class="card col-md-4">
       <div class="card-header">Add Location</div>
       <div class="card-body">
@@ -100,6 +101,7 @@
       </div>
 
     </div>
+    <% end %>
 
     <div class="col-md-6" id="event-locations">
       <% if @event.locations  %>
@@ -110,7 +112,7 @@
     </div>
 
   </div>
-  <% end %>
+
 
   <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
 

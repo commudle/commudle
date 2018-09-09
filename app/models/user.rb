@@ -51,7 +51,7 @@ class User < ApplicationRecord
 
 
   def role?(role_sym, kommunity_id)
-    user_roles_users.includes(:user_role).any? { |r| r.user_role.name.underscore.to_sym == role_sym && r.kommunity_id == kommunity_id }
+    user_roles_users.includes(:user_role).any? { |r| r.user_role.name.underscore.to_sym == role_sym && (role_sym == :system_administrator || r.kommunity_id == kommunity_id) }
   end
 
 

@@ -1,7 +1,7 @@
 class DataFormEntityResponseValue < ApplicationRecord
   belongs_to :data_form_entity_response
-  belongs_to :question
-  belongs_to :question_choice, optional: true
+  belongs_to :question, -> { with_deleted }
+  belongs_to :question_choice, -> { with_deleted }, optional: true
 
 
 

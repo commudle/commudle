@@ -2,9 +2,11 @@
 
   <h5><%= location.name %></h5>
   <!--The div element for the map -->
+  <% if allowed_view?(:locations, :destroy) %>
   <%= link_to event_location_path(event_id: event, id: location), remote: true, method: :delete, class: "close ml-2 text-danger", 'aria-label': 'Remove' do %>
 
   <span aria-hidden="true">&times;</span>
+  <% end %>
   <% end %>
   <div>
     <iframe

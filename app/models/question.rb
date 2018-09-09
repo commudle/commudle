@@ -1,4 +1,5 @@
 class Question < ApplicationRecord
+  acts_as_paranoid
   belongs_to :question_type
   belongs_to :data_form
 

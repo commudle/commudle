@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
 
+  resources :kommunities, only: [:new, :create, :edit, :update]
+
   scope ':kommunity' do
 
     get '/',
         to: 'kommunities#show',
-        as: :kommunity
+        as: :kommunity_show
 
     resources :events, only: [:index, :new, :create, :edit, :update, :show] do
       member do

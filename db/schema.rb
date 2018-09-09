@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_07_013858) do
+ActiveRecord::Schema.define(version: 2018_09_08_174706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -237,6 +237,8 @@ ActiveRecord::Schema.define(version: 2018_09_07_013858) do
     t.text "title", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_question_choices_on_deleted_at"
     t.index ["question_id"], name: "index_question_choices_on_question_id"
   end
 
@@ -254,7 +256,9 @@ ActiveRecord::Schema.define(version: 2018_09_07_013858) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "required", default: false, null: false
+    t.datetime "deleted_at"
     t.index ["data_form_id"], name: "index_questions_on_data_form_id"
+    t.index ["deleted_at"], name: "index_questions_on_deleted_at"
     t.index ["question_type_id"], name: "index_questions_on_question_type_id"
   end
 

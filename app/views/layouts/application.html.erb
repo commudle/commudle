@@ -38,17 +38,18 @@
         </ul>
         <div class="navbar-text d-flex align-items-center p-0">
         <% if current_user %>
-          <%= current_user.email %>
-          <!--<div class="dropdown">-->
-            <!--<a class="btn btn-info dropdown-toggle text-white" href="#" role="button" id="current-user-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-              <!--<%= current_user.email %>-->
-            <!--</a>-->
+          <!--<%= current_user.email %>-->
+          <div class="dropdown mr-3">
+            <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="current-user-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.email %>
+            </a>
 
-            <!--<div class="dropdown-menu" aria-labelledby="current-user-menu-link">-->
-              <!--<a class="dropdown-item" href="#">Create Event</a>-->
-            <!--</div>-->
-          <!--</div>-->
-          &nbsp
+            <% if current_user.role?(:system_administrator, nil) %>
+            <div class="dropdown-menu" aria-labelledby="current-user-menu-link">
+              <%= link_to 'Create Kommunity', new_kommunity_path, class: "dropdown-item" %>
+            </div>
+            <% end %>
+          </div>
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "align-middle" %>
         <% else %>
           <%= link_to user_google_oauth2_omniauth_authorize_path do %>
