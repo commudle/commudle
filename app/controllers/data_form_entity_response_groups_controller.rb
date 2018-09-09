@@ -9,6 +9,10 @@ class DataFormEntityResponseGroupsController < ApplicationController
     @dfe_response_group.save
     @entry_pass = EventEntryPass.find_by(event: @dfe_response_group.event_data_form_entity_group.event, user: @dfe_response_group.user)
 
+    if @entry_pass && @dfe_response_group.registration_status.name != NameValues::RegistrationStatusType::CONFIRMED
+      @entry_pass.update(attendance: false, uninvited: false)
+    end
+
 
   end
 

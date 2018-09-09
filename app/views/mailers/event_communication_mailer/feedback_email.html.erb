@@ -1,17 +1,36 @@
-<div>
+<table style="width: 550px; margin: 0 auto; background-color: white; border-radius: 5px; padding: 25px;">
+  <tbody>
 
-  <p>Entry Pass: <%= @event_entry_pass.user.email %></p>
+  <tr>
+    <td>
+      <p>Hi <%= @user.name %>!</p>
+      <p style="margin-top: 0; margin-bottom: 5px;">Here's a BIG THANK YOU for coming over to <strong><%= @event.name %></strong>!</p>
+      <p style="margin-top: 0; margin-bottom: 5px;">Please fill a short feedback form so that we can keep on improving</p>
 
-  <p>
-    <a href="<%=  fill_form_response_url(kommunity: @event_entry_pass.event.kommunity,data_form_entity_id: @form.id).html_safe %>">
-      Link To Feedback
-    </a>
-  </p>
+      <div style="text-align: center;">
 
-  <% if @message %>
-  <p>Organizer Message</p>
+        <h1>
+          <a href="<%=  fill_form_response_url(kommunity: @event_entry_pass.event.kommunity,data_form_entity_id: @form.id).html_safe %>">
+            Feedback Form
+          </a>
+        </h1>
 
-  <p><%= @message %></p>
-  <% end %>
+        <p style="margin-top: 0; margin-bottom: 5px;">And, stay tuned to <a href="https://www.gdgnd.org">GDG New Delhi</a> for more exciting tech sessions!</p>
 
-</div>
+
+        <hr>
+        <% if !@message.blank? %>
+        <h3 style="text-align: center;">Your Organizer has included a message</h3>
+        <blockquote style="border: 1px dashed lightgrey; border-radius: 5px; padding: 5px;">
+          <%= @message.html_safe %>
+        </blockquote>
+        <% end %>
+
+      </div>
+
+    </td>
+  </tr>
+
+  </tbody>
+
+</table>

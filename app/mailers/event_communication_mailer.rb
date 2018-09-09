@@ -60,6 +60,7 @@ class EventCommunicationMailer < ApplicationMailer
   def feedback_email(event_entry_pass, form, subject, message)
 
     @event_entry_pass = event_entry_pass
+    @event = @event_entry_pass.event
     @form = form
     @user = @event_entry_pass.user
     fixed_email = FixedEmail.find_or_create_by(

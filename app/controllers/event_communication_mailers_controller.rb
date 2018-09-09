@@ -28,7 +28,7 @@ class EventCommunicationMailersController < ApplicationController
 
   def send_event_data_form_entity_group_rsvp_email
     edfeg = EventDataFormEntityGroup.includes(data_form_entity_response_groups: :user).find(params[:event_data_form_entity_group])
-    DataFormEntityResponseGroup.send_rsvp_email(edfeg.data_form_entity_response_groups.map(&:id), params[:subject], params[:message], (params[:force] == "true"), @event_details_options)
+    DataFormEntityResponseGroup.send_rsvp_email(edfeg.data_form_entity_response_groups.joins(:registration_status).where('registration_statuses.name = ?', NameValues::RegistrationStatusType::SHORTLISTED).map(&:id), params[:subject], params[:message], (params[:force] == "true"), @event_details_options)
 
   end
 

@@ -2,31 +2,39 @@
 class EventCommunicationMailerPreview < ActionMailer::Preview
 
   def rsvp_email
-    EventCommunicationMailer.rsvp_email(DataFormEntityResponseGroup.first, "What's Up Kommunity", "<p>lkjsfbvld</p>", {
-        event_description: true,
-        sessions_list: true,
-        timings: true,
-        location: true
-    })
+    EventCommunicationMailer.rsvp_email(
+        DataFormEntityResponseGroup.first,
+        "What's Up Kommunity",
+        "<p>lkjsfbvld</p>",
+        {
+          event_description: true,
+          sessions_list: true,
+          timings: true,
+          location: true
+        })
   end
 
   def entry_pass_email
-    EventCommunicationMailer.entry_pass_email(DataFormEntityResponseGroup.first, "What's Up Kommunity", "<p>lkjsfbvld</p>", {
-        event_description: true,
-        sessions_list: true,
-        timings: true,
-        location: true
-    })
+    EventCommunicationMailer.entry_pass_email(
+        DataFormEntityResponseGroup.first,
+        "What's Up Kommunity",
+        "<p>lkjsfbvld</p>",
+        {
+          event_description: true,
+          sessions_list: true,
+          timings: true,
+          location: true
+        })
   end
 
 
   def feedback_email
-    EventCommunicationMailer.feedback_email(DataFormEntityResponseGroup.first, "What's Up Kommunity", "<p>lkjsfbvld</p>", {
-        event_description: true,
-        sessions_list: true,
-        timings: true,
-        location: true
-    })
+    EventCommunicationMailer.feedback_email(
+        EventEntryPass.first,
+        DataFormEntity.find(87),
+        "Feedback",
+        "<p>lkjsfbvld</p>"
+    )
   end
 
 end
