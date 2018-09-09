@@ -1,0 +1,22 @@
+<div class="card p-3">
+  <p>Select which details to include in the email:</p>
+  <div class="form-check form-check-inline">
+    <%= f.check_box :event_description, class: 'form-check-input', value: '1', id: 'email-form-event-description' %>
+    <%= f.label :event_description, class: 'form-check-label ml-2', for: 'email-form-event-description' %>
+  </div>
+  <div class="form-check form-check-inline">
+    <%= f.check_box :sessions_list, class: 'form-check-input', value: '1', id: 'email-form-event-sessions' %>
+    <%= f.label :sessions_list, class: 'form-check-label ml-2', for: 'email-form-event-sessions' %>
+  </div>
+
+  <div class="form-check form-check-inline">
+    <%= f.check_box :timings, class: 'form-check-input', value: '1', checked: true, id: 'email-form-event-timings' %>
+    <%= f.label :timings, class: 'form-check-label ml-2', for: 'email-form-event-timings' %>
+  </div>
+  <div class="form-check form-check-inline">
+    <%= f.check_box :location, class: 'form-check-input', value: '1', checked: true, id: 'email-form-event-location' %>
+    <%= f.label :location, class: 'form-check-label ml-2', for: 'email-form-event-location' %>
+  </div>
+
+
+</div>

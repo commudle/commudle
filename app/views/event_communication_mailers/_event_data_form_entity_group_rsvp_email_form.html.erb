@@ -24,6 +24,10 @@
         <%= f.text_field :subject, value: "#{@event.kommunity.name} :: #{@event.name} :: RSVP", required: true, class: 'form-control'%>
         <%= f.hidden_field :force, value: @force %>
       </div>
+
+      <div class="field form-group">
+        <%= render 'event_details_options', f: f %>
+      </div>
       <div class="field">
         <%= f.label :message, "Add Some Message (Optional)" %>
         <%= f.text_area :message, :class => "tinymce editor", :rows => 3, :cols => 50 %>

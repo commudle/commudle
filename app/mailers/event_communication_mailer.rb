@@ -34,7 +34,7 @@ class EventCommunicationMailer < ApplicationMailer
   def entry_pass_email(data_form_entity_response_group, subject, message)
     @dferg = data_form_entity_response_group
     # create logs of the email sent
-    fixed_email = FixedEmail.create(
+    fixed_email = FixedEmail.find_or_create_by(
         mail_type: NameValues::FixedEmailType::ENTRY_PASS,
         subject: subject,
         message: message
@@ -50,6 +50,29 @@ class EventCommunicationMailer < ApplicationMailer
         subject: subject,
     )
 
+  end
+
+
+  def feedback_email(event_entry_pass, form, subject, message)
+
+    @event_entry_pass = event_entry_pass
+    @form = form
+
+    fixed_email = FixedEmail.find_or_create_by(
+        mail_type: NameValues::FixedEmailType::FEEDBACK,
+        subject: subject,
+        message: message
+    )
+
+    FixedEmailEventEntryPass.create(
+        event_entry_pass: @event_entry_pass,
+        fixed_email_id: fixed_email.id
+    )
+
+    mail(
+        to: @event_entry_pass.user.email,
+        subject: subject,
+    )
   end
 
 

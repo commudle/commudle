@@ -66,7 +66,9 @@ module RolePermission
               :data_form_entity_response_group_entry_pass_email,
               :send_data_form_entity_response_group_entry_pass_email,
               :event_data_form_entity_group_entry_pass_email,
-              :send_event_data_form_entity_group_entry_pass_email] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+              :send_event_data_form_entity_group_entry_pass_email,
+              :feedback_email,
+              :send_feedback_email] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
             )
         },
 

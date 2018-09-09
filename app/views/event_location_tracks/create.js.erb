@@ -2,6 +2,7 @@
     $('#tracks-list-<%= @event_location_track.event_id %>').append($("<%= escape_javascript render 'events/event_location_track', event_location_track: @event_location_track, track_slot: @track_slot %>"));
 
     $('#event-location-track-form').trigger('reset');
+    $('$session-coming-soon').remove();
 
     let notification = new Noty({
         text: 'Track created, please add speakers to it',

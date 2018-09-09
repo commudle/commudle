@@ -1,0 +1,44 @@
+<div id="event-feedback-email">
+
+
+  <h4>Event: <%= @event.name %></h4>
+
+  <% if @force %>
+  <p>Feedback Emails will be sent to all who marked attendance</p>
+  <% else %>
+  <p>Feedback Emails will be sent to the remaining people who've marked attendance</p>
+  <% end %>
+
+
+  <div class="email-format-container">
+    <%= form_with url: send_feedback_email_event_communication_mailers_path(event: @event, force: false, form: @form), method: :post, remote: true do |f| %>
+    <h5>Subject and Any Specific Message to Embed</h5>
+    <fieldset>
+      <div class="alert alert-info" role="alert">
+        We'll add a thank you message on your behalf already!
+      </div>
+      <div class="field email-subject form-group">
+        <%= f.label :subject %>
+        <%= f.text_field :subject, value: "#{@event.kommunity.name} :: #{@event.name} :: FEEDBACK", required: true, class: 'form-control' %>
+        <%= f.hidden_field :force, value: @force %>
+      </div>
+      <div class="field form-group">
+        <%= f.label :message, "Add Some Message (Optional)" %>
+        <%= f.text_area :message, :class => "tinymce editor", :rows => 3, :cols => 50 %>
+
+      </div>
+      <div class="form-group d-flex justify-content-center">
+        <%= f.submit "Send Emails", class: "btn-outline-primary" %>
+      </div>
+
+    </fieldset>
+
+    <% end %>
+
+
+
+
+  </div>
+
+
+</div>

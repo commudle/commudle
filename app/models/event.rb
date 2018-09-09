@@ -113,4 +113,20 @@ class Event < ApplicationRecord
 
 
 
+  # this method should go to the resque_worker
+  def send_feedback_emails(form, subject, message, force = false)
+    form = DataFormEntity.find(form)
+    self.event_entry_passes.includes(:event).where(attendance: true).each do |eep|
+
+      if (force || eep.fixed_email_sent?(NameValues::FixedEmailType::FEEDBACK)[0] == false)
+        EventCommunicationMailer.feedback_email(eep, form, subject, message).deliver_now
+      end
+
+    end
+
+
+  end
+
+
+
 end

@@ -1,0 +1,17 @@
+<div>
+
+  <p>Entry Pass: <%= @event_entry_pass.user.email %></p>
+
+  <p>
+    <a href="<%=  fill_form_response_url(kommunity: @event_entry_pass.event.kommunity,data_form_entity_id: @form.id).html_safe %>">
+      Link To Feedback
+    </a>
+  </p>
+
+  <% if @message %>
+  <p>Organizer Message</p>
+
+  <p><%= @message %></p>
+  <% end %>
+
+</div>

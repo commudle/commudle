@@ -106,6 +106,9 @@ Rails.application.routes.draw do
         post :send_data_form_entity_response_group_entry_pass_email, path: "send-user-entry-pass-email"
         get :event_data_form_entity_group_entry_pass_email, path: "event-users-entry-pass-email"
         post :send_event_data_form_entity_group_entry_pass_email, path: "send-event-users-entry-pass-email"
+
+        get :feedback_email, path: "feedback-email"
+        post :send_feedback_email, path: "send-feedback-email"
       end
     end
 

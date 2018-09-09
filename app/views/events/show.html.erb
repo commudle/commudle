@@ -114,7 +114,7 @@
   </div>
 
 
-  <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
+  <%= render 'events/locations_tracks_slots', event: @event, track_slot: TrackSlot.new, event_location_track: EventLocationTrack.new %>
 
 
 
