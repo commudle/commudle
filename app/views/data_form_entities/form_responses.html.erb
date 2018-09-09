@@ -85,7 +85,7 @@
           </td>
           <% @edfeg.data_form_entities.each do |dfe| %>
           <% dfe.data_form.questions.with_deleted.each do |question| %>
-          <% dferg.data_form_entity_responses.each do |dfer| %>
+          <% dferg.data_form_entity_responses.order(:created_at).each do |dfer| %>
 
 
 
