@@ -12,7 +12,8 @@
           $(function () {
               $("#track_slot_start_time_<%=event_location_track.id%>").datetimepicker(
                   {
-                      format: 'DD-MM-YYYY hh:mm A Z'
+                      format: 'DD-MM-YYYY hh:mm A Z',
+                      defaultDate: moment("<%= event_location_track.event.start_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : event_location_track.event.start_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
 
                   }
               );
@@ -28,7 +29,8 @@
       <script type="text/javascript">
           $(function () {
               $("#track_slot_end_time_<%=event_location_track.id%>").datetimepicker({
-                      format: 'DD-MM-YYYY hh:mm A Z'
+                      format: 'DD-MM-YYYY hh:mm A Z',
+                      defaultDate: moment("<%= event_location_track.event.start_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : event_location_track.event.start_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
 
                   }
               );

@@ -19,4 +19,14 @@ class EventCommunicationMailerPreview < ActionMailer::Preview
     })
   end
 
+
+  def feedback_email
+    EventCommunicationMailer.feedback_email(DataFormEntityResponseGroup.first, "What's Up Kommunity", "<p>lkjsfbvld</p>", {
+        event_description: true,
+        sessions_list: true,
+        timings: true,
+        location: true
+    })
+  end
+
 end
