@@ -86,7 +86,7 @@
                 <li class="list-group-item">
 
                   <div class="form-group">
-                    <h5><%= question.title %></h5>
+                    <h5><%= question.title %><%if question.required%><strong class="text-info">*</strong><% end %></h5>
 
 
                     <% case question.question_type.name %>
