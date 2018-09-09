@@ -28,7 +28,7 @@
             <ul class="list-group">
               <% @events.select{|ev| ev.start_time >= Time.now.beginning_of_day && ev.status?([NameValues::EventStatusType::ANNOUNCED, NameValues::EventStatusType::OPEN])}.each do |event| %>
               <li class="list-group-item">
-                <%= link_to event.name.titleize, event_path(event), target: "_blank" %>
+                <%= link_to event.name.titleize, event_path(id: event), target: "_blank" %>
                 <%= render 'events/event_time_display', event: event %>
               </li>
               <% end %>
