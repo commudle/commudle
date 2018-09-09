@@ -31,10 +31,10 @@ class EventEntryPass < ApplicationRecord
 
 
   def self.generate_code(event)
-    unique_code = rand.to_s[2..[(event.seats.digits.length + 1), 2].max]
+    unique_code = rand.to_s[5..10]
 
     while(!EventEntryPass.find_by(event: event, unique_code: unique_code).blank?)
-      unique_code = rand.to_s[2..[(event.seats.digits.length + 1), 2].max]
+      unique_code = rand.to_s[5..10]
     end
 
     return unique_code

@@ -14,3 +14,52 @@
   <% end %>
 
 </div>
+
+<table style="width: 550px; margin: 0 auto; background-color: white; border-radius: 5px; padding: 25px;">
+  <tbody>
+
+  <tr>
+    <td>
+      <p>Hi <%= @user.name %>!</p>
+      <p>Here's your <strong>ENTRY PASS</strong> for attending <strong><%= @event.name %></strong>. Please be on time!</p>
+      <div style="text-align: center">
+      </div>
+      <div>
+        <h1><%= @event.name %></h1>
+        <%= render 'mailers/event_communication_mailer/event_details_options' %>
+
+        <div>
+          <h5>Will You Be Joining Us?</h5>
+          <table style="width: 100%;">
+            <tbody>
+            <tr>
+              <td style="text-align: center; background-color: #23d06a; padding: 15px; border-radius: 10px; height: 100px; width: 100px; font-size: 1.3rem;">
+                <a href="<%=  update_rsvp_url(kommunity: @event.kommunity_id, token: @dferg.rsvp_token, rsvp_status: '1').html_safe %>" style="color: white; text-decoration: none;">
+                  Absolutely, I'm In!
+                </a>
+              </td>
+              <td style="text-align: center; background-color: #d49b9b; padding: 15px; border-radius: 10px; height: 100px; width: 100px; margin: 25px; font-size: 1.3rem;">
+                <a href="<%= update_rsvp_url(kommunity: @event.kommunity_id, token: @dferg.rsvp_token, rsvp_status: '0').html_safe %>" style="color: white; text-decoration: none;">
+                  Next Time, May Be
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <hr>
+        <% if !@message.blank? %>
+        <h3 style="text-align: center;">Your Organizer has included a message</h3>
+        <blockquote style="border: 1px dashed lightgrey; border-radius: 5px; padding: 5px;">
+          <%= @message.html_safe %>
+        </blockquote>
+        <% end %>
+
+      </div>
+
+    </td>
+  </tr>
+
+  </tbody>
+
+</table>

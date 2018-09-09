@@ -19,10 +19,12 @@
             <% end %>
           </span>
           <br>
+          <% if ts.speaker_registration %>
           <small>
-            <%= ts.speaker_registration.user.email %>
+            <%= ts.speaker_registration.user.name %>
 
           </small>
+          <% end %>
         </h6>
       </div>
 

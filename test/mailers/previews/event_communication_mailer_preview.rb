@@ -10,4 +10,13 @@ class EventCommunicationMailerPreview < ActionMailer::Preview
     })
   end
 
+  def entry_pass_email
+    EventCommunicationMailer.entry_pass_email(DataFormEntityResponseGroup.first, "What's Up Kommunity", "<p>lkjsfbvld</p>", {
+        event_description: false,
+        sessions_list: true,
+        timings: true,
+        location: true
+    })
+  end
+
 end
