@@ -45,10 +45,12 @@
       <%= f.text_field :session_title, class: 'form-control', required: true, placeholder: "Session Title" %>
     </div>
     <div class="form-group">
-      <%= f.select :speaker_registration_id, options_for_select(event_location_track.event.get_available_speakers.collect{|m| [m.user.name, m.id]}), {:include_blank => 'Select a speaker'}, class: 'form-control', required: true %>
+      <%= f.select :speaker_registration_id, options_for_select(event_location_track.event.get_available_speakers.collect{|m| [m.user.name, m.id]}), {:include_blank => 'Select a speaker'}, class: 'form-control' %>
 
     </div>
-    <%= f.submit "Add Speaker Slot", class: 'btn btn-outline-info' %>
+    <div class="form-group">
+      <%= f.submit "Add Speaker Slot", class: 'btn btn-outline-info text-white' %>
+    </div>
   <% end %>
 </div>
 
