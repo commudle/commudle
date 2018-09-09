@@ -16,6 +16,10 @@
         <%= f.label :subject %>
         <%= f.text_field :subject, value: "#{@event.kommunity.name} :: #{@event.name} :: RSVP", required: true, class: "form-control" %>
       </div>
+
+      <div class="field form-group">
+        <%= render 'event_details_options', f: f %>
+      </div>
       <div class="form-group">
         <%= f.label :message, "Any Additional Message (Optional)" %>
         <%= f.text_area :message, :class => "tinymce editor", :rows => 3, :cols => 50 %>

@@ -1,0 +1,74 @@
+<% if @event_details_options[:event_description] %>
+<div style="padding: 5px;"><%= @event.description.html_safe %></div>
+<% end %>
+
+<% if @event_details_options[:location] %>
+<div style="border-bottom: 1px dotted grey; border-top: 1px dotted grey; padding: 5px 0;">
+  <p><strong>Venue Details: </strong></p>
+  <% @event.locations.each do |el| %>
+  <div>
+    <p style="margin: 3px;">
+      <strong>Address: </strong><% el.name %>, <%= el.address %>
+    </p>
+    <p style="margin: 3px;">
+      <a href="<%= el.map_link %>">Link To Map</a>
+    </p>
+
+  </div>
+
+  <% end %>
+</div>
+<% end %>
+
+
+<% if @event_details_options[:timings] %>
+<div>
+  <div>
+    <p style="background-color: grey; padding: 5px; color: white;">
+      <strong>
+        Schedule:
+      </strong>
+      <span>
+        <% if @event.start_time.to_date != @event.end_time.to_date %>
+    <span>
+                  <span>
+                    <%= @event.start_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= @event.start_time.strftime('%I:%M %p') %></span> -
+
+                  <span><%= @event.end_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= @event.end_time.strftime('%I:%M %p') %></span>
+
+                </span>
+    <% else %>
+    <span>
+                  <span><%= @event.start_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= @event.start_time.strftime('%I:%M %p') %> To <%= @event.end_time.strftime('%I:%M %p') %></span>
+                </span>
+    <% end %>
+      </span>
+    </p>
+
+  </div>
+</div>
+<% end %>
+
+<% if @event_details_options[:sessions_list] %>
+<div>
+  <p>
+    <strong>Here's the list of the amazing sessions!</strong>
+  </p>
+  <table style="width: 100%; background-color: #90b0ee3d;">
+    <tbody>
+      <% @event.event_location_tracks.each do |elt| %>
+      <% elt.track_slots.each do |ts| %>
+      <tr>
+        <td style="width: 50%; border-bottom: 1px dashed white;">
+          <small><%= ts.start_time.strftime('%H:%M') %> to <%= ts.end_time.strftime('%H:%M') %></small>
+        </td>
+        <td style="width: 50%; border-bottom: 1px dashed white;">
+          <small><%= ts.session_title %></small>
+        </td>
+      </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>

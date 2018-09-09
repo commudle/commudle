@@ -8,16 +8,27 @@
   </head>
 
   <body>
-    <header>
-      Kommunity
+    <table style="width: 100%; background-color: #e6e6e6a6; padding: 15px; font-family: sans-serif;">
+      <tbody>
+        <tr>
+          <td style="width: 100%;">
+            <%= yield %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <footer style="text-align: center; color: #656565;">
+              We're coming up with something awesome soon!
 
-    </header>
 
-    <%= yield %>
+            </footer>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-    <footer>
-      Copyright
 
-    </footer>
+
+
   </body>
 </html>

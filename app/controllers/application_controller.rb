@@ -45,8 +45,12 @@ class ApplicationController < ActionController::Base
 
   def set_kommunity
     if (params[:kommunity])
-      @kommunity = Kommunity.friendly.find(params[:kommunity])
-      RolePermission.kommunity = @kommunity
+      begin
+        @kommunity = Kommunity.friendly.find(params[:kommunity])
+        RolePermission.kommunity = @kommunity
+      rescue
+        puts(controller_name, action_name)
+      end
     end
 
   end

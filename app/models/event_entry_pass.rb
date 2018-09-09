@@ -3,6 +3,8 @@ class EventEntryPass < ApplicationRecord
   belongs_to :user
   belongs_to :created_by, class_name: 'User'
 
+  has_many :fixed_email_entry_passes
+
 
 
   validates :event, uniqueness: { scope: :user }
@@ -39,6 +41,16 @@ class EventEntryPass < ApplicationRecord
 
   end
 
+
+  def fixed_email_sent?(type)
+    fixed_emails = self.fixed_emails
+    if(fixed_emails.map(&:mail_type).include? type)
+      return true, fixed_emails.length
+    end
+
+
+    return false, 0
+  end
 
 
 end

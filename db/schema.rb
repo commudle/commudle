@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_08_174706) do
+ActiveRecord::Schema.define(version: 2018_09_09_053852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -192,6 +192,15 @@ ActiveRecord::Schema.define(version: 2018_09_08_174706) do
     t.index ["fixed_email_id"], name: "index_fixed_email_dfe_response_groups_on_fixed_email_id"
   end
 
+  create_table "fixed_email_event_entry_passes", force: :cascade do |t|
+    t.bigint "event_entry_pass_id"
+    t.bigint "fixed_email_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_entry_pass_id"], name: "index_fixed_email_event_entry_passes_on_event_entry_pass_id"
+    t.index ["fixed_email_id"], name: "index_fixed_email_event_entry_passes_on_fixed_email_id"
+  end
+
   create_table "fixed_emails", force: :cascade do |t|
     t.string "mail_type"
     t.string "subject"
@@ -311,7 +320,7 @@ ActiveRecord::Schema.define(version: 2018_09_08_174706) do
     t.datetime "updated_at", null: false
     t.bigint "kommunity_id"
     t.index ["kommunity_id"], name: "index_user_roles_users_on_kommunity_id"
-    t.index ["user_id", "user_role_id"], name: "index_user_roles_users_on_user_id_and_user_role_id", unique: true
+    t.index ["user_id", "user_role_id", "kommunity_id"], name: "index_user_role_kommunity", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -375,6 +384,8 @@ ActiveRecord::Schema.define(version: 2018_09_08_174706) do
   add_foreign_key "events", "users"
   add_foreign_key "fixed_email_dfe_response_groups", "data_form_entity_response_groups", name: "index_fixed_email_dfe_group"
   add_foreign_key "fixed_email_dfe_response_groups", "fixed_emails"
+  add_foreign_key "fixed_email_event_entry_passes", "event_entry_passes"
+  add_foreign_key "fixed_email_event_entry_passes", "fixed_emails"
   add_foreign_key "kommunities", "users"
   add_foreign_key "question_choices", "questions"
   add_foreign_key "questions", "data_forms"

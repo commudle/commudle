@@ -1,12 +1,12 @@
 {
-  let form = $("<%= escape_javascript render 'data_form_entity_response_group_rsvp_email_form' %>");
+  let form = $("<%= escape_javascript render 'feedback_email_form' %>");
 
   let modal = $('<%= escape_javascript render 'email_modal' %>');
-  $('#modal-mail-form').remove();
 
-  $(' .modal-title', modal).html("Send RSVP Email");
+  $(' .modal-title', modal).html("Send Feedback Email");
 
   $(' .modal-body', modal).empty().append(form);
+
 
   $('#modal-mail-form').remove();
   $(modal).attr('id', 'modal-mail-form');
@@ -14,7 +14,7 @@
   $('body').append(modal);
 
   tinyMCE.init({
-      selector: '.tinymce.editor'
+  selector: '.tinymce.editor'
   });
 
   modal.modal('show');

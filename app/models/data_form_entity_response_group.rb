@@ -14,19 +14,25 @@ class DataFormEntityResponseGroup < ApplicationRecord
   attribute :registration_status_id, :integer, default: RegistrationStatus.find_by(name: "registered").id
 
 
+  # scopes
+  scope :with_responses, -> {includes(:data_form_entity_responses)}
+
+  ##
+
+
   # this method should go to the resque_worker
-  def self.send_rsvp_email(dferg_ids, subject, message, force = false)
+  def self.send_rsvp_email(dferg_ids, subject, message, force = false, event_details_options = {})
     dfergs = DataFormEntityResponseGroup.includes(:registration_status, :user).where("id in (?)", dferg_ids)
     dfergs.each do |dferg|
       if(force || !NameValues::RegistrationStatusType::RSVP_DONE.include?(dferg.registration_status.name))
-        EventCommunicationMailer.rsvp_email(dferg, subject, message).deliver_now
+        Resque.enqueue(RsvpMailerWorker, dferg.id, subject, message, event_details_options)
       end
     end
 
   end
 
 
-  def self.send_entry_pass_email(dferg_ids, subject, message, force = false)
+  def self.send_entry_pass_email(dferg_ids, subject, message, force = false, event_details_options = {})
 
     dfergs = DataFormEntityResponseGroup.includes(:registration_status, :user).where("id in (?)", dferg_ids)
 
@@ -35,7 +41,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
       EventEntryPass.find_or_create(dferg.event_data_form_entity_group.event, dferg.user, CurrentAccess.user)
 
       if(force || dferg.fixed_email_sent?(NameValues::FixedEmailType::ENTRY_PASS)[0] == false)
-        EventCommunicationMailer.entry_pass_email(dferg, subject, message).deliver_now
+        Resque.enqueue(EntryPassMailerWorker, dferg.id, subject, message, event_details_options)
       end
     end
   end

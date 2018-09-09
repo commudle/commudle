@@ -12,5 +12,16 @@ class EventDataFormEntityGroup < ApplicationRecord
 
   validates_length_of :data_form_entities, maximum: 1
 
+  # scopes
+  default_scope { includes(:registration_type, :event) }
+
+  ##
+
+
+
+  def registration_type? (registration_type_names)
+    return registration_type_names.include? self.registration_type.name
+  end
+
 
 end

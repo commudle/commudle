@@ -20,6 +20,7 @@ class Event < ApplicationRecord
 
   # scopes
   default_scope { includes(:event_status, :kommunity) }
+  scope :with_locations, -> {includes(:locations)}
 
   ##
 
@@ -109,6 +110,22 @@ class Event < ApplicationRecord
 
   def get_available_speakers
     DataFormEntityResponseGroup.includes(:user).joins(:registration_status, event_data_form_entity_group: [:event, :registration_type]).where('events.id = ? and registration_types.name = ? and registration_statuses.name = ?', self.id, NameValues::RegistrationsType::SPEAKER, NameValues::RegistrationStatusType::CONFIRMED)
+  end
+
+
+
+  # this method should go to the resque_worker
+  def send_feedback_emails(form_id, subject, message, force = false)
+
+    self.event_entry_passes.includes(:event).where(attendance: true).each do |eep|
+
+      if (force || eep.fixed_email_sent?(NameValues::FixedEmailType::FEEDBACK)[0] == false)
+        Resque.enqueue(FeedbackMailerWorker, eep.id, form_id, subject, message)
+      end
+
+    end
+
+
   end
 
 

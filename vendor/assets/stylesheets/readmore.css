@@ -1,0 +1,16 @@
+.readmore-box {
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+}
+.readmore-box .read-more-box-link {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0; padding: 30px 0;
+
+    /* "transparent" only works here because == rgba(0,0,0,0) */
+    background-image: linear-gradient(to bottom, transparent, lightgrey);
+}

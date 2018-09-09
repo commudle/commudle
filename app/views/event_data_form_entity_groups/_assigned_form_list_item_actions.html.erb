@@ -10,6 +10,12 @@
 
   <!--<% link_to 'Fill', fill_form_response_path(data_form_entity_id: dfe), class: 'ml-2 text-primary' %>-->
 
+  <% if dfe.entity.registration_type?(NameValues::RegistrationsType::FEEDBACK) %>
+  <%= link_to "Send Feedback Emails", feedback_email_event_communication_mailers_path(event: dfe.entity.event, form: dfe, force: false), remote: true %>
+
+
+  <% end %>
+
   <%= link_to 'Fill For A User', fill_form_response_path(data_form_entity_id: dfe, for_other_user: true), class: 'ml-2 text-primary' %>
 
 </div>

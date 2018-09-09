@@ -18,6 +18,13 @@ module NameValues
   end
 
 
+  # class RegistrationsTypeFormSubmissionMessages
+  #   SPEAKER = "Thank You! We've received your details, someone from the team will get back to you soon on your email!"
+  #   ATTENDEE = "Thank You! We've received your details, someone from the team will get back to you soon on your email!"
+  #   FEEDBACK = "Thanks for sharing the feedback! Stay tuned to our website for the next event. Stay tuned!"
+  # end
+
+
   class RegistrationStatusType
     REGISTERED = "registered"
     WAITING = "waiting"
@@ -42,6 +49,7 @@ module NameValues
   class FixedEmailType
     RSVP = "rsvp"
     ENTRY_PASS = "entry_pass"
+    FEEDBACK = "feedback"
   end
 
 

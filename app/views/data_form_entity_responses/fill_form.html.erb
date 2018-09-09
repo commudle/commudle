@@ -1,23 +1,55 @@
+<% content_for :page_stylesheets do %>
+  <%= stylesheet_link_tag    'readmore', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<% end %>
 <section id="fill-form">
   <div class="row">
-    <div class="d-flex flex-column justify-content-center">
+    <div class="d-flex flex-column justify-content-center col-12">
       <div class="p-2">
         <div class="event">
 
           <h5 class="card-header"><%= @event.kommunity.name %></h5>
 
-          <div class="card-body">
+          <div class="card-body ">
             <h5 class="card-title"><%= @event.name %></h5>
 
             <%= render 'events/event_time_display', event: @event %>
 
+            <% if @data_form_entity.entity.registration_type?([NameValues::RegistrationsType::SPEAKER, NameValues::RegistrationsType::ATTENDEE]) %>
+
             <div class="card-text mt-3">
-              <div class="description">
+              <div class="description readmore-box p-2" data-expanded="0">
                 <%= @event.description.html_safe %>
+                <p class="read-more-box-link"><a href="#" class="btn btn-outline-primary">Read More</a></p>
               </div>
 
+              <div>
+
+                <%= render 'events/locations_tracks_slots', event: @event, track_slot: TrackSlot.new, event_location_track: EventLocationTrack.new %>
+              </div>
+
+              <hr>
+              <div class="col mt-3" id="event-locations">
+                <% if @event.locations  %>
+                <% @event.locations.each do |location| %>
+                <%= render 'locations/event_location', location: location, event: @event %>
+                <% end %>
+                <% end %>
+              </div>
+              <hr>
 
             </div>
+
+            <% end %>
+
+            <% if @data_form_entity.entity.registration_type?([NameValues::RegistrationsType::FEEDBACK]) %>
+
+            <div class="card-text mt-3 text-center">
+              <h5>It was great having you over at the event!</h5>
+              <p>It'd be great to know how was your day!</p>
+            </div>
+
+            <% end %>
 
 
           </div>
@@ -128,25 +160,41 @@
           <p class="text-center">
             <i class="fas fa-check-circle fa-5x text-success"></i>
           </p>
+          <% if @data_form_entity.entity.registration_type?([NameValues::RegistrationsType::SPEAKER, NameValues::RegistrationsType::ATTENDEE]) %>
           <p class="text-center">We've received your submission for <strong><%= @event.name %></strong>. We'll communicate further updates on your email!</p>
+          <% elsif @data_form_entity.entity.registration_type?([NameValues::RegistrationsType::FEEDBACK]) %>
+            <p class="text-center">Thanks for sharing the feedback! <br> Stay tuned to our website for the next event. Stay tuned!</p>
+          <% else %>
+            <p class="text-center">Thank You!</p>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 
 
-  <% if !user_signed_in? %>
-  <script>
-    window.onload = function() {
 
-        $('#force-sign-in-modal').modal({
-            backdrop: 'static',
-            keyboard: false
-        }).modal('show');
 
-    }
 
-  </script>
+  <% content_for :page_scripts do %>
+    <% if !user_signed_in? %>
+    <script>
+        window.onload = function() {
+
+            $('#force-sign-in-modal').modal({
+                backdrop: 'static',
+                keyboard: false
+            }).modal('show');
+
+        }
+
+    </script>
+    <% end %>
+
+
+    <%= javascript_include_tag 'readmore', 'data-turbolinks-track': 'reload' %>
+
+
   <% end %>
 
 
