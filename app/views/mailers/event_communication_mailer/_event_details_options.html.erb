@@ -1,26 +1,3 @@
-<% if @event_details_options[:event_description] %>
-<div style="padding: 5px;"><%= @event.description.html_safe %></div>
-<% end %>
-
-<% if @event_details_options[:location] %>
-<div style="border-bottom: 1px dotted grey; border-top: 1px dotted grey; padding: 5px 0;">
-  <p><strong>Venue Details: </strong></p>
-  <% @event.locations.each do |el| %>
-  <div>
-    <p style="margin: 3px;">
-      <strong>Address: </strong><% el.name %>, <%= el.address %>
-    </p>
-    <p style="margin: 3px;">
-      <a href="<%= el.map_link %>">Link To Map</a>
-    </p>
-
-  </div>
-
-  <% end %>
-</div>
-<% end %>
-
-
 <% if @event_details_options[:timings] %>
 <div>
   <div>
@@ -48,6 +25,31 @@
   </div>
 </div>
 <% end %>
+
+
+
+<% if @event_details_options[:event_description] %>
+<div style="padding: 5px;"><%= @event.description.html_safe %></div>
+<% end %>
+
+<% if @event_details_options[:location] %>
+<div style="border-bottom: 1px dotted grey; border-top: 1px dotted grey; padding: 5px 0;">
+  <p><strong>Venue Details: </strong></p>
+  <% @event.locations.each do |el| %>
+  <div>
+    <p style="margin: 3px;">
+      <strong>Address: </strong><% el.name %>, <%= el.address %>
+    </p>
+    <p style="margin: 3px;">
+      <a href="<%= el.map_link %>">Link To Map</a>
+    </p>
+
+  </div>
+
+  <% end %>
+</div>
+<% end %>
+
 
 <% if @event_details_options[:sessions_list] %>
 <div>

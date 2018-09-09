@@ -16,7 +16,6 @@ class EventCommunicationMailer < ApplicationMailer
                                   data_form_entity_response_group_id: @dferg.id,
                                   fixed_email_id: fixed_email.id
     )
-
     @message = message.html_safe
     @event = @dferg.event_data_form_entity_group.event
     @event_details_options = event_details_options
@@ -35,6 +34,7 @@ class EventCommunicationMailer < ApplicationMailer
   def entry_pass_email(data_form_entity_response_group, subject, message, event_details_options = {})
     @dferg = data_form_entity_response_group
     @message = message
+    @event = @dferg.event_data_form_entity_group.event
     @event_details_options = event_details_options
     @user = @dferg.user
     fixed_email = FixedEmail.find_or_create_by(
