@@ -12,6 +12,7 @@ class DataFormsController < ApplicationController
   def new
     @data_form = DataForm.new
 
+
     1.times do
       question = @data_form.questions.build
       1.times do
@@ -24,11 +25,12 @@ class DataFormsController < ApplicationController
 
   def create
     @data_form = DataForm.new(data_form_params)
+
     @data_form.user = current_user
 
 
     if @data_form.save
-      redirect_to action: :index, notice: "Successfully created survey."
+      redirect_to kommunity_show_path(@data_form.kommunity)
     else
       render :new
     end
@@ -43,7 +45,7 @@ class DataFormsController < ApplicationController
 
     @data_form.update_attributes(data_form_params)
     if @data_form.save
-      redirect_to action: :index, notice: "Successfully created survey."
+      redirect_to kommunity_show_path(@data_form.kommunity)
     else
       render :edit
     end
