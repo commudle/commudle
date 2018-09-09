@@ -15,7 +15,6 @@
 //= require popper
 //= require tinymce
 //= require moment
-//= require tempusdominus-bootstrap-4.js
 //= require_tree .
 
 
