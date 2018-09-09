@@ -20,6 +20,7 @@ class Event < ApplicationRecord
 
   # scopes
   default_scope { includes(:event_status, :kommunity) }
+  scope :with_locations, -> {includes(:locations)}
 
   ##
 

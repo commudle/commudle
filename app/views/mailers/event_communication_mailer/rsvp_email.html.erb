@@ -1,24 +1,49 @@
-<div>
 
-  <p>
-    <a href="<%=  update_rsvp_url(kommunity: @event.kommunity_id, token: @dferg.rsvp_token, rsvp_status: '1').html_safe %>">
-      YES
-    </a>
+<table style="width: 550px; margin: 0 auto; background-color: white; border-radius: 5px; padding: 25px;">
+  <tbody>
 
-  </p>
+    <tr>
+      <td>
+        <div style="text-align: center">
+          <h3><%= @event.name %></h3>
+        </div>
+        <div>
 
-
-  <p>
-    <a href="<%= update_rsvp_url(kommunity: @event.kommunity_id, token: @dferg.rsvp_token, rsvp_status: '0').html_safe %>">
-      NO
-    </a>
+          <%= render 'mailers/event_communication_mailer/event_details_options' %>
 
 
-  </p>
+          <div>
+            <h5>Will You Be Joining Us?</h5>
+            <table style="width: 100%;">
+              <tbody>
+              <tr>
+                <td style="text-align: center; background-color: #23d06a; padding: 15px; border-radius: 50%; height: 100px; width: 100px;">
+                  <a href="<%=  update_rsvp_url(kommunity: @event.kommunity_id, token: @dferg.rsvp_token, rsvp_status: '1').html_safe %>" style="color: white; text-decoration: none;">
+                    Absolutely, I'm In!
+                  </a>
+                </td>
+                <td style="text-align: center; background-color: #d49b9b; padding: 15px; border-radius: 50%; height: 100px; width: 100px; margin: 25px;">
+                  <a href="<%= update_rsvp_url(kommunity: @event.kommunity_id, token: @dferg.rsvp_token, rsvp_status: '0').html_safe %>" style="color: white; text-decoration: none;">
+                    Next Time, May Be
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <hr>
+          <% if @message %>
+          <h3 style="text-align: center;">Your Organizer has included a message</h3>
+          <blockquote style="border: 1px dashed lightgrey; border-radius: 5px; padding: 5px;">
+            <%= @message.html_safe %>
+          </blockquote>
+          <% end %>
 
-  <% if @message %>
-  <h3>Your Organizer has included a message</h3>
-  <p><%= @message %></p>
-  <% end %>
+        </div>
 
-</div>
+      </td>
+    </tr>
+
+  </tbody>
+
+</table>

@@ -2,7 +2,7 @@ class EventCommunicationMailer < ApplicationMailer
 
   default template_path: 'mailers/event_communication_mailer'
 
-  def rsvp_email(data_form_entity_response_group, subject, message)
+  def rsvp_email(data_form_entity_response_group, subject, message, event_details_options = {})
     @dferg = data_form_entity_response_group
 
     # create logs of the email sent
@@ -19,6 +19,7 @@ class EventCommunicationMailer < ApplicationMailer
 
     @message = message.html_safe
     @event = @dferg.event_data_form_entity_group.event
+    @event_details_options = event_details_options
 
     mail(
         to: @dferg.user.email,
@@ -31,9 +32,11 @@ class EventCommunicationMailer < ApplicationMailer
   end
 
 
-  def entry_pass_email(data_form_entity_response_group, subject, message)
+  def entry_pass_email(data_form_entity_response_group, subject, message, event_details_options = {})
     @dferg = data_form_entity_response_group
-    # create logs of the email sent
+    @message = message
+    @event_details_options = event_details_options
+
     fixed_email = FixedEmail.find_or_create_by(
         mail_type: NameValues::FixedEmailType::ENTRY_PASS,
         subject: subject,
