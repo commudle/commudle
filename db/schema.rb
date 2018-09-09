@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_08_174706) do
+ActiveRecord::Schema.define(version: 2018_09_09_022309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -311,7 +311,7 @@ ActiveRecord::Schema.define(version: 2018_09_08_174706) do
     t.datetime "updated_at", null: false
     t.bigint "kommunity_id"
     t.index ["kommunity_id"], name: "index_user_roles_users_on_kommunity_id"
-    t.index ["user_id", "user_role_id"], name: "index_user_roles_users_on_user_id_and_user_role_id", unique: true
+    t.index ["user_id", "user_role_id", "kommunity_id"], name: "index_user_role_kommunity", unique: true
   end
 
   create_table "users", force: :cascade do |t|
