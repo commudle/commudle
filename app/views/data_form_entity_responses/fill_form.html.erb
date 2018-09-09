@@ -1,3 +1,7 @@
+<% content_for :page_title do %>
+<%= @event.kommunity.name %> | <%= @event.name %> | Form
+<% end %>
+
 <% content_for :page_stylesheets do %>
   <%= stylesheet_link_tag    'readmore', media: 'all' %>
 

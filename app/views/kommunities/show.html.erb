@@ -1,3 +1,6 @@
+<% content_for :page_title do %>
+<%= @kommunity.name %>
+<% end %>
 <section id="kommunity-<%= @kommunity.id %>">
   <h1 class="bg-info p-3 text-white"><%= @kommunity.name %></h1>
   <% if allowed_view?(:events, :create) %>

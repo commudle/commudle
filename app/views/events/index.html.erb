@@ -1,3 +1,6 @@
+<% content_for :page_title do %>
+<%= @kommunity.name %> | Events
+<% end %>
 <h4 class="bg-info text-center text-white p-2"><%= @kommunity.name %></h4>
 
 <% if allowed_view?(:events, :create) %>
