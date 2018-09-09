@@ -63,4 +63,10 @@ class DataFormEntityResponseGroup < ApplicationRecord
   end
 
 
+  def registration_status?(registration_status_names)
+    return registration_status_names.include? self.registration_status.name
+  end
+
+
+
 end

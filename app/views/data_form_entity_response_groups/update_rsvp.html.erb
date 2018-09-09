@@ -1,5 +1,25 @@
-<div>
+<section id="update-rsvp-status-from-mail">
 
-  <%= @dferg.registration_status.name %>
 
-</div>
+  <div class="text-center">
+    <p>Your RSVP Status for <strong><%= @dferg.event_data_form_entity_group.event.name %></strong> by <strong><%= @dferg.event_data_form_entity_group.event.kommunity.name %></strong></p>
+
+    <div>
+      <h5><%= @dferg.registration_status.name.titleize %></h5>
+
+      <% if @dferg.registration_status?([NameValues::RegistrationStatusType::CONFIRMED]) %>
+      <p><i class="fas fa-check-circle fa-5x text-success"></i></p>
+      <p>Are you ready for the excitement!</p>
+      <% elsif @dferg.registration_status?([NameValues::RegistrationStatusType::CANCELLED]) %>
+      <p><i class="fas fa-times-circle fa-5x text-info"></i></p>
+      <p>We'll see you some other time! All the Best!</p>
+      <% end %>
+    </div>
+
+
+
+
+
+  </div>
+</section>
+
