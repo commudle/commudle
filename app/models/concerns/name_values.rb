@@ -40,6 +40,7 @@ module NameValues
   class EventStatusType
     DRAFT = "draft"
     ANNOUNCED = "announced"
+    OPEN = "open"
     ONGOING = "ongoing"
     COMPLETED = "completed"
     CANCELED = "canceled"
