@@ -25,7 +25,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
     dfergs = DataFormEntityResponseGroup.includes(:registration_status, :user).where("id in (?)", dferg_ids)
     dfergs.each do |dferg|
       if(force || !NameValues::RegistrationStatusType::RSVP_DONE.include?(dferg.registration_status.name))
-        EventCommunicationMailer.rsvp_email(dferg, subject, message, event_details_options).deliver_now
+        Resque.enqueue(RsvpMailerWorker, dferg.id, subject, message, event_details_options)
       end
     end
 
@@ -41,7 +41,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
       EventEntryPass.find_or_create(dferg.event_data_form_entity_group.event, dferg.user, CurrentAccess.user)
 
       if(force || dferg.fixed_email_sent?(NameValues::FixedEmailType::ENTRY_PASS)[0] == false)
-        EventCommunicationMailer.entry_pass_email(dferg, subject, message, event_details_options).deliver_now
+        Resque.enqueue(EntryPassMailerWorker, dferg.id, subject, message, event_details_options)
       end
     end
   end

@@ -20,7 +20,7 @@ class EventCommunicationMailer < ApplicationMailer
     @message = message.html_safe
     @event = @dferg.event_data_form_entity_group.event
     @event_details_options = event_details_options
-
+    @user = @dferg.user
     mail(
         to: @dferg.user.email,
         subject: subject,
@@ -36,7 +36,7 @@ class EventCommunicationMailer < ApplicationMailer
     @dferg = data_form_entity_response_group
     @message = message
     @event_details_options = event_details_options
-
+    @user = @dferg.user
     fixed_email = FixedEmail.find_or_create_by(
         mail_type: NameValues::FixedEmailType::ENTRY_PASS,
         subject: subject,
@@ -60,7 +60,7 @@ class EventCommunicationMailer < ApplicationMailer
 
     @event_entry_pass = event_entry_pass
     @form = form
-
+    @user = @event_entry_pass.user
     fixed_email = FixedEmail.find_or_create_by(
         mail_type: NameValues::FixedEmailType::FEEDBACK,
         subject: subject,

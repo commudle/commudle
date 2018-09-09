@@ -4,13 +4,13 @@
 
     <tr>
       <td>
+        <p>Hi <%= @user.name %>!</p>
+        <p>Congratulations! You're shortlisted for attending <strong><%= @event.name %></strong>. Please have a look at the details in this email and confirm your RSVP.</p>
         <div style="text-align: center">
-          <h3><%= @event.name %></h3>
         </div>
         <div>
-
+          <h1><%= @event.name %></h1>
           <%= render 'mailers/event_communication_mailer/event_details_options' %>
-
 
           <div>
             <h5>Will You Be Joining Us?</h5>
