@@ -47,7 +47,7 @@ Rails.application.routes.draw do
       resources :locations, only: [:create, :destroy]
     end
 
-    resources :data_forms, path: 'data-forms', only: [:index, :new, :create, :edit, :update]
+    resources :data_forms, path: 'data-forms', only: [:new, :create, :edit, :update]
 
 
     resources :event_entry_passes, path: 'event-entry-passes', only: [:create] do

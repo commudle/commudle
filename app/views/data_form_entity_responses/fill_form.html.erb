@@ -1,3 +1,7 @@
+<% content_for :page_stylesheets do %>
+  <%= stylesheet_link_tag    'readmore', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<% end %>
 <section id="fill-form">
   <div class="row">
     <div class="d-flex flex-column justify-content-center">
@@ -12,8 +16,9 @@
             <%= render 'events/event_time_display', event: @event %>
 
             <div class="card-text mt-3">
-              <div class="description">
+              <div class="description readmore-box p-2" data-expanded="0">
                 <%= @event.description.html_safe %>
+                <p class="read-more-box-link"><a href="#" class="btn btn-outline-primary">Read More</a></p>
               </div>
 
 
@@ -135,18 +140,28 @@
   </div>
 
 
-  <% if !user_signed_in? %>
-  <script>
-    window.onload = function() {
 
-        $('#force-sign-in-modal').modal({
-            backdrop: 'static',
-            keyboard: false
-        }).modal('show');
 
-    }
 
-  </script>
+  <% content_for :page_scripts do %>
+    <% if !user_signed_in? %>
+    <script>
+        window.onload = function() {
+
+            $('#force-sign-in-modal').modal({
+                backdrop: 'static',
+                keyboard: false
+            }).modal('show');
+
+        }
+
+    </script>
+    <% end %>
+
+
+    <%= javascript_include_tag 'readmore', 'data-turbolinks-track': 'reload' %>
+
+
   <% end %>
 
 
