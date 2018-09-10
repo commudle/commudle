@@ -89,7 +89,7 @@ class Event < ApplicationRecord
 
 
   def end_time
-    self[:end_time].blank? ? Time.now : self[:start_time].in_time_zone(self.timezone)
+    self[:end_time].blank? ? Time.now : self[:end_time].in_time_zone(self.timezone)
   end
 
 
