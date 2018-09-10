@@ -2,7 +2,7 @@
   <div class="card p-2 mt-2 border-info">
     <h6 class="card-header m-0 p-2">Sessions!</h6>
     <% if allowed_view?(:event_location_tracks, :create) && show_form %>
-    <div class="col-md-4 offset-md-4 mt-2">
+    <div class="col-md-6 offset-md-4 mt-2">
       <%= render 'event_location_tracks/form', event: event, event_location_tack: @event_location_tack %>
     </div>
     <% end %>
