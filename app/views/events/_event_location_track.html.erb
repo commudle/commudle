@@ -2,7 +2,7 @@
   <div class="card text-white bg-info mb-3">
     <h5 class="card-header text-center">
       <%= event_location_track.name %>
-      <% if allowed_view?(:event_location_tracks, :destroy) && show_form %>
+      <% if allowed_view?(:event_location_tracks, :destroy) %>
 
       <%= link_to event_location_track_path(id: event_location_track.id, event: @event), remote: true, method: :delete, class: "close ml-2 text-danger", 'aria-label': 'Remove' do %>
 
@@ -12,7 +12,7 @@
     </h5>
 
     <div class="card-body">
-      <% if allowed_view?(:track_slots, :create) && show_form %>
+      <% if allowed_view?(:track_slots, :create) %>
 
       <div>
         <%= render 'track_slots/form', event_location_track: event_location_track, track_slot: track_slot, event_location_track: event_location_track %>
