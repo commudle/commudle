@@ -35,16 +35,6 @@
                 </div>
               </div>
             </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#event_start_time').datetimepicker({
-                        inline: true,
-                        sideBySide: true,
-                        format: 'DD-MM-YYYY hh:mm A Z',
-                        defaultDate: moment("<%= @event.start_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : @event.start_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
-                    });
-                });
-            </script>
           </div>
         </div>
 
@@ -59,22 +49,31 @@
                 </div>
               </div>
             </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#event_end_time').datetimepicker({
-                        inline: true,
-                        sideBySide: true,
-                        format: 'DD-MM-YYYY hh:mm A Z',
-                        defaultDate: moment("<%= @event.end_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : @event.end_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
-                    });
-                });
-            </script>
           </div>
         </div>
 
-
         <%= f.submit "Submit", class: "btn btn-warning" %>
+        <script type="text/javascript">
+            $(function () {
+                $('#event_end_time').datetimepicker({
+                    inline: true,
+                    sideBySide: true,
+                    format: 'DD-MM-YYYY hh:mm A Z',
+                    defaultDate: moment("<%= @event.end_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : @event.end_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
+                });
 
+                $('#event_start_time').datetimepicker({
+                    inline: true,
+                    sideBySide: true,
+                    format: 'DD-MM-YYYY hh:mm A Z',
+                    defaultDate: moment("<%= @event.start_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : @event.start_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
+                });
+            });
+
+            $('#event_start_time').on("change.datetimepicker", function (e) {
+                $('#event_end_time').datetimepicker('minDate', e.date);
+            });
+        </script>
 
 
 

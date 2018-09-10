@@ -4,21 +4,10 @@
   <div>
     <div class="form-group">
 
-      <div class="">
+      <div>
         <!--<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>-->
         <%= f.text_field :start_time, class: 'form-control datetimepicker-input', id: "track_slot_start_time_#{event_location_track.id}", 'data-toggle': 'datetimepicker', 'data-target': "#track_slot_start_time_#{event_location_track.id}", placeholder: 'Start Time', required: true %>
       </div>
-      <script type="text/javascript">
-          $(function () {
-              $("#track_slot_start_time_<%=event_location_track.id%>").datetimepicker(
-                  {
-                      format: 'DD-MM-YYYY hh:mm A Z',
-                      defaultDate: moment("<%= event_location_track.event.start_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : event_location_track.event.start_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
-
-                  }
-              );
-          });
-      </script>
 
     </div>
     <div class="form-group">
@@ -26,18 +15,26 @@
         <!--<input type="text" class="form-control datetimepicker-input" id="datetimepicker5" data-toggle="datetimepicker" data-target="#datetimepicker5"/>-->
         <%= f.text_field :end_time, class: 'form-control datetimepicker-input', id: "track_slot_end_time_#{event_location_track.id}", 'data-toggle': 'datetimepicker', 'data-target': "#track_slot_end_time_#{event_location_track.id}", placeholder: 'End Time', required: true %>
       </div>
-      <script type="text/javascript">
-          $(function () {
-              $("#track_slot_end_time_<%=event_location_track.id%>").datetimepicker({
-                      format: 'DD-MM-YYYY hh:mm A Z',
-                      defaultDate: moment("<%= event_location_track.event.start_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : event_location_track.event.start_time.strftime('%d-%m-%Y %I:%M %p') %>", "DD-MM-YYYY hh:mm A Z")
-
-                  }
-              );
-          });
-      </script>
 
     </div>
+
+    <script>
+
+        $(function () {
+
+            $("#track_slot_start_time_<%=event_location_track.id%>").datetimepicker('format', 'DD-MM-YYYY hh:mm A Z');
+            $("#track_slot_start_time_<%=event_location_track.id%>").datetimepicker('defaultDate', moment("<%= event_location_track.event.start_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : event_location_track.event.start_time.strftime('%d-%m-%Y %I:%M %p %z') %>", "DD-MM-YYYY hh:mm A Z"));
+
+            $("#track_slot_end_time_<%=event_location_track.id%>").datetimepicker('format', 'DD-MM-YYYY hh:mm A Z');
+            $("#track_slot_end_time_<%=event_location_track.id%>").datetimepicker('defaultDate', moment("<%= event_location_track.event.start_time.blank? ? Time.now.strftime('%d-%m-%Y %I:%M %p') : event_location_track.event.start_time.strftime('%d-%m-%Y %I:%M %p %z') %>", "DD-MM-YYYY hh:mm A Z"));
+            $('#track_slot_start_time_<%=event_location_track.id%>').on("change.datetimepicker", function (e) {
+              $('#track_slot_end_time_<%=event_location_track.id%>').datetimepicker('minDate', e.date);
+            });
+
+        });
+
+
+    </script>
 
 
   </div>
@@ -49,7 +46,7 @@
 
     </div>
     <div class="form-group">
-      <%= f.submit "Add Speaker Slot", class: 'btn btn-outline-info text-white' %>
+      <%= f.submit "Add Speaker Slot", class: 'btn btn-outline-warning text-white' %>
     </div>
   <% end %>
 </div>
