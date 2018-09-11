@@ -48,7 +48,7 @@
           <!--<%= current_user.email %>-->
           <div class="dropdown mr-3">
             <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="current-user-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= current_user.email %>
+              <%= image_tag current_user.default_image, width: 35, class: 'mr-2' %>  <%= current_user.email %>
             </a>
 
             <% if current_user.role?(:system_administrator, nil) %>

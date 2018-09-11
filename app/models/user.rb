@@ -25,11 +25,11 @@ class User < ApplicationRecord
 
   def self.from_omniauth(access_token)
     data = access_token.info
-    return User.find_or_create(data['email'], "#{data['first_name']} #{data['last_name']}", )
+    return User.find_or_create(data['email'], "#{data['first_name']} #{data['last_name']}", data['image'])
   end
 
 
-  def self.find_or_create(email, name = nil, password = Devise.friendly_token[0,20])
+  def self.find_or_create(email, name = nil, image = nil, password = Devise.friendly_token[0,20])
     user = User.where(email: email).first
     # the token is access_token.user.credentials
     # Create the user if not already present
@@ -37,10 +37,11 @@ class User < ApplicationRecord
       user = User.create(
           email: email,
           name: name,
-          password: password
+          password: password,
       )
     end
-    user
+    (user.default_image != image) ? user.update(default_image: image) : ''
+    return user
   end
 
 
