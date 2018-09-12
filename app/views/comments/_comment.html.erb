@@ -1,10 +1,17 @@
 <li class="list-group-item">
   <div>
-    <p>
-      <%= comment.body %>
-    </p>
+    <div class="d-flex">
+      <p>
+        <%= image_tag comment.user.default_image, width: 45, class: 'mr-2' %>
+      </p>
+      <p>
+        <%= comment.body %>
+        <br>
+        <small class="comment-timestamp"><%= time_ago_in_words(comment.created_at) %></small>
+      </p>
+    </div>
 
-    <ul id="comment-comments-list-<%= comment.id %>" class="list-group list-group-flush">
+    <ul id="comment-comments-list-<%= comment.id %>" class="list-group list-group-flush comment-comments">
       <% comment.comments.each do |cc| %>
       <%= render 'comments/comment', comment: cc %>
       <% end %>
@@ -12,7 +19,8 @@
   </div>
 
   <% if comment.commentable_type == 'Event' %>
-  <%= form_for comment.comments.new, url: comment_comments_path(comment_id: comment), html: {class: 'row', id: "comment-comments-form-#{comment.id}"}, remote: true do |f| %>
+  <a href="#" id="comment-comments-reply-<%= comment.id %>" class="comment-reply-button">Reply</a>
+  <%= form_for comment.comments.new, url: comment_comments_path(comment_id: comment), html: {class: 'row hidden-item', id: "comment-comments-form-#{comment.id}"}, remote: true do |f| %>
 
   <div class="col-10">
     <%= f.text_area :body, class: 'form-control', placeholder: 'Reply...' %>
@@ -22,6 +30,14 @@
     <i class='fas fa-arrow-alt-circle-right fa-2x text-white'></i>
     <% end %>
   </div>
+
+  <script>
+    $('#comment-comments-reply-<%= comment.id %>').click(function(){
+        event.preventDefault();
+       $('#comment-comments-form-<%= comment.id %>').removeClass('hidden-item');
+       $(this).remove();
+    });
+  </script>
 
 
   <% end %>

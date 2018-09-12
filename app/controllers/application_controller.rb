@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_action :set_time_zone
+
   include RolePermission
 
   around_action :set_current_user
@@ -42,6 +44,12 @@ class ApplicationController < ActionController::Base
 
 
   private
+
+
+  def set_time_zone
+    min = request.cookies["time_zone"].to_i
+    Time.zone = ActiveSupport::TimeZone[-min.minutes]
+  end
 
   def set_kommunity
     if (params[:kommunity])

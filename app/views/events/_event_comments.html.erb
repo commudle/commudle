@@ -15,7 +15,7 @@
   <%= form_for new_comment, html: {class: 'row', id: "event-comments-form-#{event.id}"}, remote: true do |f| %>
 
   <div class="col-10">
-    <%= f.text_area :body, class: 'form-control', placeholder: 'Say Something...!' %>
+    <%= f.text_area :body, class: 'form-control', placeholder: 'Say Something...!', rows: 2 %>
   </div>
   <div class="col-2">
     <%= button_tag type: 'submit', class: "btn btn-info p-2" do %>

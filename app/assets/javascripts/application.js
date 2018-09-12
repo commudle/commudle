@@ -25,5 +25,10 @@
             selector: 'textarea.tinymce.editor',
             branding: false
         });
+
+        var current_time = new Date();
+        Cookies.set('time_zone', current_time.getTimezoneOffset());
     });
+
+
 }
