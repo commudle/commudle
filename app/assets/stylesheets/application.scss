@@ -18,6 +18,12 @@
 
 body{
   //background-color: blue;
+
+  &>nav{
+    .user-avatar{
+      vertical-align: middle;
+    }
+  }
 }
 
 #body-main-container{

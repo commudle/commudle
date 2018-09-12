@@ -45,11 +45,15 @@
           </li>
         </ul>
         <div class="navbar-text d-flex align-items-center p-0">
-        <% if current_user %>
+        <% if user_signed_in? %>
           <!--<%= current_user.email %>-->
           <div class="dropdown mr-3">
             <a class="btn btn-outline-info dropdown-toggle" href="#" role="button" id="current-user-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag current_user.default_image, width: 35, class: 'mr-2' %>  <%= current_user.email %>
+              <% if current_user.default_image %>
+              <%= image_tag current_user.default_image, width: 35, class: 'mr-2' %>               <%= current_user.name %>
+              <% else %>
+              <i class="fas fa-user-circle fa-2x user-avatar"></i>               <%= current_user.name %>
+              <% end %>
             </a>
 
             <% if current_user.role?(:system_administrator, nil) %>
