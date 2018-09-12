@@ -7,7 +7,6 @@ class DataFormEntity < ApplicationRecord
   has_many :questions, through: :data_form
   has_many :data_form_entity_responses
 
-  enum visibility: [:no_one, :open, :confirmed_attendees, :closed]
-
+  enum visibility: [:yet_to_announce, :open, :confirmed_attendees, :closed]
 
 end

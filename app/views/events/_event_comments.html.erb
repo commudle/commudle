@@ -1,0 +1,32 @@
+<section id="event-comments-<%= event.id %>">
+  <h4>Comments</h4>
+
+
+  <div>
+    <ul class="list-group list-group-flush" id="event-comments-list-<%= event.id %>">
+      <% event.comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
+      <% end %>
+    </ul>
+
+  </div>
+
+
+  <%= form_for new_comment, html: {class: 'row', id: "event-comments-form-#{event.id}"}, remote: true do |f| %>
+
+  <div class="col-10">
+    <%= f.text_area :body, class: 'form-control', placeholder: 'Say Something...!' %>
+  </div>
+  <div class="col-2">
+    <%= button_tag type: 'submit', class: "btn btn-info p-2" do %>
+    <i class='fas fa-arrow-alt-circle-right fa-2x text-white'></i>
+    <% end %>
+  </div>
+
+
+  <% end %>
+
+
+
+
+</section>

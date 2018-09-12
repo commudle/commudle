@@ -17,6 +17,10 @@ module RolePermission
 
 
     {
+        comments: {
+          all: ([:create] if (user_signed_in?))
+        },
+
         data_forms: {
             organizer: (
             [:index, :new, :create, :edit, :update] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))

@@ -11,6 +11,8 @@ class Event < ApplicationRecord
   has_many :event_location_tracks
   has_many :event_locations
   has_many :locations, through: :event_locations
+  has_many :comments, as: :commentable
+
 
 
   after_save :create_log, if: :will_save_change_to_event_status_id?
@@ -21,6 +23,7 @@ class Event < ApplicationRecord
   # scopes
   default_scope { includes(:event_status, :kommunity) }
   scope :with_locations, -> {includes(:locations)}
+  scope :with_comments, -> {includes(:comments)}
 
   ##
 

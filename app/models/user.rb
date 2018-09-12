@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :data_form_entity_response_groups
   has_many :event_entry_passes
   has_many :event_entry_passes, foreign_key: :created_by_id
+  has_many :comments
+
 
   after_create :assign_default_role
 
@@ -40,6 +42,7 @@ class User < ApplicationRecord
           password: password,
       )
     end
+    (user.name != name) ? user.update(name: name) : ''
     (user.default_image != image) ? user.update(default_image: image) : ''
     return user
   end

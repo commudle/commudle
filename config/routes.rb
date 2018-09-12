@@ -42,6 +42,11 @@ Rails.application.routes.draw do
         end
 
 
+        resources :comments, only: [:create, :destroy], shallow: true do
+          resources :comments, only: [:create, :destroy]
+        end
+
+
       end
 
       resources :locations, only: [:create, :destroy]

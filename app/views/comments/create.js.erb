@@ -1,0 +1,20 @@
+{
+    <% if @comment.commentable_type == 'Event' %>
+    var commentsList = $('#event-comments-list-<%= @comment.commentable_id %>')
+
+    commentsList.append($("<%= escape_javascript render 'comment', comment: @comment%>"));
+
+    $('#event-comments-form-<%= @comment.commentable_id %>').trigger('reset');
+
+    <% else %>
+
+
+    var commentsList = $('#comment-comments-list-<%= @comment.commentable_id %>')
+
+    commentsList.append($("<%= escape_javascript render 'comment', comment: @comment%>"));
+    $('#comment-comments-form-<%= @comment.commentable_id %>').trigger('reset');
+
+
+
+    <% end %>
+}
