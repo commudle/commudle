@@ -31,4 +31,18 @@
     });
 
 
+
+
+
 }
+
+var textAreaRowIncrementor = function(event, element){
+    if (event.keyCode == 13 && !event.shiftKey){
+        Rails.fire(element.form, "submit");
+        element.rows = 1;
+    }else if(event.keyCode == 13 && event.shiftKey){
+        element.rows += 1
+    }
+}
+
+

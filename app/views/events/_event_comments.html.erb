@@ -1,4 +1,4 @@
-<section id="event-comments-<%= event.id %>">
+<section class="event-comments" id="event-comments-<%= event.id %>">
   <h4>Comments</h4>
 
 
@@ -12,13 +12,13 @@
   </div>
 
 
-  <%= form_for new_comment, html: {class: 'row', id: "event-comments-form-#{event.id}"}, remote: true do |f| %>
+  <%= form_for new_comment, html: {class: 'row event-comment-form', id: "event-comments-form-#{event.id}"}, remote: true do |f| %>
 
   <div class="col-10">
     <%= f.text_area :body, class: 'form-control', placeholder: 'Say Something...!', rows: 2 %>
   </div>
   <div class="col-2">
-    <%= button_tag type: 'submit', class: "btn btn-info p-2" do %>
+    <%= button_tag type: 'submit', class: "btn btn-info p-2 comment-submit-button" do %>
     <i class='fas fa-arrow-alt-circle-right fa-2x text-white'></i>
     <% end %>
   </div>

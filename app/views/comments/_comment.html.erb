@@ -1,14 +1,14 @@
 <li class="list-group-item">
   <div>
     <div class="d-flex">
-      <p>
+      <p class="mb-0">
         <%= image_tag comment.user.default_image, width: 45, class: 'mr-2' %>
       </p>
-      <p>
-        <%= comment.body %>
-        <br>
+      <div>
+        <%= simple_format(comment.body) %>
         <small class="comment-timestamp"><%= time_ago_in_words(comment.created_at) %></small>
-      </p>
+
+      </div>
     </div>
 
     <ul id="comment-comments-list-<%= comment.id %>" class="list-group list-group-flush comment-comments">
@@ -19,14 +19,14 @@
   </div>
 
   <% if comment.commentable_type == 'Event' %>
-  <a href="#" id="comment-comments-reply-<%= comment.id %>" class="comment-reply-button">Reply</a>
-  <%= form_for comment.comments.new, url: comment_comments_path(comment_id: comment), html: {class: 'row hidden-item', id: "comment-comments-form-#{comment.id}"}, remote: true do |f| %>
+  <a href="#" class="comment-reply-button pl-2" id="comment-comments-reply-<%= comment.id %>" >Reply</a>
+  <%= form_for comment.comments.new, url: comment_comments_path(comment_id: comment), html: {class: 'row hidden-item comment-comments-form', id: "comment-comments-form-#{comment.id}"}, remote: true do |f| %>
 
-  <div class="col-10">
-    <%= f.text_area :body, class: 'form-control', placeholder: 'Reply...' %>
+  <div class="col-10" onkeydown="">
+    <%= f.text_area :body, class: 'form-control', rows: 1, placeholder: 'Reply...', onkeydown: 'textAreaRowIncrementor(event, this);' %>
   </div>
   <div class="col-2">
-    <%= button_tag type: 'submit', class: "btn btn-info p-2" do %>
+    <%= button_tag type: 'submit', class: "btn btn-info p-2 comment-submit-button" do %>
     <i class='fas fa-arrow-alt-circle-right fa-2x text-white'></i>
     <% end %>
   </div>
@@ -37,11 +37,13 @@
        $('#comment-comments-form-<%= comment.id %>').removeClass('hidden-item');
        $(this).remove();
     });
+
   </script>
 
 
   <% end %>
   <% end %>
+
 
 
 </li>
