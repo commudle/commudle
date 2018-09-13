@@ -2,7 +2,8 @@
   let newSlots = $("<%= escape_javascript render 'event_location_tracks/track_slots', event_location_track: @track_slot.event_location_track %>");
 
   $('#event-location-track-slots-<%= @track_slot.event_location_track_id %>').empty().append(newSlots);
-  $('#track-slot-form-<%= @track_slot.event_location_track_id %>').trigger('reset');
+  $('#track-slot-form-<%= @track_slot.event_location_track_id %> input[name="track_slot[session_title]"]').val('');
+  $('#track-slot-form-<%= @track_slot.event_location_track_id %> select[name="track_slot[speaker_registration_id]"]').val('');
 
     let notification = new Noty({
         text: 'Slot Created',
