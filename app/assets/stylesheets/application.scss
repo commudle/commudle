@@ -16,6 +16,7 @@
 @import "font-awesome";
 
 
+
 body{
   //background-color: blue;
 
@@ -24,6 +25,28 @@ body{
       vertical-align: middle;
     }
   }
+
+
+  #body-main-container{
+    background: #f8f9fa;
+  }
+
+  .event-location-container{
+    .event-location-details{
+      position: absolute;
+      bottom: -10px;
+      background: white;
+      padding: 10px;
+    }
+  }
+
+
+  .event-location-track-container{
+    .header{
+      background-color: #f4ba2c;
+    }
+  }
+
 }
 
 #body-main-container{
@@ -46,15 +69,15 @@ body{
   height: 50px;
   border-bottom: 15px;
 }
-
-
-#event-timing{
- span:first-child{
-   background-color: lightgrey;
-   padding: 5px;
- }
-
-}
+//
+//
+//#event-timing{
+// span:first-child{
+//   background-color: lightgrey;
+//   padding: 5px;
+// }
+//
+//}
 
 
 .hidden-item{

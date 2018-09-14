@@ -1,15 +1,20 @@
-<li class="list-group-item col-md-8 m-2" id="event-location-track-<%= event_location_track.id %>">
-  <div class="card text-white bg-info mb-3">
-    <h5 class="card-header text-center">
-      <%= event_location_track.name %>
-      <% if allowed_view?(:event_location_tracks, :destroy) %>
+<li class="list-group-item col-md-12 p-0 event-location-track-container" id="event-location-track-<%= event_location_track.id %>">
+  <div class="mb-3">
+    <div class="header text-white p-3">
+      <h4 class="mb-0">
+        <%= event_location_track.name %>
+        <% if allowed_view?(:event_location_tracks, :destroy) %>
 
-      <%= link_to event_location_track_path(id: event_location_track.id, event: @event), remote: true, method: :delete, class: "close ml-2 text-danger", 'aria-label': 'Remove' do %>
+        <%= link_to event_location_track_path(id: event_location_track.id, event: @event), remote: true, method: :delete, class: "close ml-2 text-danger", 'aria-label': 'Remove' do %>
 
-      <span aria-hidden="true">&times;</span>
-      <% end %>
-      <% end %>
-    </h5>
+        <span aria-hidden="true">&times;</span>
+        <% end %>
+        <% end %>
+      </h4>
+      <p class="mb-0">
+        <small>Schedule</small></p>
+    </div>
+
 
     <div class="card-body">
       <% if allowed_view?(:track_slots, :create) %>

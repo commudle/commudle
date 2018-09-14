@@ -1,6 +1,5 @@
 <div id="event-tracks-creator-<%= event.id %>">
-  <div class="card p-2 mt-2 border-info">
-    <h6 class="card-header m-0 p-2">Sessions!</h6>
+  <div class="bg-white ">
     <% if allowed_view?(:event_location_tracks, :create) %>
     <div class="col-md-4 offset-md-4 mt-2">
       <%= render 'event_location_tracks/form', event: event, event_location_tack: @event_location_tack %>
@@ -8,13 +7,13 @@
     <% end %>
 
     <div>
-      <ul class="list-group d-flex flex-row justify-content-center flex-wrap" id="tracks-list-<%= event.id%>">
+      <ul class="list-group-flush d-flex flex-row justify-content-center flex-wrap m-0 p-0" id="tracks-list-<%= event.id%>">
         <% if !event.event_location_tracks.empty? %>
         <% event.event_location_tracks.each do |elt| %>
         <%= render 'events/event_location_track', event: event, event_location_track: elt, track_slot: track_slot %>
         <% end %>
         <% else %>
-        <li class="list-group-item" id="session-coming-soon">
+        <li class="list-group-item m-0 p-0" id="session-coming-soon">
           Coming Soon!
         </li>
         <% end %>
