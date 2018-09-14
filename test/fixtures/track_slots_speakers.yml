@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  track_slot: one
+  data_form_entity_response_group: one
+
+two:
+  track_slot: two
+  data_form_entity_response_group: two

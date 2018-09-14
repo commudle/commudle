@@ -59,7 +59,7 @@
   <table style="width: 100%; background-color: #90b0ee3d;">
     <tbody>
       <% @event.event_location_tracks.each do |elt| %>
-      <% elt.track_slots.each do |ts| %>
+      <% elt.track_slots.order('start_time asc').each do |ts| %>
       <tr>
         <td style="width: 50%; border-bottom: 1px dashed white;">
           <small><%= ts.start_time.strftime('%H:%M') %> to <%= ts.end_time.strftime('%H:%M') %></small>
