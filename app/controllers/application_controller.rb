@@ -61,10 +61,13 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def default_url_options(options={})
-      { :kommunity => @kommunity.slug }
-    end
+  end
 
+  def default_url_options(options={})
+    if (@kommunity)
+      { :kommunity => @kommunity.slug }
+
+    end
   end
 
 
