@@ -10,7 +10,7 @@ class DataFormEntity < ApplicationRecord
   enum visibility: [:yet_to_announce, :open, :attendees, :closed]
 
   def can_fill_event_form(user)
-    if self.open? || (user.role?(:system_administrator, nil) || user.role?(:organizer, self.entity.event.kommunity_id)) || (self.attendees? && self.entity.event.event_entry_passes.where(user: user).length > 0)
+    if self.open? || (!user.blank? && ((user.role?(:system_administrator, nil) || user.role?(:organizer, self.entity.event.kommunity_id)) || (self.attendees? && self.entity.event.event_entry_passes.where(user: user).length > 0)))
       return true
     end
     return false
