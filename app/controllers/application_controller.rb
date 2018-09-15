@@ -51,6 +51,15 @@ class ApplicationController < ActionController::Base
     Time.zone = ActiveSupport::TimeZone[-min.minutes]
   end
 
+  def default_url_options(options={})
+    if (!@kommunity.blank?)
+      options.merge({:kommunity => @kommunity.slug })
+
+    end
+
+    return options
+  end
+
   def set_kommunity
     if (params[:kommunity])
       begin
@@ -63,12 +72,7 @@ class ApplicationController < ActionController::Base
 
   end
 
-  def default_url_options(options={})
-    if (@kommunity)
-      { :kommunity => @kommunity.slug }
 
-    end
-  end
 
 
 end
