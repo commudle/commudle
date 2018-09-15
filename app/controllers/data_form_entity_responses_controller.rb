@@ -11,7 +11,7 @@ class DataFormEntityResponsesController < ApplicationController
     @existing_response = Hash.new
 
     if (user_signed_in?)
-      existing_response = DataFormEntityResponse.joins(:data_form_entity_response_group).includes(data_form_entity: {data_form: {questions: :question_type}}, data_form_entity_response_values: :question).where(data_form_entity_response_groups: {user_id: current_user.id}).last
+      existing_response = DataFormEntityResponse.joins(:data_form_entity_response_group).includes(data_form_entity: {data_form: {questions: :question_type}}, data_form_entity_response_values: :question).where(data_form_entity_response_groups: {user_id: current_user.id}, data_form_entity_id: @data_form_entity.id).last
 
 
       if existing_response &&  !@for_other_user
