@@ -76,8 +76,11 @@ class Event < ApplicationRecord
 
     open_forms = []
     self.event_data_form_entity_groups.each do |edfeg|
-      edfeg.data_form_entities.where(visibility: :open).each do |dfe|
-        open_forms << dfe
+      edfeg.data_form_entities.each do |dfe|
+        # show only visible forms
+        if (dfe.can_fill_event_form(CurrentAccess.user) && !dfe.open_but_invisible?)
+          open_forms << dfe
+        end
       end
     end
 
