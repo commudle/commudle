@@ -20,6 +20,8 @@
 body{
   //background-color: blue;
 
+
+
   &>nav{
     .user-avatar{
       vertical-align: middle;
@@ -29,6 +31,7 @@ body{
 
   #body-main-container{
     background: #f8f9fa;
+    min-height: 100vh;
   }
 
   .event-location-container{
