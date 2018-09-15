@@ -75,7 +75,7 @@
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#kommunity-events">
           <div class="card-body">
             <ul class="list-group">
-              <% @events.select{|ev| ev.start_time < Time.now.beginning_of_day && !ev.status?([NameValues::EventStatusType::DRAFT])}.each do |event| %>
+              <% @events.select{|ev| ev.start_time <= Time.now.beginning_of_day && !ev.status?([NameValues::EventStatusType::DRAFT])}.each do |event| %>
               <li class="list-group-item bg-light">
                 <%= link_to event.name.titleize, event_path(id: event), target: "_blank", class: 'text-muted' %>
                 <%= render 'events/event_time_display', event: event %>

@@ -14,7 +14,9 @@ class EventEntryPass < ApplicationRecord
   def self.find_or_create(event, user, created_by, ots = false, uninvited = false, attendance = false)
     entry_pass = EventEntryPass.find_by(event: event, user: user)
 
+    # mark uninvited, attendance, ots only if a new entry pass is being created
     if(entry_pass.blank?)
+      already_exists = false
       entry_pass = EventEntryPass.new(event: event, user: user, created_by: created_by)
 
     #   generate a code based on the number of seats available (one digit more)
@@ -24,6 +26,8 @@ class EventEntryPass < ApplicationRecord
       entry_pass.unique_code = EventEntryPass.generate_code(event)
       entry_pass.save
     end
+
+    # send entry pass email straight away
 
     return entry_pass
   end

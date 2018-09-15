@@ -50,9 +50,13 @@ class DataFormEntityResponsesController < ApplicationController
 
 
 
-      if (params[:ots] && params[:ots] == 'true')
-        new_entry_pass = EventEntryPass.find_or_create(dfer.data_form_entity_response_group.event_data_form_entity_group.event, dfer.data_form_entity_response_group.user,  current_user, true, true, true)
+      # once someone is registering ots (on the spot), they'll receive an entry pass automatically, still they will have to go through the process of registration
+      byebug
+      if (params[:ots] && params[:ots] == 'true') || (@data_form_entity.on_the_spot_uninvited?)
+        event = dfer.data_form_entity_response_group.event_data_form_entity_group.event
+        entry_pass = EventEntryPass.find_or_create(event, dfer.data_form_entity_response_group.user,  current_user, true, true, true)
 
+        DataFormEntityResponseGroup.send_entry_pass_email([dfer.data_form_entity_response_group.id], "Entry Pass :: #{event.name} :: On The Spot Registration!", "", true, {})
       end
 
     else
