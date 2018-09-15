@@ -4,23 +4,23 @@
 
 <section id="auto-attendance">
   <div class="card text-center col-md-8 offset-md-2">
-    <div class="card-header">
+    <div class="card-header p-1">
       <%= @kommunity.name %>
     </div>
     <div class="card-body">
-      <h5 class="card-title"><%= @event.name %></h5>
+      <h5 class="card-title mb-0"><%= @event.name %></h5>
       <%= render 'events/event_time_display.html.erb', event: @event %>
-      <p class="card-text mt-3">Please Enter Your Unique Code To Mark Attendance</p>
       <%= form_with url: mark_attendance_event_entry_passes_path(event: @event), id: 'mark-attendance-form', method: :patch, remote: true do |f| %>
 
       <div class="form-group col-md-8 offset-md-2">
         <%= f.label :unique_code %>
-        <%= f.number_field :unique_code, required: true, autofocus: true, class: 'form-control text-center' %>
+        <%= f.number_field :unique_code, id: 'unique-code-input', required: true, autofocus: true, class: 'form-control text-center' %>
 
       </div>
       <div class="form-group">
         <%= f.submit "Submit", class: 'btn btn-info' %>
       </div>
+      <p class="card-text mt-3">Please Enter Your Unique Code To Mark Attendance</p>
 
       <% end %>
     </div>
