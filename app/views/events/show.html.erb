@@ -33,6 +33,17 @@
         <%= render 'event_status_select', event: @event, event_statuses: @event_statuses %>
         <% end %>
       </div>
+      <div class="">
+        <% @event.open_forms.each do |dfe| %>
+
+
+        <%= link_to fill_form_response_path(kommunity: @event.kommunity, data_form_entity_id: dfe), target: '_blank', class: "badge badge-info p-2" do %>
+
+        <i class="fas fa-arrow-alt-circle-right"></i> <%= dfe.entity.name.titlecase %>
+        <% end %>
+
+        <% end %>
+      </div>
 
 
     </div>
@@ -74,11 +85,12 @@
 
     </div>
 
+
   </div>
 
   <% end %>
 
-  <div class="my-3 p-3 bg-white ">
+  <div class="mt-3 p-3 bg-white ">
     <%= @event.description.html_safe %>
   </div>
 

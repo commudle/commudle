@@ -7,6 +7,7 @@ class DataFormEntityResponsesController < ApplicationController
 
   # update or fill a data form for an event
   def fill_form
+
     @existing_response = Hash.new
 
     if (user_signed_in?)
@@ -23,33 +24,46 @@ class DataFormEntityResponsesController < ApplicationController
     @ots = params[:ots].blank? ? '' : params[:ots]
 
 
+
   end
 
 
 
   def submit_form
 
-    if(user_signed_in? && !current_user.role?(:member, @kommunity.id))
-      UserRolesUser.create(
-          user: current_user,
-          kommunity: @kommunity,
-          user_role: UserRole.find_by_name(:member)
+    if (@data_form_entity.can_fill_event_form(current_user))
+
+      if(user_signed_in? && !current_user.role?(:member, @kommunity.id))
+        UserRolesUser.create(
+            user: current_user,
+            kommunity: @kommunity,
+            user_role: UserRole.find_by_name(:member)
+        )
+      end
+
+      dfer = DataFormEntityResponse.create_or_find_user_response(
+          @data_form_entity,
+          current_user,
+          params[:data_form_entity_response],
+          from_organizer = true
+      )
+
+
+
+      if (params[:ots] && params[:ots] == 'true')
+        new_entry_pass = EventEntryPass.find_or_create(dfer.data_form_entity_response_group.event_data_form_entity_group.event, dfer.data_form_entity_response_group.user,  current_user, true, true, true)
+
+      end
+
+    else
+      return error_response(
+          ErrorNotification::ResponseTypes::HTML,
+          ErrorNotification::ErrorCodes::UNAUTHORIZED,
+          "Welcome to Kommunity! This form is closed! Please contact the organizers for more information!"
       )
     end
 
-    dfer = DataFormEntityResponse.create_or_find_user_response(
-        @data_form_entity,
-        current_user,
-        params[:data_form_entity_response],
-        from_organizer = true
-    )
 
-
-
-    if (params[:ots] && params[:ots] == 'true')
-      new_entry_pass = EventEntryPass.find_or_create(dfer.data_form_entity_response_group.event_data_form_entity_group.event, dfer.data_form_entity_response_group.user,  current_user, true, true, true)
-
-    end
 
   end
 

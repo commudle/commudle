@@ -10,9 +10,6 @@
 <section id="fill-form">
 
   <% if @data_form_entity.open? %>
-
-
-  <% end %>
   <div class="row">
     <div class="d-flex flex-column justify-content-center col-12">
       <div class="p-2">
@@ -158,6 +155,13 @@
 
     </div>
   </div>
+
+
+  <% else %>
+
+  <div> Form Closed</div>
+  <div></div>
+  <% end %>
 
   <div class="modal fade" id="submission-success-modal" tabindex="-1" role="dialog" aria-labelledby="submission-success-modal-title" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
