@@ -1,6 +1,6 @@
 {
 
-    $('#event-locations').append($("<%= escape_javascript render 'locations/event_locations', location: @location, event: @event %>"))
+    $('#event-locations').append($("<%= escape_javascript render 'locations/event_location', location: @location, event: @event %>"))
 
 
     let notification = new Noty({
