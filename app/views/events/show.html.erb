@@ -125,12 +125,13 @@
     </div>
     <% end %>
 
-    <% if @event.locations.length == 1  %>
-    <div class="col-md-12" id="event-locations">
 
+    <div class="col-md-12" id="event-locations">
+      <% if @event.locations.length > 0  %>
       <%= render 'locations/event_location', location: @event.locations[0], event: @event %>
+      <% end %>
     </div>
-    <% end %>
+
 
   </div>
 
