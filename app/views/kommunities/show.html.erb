@@ -93,7 +93,7 @@
         <li class="list-group-item list-group-item-primary">
           <h5 class="m-0">Forms</h5>
         </li>
-        <% @kommunity.data_forms.each do |df| %>
+        <% @kommunity.data_forms.order('created_at desc').each do |df| %>
         <li class="list-group-item">
           <%= link_to df.name, edit_data_form_path(@kommunity, df) %>
         </li>
