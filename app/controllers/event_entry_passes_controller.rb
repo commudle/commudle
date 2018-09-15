@@ -40,11 +40,7 @@ class EventEntryPassesController < ApplicationController
   def mark_attendance
 
     @entry_pass = EventEntryPass.joins(:event).where(unique_code: params[:unique_code]).where('events.slug = ?', params[:event]).first
-    @already_marked = @entry_pass.attendance
 
-    if !@already_marked
-      @entry_pass.update(attendance: true)
-    end
 
     if (@entry_pass.blank?)
       return error_response(
@@ -53,6 +49,14 @@ class EventEntryPassesController < ApplicationController
           "Please Enter Correct Code"
       )
     end
+
+    @already_marked = @entry_pass.attendance
+
+    if !@already_marked
+      @entry_pass.update(attendance: true)
+    end
+
+
 
 
   end

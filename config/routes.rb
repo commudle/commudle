@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
     resources :events, only: [:index, :new, :create, :edit, :update, :show] do
       member do
+
+
+
         post 'assign-data-form',
              to: 'event_data_form_entity_groups#assign_data_form_entity',
              as: :assign_data_form
