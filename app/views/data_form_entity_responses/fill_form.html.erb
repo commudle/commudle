@@ -114,7 +114,7 @@
 
                     <% when "single_choice" %>
                     <div>
-                      <% question.question_choices.each do |choice| %>
+                      <% question.question_choices.order('created_at asc').each do |choice| %>
 
                       <div class="d-flex flex-row justify-content-start">
                         <%= f.radio_button question.id, choice.id, id: "radio-#{choice.id}", required: question.required, checked: (@existing_response[question.id] == choice.id), class: 'mt-2'  %>

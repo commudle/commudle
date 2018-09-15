@@ -14,7 +14,7 @@
 
       <div class="form-group col-md-8 offset-md-2">
         <%= f.label :unique_code %>
-        <%= f.number_field :unique_code, id: 'unique-code-input', required: true, autofocus: true, class: 'form-control text-center' %>
+        <%= f.number_field :unique_code, id: 'unique-code-input', required: true, class: 'form-control text-center' %>
 
       </div>
       <div class="form-group">
@@ -26,6 +26,6 @@
     </div>
   </div>
   <script>
-      $('#mark-attendance-form input[type=number]').trigger('click');
+      $('#mark-attendance-form input[type=number]').triggerHandler('prompt');
   </script>
 </section>
