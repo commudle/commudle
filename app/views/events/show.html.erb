@@ -16,10 +16,16 @@
           <!--<img class="mr-3" src="../../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
           <div class="lh-100">
             <span><%= @event.kommunity.name %></span>
-            <h2 class="mb-0 text-white lh-100"> <%= @event.name %></h2>
+            <h1 class="mb-0 text-white lh-100"> <%= @event.name %></h1>
             <div class="badge badge-light mt-3">
               <%= render 'events/event_time_display', event: @event %>
             </div>
+            <p class="mt-2 mb-0 text-white">
+              <i class="fas fa-map-marker-alt mr-1"></i>
+              <% if @event.locations.length > 0  %>
+              <%= @event.locations[0].name %>
+              <% end %>
+            </p>
 
           </div>
         </div>
@@ -28,16 +34,18 @@
 
       <!--<p class="badge badge-info badge">Seats: <%= @event.seats %></p>-->
 
+      <div></div>
+
       <div class="mt-3 mb-3">
         <% if allowed_view?(:events, :update_event_status) %>
         <%= render 'event_status_select', event: @event, event_statuses: @event_statuses %>
         <% end %>
       </div>
-      <div class="">
+      <div class="d-flex flex-md-row flex-sm-column flex-wrap justify-content-start ">
         <% @event.open_forms.each do |dfe| %>
 
 
-        <%= link_to fill_form_response_path(kommunity: @event.kommunity, data_form_entity_id: dfe), target: '_blank', class: "badge badge-info p-2" do %>
+        <%= link_to fill_form_response_path(kommunity: @event.kommunity, data_form_entity_id: dfe), target: '_blank', class: "badge badge-info p-2 m-2" do %>
 
         <i class="fas fa-arrow-alt-circle-right"></i> <%= dfe.entity.name.titlecase %>
         <% end %>

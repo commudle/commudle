@@ -21,6 +21,31 @@
 
     </div>
 
+    <div class="event-location-tracks-grid">
+      <% if !event.event_location_tracks.empty? %>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <% event.event_locations.each_with_index do |elc, index| %>
+            <a class="nav-link <%= index == 0 ? 'active' : '' %>" id="v-pills-elc-<%= elc.id %>-tab" data-toggle="pill" href="#v-pills-elc-<%= elc.id %>" role="tab" aria-controls="v-pills-elc-<%= elc.id %>" aria-selected="<%= index == 0 ? true : false %>">
+              <%= elc.location.name %>
+            </a>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="tab-content" id="v-pills-tabContent">
+            <% event.event_locations.each_with_index do |elc, index| %>
+            <div class="tab-pane fade <%= index == 0 ? 'show active' : '' %>" id="v-pills-elc-<%= elc.id %>" role="tabpanel" aria-labelledby="v-pills-elc-<%= elc.id %>-tab">
+              <p>Cillum ad ut irure tempor velit nostrud occaecat ullamco aliqua anim Lorem sint. Veniam sint duis incididunt do esse magna mollit excepteur laborum qui. Id id reprehenderit sit est eu aliqua occaecat quis et velit excepteur laborum mollit dolore eiusmod. Ipsum dolor in occaecat commodo et voluptate minim reprehenderit mollit pariatur. Deserunt non laborum enim et cillum eu deserunt excepteur ea incididunt minim occaecat.</p>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
   </div>
 
 </div>

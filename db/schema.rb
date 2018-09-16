@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_235540) do
+ActiveRecord::Schema.define(version: 2018_09_16_070914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -146,7 +146,9 @@ ActiveRecord::Schema.define(version: 2018_09_11_235540) do
     t.bigint "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "event_location_id"
     t.index ["event_id"], name: "index_event_location_tracks_on_event_id"
+    t.index ["event_location_id"], name: "index_event_location_tracks_on_event_location_id"
   end
 
   create_table "event_locations", force: :cascade do |t|
@@ -388,6 +390,7 @@ ActiveRecord::Schema.define(version: 2018_09_11_235540) do
   add_foreign_key "event_entry_passes", "events"
   add_foreign_key "event_entry_passes", "users"
   add_foreign_key "event_entry_passes", "users", column: "created_by_id"
+  add_foreign_key "event_location_tracks", "event_locations"
   add_foreign_key "event_location_tracks", "events"
   add_foreign_key "event_locations", "events"
   add_foreign_key "event_locations", "locations"

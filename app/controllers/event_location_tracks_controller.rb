@@ -20,7 +20,7 @@ class EventLocationTracksController < ApplicationController
   private
 
   def event_location_track_params
-    params.require(:event_location_track).permit(:name)
+    params.require(:event_location_track).permit(:name, :event_location_id)
 
   end
 

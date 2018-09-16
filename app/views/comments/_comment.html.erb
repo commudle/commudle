@@ -5,8 +5,13 @@
         <%= image_tag comment.user.default_image, width: 45, class: 'mr-2' %>
       </p>
       <div>
-        <%= simple_format(comment.body) %>
-        <small class="comment-timestamp"><%= time_ago_in_words(comment.created_at) %></small>
+        <p class="mb-0 text-muted">
+          <small>
+            <%= comment.user.name %>
+          </small>
+        </p>
+        <%= simple_format(comment.body, class: 'mb-0') %>
+        <small class="comment-timestamp text-muted"><%= time_ago_in_words(comment.created_at) %></small>
 
       </div>
     </div>
