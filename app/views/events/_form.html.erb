@@ -3,7 +3,8 @@
     <div class="card-body">
       <h5 class="card-title">Edit Event Details</h5>
 
-      <%= form_for @event do |f| %>
+      <%= form_for @event, url: (@event.new_record? ?
+      events_path : event_path(params[:kommunity], @event.slug)) do |f| %>
       <fieldset>
         <div class="form-group">
           <%= f.label :kommunity, class: "badge badge-secondary" %>

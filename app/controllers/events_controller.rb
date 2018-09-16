@@ -47,7 +47,6 @@ class EventsController < ApplicationController
   def update
     @event.update_attributes(event_params)
     @event.timezone = ActiveSupport::TimeZone.all.collect{|z| z.tzinfo.name if z.utc_offset == event_params[:start_time].utc_offset}.compact![0]
-    byebug
     if @event.save
       redirect_to action: :show, kommunity: @event.kommunity, id: @event
     else
