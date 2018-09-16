@@ -13,6 +13,8 @@ class Event < ApplicationRecord
   has_many :locations, through: :event_locations
   has_many :comments, as: :commentable
 
+  has_one_attached :header_image
+
 
 
   after_save :create_log, if: :will_save_change_to_event_status_id?

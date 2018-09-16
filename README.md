@@ -21,6 +21,10 @@ Clone/Download
 
 * rails db:setup (though this will load the seed as well, but you can run rake db:seed, just in case)
 
+* rails active_storage:install
+
+* rails db:migrate
+
 * rails s
 
 * Run: gem pristine --all

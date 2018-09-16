@@ -3,10 +3,10 @@
     <% event_location_track.track_slots.each do |ts| %>
     <li class="list-group-item" id="track-slot-<%= ts.id %>">
       <div class="row">
-        <p class="col-md-2 col-sm-4">
+        <p class="col-4">
           <small><%= ts.start_time.strftime('%H:%M') %> to <%= ts.end_time.strftime('%H:%M') %></small>
         </p>
-        <h6 class="col-md-10 col-sm-8">
+        <h6 class="col-8">
           <span class="media-body pb-3 mb-0 large lh-125 ">
              <%= ts.session_title %>
 

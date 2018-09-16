@@ -13,4 +13,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 Rails.application.config.assets.precompile += %w( readmore.css
                                                   readmore.js
+                                                  flipclock.css
+                                                  flipclock.min.js
+
                                                  )

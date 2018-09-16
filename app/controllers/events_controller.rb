@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   # before_action :set_kommunity
   before_action :authenticate_user!, except: [:show]
-  before_action :set_event, only: [:show, :edit, :update, :assign_data_form, :remove_data_form_entity, :update_event_status]
+  before_action :set_event, only: [:show, :edit, :update, :assign_data_form, :remove_data_form_entity, :update_event_status, :update_header_image]
 
 
   def index
@@ -62,7 +62,14 @@ class EventsController < ApplicationController
     @event.save
 
     @event_statuses = EventStatus.all
+  end
 
+
+  def update_header_image
+    # remove the existing header_image
+    byebug
+    @event.header_image.attached? ? @event.header_image.purge : false
+    @event.header_image.attach(params[:header_image])
 
   end
 

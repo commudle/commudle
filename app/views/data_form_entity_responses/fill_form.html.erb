@@ -36,14 +36,6 @@
               </div>
 
               <hr>
-              <div class="col mt-3" id="event-locations">
-                <% if @event.locations  %>
-                <% @event.locations.each do |location| %>
-                <%= render 'locations/event_location', location: location, event: @event %>
-                <% end %>
-                <% end %>
-              </div>
-              <hr>
 
             </div>
 
@@ -216,7 +208,7 @@
     <% end %>
 
 
-    <%= javascript_include_tag 'readmore', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'readmore' %>
 
 
   <% end %>

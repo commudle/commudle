@@ -4,6 +4,8 @@ group :production do
   gem 'unicorn', '~> 5.2'
 end
 
+gem 'aws-sdk-s3', require: false
+
 gem 'resque'
 
 gem 'font-awesome-rails'

@@ -1,0 +1,6 @@
+amazon:
+  service: S3
+  access_key_id: <%= ENV['KOMMUNITY_APP_S3_ACCESS_ID'] %>
+  secret_access_key: <%= ENV['KOMMUNITY_APP_S3_SECRET'] %>
+  region: ap-south-1
+  bucket: <%= ENV['KOMMUNITY_APP_S3_BUCKET'] %>

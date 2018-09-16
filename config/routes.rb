@@ -12,8 +12,6 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :new, :create, :edit, :update, :show] do
       member do
 
-
-
         post 'assign-data-form',
              to: 'event_data_form_entity_groups#assign_data_form_entity',
              as: :assign_data_form
@@ -39,6 +37,10 @@ Rails.application.routes.draw do
         put 'update-event-status',
             to: 'events#update_event_status',
             as: :update_event_status
+
+        put 'update-header-image',
+            to: 'events#update_header_image',
+            as: :update_header_image
 
         resources :event_location_tracks, path: 'event-location-tracks', only: [:create, :destroy], shallow: true do
           resources :track_slots, path: 'track-slots', only: [:create, :destroy], shallow: true
