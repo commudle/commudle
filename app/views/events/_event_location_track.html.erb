@@ -2,6 +2,9 @@
   <div class="row">
     <div class="col-md-6">
       <nav>
+        <p class="mb-0">
+          <small class="text-muted">Tracks</small>
+        </p>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <% elc.event_location_tracks.order('created_at').each_with_index do |elt, index| %>
           <div class="nav-item nav-link btn <%= index == 0 ? 'active' : '' %>" id="nav-elt-<%= elt.id %>-tab" data-toggle="tab" href="#nav-elt-<%= elt.id %>" role="tab" aria-controls="nav-elt-<%= elt.id %>>" aria-selected="<%= index == 0 ? true : false %>">

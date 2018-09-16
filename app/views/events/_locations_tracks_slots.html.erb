@@ -7,6 +7,9 @@
       <div class="row">
 
         <div class="col-md-2">
+          <p class="mb-0">
+            <small class="text-muted">Venue</small>
+          </p>
           <div class="nav bg-white p-3  flex-md-column flex-sm-row flex-sm-nowrap justify-content-md-center nav-pills" id="v-pills-event-locations-tab" role="tablist" aria-orientation="vertical">
             <% event.event_locations.each_with_index do |elc, index| %>
             <a class="nav-link <%= index == 0 ? 'active' : '' %>" id="v-pills-elc-<%= elc.id %>-tab" data-toggle="pill" href="#v-pills-elc-<%= elc.id %>" role="tab" aria-controls="v-pills-elc-<%= elc.id %>" aria-selected="<%= index == 0 ? true : false %>">
@@ -24,7 +27,6 @@
 
         <div class="col-md-10">
           <div class="tab-content" id="v-pills-tabContent">
-
             <% event.event_locations.each_with_index do |elc, index| %>
 
             <%= render 'events/event_location_track', index: index, elc: elc, event: event %>
