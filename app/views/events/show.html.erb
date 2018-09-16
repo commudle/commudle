@@ -22,8 +22,8 @@
             </div>
             <p class="mt-2 mb-0 text-white">
               <i class="fas fa-map-marker-alt mr-1"></i>
-              <% if @event.locations.length > 0  %>
-              <%= @event.locations[0].name %>
+              <% @event.locations.each do |elc| %>
+              <%= elc.name %>
               <% end %>
             </p>
 
@@ -103,45 +103,11 @@
   </div>
 
 
-  <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
+    <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
 
 
-  <div class="mt-3 mb-3 d-flex">
-    <% if allowed_view?(:locations, :create) %>
-    <div class="card col-md-4">
-      <div class="card-header">Add Location</div>
-      <div class="card-body">
-        <%= form_for @location, url: event_locations_path(event_id: @event), remote: true do |f| %>
-        <div class="form-group">
-          <%= f.label :name %>
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :address %>
-          <%= f.text_field :address, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :map_link %>
-          <%= f.text_field :map_link, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.submit 'Add Location', class: 'btn btn-outline-info' %>
-        </div>
-        <% end %>
-      </div>
-
-    </div>
-    <% end %>
 
 
-    <div class="col-md-12" id="event-locations">
-      <% if @event.locations.length > 0  %>
-      <%= render 'locations/event_location', location: @event.locations[0], event: @event %>
-      <% end %>
-    </div>
-
-
-  </div>
 
 
   <div class="mt-3 p-3 bg-white">
@@ -152,6 +118,84 @@
 
 
 
+  <% if allowed_view?(:locations, :create) %>
+  <div class="modal fade" id="new-event-location-modal" tabindex="-1" role="dialog" aria-labelledby="new-event-location-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="new-event-location-modal-title">Add <%= @event.name %> Location</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+
+          <div class="mt-3 mb-3 d-flex">
+
+
+            <div class="card-body">
+              <%= form_for Location.new, url: event_locations_path(event_id: @event), remote: true do |f| %>
+              <div class="form-group">
+                <%= f.label :name %>
+                <%= f.text_field :name, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :address %>
+                <%= f.text_field :address, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :map_link %>
+                <%= f.text_field :map_link, class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.submit 'Add Location', class: 'btn btn-outline-info' %>
+              </div>
+              <% end %>
+            </div>
+
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+
+  <% if allowed_view?(:event_location_tracks, :create) %>
+  <div class="modal fade" id="new-event-location-track-modal" tabindex="-1" role="dialog" aria-labelledby="new-event-location-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="new-event-location-track-modal-title">Add <%= @event.name %> Track For a Location</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+
+          <div class="mt-3 mb-3 d-flex">
+
+
+            <div class="card-body">
+              <%= render 'event_location_tracks/form', event: @event, event_location_tack: EventLocationTrack.new %>
+            </div>
+
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
 
 </section>
 

@@ -30,6 +30,11 @@
 
     </li>
     <% end %>
+    <% if allowed_view?(:event_location_tracks, :create) %>
+    <li class="list-group-item">
+      <%= render 'track_slots/form', event_location_track: event_location_track, track_slot: TrackSlot.new %>
+    </li>
+    <% end %>
   </ul>
 
 

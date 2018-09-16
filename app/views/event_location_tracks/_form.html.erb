@@ -1,11 +1,7 @@
-<div class="card">
+<div>
   <%= form_for :event_location_track, url: event_location_tracks_path(id: event), method: 'post', remote: true, html: {id: 'event-location-track-form'} do |f| %>
-  <h5 class="card-header">Create Track</h5>
-  <div class="card-body">
-    <p>
-      <small>Create a new track for the event (there could be just one track too!)</small>
 
-    </p>
+  <div>
     <div>
       <div class="form-group">
         <%= f.label :event_location %>

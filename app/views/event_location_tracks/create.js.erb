@@ -1,8 +1,11 @@
 {
-    $('#tracks-list-<%= @event_location_track.event_id %>').append($("<%= escape_javascript render 'events/event_location_track', event_location_track: @event_location_track, track_slot: @track_slot %>"));
+
+    $('#v-pills-elc-<%= @event_location_track.event_location.id %>').replaceWith($('<%= escape_javascript render 'events/event_location_track', index: 0, elc: @event_location_track.event_location, event:  @event_location_track.event_location.event %>'))
+
+    $('#new-event-location-track-modal').modal('hide');
 
     $('#event-location-track-form').trigger('reset');
-    $('$session-coming-soon').remove();
+    $('#session-coming-soon').remove();
 
     let notification = new Noty({
         text: 'Track created, please add speakers to it',

@@ -11,6 +11,13 @@ section#events-show{
   .event-location{
     overflow: hidden;
   }
+
+
+  #v-pills-event-locations-tab{
+    width: 100%;
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+  }
 }
 
 

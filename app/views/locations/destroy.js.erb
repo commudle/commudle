@@ -1,5 +1,6 @@
 {
-    $('#event-location-<%= @location.id %>').remove();
+    $('#event-location-<%= @location.id %>').parent().parent().remove();
+    $('#v-pills-elc-<%= @event_location.id %>-tab').remove()
     let notification = new Noty({
         text: 'Location Removed!',
         theme: 'relax',

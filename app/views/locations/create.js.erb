@@ -1,6 +1,9 @@
 {
 
-    $('#event-locations').append($("<%= escape_javascript render 'locations/event_location', location: @location, event: @event %>"))
+    $('#event-tracks-creator-<%=@event.id%>').replaceWith($("<%= escape_javascript render 'events/locations_tracks_slots', event: @event, track_slot: TrackSlot.new, event_location_track: EventLocationTrack.new %>"));
+
+    $('#new-event-location-modal').modal('hide');
+    $('#new-event-location-modal form').trigger('reset');
 
 
     let notification = new Noty({

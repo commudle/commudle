@@ -1,66 +1,34 @@
 <div id="event-tracks-creator-<%= event.id %>">
-  <div class="bg-white ">
-    <% if allowed_view?(:event_location_tracks, :create) %>
-    <div class="col-md-4 offset-md-4 mt-2">
-      <%= render 'event_location_tracks/form', event: event, event_location_tack: @event_location_tack %>
-    </div>
-    <% end %>
+  <div class=" p-3">
 
-    <div>
-      <ul class="list-group-flush d-flex flex-row justify-content-center flex-wrap m-0 p-0" id="tracks-list-<%= event.id%>">
-        <% if !event.event_location_tracks.empty? %>
-        <% event.event_location_tracks.each do |elt| %>
-        <%= render 'events/event_location_track', event: event, event_location_track: elt, track_slot: track_slot %>
-        <% end %>
-        <% else %>
-        <li class="list-group-item m-0 p-0" id="session-coming-soon">
-          Coming Soon!
-        </li>
-        <% end %>
-      </ul>
-
-    </div>
-
+    <h3>Agenda</h3>
     <div class="event-location-tracks-grid">
       <% if !event.event_location_tracks.empty? %>
       <div class="row">
-        <div class="col-md-3">
-          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+        <div class="col-md-2">
+          <div class="nav bg-white p-3  flex-md-column flex-sm-row flex-sm-nowrap justify-content-md-center nav-pills" id="v-pills-event-locations-tab" role="tablist" aria-orientation="vertical">
             <% event.event_locations.each_with_index do |elc, index| %>
             <a class="nav-link <%= index == 0 ? 'active' : '' %>" id="v-pills-elc-<%= elc.id %>-tab" data-toggle="pill" href="#v-pills-elc-<%= elc.id %>" role="tab" aria-controls="v-pills-elc-<%= elc.id %>" aria-selected="<%= index == 0 ? true : false %>">
               <%= elc.location.name %>
             </a>
             <% end %>
+            <% if allowed_view?(:locations, :create) %>
+            <a class="nav-link btn text-left" id="add-location-button"  data-toggle="modal" data-target="
+            #new-event-location-modal">
+              <i class="fas fa-plus-circle fa-1x text-success"></i> Add Location
+            </a>
+            <% end %>
           </div>
         </div>
-        <div class="col-9">
+
+        <div class="col-md-10">
           <div class="tab-content" id="v-pills-tabContent">
+
             <% event.event_locations.each_with_index do |elc, index| %>
-            <div class="tab-pane fade <%= index == 0 ? 'show active' : '' %>" id="v-pills-elc-<%= elc.id %>" role="tabpanel" aria-labelledby="v-pills-elc-<%= elc.id %>-tab">
 
-              <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <% elc.event_location_tracks.order('created_at').each_with_index do |elt, index| %>
-                  <a class="nav-item nav-link <%= index == 0 ? 'active' : '' %>" id="nav-elt-<%= elt.id %>-tab" data-toggle="tab" href="#nav-elt-<%= elt.id %>" role="tab" aria-controls="nav-elt-<%= elt.id %>>" aria-selected="<%= index == 0 ? true : false %>">
-                    <%= elt.name %>
-                  </a>
-                  <% end %>
-                </div>
-              </nav>
-              <div class="tab-content" id="nav-tabContent">
-                <% elc.event_location_tracks.order('created_at').each_with_index do |elt, index| %>
-                <div class="tab-pane fade <%= index == 0 ? 'show active' : '' %>" id="nav-elt-<%= elt.id %>" role="tabpanel" aria-labelledby="nav-elt-<%= elt.id %>-tab">
+            <%= render 'events/event_location_track', index: index, elc: elc, event: event %>
 
-                  <div id="event-location-track-slots-<%= elt.id %>">
-                    <%= render 'event_location_tracks/track_slots', event_location_track: elt %>
-                  </div>
-
-                </div>
-                <% end %>
-
-              </div>
-
-            </div>
             <% end %>
           </div>
         </div>
@@ -71,3 +39,6 @@
   </div>
 
 </div>
+
+
+

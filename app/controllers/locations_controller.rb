@@ -15,7 +15,8 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
 
     if @event.locations.include? @location
-      @event.event_locations.find_by(location_id: @location.id).destroy
+      @event_location = @event.event_locations.find_by(location_id: @location.id)
+      @event_location.destroy
     end
   end
 
