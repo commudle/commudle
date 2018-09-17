@@ -1,0 +1,32 @@
+#data-form-entities-form-responses{
+
+  .table-responsive{
+    height: 75vh;
+    overflow: scroll;
+
+    table{
+
+      .sticky-row{
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 1;
+      }
+
+      .sticky-box{
+        position: sticky;
+        left: 0;
+      }
+
+      .registration-status-actions-list{
+        li{
+          padding: 5px;
+          font-size: 12px;
+        }
+      }
+
+
+    }
+
+  }
+}

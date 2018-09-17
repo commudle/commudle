@@ -1,7 +1,7 @@
 
 <div id="registration-response-status-actions-<%= dferg.id %>">
 
-  <ul class="list-group d-flex flex-row">
+  <ul class="registration-status-actions-list list-group d-flex flex-row">
     <% dferg.event_data_form_entity_group.registration_type.registration_statuses.each do |regst| %>
     <li class="list-group-item">
       <%= link_to regst.name, update_response_registration_status_path(id: dferg, registration_status: regst), method: :put, remote: true, class: "#{'active-registration-status' if(dferg.registration_status == regst)}"  %>

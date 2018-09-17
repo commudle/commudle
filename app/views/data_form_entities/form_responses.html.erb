@@ -39,23 +39,23 @@
       <table class="table table-hover table-fixed">
         <thead>
         <tr>
-          <th scope="col">
+          <th scope="col" class="sticky-row sticky-col">
             <p>#</p>
           </th>
-          <th scope="col">
+          <th scope="col" class="sticky-row">
             <p>Name</p>
           </th>
-          <th scope="col">
+          <th scope="col" class="sticky-row">
             <p>Email</p>
           </th>
-          <th scope="col">
+          <th scope="col" class="sticky-row">
             <p>
               Registration Status / Actions
             </p>
           </th>
           <% @edfeg.data_form_entities.each do |dfe| %>
           <%  dfe.data_form.questions.with_deleted.each do |question| %>
-          <th scope="col">
+          <th scope="col" class="sticky-row">
             <p>
               <%= question.title %>
             </p>
@@ -88,7 +88,7 @@
               <%= dferg.user.email %>
             </p>
           </th>
-          <td class="pt-2 pb-2">
+          <td class="pt-2 pb-2 sticky-box">
 
             <% if(!@edfeg.registration_type.blank?) %>
             <%= render 'data_form_entity_response_groups/registration_status_actions', dferg: dferg, entry_pass: @entry_passes.select{|ep| ep.user == dferg.user && ep.event == @edfeg.event}.first %>
