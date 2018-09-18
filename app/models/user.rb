@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :event_entry_passes, foreign_key: :created_by_id
   has_many :comments
 
+  has_one_attached :profile_image
+
+
 
   after_create :assign_default_role
 
@@ -44,6 +47,24 @@ class User < ApplicationRecord
     end
     (user.name != name) ? user.update(name: name) : ''
     (user.default_image != image) ? user.update(default_image: image) : ''
+
+
+
+    return user
+  end
+
+
+  def update_info(profile_image: nil, personal_website: nil, about_me: nil, linkedin_profile: nil, twitter_profile: nil, github_profile: nil, designation: nil)
+    user = self
+    !profile_image.blank? ? user.profile_image.purge : ''
+    !profile_image.blank? ? user.profile_image.attach(profile_image) : ''
+    !personal_website.blank? ? (user.update(personal_website: personal_website)) : ''
+    !linkedin_profile.blank? ? (user.update(linkedin: linkedin_profile)) : ''
+    !about_me.blank? ? (user.update(about_me: about_me)) : ''
+    !twitter_profile.blank? ? (user.update(twitter: twitter_profile)) : ''
+    !github_profile.blank? ? (user.update(github: github_profile)) : ''
+    !designation.blank? ? (user.update(designation: designation)) : ''
+
     return user
   end
 

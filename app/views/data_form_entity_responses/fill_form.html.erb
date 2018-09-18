@@ -79,6 +79,72 @@
               </div>
               <% end %>
 
+              <% if user_signed_in? && !@for_other_user %>
+              <h5> A Little About You! </h5>
+              <div class="form-group profile-image-input text-center">
+                <div class="existing-profile-image">
+                  <img id="user-profile-image" alt="Your Profile Image" src="<%= current_user.profile_image.attached? ? url_for(current_user.profile_image) : current_user.default_image %>">
+                </div>
+
+                <%= f.label :profile_image, 'Your Profile Image', for: 'profile-image', class: 'custom-file-label' %>
+                <%= f.file_field :profile_image, class: 'custom-file-input', id: 'profile-image', onchange: 'showImage(this);', accept: "image/*" %>
+
+                <script>
+
+                    {
+                        let currentProfileImage = $('#user-profile-image').attr('src');
+                        console.log(currentProfileImage);
+
+                        function showImage(input) {
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+
+                                reader.onload = function (e) {
+                                    $('#user-profile-image').attr('src', e.target.result);
+
+                                };
+
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+                    }
+
+                </script>
+              </div>
+              <div class="form-group">
+                <%= f.label :designation, "How does the world know you! (If you're a professional or run a community or ...)" %>
+                <%= f.text_field :designation, placeholder: "CEO, My Life", value: current_user.designation, class: 'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :about_me, "A little about you in your own words!" %>
+                <%= f.text_area :about_me, placeholder: "I am a...", value: current_user.about_me, class: 'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :linkedin_profile, 'Linkedin Profile (Please give the complete link)' %>
+                <%= f.text_field :linkedin_profile, pattern: '^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$', title: 'Please enter the complete link', placeholder: "Linkedin Profile", value: current_user.linkedin, class: 'form-control' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :personal_website, 'Do you have a Website About You? (Optional)' %>
+                <%= f.text_field :personal_website, placeholder: "Link to Your Personal Website", value: current_user.personal_website, class: 'form-control'%>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :twitter_profile, 'Are you on Twitter? Your, @handle please!' %>
+                <%= f.text_field :twitter_profile, pattern: '^@[A-Za-z0-9_]{1,15}$', title: 'Please match the format @handlename', placeholder: "@myhandle", value: current_user.twitter, class: 'form-control'%>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :github_profile, 'Github Profile (Please share the complete link)' %>
+                <%= f.text_field :github_profile, pattern: '^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$', title: 'Please enter the complete link', placeholder: "Github Profile Link", value: current_user.github, class: 'form-control'%>
+              </div>
+
+              <% end %>
+
+              <br>
+              <h5>Some More Questions...</h5>
               <ul class="list-group">
                 <% @data_form_entity.data_form.questions.each.with_index(1) do |question, index| %>
 
@@ -152,13 +218,12 @@
   <% else %>
 
   <div>
-    <p class="text-center">
-      <%= image_tag '/images/gdglogo.png', width: 100 %>
-    </p>
     <h2 class=" text-center">
-
-      This form seems to be ejected!
-      <br>
+      <% if @data_form_entity.members_who_have_attended? %>
+      Shh... This is hidden!
+      <%else%>
+      This form's closed, unless the organizers say!
+      <%end%>
     </h2>
 
   </div>

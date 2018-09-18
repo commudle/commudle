@@ -1,0 +1,19 @@
+#fill-form{
+
+  .profile-image-input{
+    position: relative;
+    padding-top: 25px;
+
+    .existing-profile-image{
+      width: 150px;
+      overflow: hidden;
+      margin: 25px auto;
+
+      #user-profile-image{
+        width: 100%;
+
+      }
+    }
+  }
+
+}

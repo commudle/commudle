@@ -8,10 +8,22 @@ section#events-show{
   .event-header{
     background: linear-gradient(180deg, rgba(39,60,177,1) 20%, rgba(63,81,181,1) 65%, rgba(100,113,184,1) 93%);
     height: 100vh;
+    background-size: contain !important;
+    background-repeat: no-repeat  !important;
+    background-position: center  !important;
+    background-attachment: fixed !important;
     max-height: 500px;
     align-items: center;
     justify-content: center;
     text-align: center;
+    position: relative;
+
+    #event-header-image-form{
+      position: absolute;
+      bottom: -53;
+      left: 0;
+    }
+
   }
   .event-location{
     overflow: hidden;

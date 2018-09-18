@@ -13,31 +13,41 @@
           <% end %>
 
         </div>
-        <div class="event-header d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm" style='<%= @event.header_image.attached? ? "background: url(#{url_for(@event.header_image)});" : ''  %>'>
+        <div class="event-header d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded " style='<%= @event.header_image.attached? ? "background: url(#{url_for(@event.header_image)});" : ''  %>'>
           <!--<img class="mr-3" src="../../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
           <div class="lh-100">
-            <span><%= @event.kommunity.name %></span>
-            <h1 class="mb-0 text-white lh-100"> <%= @event.name %></h1>
-            <div class="badge badge-light mt-3">
-              <%= render 'events/event_time_display', event: @event %>
+            <div class="<%= @event.header_image.attached? ? 'hidden-item' : '' %>">
+
+              <span><%= @event.kommunity.name %></span>
+              <h1 class="mb-0 text-white lh-100"> <%= @event.name %></h1>
+              <div class="badge badge-light mt-3">
+                <%= render 'events/event_time_display', event: @event %>
+              </div>
+              <div class="mt-2 mb-0 text-white d-flex flex-sm-column flex-md-row ">
+
+                <% @event.locations.each_with_index do |elc, index| %>
+                <p class="m-2 ">
+                  <i class="fas fa-map-marker-alt mr-1"></i>
+                  <%= elc.name %>, <span class="text-muted"><%= elc.address %></span>
+                </p>
+
+                <% end %>
+              </div>
+
             </div>
-            <div class="mt-2 mb-0 text-white d-flex flex-sm-column flex-md-row ">
 
-              <% @event.locations.each_with_index do |elc, index| %>
-              <p class="m-2 ">
-                   <i class="fas fa-map-marker-alt mr-1"></i>
-              <%= elc.name %>, <span class="text-muted"><%= elc.address %></span>
-              </p>
-
-              <% end %>
-            </div>
-
+            <% if allowed_view?(:events, :update_header_image) %>
             <div>
-              <%= form_with url: update_header_image_event_path, method: :put do |f| %>
-                <%= f.file_field :header_image %>
-                <%= f.submit %>
+              <%= form_with url: update_header_image_event_path, id: 'event-header-image-form', method: :put do |f|%>
+                <div class="form-group">
+                <%= f.label :header_image, 'Choose Header', for: 'event-header-image', class: 'custom-file-label' %>
+                <%= f.file_field :header_image, class: 'custom-file-input', id: 'event-header-image', onchange: 'Rails.fire(this.form, "submit")', accept: "image/*" %>
+
+                </div>
+                <!--<%= f.submit 'Upload', class: 'btn btn-outline-info' %>-->
               <% end %>
             </div>
+            <% end %>
 
 
           </div>

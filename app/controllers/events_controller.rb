@@ -67,7 +67,6 @@ class EventsController < ApplicationController
 
   def update_header_image
     # remove the existing header_image
-    byebug
     @event.header_image.attached? ? @event.header_image.purge : false
     @event.header_image.attach(params[:header_image])
 
