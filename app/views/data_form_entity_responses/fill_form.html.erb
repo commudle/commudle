@@ -83,7 +83,7 @@
               <h5> A Little About You! </h5>
               <div class="form-group profile-image-input text-center">
                 <div class="existing-profile-image">
-                  <img id="user-profile-image" alt="Your Profile Image" src="<%= current_user.profile_image.attached? ? url_for(current_user.profile_image) : current_user.default_image %>">
+                  <img id="user-profile-image" alt="Your Profile Image" src="<%= url_for(current_user.avatar) %>">
                 </div>
 
                 <%= f.label :profile_image, 'Your Profile Image', for: 'profile-image', class: 'custom-file-label' %>

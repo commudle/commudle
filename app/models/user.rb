@@ -80,4 +80,9 @@ class User < ApplicationRecord
   end
 
 
+  def avatar
+    return self.profile_image.attached? ? self.profile_image : self.default_image
+  end
+
+
 end
