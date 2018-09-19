@@ -37,7 +37,7 @@ class KommunitiesController < ApplicationController
   private
 
   def kommunity_params
-    params.require(:kommunity).permit(:name, :about)
+    params.require(:kommunity).permit(:name, :about, :logo_image)
   end
 
 

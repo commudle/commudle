@@ -46,3 +46,26 @@ var textAreaRowIncrementor = function(event, element){
 }
 
 
+//this method with show the attached image realtime in either an image tag or as the background of a container
+function showImage(input, displayContainerId, displayType='image_tag') {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        let displayContainer =  $(`#${displayContainerId}`);
+
+        reader.onload = function (e) {
+            if (displayType == 'image_tag'){
+
+                displayContainer.attr('src', e.target.result);
+            }else if(displayType == 'background'){
+                displayContainer.css('background', e.target.result);
+            }
+
+
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+

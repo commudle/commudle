@@ -12,50 +12,29 @@
 <% end %>
 
 <div>
-  <% @events.each do |event| %>
-  <div class="card event">
 
+  <div class="row justify-content-center">
 
-    <div class="card-body">
-      <h5 class="card-header card-title"><%= event.name %></h5>
+    <div class="col-md-9 ">
 
-      <%= render 'events/event_time_display', event: event %>
+      <div class="row d-flex flex-md-row flex-sm-column flex-wrap justify-content-center">
+        <% @events.each do |event| %>
 
-      <div class="card-text mt-3">
-        <div class="description">
-          <%= event.description.html_safe %>
+        <div class="col-md-4 m-2 p-0">
+          <%= render 'events/event_mini_card', event: event %>
         </div>
 
-        <div>
-          <%= render 'events/locations_tracks_slots', event: event, track_slot: @track_slot, event_location_track: @event_location_track %>
-        </div>
 
+        <% end %>
 
       </div>
 
-
     </div>
-    <% if !event.open_forms.empty? %>
-    <div class="card-footer text-muted">
-      <ul class="list-group list-group-flush">
-        <% event.open_forms.each do |dfe| %>
-        <li class="list-group-item">
-          <p><%= dfe.entity.name %></p>
-          <div>
-            <%= link_to dfe.name.titlecase, fill_form_response_path(kommunity: event.kommunity, data_form_entity_id: dfe), class: "btn btn-primary" %>
-          </div>
-
-        </li>
-        <% end %>
-
-      </ul>
-
-    </div>
-    <% end %>
 
   </div>
 
-  <% end %>
+
+
 
 </div>
 

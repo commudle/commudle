@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
 
   def index
-    @events = Event.includes(:kommunity, :event_data_form_entity_groups).joins(:kommunity).where('kommunity_id = ?', @kommunity.id).order('start_time asc')
+    @events = Event.includes(:kommunity, :event_data_form_entity_groups).joins(:kommunity).upcoming(kommunity_id: @kommunity.id)
     @event_location_track = EventLocationTrack.new
     @track_slot = TrackSlot.new
   end

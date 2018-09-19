@@ -20,7 +20,7 @@
 body{
   //background-color: blue;
 
-
+  background: #f8f9fa;
 
   &>nav{
     .user-avatar{
@@ -59,11 +59,48 @@ body{
 }
 
 
-.clickable-card{
-  position: absolute;
-  top: 0; left: 0;
-  height: 100%; width: 100%;
+.kommunity-logo-image{
+  width: 50px;
+  overflow: hidden;
+  max-height: 75px;
+  img{
+    width: 100%;
+  }
 }
+
+
+.event-mini-card{
+  position: relative;
+
+  .card-header{
+    border: 1px solid #4368b1;
+    background: white;
+    color: #4368b1;
+  }
+
+  .event-timing {
+    span:first-child {
+      background-color: lightgrey;
+      padding: 5px;
+    }
+  }
+
+    .clickable-card{
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+    z-index: 100;
+    box-shadow: 1px 1px 1px 1px lightgrey;
+
+
+    &:hover{
+      box-shadow: 1px 1px 4px 2px #ababab;
+    }
+  }
+
+}
+
+
 
 
 

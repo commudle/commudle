@@ -13,7 +13,7 @@
           <% end %>
 
         </div>
-        <div class="event-header d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded " style='<%= @event.header_image.attached? ? "background: url(#{url_for(@event.header_image)});" : ''  %>'>
+        <div class="event-header d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded ", id="event-header-background" style='<%= @event.header_image.attached? ? "background: url(#{url_for(@event.header_image)});" : ''  %>'>
           <!--<img class="mr-3" src="../../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
           <div class="lh-100">
             <div class="<%= @event.header_image.attached? ? 'hidden-item' : '' %>">
@@ -41,7 +41,7 @@
               <%= form_with url: update_header_image_event_path, id: 'event-header-image-form', method: :put do |f|%>
                 <div class="form-group">
                 <%= f.label :header_image, 'Choose Header', for: 'event-header-image', class: 'custom-file-label' %>
-                <%= f.file_field :header_image, class: 'custom-file-input', id: 'event-header-image', onchange: 'Rails.fire(this.form, "submit")', accept: "image/*" %>
+                <%= f.file_field :header_image, class: 'custom-file-input', onChange: 'showImage(this, "event-header-background", "background");', id: 'event-header-image', onchange: 'Rails.fire(this.form, "submit")', accept: "image/*" %>
 
                 </div>
                 <!--<%= f.submit 'Upload', class: 'btn btn-outline-info' %>-->

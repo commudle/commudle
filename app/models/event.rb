@@ -51,9 +51,9 @@ class Event < ApplicationRecord
   end
 
 
-  def self.upcoming(community_id = nil)
+  def self.upcoming(kommunity_id: nil)
 
-    if(community_id.blank?)
+    if(kommunity_id.blank?)
       return Event.joins(:event_status, :kommunity).where(
                       "event_statuses.name = ?",
                       NameValues::EventStatusType::ANNOUNCED
@@ -61,7 +61,7 @@ class Event < ApplicationRecord
     else
       return Event.joins(:event_status).where(
           "event_statuses.name = ? and kommunity_id = ?",
-          NameValues::EventStatusType::ANNOUNCED, community_id
+          NameValues::EventStatusType::ANNOUNCED, kommunity_id
       ).order("start_time asc")
     end
 

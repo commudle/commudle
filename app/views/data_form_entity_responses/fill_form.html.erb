@@ -87,29 +87,8 @@
                 </div>
 
                 <%= f.label :profile_image, 'Your Profile Image', for: 'profile-image', class: 'custom-file-label' %>
-                <%= f.file_field :profile_image, class: 'custom-file-input', id: 'profile-image', onchange: 'showImage(this);', accept: "image/*" %>
+                <%= f.file_field :profile_image, class: 'custom-file-input', id: 'profile-image', onchange: 'showImage(this, "user-profile-image");', accept: "image/*" %>
 
-                <script>
-
-                    {
-                        let currentProfileImage = $('#user-profile-image').attr('src');
-                        console.log(currentProfileImage);
-
-                        function showImage(input) {
-                            if (input.files && input.files[0]) {
-                                var reader = new FileReader();
-
-                                reader.onload = function (e) {
-                                    $('#user-profile-image').attr('src', e.target.result);
-
-                                };
-
-                                reader.readAsDataURL(input.files[0]);
-                            }
-                        }
-                    }
-
-                </script>
               </div>
               <div class="form-group">
                 <%= f.label :designation, "How does the world know you! (If you're a professional or run a community or ...)" %>

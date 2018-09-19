@@ -5,6 +5,16 @@
   <%= f.text_field :name, required: true, class: 'form-control' %>
 </div>
 
+<div class="form-group profile-image-input text-center position-relative">
+  <div class="existing-logo-image">
+    <img id="logo-image-show" alt="Logo Image" src="<%= @kommunity.logo_image.attached? ? url_for(@kommunity.logo_image) : '' %>">
+  </div>
+
+  <%= f.label :logo_image, 'Logo Image', for: 'logo-image', class: 'custom-file-label' %>
+  <%= f.file_field :logo_image, class: 'custom-file-input', id: 'logo-image', onchange: 'showImage(this, "logo-image-show");', accept: "image/*" %>
+
+</div>
+
 <div class="form-group">
   <%= f.label :about %>
   <%= f.text_area :about, :class => "tinymce editor", :rows => 3, :cols => 50 %>

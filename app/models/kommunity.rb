@@ -6,4 +6,7 @@ class Kommunity < ApplicationRecord
   has_many :user_roles_users
 
 
+  has_one_attached :logo_image
+
+
 end
