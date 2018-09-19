@@ -1,10 +1,10 @@
-<section class="event-comments" id="event-comments-<%= event.id %>">
+<section class="event-comments bg-white p-3" id="event-comments-<%= event.id %>">
   <h4>Comments</h4>
 
 
   <div>
     <ul class="list-group list-group-flush" id="event-comments-list-<%= event.id %>">
-      <% event.comments.each do |comment| %>
+      <% event.comments.order('created_at').each do |comment| %>
       <%= render 'comments/comment', comment: comment %>
       <% end %>
     </ul>

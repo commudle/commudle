@@ -17,7 +17,10 @@
           <!--<img class="mr-3" src="../../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
           <div class="lh-100">
             <div class="<%= @event.header_image.attached? ? 'hidden-item' : '' %>">
+              <% if @event.kommunity.logo_image.attached? %>
+              <img alt="<%= @event.kommunity.name %> Logo" src="<%= url_for(@event.kommunity.logo_image) %>" width="50" class="mr-2">
 
+              <% end %>
               <span><%= @event.kommunity.name %></span>
               <h1 class="mb-0 text-white lh-100"> <%= @event.name %></h1>
               <div class="badge badge-light mt-3">
@@ -28,7 +31,7 @@
                 <% @event.locations.each_with_index do |elc, index| %>
                 <p class="m-2 ">
                   <i class="fas fa-map-marker-alt mr-1"></i>
-                  <%= elc.name %>, <span class="text-muted"><%= elc.address %></span>
+                  <strong><%= elc.name %></strong>, <span class="text-light"><%= elc.address %></span>
                 </p>
 
                 <% end %>
@@ -64,13 +67,13 @@
         <%= render 'event_status_select', event: @event, event_statuses: @event_statuses %>
         <% end %>
       </div>
-      <div class="d-flex flex-md-row flex-sm-column flex-wrap justify-content-start ">
+      <div class="d-flex flex-md-row flex-sm-column flex-wrap justify-content-md-start justify-content-sm-center">
         <% @event.open_forms.each do |dfe| %>
 
 
-        <%= link_to fill_form_response_path(kommunity: @event.kommunity, data_form_entity_id: dfe), target: '_blank', class: "badge badge-info p-2 m-2" do %>
+        <%= link_to fill_form_response_path(kommunity: @event.kommunity, data_form_entity_id: dfe), target: '_blank', class: "btn form-link shadow p-2 m-2 " do %>
 
-        <i class="fas fa-arrow-alt-circle-right"></i> <%= dfe.entity.name.titlecase %>
+        <i class="fas fa-arrow-alt-circle-right"></i> <strong><%= dfe.entity.name.titlecase %></strong>
         <% end %>
 
         <% end %>
@@ -121,23 +124,33 @@
 
   <% end %>
 
-  <div class="mt-3 p-3 bg-white ">
-    <%= @event.description.html_safe %>
+  <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
+
+  <div class="d-flex flex-md-row flex-sm-column flex-wrap justify-content-md-around mt-5">
+    <div class="p-3 m-1 bg-white col-md-6 col-sm-12 event-description">
+      <h5>
+        Details
+      </h5>
+      <%= @event.description.html_safe %>
+    </div>
+
+    <div class="m-1 col-md-5 col-sm-12 ">
+
+      <%= render 'events/event_comments', event: @event, new_comment: @new_comment %>
+
+    </div>
   </div>
 
 
-    <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
 
 
 
 
 
 
-  <div class="mt-3 p-3 bg-white">
 
-    <%= render 'events/event_comments', event: @event, new_comment: @new_comment %>
 
-  </div>
+
 
 
 

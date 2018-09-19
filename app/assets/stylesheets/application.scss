@@ -52,6 +52,14 @@ body{
     }
   }
 
+
+  .event-location-track-slots-widget{
+    .track-slots-list{
+      max-height: 350px;
+      overflow-y: scroll;
+    }
+  }
+
 }
 
 #body-main-container{

@@ -35,6 +35,19 @@ section#events-show{
     overflow-x: scroll;
     flex-wrap: nowrap;
   }
+
+
+  .form-link{
+    background: #f4ba2c;
+    color: white;
+  }
+
+  .event-description{
+    position: sticky;
+    top: 75px;
+    height: fit-content;
+  }
+
 }
 
 
