@@ -2,7 +2,7 @@
   <%= link_to "", event_path(event.kommunity, event), class: "clickable-card" %>
 
   <% if controller_name.to_sym != :events %>
-  <h5 class="card-header d-flex">
+  <h5 class="card-header d-flex align-items-center">
     <div class="kommunity-logo-image">
       <img  alt="<%= event.kommunity.name %> Logo" src="<%= event.kommunity.logo_image.attached? ?  url_for(event.kommunity.logo_image) : '' %>">
 
