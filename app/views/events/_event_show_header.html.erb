@@ -10,10 +10,16 @@
     <div class="lh-100">
       <div class="<%= event.header_image.attached? ? 'hidden-item' : '' %>">
         <% if event.kommunity.logo_image.attached? %>
-        <img alt="<%= event.kommunity.name %> Logo" src="<%= url_for(event.kommunity.logo_image) %>" width="50" class="mr-2">
+        <p class="text-center mb-0">
+          <img alt="<%= event.kommunity.name %> Logo" src="<%= url_for(event.kommunity.logo_image) %>" width="50" class="mr-2">
+        </p>
+
 
         <% end %>
-        <span><%= event.kommunity.name %></span>
+        <p class="mb-0 text-center">
+          <span><%= event.kommunity.name %></span>
+
+        </p>
         <h1 class="mb-0 text-white lh-100"> <%= event.name %></h1>
         <div class="badge badge-light mt-3">
           <%= render 'events/event_time_display', event: event %>
