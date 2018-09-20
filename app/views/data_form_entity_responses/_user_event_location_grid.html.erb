@@ -1,0 +1,21 @@
+<div id="location-preference-selector">
+
+  <% if event_locations.length > 1 %>
+  <p>Your Location Preferences</p>
+  <% (1..event_locations.length).each do |index| %>
+  <div class="form-group">
+    <%= f.label "#{index.ordinalize} Location Preference (Click to select one from below)", for: "location-preference-#{index}", class: 'font-weight-bold' %>
+    <%= f.select "location-preference-#{index}", options_for_select(event_locations.all.collect{|m| ["#{m.location.name}, #{m.location.address}", m.id]}), {}, id: "location-preference-#{index}", class: 'form-control', size: event_locations.length + 1, required: true %>
+
+
+  </div>
+  <% end %>
+
+  <% elsif event_locations.length == 1 %>
+    <!--<%= f.hidden_field "location-preference-1", value: event_locations[0].id %>-->
+
+  <% end %>
+
+
+
+</div>

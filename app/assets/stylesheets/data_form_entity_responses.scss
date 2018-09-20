@@ -17,4 +17,13 @@
     }
   }
 
+  #location-preference-selector{
+    select{
+      overflow: hidden;
+      option{
+        margin: 5px;
+      }
+    }
+  }
+
 }

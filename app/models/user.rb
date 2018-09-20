@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :event_entry_passes
   has_many :event_entry_passes, foreign_key: :created_by_id
   has_many :comments
+  has_many :user_event_locations
 
   has_one_attached :profile_image
 

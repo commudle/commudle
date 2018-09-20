@@ -155,7 +155,14 @@
                 <% end %>
 
               </ul>
+
+              <div>
+
+                <%= render 'data_form_entity_responses/user_event_location_grid', f: f, event: @event, event_locations: @event.event_locations %>
+
+              </div>
               <%= f.submit 'Submit', class: 'btn btn-outline-info' %>
+
               <% end %>
 
 

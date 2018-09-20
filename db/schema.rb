@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_18_001450) do
+ActiveRecord::Schema.define(version: 2018_09_20_030704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -342,6 +342,17 @@ ActiveRecord::Schema.define(version: 2018_09_18_001450) do
     t.index ["speaker_registration_id"], name: "index_track_slots_on_speaker_registration_id"
   end
 
+  create_table "user_event_locations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_location_id", null: false
+    t.integer "preference_order", null: false
+    t.boolean "is_selected", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_location_id"], name: "index_user_event_locations_on_event_location_id"
+    t.index ["user_id"], name: "index_user_event_locations_on_user_id"
+  end
+
   create_table "user_roles", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -439,5 +450,7 @@ ActiveRecord::Schema.define(version: 2018_09_18_001450) do
   add_foreign_key "registration_type_statuses", "registration_types"
   add_foreign_key "track_slots", "data_form_entity_response_groups", column: "speaker_registration_id"
   add_foreign_key "track_slots", "event_location_tracks"
+  add_foreign_key "user_event_locations", "event_locations"
+  add_foreign_key "user_event_locations", "users"
   add_foreign_key "user_roles_users", "kommunities"
 end
