@@ -156,14 +156,17 @@
 
               </ul>
 
+              <% if @data_form_entity.entity.registration_type?([NameValues::RegistrationsType::SPEAKER, NameValues::RegistrationsType::ATTENDEE]) %>
               <div>
 
                 <%= render 'data_form_entity_responses/user_event_location_grid', f: f, event: @event, event_locations: @event.event_locations %>
 
               </div>
+              <% end %>
               <%= f.submit 'Submit', class: 'btn btn-outline-info' %>
 
               <% end %>
+
 
 
             </div>
