@@ -50,7 +50,14 @@ class DataFormEntityResponsesController < ApplicationController
 
 
 
-      # once someone is registering ots (on the spot), they'll receive an entry pass automatically, still they will have to go through the process of registration
+
+      if (params[:data_form_entity_response][:location_preference])
+        UserEventLocation.set_preference(dfer.data_form_entity_response_group.user, params[:data_form_entity_response][:location_preference])
+
+      end
+
+
+      # once someone is registering ots (on the spot), they'll receive an entry pass automatically, still they will have to go through the process of marking the attendance
       if (params[:ots] && params[:ots] == 'true') || (@data_form_entity.on_the_spot_uninvited?)
         event = dfer.data_form_entity_response_group.event_data_form_entity_group.event
         entry_pass = EventEntryPass.find_or_create(event, dfer.data_form_entity_response_group.user,  current_user, true, true, true)

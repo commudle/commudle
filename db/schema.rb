@@ -345,7 +345,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_030704) do
   create_table "user_event_locations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "event_location_id", null: false
-    t.integer "preference_order", null: false
+    t.integer "preference_order"
     t.boolean "is_selected", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

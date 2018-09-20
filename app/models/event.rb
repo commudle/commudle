@@ -10,6 +10,7 @@ class Event < ApplicationRecord
   has_many :event_entry_passes
   has_many :event_location_tracks
   has_many :event_locations
+  has_many :user_event_locations, :through => :event_locations
   has_many :locations, through: :event_locations
   has_many :comments, as: :commentable
 

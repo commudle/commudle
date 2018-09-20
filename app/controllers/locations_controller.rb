@@ -16,7 +16,16 @@ class LocationsController < ApplicationController
 
     if @event.locations.include? @location
       @event_location = @event.event_locations.find_by(location_id: @location.id)
-      @event_location.destroy
+
+      if (@event_location.user_event_locations.blank?)
+        @event_location.destroy
+
+      else
+        return error_response(ErrorNotification::ResponseTypes::JS, ErrorNotification::ErrorCodes::UNAUTHORIZED, "Users have already chosen this location")
+
+
+      end
+
     end
   end
 
