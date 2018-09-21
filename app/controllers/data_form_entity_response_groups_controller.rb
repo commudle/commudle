@@ -7,6 +7,12 @@ class DataFormEntityResponseGroupsController < ApplicationController
   def update_registration_status
     @dfe_response_group.registration_status_id = params[:registration_status]
     @dfe_response_group.save
+
+    # set the preferred_location
+
+
+
+    # check if entry pass exists, send it along, remove the attendance
     @entry_pass = EventEntryPass.find_by(event: @dfe_response_group.event_data_form_entity_group.event, user: @dfe_response_group.user)
 
     if @entry_pass && @dfe_response_group.registration_status.name != NameValues::RegistrationStatusType::CONFIRMED

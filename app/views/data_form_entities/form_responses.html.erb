@@ -43,10 +43,7 @@
             <p>#</p>
           </th>
           <th scope="col" class="sticky-row">
-            <p>Name</p>
-          </th>
-          <th scope="col" class="sticky-row">
-            <p>Email</p>
+            <p>Name / Email</p>
           </th>
           <th scope="col" class="sticky-row">
             <p>
@@ -78,16 +75,14 @@
             </p>
           </td>
           <th scope="row" class="pt-2 pb-0">
-            <p>
+            <p class="mb-0">
               <%= dferg.user.name %>
             </p>
-          </th>
-
-          <th scope="row" class="pt-2 pb-0">
             <p>
               <%= dferg.user.email %>
             </p>
           </th>
+
           <td class="pt-2 pb-2 sticky-box">
 
             <% if(!@edfeg.registration_type.blank?) %>

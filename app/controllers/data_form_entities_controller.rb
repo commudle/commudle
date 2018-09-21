@@ -14,7 +14,6 @@ class DataFormEntitiesController < ApplicationController
     @registration_types = RegistrationType.all
     @entry_passes = @edfeg.event.event_entry_passes
 
-
   end
 
 

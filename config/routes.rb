@@ -104,6 +104,12 @@ Rails.application.routes.draw do
         as: :form_responses
 
 
+    # data_form_entity_responses_controller
+    put 'user-event-locations/update-selected-location',
+        to: 'user_event_locations#update_selected_location',
+        as: :update_user_event_selected_location
+
+
 
     #event_communications_mailer
     resources :event_communication_mailers, path: "event-communication-mailers" do

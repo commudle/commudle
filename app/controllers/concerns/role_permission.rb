@@ -113,6 +113,11 @@ module RolePermission
             ([:create, :destroy] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
             )
         },
+        user_event_locations:{
+            organizer: (
+            ([:update_selected_location] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+            )
+        }
 
 
     }

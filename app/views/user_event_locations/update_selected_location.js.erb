@@ -1,0 +1,11 @@
+{
+
+    $("#registration-response-status-actions-<%= @dferg.id %>").replaceWith($("<%= escape_javascript render 'data_form_entity_response_groups/registration_status_actions', dferg: @dferg, entry_pass: @entry_pass %>"));
+
+    let notification = new Noty({
+        text: 'Location updated!',
+        theme: 'relax',
+        type: 'success',
+        timeout: 1500
+    }).show();
+}
