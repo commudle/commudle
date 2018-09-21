@@ -9,7 +9,7 @@
     </li>
   </ul>
 
-  <% if dferg.event_data_form_entity_group.registration_type? [NameValues::RegistrationsType::SPEAKER, NameValues::RegistrationsType::ATTENDEE] %>
+  <% if (dferg.event_data_form_entity_group.registration_type? [NameValues::RegistrationsType::SPEAKER, NameValues::RegistrationsType::ATTENDEE]) && dferg.event_data_form_entity_group.event.event_locations.length > 1 %>
   <ul class="user-event-locations-list list-group d-flex flex-row p-1">
     <% UserEventLocation.get_display_locations(dferg, dferg.event_data_form_entity_group.event).each do |k, v| %>
     <li class="list-group-item bg-light m-1 border-0 mr-2 p-1 border-right">
