@@ -2,7 +2,7 @@ class UserEventLocation < ApplicationRecord
   belongs_to :user
   belongs_to :event_location
 
-  default_scope { order(preference_order: :asc) }
+  default_scope { order(preference_order: :asc, created_at: :asc) }
 
 
   def self.set_preference(user, event_locations)
@@ -35,22 +35,42 @@ class UserEventLocation < ApplicationRecord
     user_id = dferg.user_id
     event = dferg.event_data_form_entity_group.event
 
-    user_event_locations = UserEventLocation.joins(event_location: :event).where('user_id and events.id = ?', user_id, event.id)
+    all_event_locations = event.event_locations
+    all_event_location_ids = all_event_locations.map(&:id)
 
-    all_location_ids = event.event_locations.pluck(:id)
 
-    # event_location_id.blank? ? (event_location_id = all_location)
-    user_selected_locations = UserEventLocation.get_user_event_locations(user_id, event.id)
+    if (event_location_id.blank?)
+      user_event_locations = UserEventLocation.joins(event_location: :event).where('user_event_locations.user_id = ? and events.id = ?', user_id, event.id)
 
-    # user has not selected any location for this event, then set the first location as the selected location
 
-    # user has given preference, but we are yet to finalize a location for him/her, select the first one
+      # user has not preferred any location for this event, then set the first location as the selected location
 
-    # user has selected a location and we have finalized a location for him/her
+      # user has given preference, but we are yet to finalize a location for him/her, select the first one
+
+      # user has selected a location and we have finalized a location for him/her
+
+      if user_event_locations.blank?
+        UserEventLocation.create(
+            user_id: user_id,
+            event_location_id: all_event_location_ids[0],
+        ).update(
+            is_selected: true
+        )
+
+      elsif !user_event_locations.blank?
+        user_selected_location = user_event_locations.detect{|w|  w.is_selected == true}
+
+        if user_selected_location.blank?
+          user_event_locations.detect{|w|  w.preference_order == 1}.update(is_selected: true)
+        end
+
+      end
+
+    end
 
 
     # check if the location exists for the event
-    if (all_location_ids.include?(event_location_id.to_i))
+    if (all_event_location_ids.include?(event_location_id.to_i))
       UserEventLocation.where(user: dferg.user).where('event_location_id != ?', event_location_id).update_all(is_selected: false)
       UserEventLocation.find_or_create_by(
           user_id: user_id,

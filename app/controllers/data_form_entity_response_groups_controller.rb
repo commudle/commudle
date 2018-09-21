@@ -9,6 +9,9 @@ class DataFormEntityResponseGroupsController < ApplicationController
     @dfe_response_group.save
 
     # set the preferred_location
+    if !([NameValues::RegistrationStatusType::CANCELLED, NameValues::RegistrationStatusType::REGISTERED].include? @dfe_response_group.registration_status.name)
+      UserEventLocation.select_location(@dfe_response_group)
+    end
 
 
 
