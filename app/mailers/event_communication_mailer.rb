@@ -21,6 +21,7 @@ class EventCommunicationMailer < ApplicationMailer
     @event = @dferg.event_data_form_entity_group.event
     @event_details_options = event_details_options
     @user = @dferg.user
+    @selected_location = UserEventLocation.user_selected_location(@dferg.user_id, @event.id)
     mail(
         to: @dferg.user.email,
         subject: subject,
@@ -38,6 +39,7 @@ class EventCommunicationMailer < ApplicationMailer
     @event = @dferg.event_data_form_entity_group.event
     @event_details_options = event_details_options
     @user = @dferg.user
+    @selected_location = UserEventLocation.user_selected_location(@dferg.user_id, @event.id)
     fixed_email = FixedEmail.find_or_create_by(
         mail_type: NameValues::FixedEmailType::ENTRY_PASS,
         subject: subject,

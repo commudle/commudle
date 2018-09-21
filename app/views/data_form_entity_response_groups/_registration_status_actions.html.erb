@@ -9,15 +9,20 @@
     </li>
   </ul>
 
-  <ul class="user-event-locations-list list-group d-flex flex-row">
+  <% if dferg.event_data_form_entity_group.registration_type? [NameValues::RegistrationsType::SPEAKER, NameValues::RegistrationsType::ATTENDEE] %>
+  <ul class="user-event-locations-list list-group d-flex flex-row p-1">
     <% UserEventLocation.get_display_locations(dferg, dferg.event_data_form_entity_group.event).each do |k, v| %>
-    <li class="list-group-item">
+    <li class="list-group-item bg-light m-1 border-0 mr-2 p-1 border-right">
 
-        <%= link_to v[:location].name, update_user_event_selected_location_path(dferg: dferg, event_location_id: v[:event_location_id]), class: "#{'active-registration-status' if(v[:is_selected])}", remote: true, method: :put %>
+        <%= link_to update_user_event_selected_location_path(dferg: dferg, event_location_id: v[:event_location_id]), class: "#{'badge badge-pill badge-primary' if(v[:is_selected])}", remote: true, method: :put do %>
+
+      <i class="fas fa-map-marker-alt mr-1"></i> <%= v[:location].name %>
+      <% end %>
 
     </li>
     <% end %>
   </ul>
+  <% end %>
 
   <div class="event-entry-pass-actions d-flex justify-content-space-around">
     <% if dferg.registration_status.confirmed? && !entry_pass.blank? %>

@@ -29,6 +29,10 @@ class UserEventLocation < ApplicationRecord
     end
   end
 
+  def self.user_selected_location(user_id, event_id)
+    UserEventLocation.joins(:event_location).find_by(user_id: user_id, event_locations: {event_id: event_id}, is_selected: true)
+  end
+
   # select or automatically create and select a location for an event for a user who has registered
   def self.select_location(dferg, event_location_id = nil)
 
