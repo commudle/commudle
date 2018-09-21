@@ -5,7 +5,7 @@
   <% (1..event_locations.length).each do |index| %>
   <div class="form-group">
     <%= f.label "#{index.ordinalize} Location Preference (Click to select one from below)", for: "location_preference_#{index}", class: 'font-weight-bold' %>
-    <%= f.select "location_preference[#{index}]", options_for_select(event_locations.all.collect{|m| ["#{m.location.name}, #{m.location.address}", m.id]}, UserEventLocation.preferred_location(current_user.id, event.id, index)), {}, id: "location-preference-#{index}", class: 'form-control', required: true %>
+    <%= f.select "location_preference[#{index}]", options_for_select(event_locations.all.collect{|m| ["#{m.location.name}, #{m.location.address}", m.id]}, UserEventLocation.preferred_location(current_user.id, event.id, index)), {}, id: "location-preference-#{index}", class: 'form-control', size: event_locations.length + 1, required: true %>
 
 
   </div>
