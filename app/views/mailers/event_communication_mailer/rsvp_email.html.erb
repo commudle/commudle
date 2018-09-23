@@ -5,7 +5,7 @@
     <tr>
       <td>
         <p>Hi <%= @user.name %>!</p>
-        <p>Congratulations! You're shortlisted for <strong style="background-color: #4368b1;  color: white;"><%= (@dferg.event_data_form_entity_group.registration_type? [NameValue::RegistrationsType::SPEAKER]) ? "Speaking at" : "attending" %></strong> <strong><%= @event.name %></strong>. Please have a look at the details in this email and confirm your RSVP.</p>
+        <p>Congratulations! You're shortlisted for <strong style="background-color: #4368b1;  color: white; padding: 2px;"><%= (@dferg.event_data_form_entity_group.registration_type? [NameValues::RegistrationsType::SPEAKER]) ? "Speaking at" : "attending" %></strong> <strong><%= @event.name %></strong>. Please have a look at the details in this email and confirm your RSVP.</p>
         <div style="text-align: center">
         </div>
         <div>

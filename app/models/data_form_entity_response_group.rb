@@ -27,6 +27,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
     dfergs.each do |dferg|
       if(force || !NameValues::RegistrationStatusType::RSVP_DONE.include?(dferg.registration_status.name))
         Resque.enqueue(RsvpMailerWorker, dferg.id, subject, message, event_details_options)
+        # RsvpMailerWorker.perform( dferg.id, subject, message, event_details_options)
       end
     end
 

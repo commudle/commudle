@@ -54,13 +54,12 @@
 <% if @event_details_options["sessions_list"] && !@selected_location.blank? %>
 <div>
   <p>
-    <strong>Here's the list of the amazing sessions!</strong>
+    <strong>Here's the list of the amazing Sessions/Tracks!</strong>
   </p>
 
   <!--<% @event.event_locations.each do |elc| %>-->
     <!--<p style=""><strong>elc.location.name</strong></p>-->
   <!--<% end %>-->
-  <h5>Here's the Sessions/Tracks for the day</h5>
   <% @selected_location.event_location.event_location_tracks.each do |elt| %>
   <p style="margin-bottom: 2px;"><strong><%= elt.name %></strong></p>
   <table style="width: 100%; background-color: #90b0ee3d;">
