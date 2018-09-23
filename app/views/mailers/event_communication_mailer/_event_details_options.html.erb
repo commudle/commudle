@@ -51,7 +51,7 @@
 <% end %>
 
 
-<% if @event_details_options["sessions_list"] %>
+<% if @event_details_options["sessions_list"] && !@selected_location.blank? %>
 <div>
   <p>
     <strong>Here's the list of the amazing sessions!</strong>
@@ -60,9 +60,11 @@
   <!--<% @event.event_locations.each do |elc| %>-->
     <!--<p style=""><strong>elc.location.name</strong></p>-->
   <!--<% end %>-->
+  <h5>Here's the Sessions/Tracks for the day</h5>
+  <% @selected_location.event_location.event_location_tracks.each do |elt| %>
+  <p style="margin-bottom: 2px;"><strong><%= elt.name %></strong></p>
   <table style="width: 100%; background-color: #90b0ee3d;">
     <tbody>
-      <% @event.event_location_tracks.each do |elt| %>
       <% elt.track_slots.order('start_time asc').each do |ts| %>
       <tr>
         <td style="width: 50%; border-bottom: 1px dashed white;">
@@ -73,8 +75,9 @@
         </td>
       </tr>
       <% end %>
-      <% end %>
+
     </tbody>
   </table>
+<% end %>
 </div>
 <% end %>

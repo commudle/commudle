@@ -75,6 +75,11 @@
 
   <% end %>
 
+
+  <div>
+    <%= render 'confirmed_speakers', event: @event %>
+  </div>
+
   <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
 
   <div class="d-flex flex-md-row flex-sm-column flex-wrap justify-content-md-around mt-5">
