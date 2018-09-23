@@ -1,7 +1,7 @@
 <div id="confirmed-event-speakers-<%= event.id %>" class="shortlisted-speakers-container">
 <h3>The Speakers</h3>
   <ul class="list-group d-flex flex-row flex-wrap justify-content-around p-3 bg-white shortlisted-speakers-list">
-    <% event.confirmed_speaker_registrations.each do |evs| %>
+    <% event.confirmed_speaker_registrations.shuffle.each do |evs| %>
       <li class="list-group-item shadow">
         <div class="speaker-display-card">
           <div class="speaker-avatar">

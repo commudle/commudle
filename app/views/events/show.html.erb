@@ -75,10 +75,11 @@
 
   <% end %>
 
-
+  <% if !@event.confirmed_speaker_registrations.empty? %>
   <div>
     <%= render 'confirmed_speakers', event: @event %>
   </div>
+  <% end %>
 
   <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
 
