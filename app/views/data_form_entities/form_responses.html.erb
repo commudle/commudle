@@ -46,8 +46,11 @@
             <p>Name / Email</p>
           </th>
           <th scope="col" class="sticky-row">
+            <p>Profile Details</p>
+          </th>
+          <th scope="col" class="sticky-row">
             <p>
-              Registration Status / Actions
+            Registration Status / Actions
               <br>
               <small>Locations displayed in the order of preference (if) selected by user</small>
             </p>
@@ -80,10 +83,44 @@
             <p class="mb-0">
               <%= dferg.user.name %>
             </p>
+            <div class="user-avatar">
+              <%= image_tag url_for(dferg.user.avatar) %>
+            </div>
             <p>
               <%= dferg.user.email %>
             </p>
           </th>
+          <td scope="row" class="pt-2 pb-0">
+            <p class="text-muted designation"><%= dferg.user.designation %></p>
+            <div class="speaker-social-links d-flex justify-content-center">
+
+              <% if dferg.user.personal_website %>
+              <a href="<%= complete_url(dferg.user.personal_website) %>" class="p-2 text-dark">
+                <i class="fas fa-info"></i>
+              </a>
+              <% end %>
+
+              <% if dferg.user.twitter %>
+              <a href="<%= twitter_url(dferg.user.twitter) %>" class="p-2 text-dark">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <% end %>
+
+              <% if dferg.user.github %>
+              <a href="<%= complete_url(dferg.user.github) %>" class="p-2 text-dark">
+                <i class="fab fa-github"></i>
+              </a>
+              <% end %>
+
+              <% if dferg.user.linkedin %>
+              <a href="<%= complete_url(dferg.user.linkedin) %>" class="p-2 text-dark">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <% end %>
+
+            </div>
+
+          </td>
 
           <td class="pt-2 pb-2 sticky-box">
 
