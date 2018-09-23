@@ -1,3 +1,6 @@
 {
     $("#registration-response-status-actions-<%= @dfe_response_group.id %>").replaceWith($("<%= escape_javascript render 'registration_status_actions', dferg: @dfe_response_group, entry_pass: @entry_pass %>"));
+
+
+    updateRegistrationStatusCounter(<%= @dfe_response_group.event_data_form_entity_group.id %>, '<%= @kommunity.slug %>', '<%= @event.slug %>');
 }

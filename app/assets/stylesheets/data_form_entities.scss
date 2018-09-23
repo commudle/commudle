@@ -31,6 +31,26 @@
         }
       }
 
+      .registration-status-counter{
+        font-size: 12px;
+
+        li{
+
+          &.active{
+            a{
+              color: white !important;
+
+            }
+          }
+          a{
+            color: grey;
+          }
+        }
+
+
+
+      }
+
 
       .user-avatar{
         width: 55px;

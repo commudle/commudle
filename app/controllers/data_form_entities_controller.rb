@@ -6,10 +6,17 @@ class DataFormEntitiesController < ApplicationController
 
   # get the list of all entries filled for an event
   def form_responses
-    @form_responses = DataFormEntityResponseValue.joins(
-        question: :question_type,
-        data_form_entity_response: {data_form_entity: :event_data_form_entity_response_group}
-    ).where('event_data_form_entity_response_groups.id = ?', @edfeg.id).order('questions.created_at')
+
+    if params[:registration_status] && params[:registration_status] != 'all'
+
+      @responses = @edfeg.data_form_entity_response_groups.where('registration_status_id = ?', params[:registration_status].to_i).order(:created_at)
+
+    else
+      @responses = @edfeg.data_form_entity_response_groups.order(:created_at)
+
+    end
+    @selected_status = params[:registration_status]
+
 
     @registration_types = RegistrationType.all
     @entry_passes = @edfeg.event.event_entry_passes

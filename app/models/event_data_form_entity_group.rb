@@ -24,4 +24,20 @@ class EventDataFormEntityGroup < ApplicationRecord
   end
 
 
+
+  def registration_status_counts
+    statuses = Hash.new
+    dfergs = self.data_form_entity_response_groups
+    self.registration_type.registration_type_statuses.includes(:registration_status).each do |regst|
+      statuses[regst.registration_status.name.to_s] = {
+          count: dfergs.select{|dferg| dferg.registration_status_id == regst.registration_status.id}.length,
+          registration_status_id: regst.registration_status_id
+      }
+
+    end
+
+    return statuses
+  end
+
+
 end

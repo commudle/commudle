@@ -78,7 +78,7 @@ module RolePermission
 
         event_data_form_entity_groups: {
             organizer: (
-              ([:create, :destroy, :assign_data_form_entity] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+              ([:create, :destroy, :assign_data_form_entity, :update_registration_status_counter] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
             )
         },
 

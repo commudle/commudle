@@ -34,7 +34,6 @@
     </div>
 
 
-
     <div class="table-responsive">
       <table class="table table-hover table-fixed">
         <thead>
@@ -49,6 +48,9 @@
               <br>
               <small>Locations displayed in the order of preference (if) selected by user</small>
             </p>
+            <div>
+              <%= render 'event_data_form_entity_groups/registration_status_counter_filter', edfeg: @edfeg, selected_status: @selected_status %>
+            </div>
           </th>
           <th scope="col" class="sticky-row">
             <p>Profile Details</p>
@@ -70,7 +72,7 @@
         <!--TODO Optimize the query to show responses-->
 
 
-        <% @edfeg.data_form_entity_response_groups.order(:created_at).each.with_index(1) do |dferg, index| %>
+        <% @responses.each.with_index(1) do |dferg, index| %>
         <tr>
           <td class="pt-2 pb-0">
             <p>

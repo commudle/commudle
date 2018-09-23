@@ -72,3 +72,11 @@ function showImage(input, displayContainerId, displayType='image_tag') {
 }
 
 
+function updateRegistrationStatusCounter(edfegId, kommunity, event_id){
+    $.getScript( `/${kommunity}/events/${event_id}/update-registration-status-counter?event_data_form_entity_group_id=${edfegId}` )
+        .done(function( script, textStatus ) {
+            console.log('counter refreshed');
+        })
+}
+
+

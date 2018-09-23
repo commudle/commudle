@@ -25,6 +25,11 @@ Rails.application.routes.draw do
                as: :destroy_form_set
 
 
+        get 'update-registration-status-counter',
+            to: 'event_data_form_entity_groups#update_registration_status_counter',
+            as: :update_registration_status_counter
+
+
         delete 'remove-data-form-entity',
                to: 'data_form_entities_events#remove_data_form_entity',
                as: :remove_data_form_entity

@@ -2,7 +2,7 @@ class EventDataFormEntityGroupsController < ApplicationController
   # before_action :set_kommunity
   before_action :authenticate_user!
   before_action :set_event
-  before_action :set_event_data_form_entity_group, only: [:assign_data_form_entity, :destroy]
+  before_action :set_event_data_form_entity_group, only: [:assign_data_form_entity, :destroy, :update_registration_status_counter]
 
 
   def create
@@ -50,6 +50,13 @@ class EventDataFormEntityGroupsController < ApplicationController
 
     end
 
+
+  end
+
+
+  # method to update the counter for a specific event data form entity group
+  # this will return a script to the browser which will updated the counter every time this route is called
+  def update_registration_status_counter
 
   end
 
