@@ -15,25 +15,25 @@
           <div class="speaker-social-links d-flex justify-content-center">
 
             <% if evs.user.personal_website %>
-            <a href="<%= complete_url(evs.user.personal_website) %>" class="p-2 text-dark">
+            <a target="_blank" href="<%= complete_url(evs.user.personal_website) %>" class="p-2 text-dark">
               <i class="fas fa-info"></i>
             </a>
             <% end %>
 
             <% if evs.user.twitter %>
-            <a href="<%= twitter_url(evs.user.twitter) %>" class="p-2 text-dark">
+            <a target="_blank" href="<%= twitter_url(evs.user.twitter) %>" class="p-2 text-dark">
               <i class="fab fa-twitter"></i>
             </a>
             <% end %>
 
             <% if evs.user.github %>
-            <a href="<%= complete_url(evs.user.github) %>" class="p-2 text-dark">
+            <a target="_blank" href="<%= complete_url(evs.user.github) %>" class="p-2 text-dark">
               <i class="fab fa-github"></i>
             </a>
             <% end %>
 
             <% if evs.user.linkedin %>
-            <a href="<%= complete_url(evs.user.linkedin) %>" class="p-2 text-dark">
+            <a target="_blank" href="<%= complete_url(evs.user.linkedin) %>" class="p-2 text-dark">
               <i class="fab fa-linkedin-in"></i>
             </a>
             <% end %>
