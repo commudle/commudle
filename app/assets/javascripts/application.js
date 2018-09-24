@@ -61,7 +61,9 @@ function showImage(input, displayContainerId, displayType='image_tag') {
 
                 displayContainer.attr('src', e.target.result);
             }else if(displayType == 'background'){
-                displayContainer.css('background', e.target.result);
+                console.log(displayContainer);
+                displayContainer.css('background', `transparent url${e.target.result}`);
+                // console.log(displayContainer.c);
             }
 
 
