@@ -25,7 +25,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
     dfergs = DataFormEntityResponseGroup.includes(:registration_status, :user).where("id in (?)", dferg_ids)
 
     dfergs.each do |dferg|
-      if(force || !NameValues::RegistrationStatusType::RSVP_DONE.include?(dferg.registration_status.name))
+      if(force || ((!NameValues::RegistrationStatusType::RSVP_DONE.include?(dferg.registration_status.name)) && dferg.fixed_email_sent?(NameValues::FixedEmailType::RSVP)[0] == false))
         Resque.enqueue(RsvpMailerWorker, dferg.id, subject, message, event_details_options)
         # RsvpMailerWorker.perform( dferg.id, subject, message, event_details_options)
       end

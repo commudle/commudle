@@ -6,7 +6,7 @@ class EventCommunicationMailer < ApplicationMailer
     @dferg = data_form_entity_response_group
 
     # create logs of the email sent
-    fixed_email = FixedEmail.create(
+    fixed_email = FixedEmail.find_or_create_by(
                   mail_type: NameValues::FixedEmailType::RSVP,
                   subject: subject,
                   message: message
