@@ -25,7 +25,7 @@ module NameValues
   # end
 
 
-  class RegistrationStatusType
+  class   RegistrationStatusType
     REGISTERED = "registered"
     WAITING = "waiting"
     SHORTLISTED = "shortlisted"

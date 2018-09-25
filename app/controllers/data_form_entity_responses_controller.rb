@@ -61,8 +61,9 @@ class DataFormEntityResponsesController < ApplicationController
       if (params[:ots] && params[:ots] == 'true') || (@data_form_entity.on_the_spot_uninvited?)
         event = dfer.data_form_entity_response_group.event_data_form_entity_group.event
         entry_pass = EventEntryPass.find_or_create(event, dfer.data_form_entity_response_group.user,  current_user, true, true, true)
-
-        DataFormEntityResponseGroup.send_entry_pass_email([dfer.data_form_entity_response_group.id], "Entry Pass :: #{event.name} :: On The Spot Registration!", "", true, {})
+        # byebug
+        dfer.data_form_entity_response_group.update(registration_status_id: RegistrationStatus.find_by_name(NameValues::RegistrationStatusType::CONFIRMED).id)
+        DataFormEntityResponseGroup.send_entry_pass_email([dfer.data_form_entity_response_group_id], "Entry Pass :: #{event.name} :: On The Spot Registration!", "", true, {})
       end
 
     else

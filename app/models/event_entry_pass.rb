@@ -3,7 +3,7 @@ class EventEntryPass < ApplicationRecord
   belongs_to :user
   belongs_to :created_by, class_name: 'User'
 
-  has_many :fixed_email_entry_passes
+  has_many :fixed_email_event_entry_passes
 
 
 
@@ -17,13 +17,17 @@ class EventEntryPass < ApplicationRecord
     # mark uninvited, attendance, ots only if a new entry pass is being created
     if(entry_pass.blank?)
       already_exists = false
-      entry_pass = EventEntryPass.new(event: event, user: user, created_by: created_by)
+      entry_pass = EventEntryPass.new(
+          event: event,
+          user: user,
+          created_by: created_by,
+          on_the_spot_registration: ots,
+          uninvited: uninvited,
+          attendance: attendance,
+          unique_code: EventEntryPass.generate_code(event)
+      )
 
     #   generate a code based on the number of seats available (one digit more)
-      on_the_spot_registration = ots
-      uninvited = uninvited
-      attendance = attendance
-      entry_pass.unique_code = EventEntryPass.generate_code(event)
       entry_pass.save
     end
 
