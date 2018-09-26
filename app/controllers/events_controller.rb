@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   # before_action :set_kommunity
   before_action :authenticate_user!, except: [:show]
-  before_action :set_event, only: [:show, :edit, :update, :assign_data_form, :remove_data_form_entity, :update_event_status, :update_header_image]
+  before_action :set_event, only: [:show, :edit, :update, :assign_data_form, :remove_data_form_entity, :update_event_status, :update_header_image, :all_responses]
 
 
   def index
@@ -69,6 +69,14 @@ class EventsController < ApplicationController
     # remove the existing header_image
     @event.header_image.attached? ? @event.header_image.purge : false
     @event.header_image.attach(params[:header_image])
+
+  end
+
+
+  def all_responses
+    @all_response_groups = DataFormEntityResponseGroup.where('event_data_form_entity_groups.event_id = ?', @event.id).joins(:event_data_form_entity_group).includes(:user, event_data_form_entity_group: :event)
+
+    @entry_passes = EventEntryPass.where(event_id: @event.id)
 
   end
 

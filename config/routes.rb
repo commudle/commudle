@@ -47,6 +47,11 @@ Rails.application.routes.draw do
             to: 'events#update_header_image',
             as: :update_header_image
 
+
+        get 'all-responses',
+            to: 'events#all_responses',
+            as: :all_responses
+
         resources :event_location_tracks, path: 'event-location-tracks', only: [:create, :destroy], shallow: true do
           resources :track_slots, path: 'track-slots', only: [:create, :destroy], shallow: true
         end

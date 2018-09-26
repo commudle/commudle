@@ -1,0 +1,47 @@
+<section id="all-responses">
+  <div id="email-entry-pass-filter" class="form-group mt-5 col-md-4 offset-md-4">
+    <input type="text" class="form-control" placeholder="Enter Email or Entry Pass Code">
+
+  </div>
+
+  <ul class="list-group col-md-8 offset-md-2">
+    <% @all_response_groups.group_by(&:user_id).each do |user_id, responses| %>
+    <li class="list-group-item">
+      <div class="d-flex">
+        <div class="col-3 user-info-container">
+          <div>
+            <div>
+              <%= image_tag url_for(responses[0].user.avatar), width: 35, class: 'mr-2' %>
+            </div>
+            <p><%= responses[0].user.name %></p>
+            <p><%= responses[0].user.email %></p>
+          </div>
+
+        </div>
+        <div class="col-9">
+          <% responses.each do |resp| %>
+          <ul class="list-group ">
+            <li class="list-group-item">
+              <div>
+                <p class="mb-0">
+                  <%= resp.event_data_form_entity_group.name %>
+                </p>
+                <%= render 'data_form_entity_response_groups/registration_status_actions', dferg: resp, entry_pass: @entry_passes.select{|ep| ep.user_id == resp.user_id && ep.event_id == resp.event_data_form_entity_group.event_id}.first %>
+
+              </div>
+            </li>
+          </ul>
+          <% end %>
+        </div>
+
+      </div>
+
+
+    </li>
+
+    <% end %>
+
+  </ul>
+
+
+</section>

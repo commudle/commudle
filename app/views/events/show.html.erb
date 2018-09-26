@@ -62,6 +62,9 @@
 
 
       <ul class="list-group" id="form-set-list">
+        <li class="list-group-item">
+          <%= link_to 'View All Responses', all_responses_event_path, class: 'btn btn-primary' %>
+        </li>
         <%= render partial: 'event_data_form_entity_groups/form_set', collection: @event.event_data_form_entity_groups, as: :edfeg, locals: {event: @event} %>
 
       </ul>

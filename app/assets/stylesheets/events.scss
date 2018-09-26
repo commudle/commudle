@@ -36,4 +36,23 @@ section#events-show{
 }
 
 
+#all-responses{
+
+  #email-entry-pass-filter{
+    //margin-top: 75
+  }
+
+  .user-info-container{
+    position: relative;
+
+    div:first-child{
+      position: sticky;
+      top: 55px;
+      background: white;
+      z-index: 1;
+    }
+  }
+}
+
+
 
