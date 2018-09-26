@@ -11,7 +11,12 @@
   <!--<% link_to 'Fill', fill_form_response_path(data_form_entity_id: dfe), class: 'ml-2 text-primary' %>-->
 
   <% if dfe.entity.registration_type?(NameValues::RegistrationsType::FEEDBACK) %>
-  <%= link_to "Send Feedback Emails", feedback_email_event_communication_mailers_path(event: dfe.entity.event, form: dfe, force: false), remote: true %>
+  <div class="ml-2">
+    <%= link_to "Send Remaining Feedback Emails", feedback_email_event_communication_mailers_path(event: dfe.entity.event, form: dfe, force: false), remote: true %>
+    <br>
+    <%= link_to "Resend Feedback Emails", feedback_email_event_communication_mailers_path(event: dfe.entity.event, form: dfe, force: true), remote: true %>
+  </div>
+
 
 
   <% end %>

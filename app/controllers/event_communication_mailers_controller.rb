@@ -73,7 +73,7 @@ class EventCommunicationMailersController < ApplicationController
 
   def send_feedback_email
     event = Event.friendly.find(params[:event])
-    @force = params[:force].blank? ? false : params[:force]
+    @force = params[:force] == "true"
     event.send_feedback_emails(params[:form], params[:subject], params[:message], @force)
   end
 

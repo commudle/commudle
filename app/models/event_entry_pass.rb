@@ -4,6 +4,7 @@ class EventEntryPass < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
 
   has_many :fixed_email_event_entry_passes
+  has_many :fixed_emails, through: :fixed_email_event_entry_passes
 
 
 
