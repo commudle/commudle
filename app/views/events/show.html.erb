@@ -75,13 +75,15 @@
 
   <% end %>
 
+
+  <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
+
   <% if !@event.confirmed_speaker_registrations.empty? %>
   <div>
     <%= render 'confirmed_speakers', event: @event %>
   </div>
   <% end %>
 
-  <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
 
   <div class="d-flex flex-md-row flex-sm-column flex-wrap justify-content-md-around mt-5">
     <div class="p-3 m-1 bg-white col-md-6 col-sm-12 event-description">

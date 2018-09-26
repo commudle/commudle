@@ -5,6 +5,15 @@
     <td>
       <p>Hi <%= @user.name %>!</p>
       <p>Here's your <strong>ENTRY PASS</strong> for attending <strong><%= @event.name %></strong>. Please be on time!</p>
+      <% if !@message.blank? %>
+      <hr>
+      <h3 style="text-align: center;">The Organizers have included a message</h3>
+      <blockquote style="border: 1px dashed lightgrey; border-radius: 5px; padding: 5px;">
+        <%= @message.html_safe %>
+      </blockquote>
+      <hr>
+      <% end %>
+
       <div style="text-align: center">
       </div>
       <div>
@@ -21,12 +30,7 @@
 
 
         <hr>
-        <% if !@message.blank? %>
-        <h3 style="text-align: center;">Your Organizer has included a message</h3>
-        <blockquote style="border: 1px dashed lightgrey; border-radius: 5px; padding: 5px;">
-          <%= @message.html_safe %>
-        </blockquote>
-        <% end %>
+
 
       </div>
 

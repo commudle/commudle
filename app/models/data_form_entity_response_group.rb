@@ -43,7 +43,7 @@ class DataFormEntityResponseGroup < ApplicationRecord
       EventEntryPass.find_or_create(dferg.event_data_form_entity_group.event, dferg.user, CurrentAccess.user)
 
       if(force || dferg.fixed_email_sent?(NameValues::FixedEmailType::ENTRY_PASS)[0] == false)
-        Resque.enqueue(EntryPassMailerWorker, dferg.id, subject, message, event_details_options)
+      Resque.enqueue(EntryPassMailerWorker, dferg.id, subject, message, event_details_options)
       end
     end
   end
