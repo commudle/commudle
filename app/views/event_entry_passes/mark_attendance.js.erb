@@ -1,6 +1,6 @@
 {
     $('#mark-attendance-form').trigger("reset");
-    $('#mark-attendance-form input[type=number]').triggerHandler('click');
+    $('#mark-attendance-form input[type=number]').trigger('click');
     let notification = new Noty({
         text: '<% if !@already_marked %>Welcome to the Event <strong><%= @entry_pass.user.name %></strong>! Have a Great Day Ahead! <% else %> Already Marked Your Visit! <% end %>',
         theme: 'relax',

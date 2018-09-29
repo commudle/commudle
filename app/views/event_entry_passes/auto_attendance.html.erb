@@ -26,6 +26,15 @@
     </div>
   </div>
   <script>
-      $('#mark-attendance-form input[type=number]').triggerHandler('prompt');
+//      $('#mark-attendance-form input[type=number]').triggerHandler('prompt');
+      $(document).ready(function() {
+          $('#mark-attendance-form input[type=number]').click(function(e){
+              $(this).focus();
+              console.log('clicked');
+          });
+
+          $('#mark-attendance-form input[type=number]').trigger('click');
+      });
+
   </script>
 </section>
