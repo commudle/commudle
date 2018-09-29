@@ -29,7 +29,8 @@
 //      $('#mark-attendance-form input[type=number]').triggerHandler('prompt');
       $(document).ready(function() {
           $('#mark-attendance-form input[type=number]').click(function(e){
-              $(this).focus();
+
+              setTimeout(function(){ $('#mark-attendance-form input[type=number]')[0].focus()}, 100);
               console.log('clicked');
           });
 
