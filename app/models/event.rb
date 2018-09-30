@@ -56,13 +56,13 @@ class Event < ApplicationRecord
 
     if(kommunity_id.blank?)
       return Event.joins(:event_status, :kommunity).where(
-                      "event_statuses.name = ?",
-                      NameValues::EventStatusType::ANNOUNCED
+                      "event_statuses.name = ? and start_time >= ?",
+                      NameValues::EventStatusType::ANNOUNCED, Time.now
       ).order("start_time asc")
     else
       return Event.joins(:event_status).where(
-          "event_statuses.name = ? and kommunity_id = ?",
-          NameValues::EventStatusType::ANNOUNCED, kommunity_id
+          "event_statuses.name = ? and kommunity_id = ? and start_time >= ?",
+          NameValues::EventStatusType::ANNOUNCED, kommunity_id, Time.now
       ).order("start_time asc")
     end
 
