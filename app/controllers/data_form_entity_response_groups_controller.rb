@@ -27,7 +27,7 @@ class DataFormEntityResponseGroupsController < ApplicationController
 
 
   # rsvp changes the registration_status of response_group to confirmed, only if
-  # the encrypted params must include registration_status and data_form_entity_response_group
+  # the encrypted params  include registration_status and data_form_entity_response_group
   # can be done only if the RSVPs are still open on the event_data_form_entity_group
   def update_rsvp
     @dferg = DataFormEntityResponseGroup.find_by_rsvp_token(params[:token])

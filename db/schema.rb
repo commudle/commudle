@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_030704) do
+ActiveRecord::Schema.define(version: 2018_09_30_155537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -137,6 +137,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_030704) do
     t.bigint "registration_type_id"
     t.bigint "user_id"
     t.string "slug"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_event_data_form_entity_groups_on_deleted_at"
     t.index ["event_id"], name: "index_event_data_form_entity_groups_on_event_id"
     t.index ["name", "event_id"], name: "index_event_data_form_entity_groups_on_name_and_event_id", unique: true
     t.index ["name"], name: "index_event_data_form_entity_groups_on_name"
