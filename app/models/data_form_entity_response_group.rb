@@ -4,10 +4,11 @@ class DataFormEntityResponseGroup < ApplicationRecord
   belongs_to :registration_status, optional: true
 
   has_many :data_form_entity_responses
-
   has_many :fixed_email_dfe_response_groups
   has_many :fixed_emails, through: :fixed_email_dfe_response_groups
   has_many :track_slots
+  # speaker resources would be created only once a speaker is shortlisted for a session
+  has_many :speaker_resources
 
 
   # setting the default value of registration_status
