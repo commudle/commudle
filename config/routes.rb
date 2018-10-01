@@ -62,6 +62,9 @@ Rails.application.routes.draw do
         end
 
 
+        resources :speaker_resources, path: 'speaker-resources', only: [:new, :create, :update]
+
+
       end
 
       resources :locations, only: [:create, :destroy]

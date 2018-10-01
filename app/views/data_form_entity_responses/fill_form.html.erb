@@ -197,30 +197,6 @@
 
   <% end %>
 
-  <div class="modal fade" id="submission-success-modal" tabindex="-1" role="dialog" aria-labelledby="submission-success-modal-title" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="mt-3 text-center">
-          <h5 id="submission-success-modal-title">Thank You!</h5>
-
-        </div>
-        <div class="modal-body ">
-          <p class="text-center">
-            <i class="fas fa-check-circle fa-5x text-success"></i>
-          </p>
-          <% if @data_form_entity.entity.registration_type?([NameValues::RegistrationsType::SPEAKER, NameValues::RegistrationsType::ATTENDEE]) %>
-          <p class="text-center">We've received your submission for <strong><%= @event.name %></strong>. We'll communicate further updates on your email!</p>
-          <% elsif @data_form_entity.entity.registration_type?([NameValues::RegistrationsType::FEEDBACK]) %>
-            <p class="text-center">Thanks for sharing the feedback! <br> Stay tuned to our website for the next event. Stay tuned!</p>
-          <% else %>
-            <p class="text-center">Thank You!</p>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
 
 
 

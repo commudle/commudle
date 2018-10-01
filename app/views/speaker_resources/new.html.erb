@@ -1,0 +1,39 @@
+<section class="col-md-8 offset-md-2" id="speaker-resources-<%= @dferg.id %>">
+
+  <h2 class="mb-5">
+    <%= @dferg.event_data_form_entity_group.event.name %> :: Session Details From The Speaker
+  </h2>
+
+
+
+  <% if user_signed_in? %>
+    <p>Hi <strong><%= @dferg.user.name %></strong>, please fill this form for finalizing the details of your session/workshop for the event.</p>
+
+  <% end %>
+
+  <%= form_for @spr, remote: true do |f| %>
+
+  <div class="form-group mt-3">
+    <%= f.label :session_details_links do %>
+    <h6 class="text-danger">[PLEASE GO THROUGH THIS CAREFULLY]</h6>
+    <p class="mb-0 mt-3">Mention all the details of your session, viz.</p>
+    <ul>
+      <li><strong>Links to slides [if you're using any]</strong></li>
+      <li>Elaborated details of your talk/session/workshop, different things you'll be covering</li>
+    </ul>
+
+    <p>All these details would be shared with all the attendees of the event, please put it in a way that it's helpful to them even after the event!</p>
+
+    <p class="text-info">You can save a draft and complete it in multiple instalments before the last date</p>
+
+    <% end %>
+    <%= f.hidden_field :token, value: @dferg.rsvp_token %>
+    <%= f.text_area :session_details_links, required: true, class: 'form-control', rows: 10, placeholder: 'Start typing here [This is a required field]!', required: true %>
+  </div>
+
+  <%= f.submit 'Save', class: 'btn btn-info' %>
+
+  <% end %>
+
+
+</section>

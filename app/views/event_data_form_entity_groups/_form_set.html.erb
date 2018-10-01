@@ -10,6 +10,7 @@
 
       <% if DataFormEntityResponse.joins(:data_form_entity).where("data_form_entities.entity_id = ? and data_form_entities.entity_type = ?",  @edfeg, EventDataFormEntityGroup) %>
       <%= link_to 'Delete', destroy_form_set_event_path(id: event, event_data_form_entity_group_id: edfeg), method: :delete, remote: true, class: 'btn btn-outline-warning' %>
+      <% end %>
 
 
     </div>

@@ -108,6 +108,11 @@ module RolePermission
             ([:create, :destroy] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
             )
         },
+        speaker_resources: {
+            all: [:new],
+            member: [:create, :update]
+
+        },
         track_slots: {
             organizer: (
             ([:create, :destroy] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
