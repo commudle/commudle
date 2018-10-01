@@ -13,6 +13,7 @@
 
       <% if @dferg.registration_status?([NameValues::RegistrationStatusType::CONFIRMED]) %>
       <p><i class="fas fa-check-circle fa-5x text-success"></i></p>
+      <p>Just one more step, we'll send you a Unique Entry Pass Soon!</p>
       <p>Are you ready for the excitement!</p>
       <% elsif @dferg.registration_status?([NameValues::RegistrationStatusType::CANCELLED]) %>
       <p><i class="fas fa-times-circle fa-5x text-info"></i></p>

@@ -1,8 +1,9 @@
 <section class="col-md-8 offset-md-2" id="speaker-resources-<%= @dferg.id %>">
 
-  <h2 class="mb-5">
+  <h2 class="mb-0 text-center">
     <%= @dferg.event_data_form_entity_group.event.name %> :: Session Details From The Speaker
   </h2>
+  <div class="mb-5 text-center"><%= render 'events/event_time_display', event: @dferg.event_data_form_entity_group.event %></div>
 
 
 
