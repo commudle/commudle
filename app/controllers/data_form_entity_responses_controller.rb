@@ -31,6 +31,11 @@ class DataFormEntityResponsesController < ApplicationController
 
   def submit_form
 
+    # TODO remove this check once the ajax thing is fixed
+    if (@kommunity.blank?)
+      @kommunity = @data_form_entity.entity.event.kommunity
+    end
+
     if (@data_form_entity.can_fill_event_form(current_user))
 
       if(user_signed_in? && !current_user.role?(:member, @kommunity.id))
