@@ -11,14 +11,16 @@ class Comment < ApplicationRecord
   end
 
 
-  def get_users_on_a_thread
+  def get_other_users_on_a_thread
     users = Set.new
 
 
     if self.commentable_type == 'Comment'
       users << self.commentable.user
       self.commentable.comments.each do |comment|
-        users << comment.user
+        if (comment.user != self.user)
+          users << comment.user
+        end
       end
     end
 
