@@ -30,7 +30,7 @@ class Comment < ApplicationRecord
 
   def send_email_on_reply
     if self.commentable_type == 'Comment'
-      self.get_users_on_a_thread.each do |user|
+      self.get_other_users_on_a_thread.each do |user|
         Resque.enqueue(CommentReplyMailerWorker, user.id, self.id, self.event.id)
       end
     end
