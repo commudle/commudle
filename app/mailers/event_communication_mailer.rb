@@ -65,6 +65,7 @@ class EventCommunicationMailer < ApplicationMailer
     @event = @event_entry_pass.event
     @form = form
     @user = @event_entry_pass.user
+    @message = message
     fixed_email = FixedEmail.find_or_create_by(
         mail_type: NameValues::FixedEmailType::FEEDBACK,
         subject: subject,
