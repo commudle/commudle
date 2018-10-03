@@ -13,6 +13,17 @@
           <%= render 'mailers/event_communication_mailer/event_details_options' %>
 
           <div>
+            <% if @dferg.event_data_form_entity_group.registration_type?([NameValues::RegistrationsType::SPEAKER]) %>
+            <div style="margin-top: 10px; margin-bottom: 10px; width: 100%; text-align: center;">
+              <h4>
+                <a href="<%= new_speaker_resource_url(kommunity: @event.kommunity.slug, id: @event.slug, token: @dferg.rsvp_token) %>">
+                  IMPORTANT: Click Here To Submit The Links To Your Slides
+                </a>
+              </h4>
+            </div>
+            <% end %>
+
+
             <h5>Will You Be Joining Us?</h5>
             <table style="width: 100%;">
               <tbody>

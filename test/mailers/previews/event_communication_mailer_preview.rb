@@ -3,7 +3,7 @@ class EventCommunicationMailerPreview < ActionMailer::Preview
 
   def rsvp_email
     EventCommunicationMailer.rsvp_email(
-        DataFormEntityResponseGroup.first,
+        DataFormEntityResponseGroup.find(10),
         "What's Up Kommunity",
         "<p>lkjsfbvld</p>",
         {

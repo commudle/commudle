@@ -15,6 +15,18 @@
       <p><i class="fas fa-check-circle fa-5x text-success"></i></p>
       <p>Just one more step, we'll send you a Unique Entry Pass Soon!</p>
       <p>Are you ready for the excitement!</p>
+
+        <% if @dferg.event_data_form_entity_group.registration_type?([NameValues::RegistrationsType::SPEAKER]) %>
+
+        <h4>
+          <%= link_to '**Click Here To Submit The Links To Your Slides ASAP**', new_speaker_resource_path(kommunity: @dferg.event_data_form_entity_group.event.kommunity, id: @dferg.event_data_form_entity_group.event.slug, token: @dferg.rsvp_token) %>
+
+
+        </h4>
+        <% end %>
+
+
+
       <% elsif @dferg.registration_status?([NameValues::RegistrationStatusType::CANCELLED]) %>
       <p><i class="fas fa-times-circle fa-5x text-info"></i></p>
       <p>We'll see you some other time! All the Best!</p>
