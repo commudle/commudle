@@ -21,7 +21,7 @@
     </div>
 
     <ul id="comment-comments-list-<%= comment.id %>" class="list-group list-group-flush comment-comments">
-      <% comment.comments.each do |cc| %>
+      <% comment.comments.order('created_at').each do |cc| %>
       <%= render 'comments/comment', comment: cc %>
       <% end %>
     </ul>
