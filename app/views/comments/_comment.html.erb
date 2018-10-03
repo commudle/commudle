@@ -8,7 +8,11 @@
         <p class="mb-0 text-muted">
           <small>
             <%= comment.user.name %>
+            <% if comment.user.role?(:organizer, comment.event.kommunity_id) %>
+            <span>&nbsp(Organizer)</span>
+            <% end %>
           </small>
+
         </p>
         <%= simple_format(comment.body, class: 'mb-0') %>
         <small class="comment-timestamp text-muted"><%= time_ago_in_words(comment.created_at) %></small>

@@ -37,4 +37,13 @@ class EventCommunicationMailerPreview < ActionMailer::Preview
     )
   end
 
+
+  def comment_reply_email
+    EventCommunicationMailer.comment_reply_email(
+        User.first,
+        Comment.first,
+        Event.first
+    )
+  end
+
 end

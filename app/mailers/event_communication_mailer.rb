@@ -83,4 +83,19 @@ class EventCommunicationMailer < ApplicationMailer
   end
 
 
+
+  def comment_reply_email(user, comment, event)
+    @event = event
+    @user = user
+    @comment = comment
+    @replying_user = @comment.user
+
+    mail(
+        to: @user.email,
+        subject: "#{@event.name} :: #{@replying_user.name} :: New Comment"
+    )
+
+  end
+
+
 end

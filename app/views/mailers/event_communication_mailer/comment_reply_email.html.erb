@@ -1,0 +1,25 @@
+<table style="width: 550px; margin: 0 auto; background-color: white; border-radius: 5px; padding: 25px;">
+  <tbody>
+
+  <tr>
+    <td>
+      <h3><%= @event.name %></h3>
+
+      <p style="color: grey;">
+        <%= @replying_user.name %> replied on your comment!
+      </p>
+      <p>
+        <blockquote style="background: #d3d3d35e; margin: 0; padding: 15px;">
+        <%= simple_format(@comment.body) %>
+        </blockquote>
+      </p>
+
+      <a href="<%= event_url(@event.kommunity.slug, @event.slug) %>" style="text-decoration: none;"><small>Click here to reply</small></a>
+
+
+    </td>
+  </tr>
+
+  </tbody>
+
+</table>
