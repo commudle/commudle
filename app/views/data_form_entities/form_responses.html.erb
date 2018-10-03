@@ -55,6 +55,14 @@
           <th scope="col" class="sticky-row">
             <p>Profile Details</p>
           </th>
+
+          <% if @edfeg.registration_type?([NameValues::RegistrationsType::SPEAKER]) %>
+          <th class="sticky-row">
+            <p>Session Flow + Slides (Links)</p>
+          </th>
+
+          <% end %>
+
           <% @edfeg.data_form_entities.each do |dfe| %>
           <%  dfe.data_form.questions.with_deleted.each do |question| %>
           <th scope="col" class="sticky-row">
@@ -124,6 +132,17 @@
             </div>
 
           </td>
+
+          <% if @edfeg.registration_type?([NameValues::RegistrationsType::SPEAKER]) %>
+          <td>
+            <% if dferg.speaker_resource %>
+            <div>
+              <%= wrap_url_anchor(simple_format(dferg.speaker_resource.session_details_links)) %>
+            </div>
+            <% end %>
+          </td>
+
+          <% end %>
 
           <% @edfeg.data_form_entities.each do |dfe| %>
           <% dfe.data_form.questions.with_deleted.each do |question| %>
