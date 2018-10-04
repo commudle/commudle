@@ -1,9 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  include RolePermission
+
   before_action :set_time_zone
 
-  include RolePermission
+
+
+  before_action :set_kommunity
+  before_action :access_allowed?, unless: :devise_controller?
 
   around_action :set_current_user
 

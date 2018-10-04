@@ -3,8 +3,7 @@ module RolePermission
 
   included do
     # befrore_action :user_signed_in?, unless: :devise_controller?
-    before_action :set_kommunity
-    before_action :access_allowed?, unless: :devise_controller?
+
   end
 
   thread_mattr_accessor :event, :kommunity
@@ -158,6 +157,7 @@ module RolePermission
 
 
   def access_allowed?
+    # byebug
     if(!has_permission)
       return head 403
     end
