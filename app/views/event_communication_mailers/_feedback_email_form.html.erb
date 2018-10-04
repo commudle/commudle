@@ -11,7 +11,7 @@
 
 
   <div class="email-format-container">
-    <%= form_with url: send_feedback_email_event_communication_mailers_path(event: @event, force: false, form: @form), method: :post, remote: true do |f| %>
+    <%= form_with url: send_feedback_email_event_communication_mailers_path(event: @event, force: @force, form: @form), method: :post, remote: true do |f| %>
     <h5>Subject and Any Specific Message to Embed</h5>
     <fieldset>
       <div class="alert alert-info" role="alert">
