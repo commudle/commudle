@@ -39,9 +39,8 @@ module RolePermission
         },
 
         data_form_entity_responses: {
-          all: [:fill_form],
-          member: [:submit_form],
-          organizer: ([:submit_form] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+          all: [:fill_form, :submit_form],
+          # organizer: ([:submit_form] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
         },
 
         data_form_entity_response_groups: {
