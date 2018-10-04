@@ -1,7 +1,7 @@
 <div class="event-location-track-slots-widget" id="event-tracks-creator-<%= event.id %>">
   <div class=" p-3">
 
-    <h3>Agenda</h3>
+    <h3>Agenda <% if event.event_location_tracks.empty? %><small>(Coming Soon)</small><% end %></h3>
     <div class="event-location-tracks-grid">
       <% if !event.event_location_tracks.empty? %>
       <div class="row">
