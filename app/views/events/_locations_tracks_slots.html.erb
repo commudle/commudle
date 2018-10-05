@@ -3,7 +3,7 @@
 
     <h3>Agenda <% if event.event_location_tracks.empty? %><small>(Coming Soon)</small><% end %></h3>
     <div class="event-location-tracks-grid">
-      <% if !event.event_location_tracks.empty? %>
+      <% if !event.event_location_tracks.empty? || current_user.role?(:organizer, event.kommunity_id) %>
       <div class="row">
 
         <div class="col-md-2">
