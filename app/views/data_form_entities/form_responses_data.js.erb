@@ -1,5 +1,5 @@
 {
-  <% @responses.each.with_index(@count * (@page)) do |response, index| %>
+  <% @responses.each.with_index((@count * (@page - 1)) + 1) do |response, index| %>
 
     $('#form-responses-container').append($('<%= escape_javascript render "data_form_entities/form_response_row", dferg: response, index: index %>'));
 
