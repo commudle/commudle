@@ -42,7 +42,6 @@ class DataFormEntitiesController < ApplicationController
   private
 
   def set_event_data_form_entity_group
-    byebug
     @edfeg = EventDataFormEntityGroup.includes(data_form_entities: {data_form: {questions: [:question_choices, :data_form_entity_response_values]}}).find(params[:event_data_form_entity_group_id].to_i)
     RolePermission.event = @edfeg.event
 
