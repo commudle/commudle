@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   # before_action :set_kommunity
   before_action :authenticate_user!, except: [:show]
   before_action :set_event, only: [:show, :edit, :update, :assign_data_form, :remove_data_form_entity, :update_event_status, :update_header_image, :all_responses]
+  before_action :access_allowed?, unless: :devise_controller?
+
 
 
   def index

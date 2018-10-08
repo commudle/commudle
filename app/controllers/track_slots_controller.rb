@@ -1,5 +1,7 @@
 class TrackSlotsController < ApplicationController
   before_action :authenticate_user!
+  before_action :access_allowed?, unless: :devise_controller?
+
 
   def create
     @track_slot = TrackSlot.new(track_slot_params)

@@ -2,6 +2,8 @@ class EventCommunicationMailersController < ApplicationController
   # before_action :set_kommunity
   before_action :authenticate_user!
   before_action :set_event_details_options
+  before_action :access_allowed?, unless: :devise_controller?
+
 
 
   def data_form_entity_response_group_rsvp_email

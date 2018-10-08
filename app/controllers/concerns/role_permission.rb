@@ -156,7 +156,6 @@ module RolePermission
 
 
   def access_allowed?
-    # byebug
     if(!has_permission)
       return head 403
     end

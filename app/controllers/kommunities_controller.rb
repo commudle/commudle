@@ -1,5 +1,7 @@
 class KommunitiesController < ApplicationController
   before_action :authenticate_user!
+  before_action :access_allowed?, unless: :devise_controller?
+
 
   def show
     @events = Event.where(kommunity_id: @kommunity.id)

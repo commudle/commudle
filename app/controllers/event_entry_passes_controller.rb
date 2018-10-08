@@ -1,5 +1,7 @@
 class EventEntryPassesController < ApplicationController
   before_action :authenticate_user!
+  before_action :access_allowed?, unless: :devise_controller?
+
 
 
   def create

@@ -1,6 +1,8 @@
 class SpeakerResourcesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_data_form_entity_response_group
+  before_action :access_allowed?, unless: :devise_controller?
+
 
 
   def new

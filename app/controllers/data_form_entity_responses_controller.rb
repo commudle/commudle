@@ -2,6 +2,8 @@ class DataFormEntityResponsesController < ApplicationController
   # before_action :set_kommunity
   before_action :authenticate_user!, except: [:fill_form]
   before_action :set_data_form_entity
+  before_action :access_allowed?, unless: :devise_controller?
+
 
 
 
@@ -66,7 +68,6 @@ class DataFormEntityResponsesController < ApplicationController
       if (params[:ots] && params[:ots] == 'true') || (@data_form_entity.on_the_spot_uninvited?)
         event = dfer.data_form_entity_response_group.event_data_form_entity_group.event
         entry_pass = EventEntryPass.find_or_create(event, dfer.data_form_entity_response_group.user,  current_user, true, true, false)
-        # byebug
         dfer.data_form_entity_response_group.update(registration_status_id: RegistrationStatus.find_by_name(NameValues::RegistrationStatusType::CONFIRMED).id)
         DataFormEntityResponseGroup.send_entry_pass_email([dfer.data_form_entity_response_group_id], "Entry Pass :: #{event.name} :: On The Spot Registration!", "", true, {})
       end
