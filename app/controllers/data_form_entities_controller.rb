@@ -47,10 +47,7 @@ class DataFormEntitiesController < ApplicationController
 
   def set_page_numbers
     @page = params[:page].blank? ? 1 : params[:page].to_i
-    @count = params[:count].blank? ? 100 : params[:count].to_i
+    @count = params[:count].blank? ? 25 : params[:count].to_i
   end
-
-
-
 
 end
