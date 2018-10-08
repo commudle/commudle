@@ -1,11 +1,11 @@
 <div class="registration-status-counter" id="registration-status-counter-filter-<%= edfeg.id %>">
 
   <ul class="list-group d-flex flex-row">
-      <li class="list-group-item p-1 <%= selected_status.blank? ? 'active' : '' %>">
+      <li class="list-group-item p-1 <%= selected_status.blank? ? 'active' : '' %>" data-regstatus="all">
         <%= link_to "All : #{edfeg.data_form_entity_response_groups.length}", form_responses_path(event_data_form_entity_group_id: edfeg) %>
       </li>
     <% edfeg.registration_status_counts.each do |k, v| %>
-      <li class="list-group-item p-1 <%= selected_status.to_i == v[:registration_status_id].to_i ? 'active' : '' %>">
+      <li class="list-group-item p-1 <%= selected_status.to_i == v[:registration_status_id].to_i ? 'active' : '' %>" data-regstatus="<%= v[:registration_status_id].to_i  %>">
 
         <%= link_to "#{k.titleize} : #{v[:count]}", form_responses_path(event_data_form_entity_group_id: edfeg, registration_status: v[:registration_status_id]) %>
       </li>

@@ -76,99 +76,11 @@
         </tr>
 
         </thead>
-        <tbody>
+        <tbody id="form-responses-container">
         <!--TODO Optimize the query to show responses-->
 
 
-        <% @responses.each.with_index(1) do |dferg, index| %>
-        <tr>
-          <td class="pt-2 pb-0">
-            <p>
-              <%= index %>
-            </p>
-          </td>
-          <th scope="row" class="pt-2 pb-2 sticky-box">
-            <p class="mb-0">
-              <%= dferg.user.name %>
-            </p>
-            <div class="user-avatar">
-              <%= image_tag url_for(dferg.user.avatar) %>
-            </div>
-            <p>
-              <%= dferg.user.email %>
-            </p>
-            <% if(!@edfeg.registration_type.blank?) %>
-            <%= render 'data_form_entity_response_groups/registration_status_actions', dferg: dferg, entry_pass: @entry_passes.select{|ep| ep.user == dferg.user && ep.event == @edfeg.event}.first %>
-            <% end %>
-          </th>
-          <td scope="row" class="pt-2 pb-0">
-            <p class="text-muted designation"><%= dferg.user.designation %></p>
-            <div class="speaker-social-links d-flex justify-content-center">
 
-              <% if dferg.user.personal_website %>
-              <a target="_blank" href="<%= complete_url(dferg.user.personal_website) %>" class="p-2 text-dark">
-                <i class="fas fa-info"></i>
-              </a>
-              <% end %>
-
-              <% if dferg.user.twitter %>
-              <a target="_blank" href="<%= twitter_url(dferg.user.twitter) %>" class="p-2 text-dark">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <% end %>
-
-              <% if dferg.user.github %>
-              <a target="_blank" href="<%= complete_url(dferg.user.github) %>" class="p-2 text-dark">
-                <i class="fab fa-github"></i>
-              </a>
-              <% end %>
-
-              <% if dferg.user.linkedin %>
-              <a target="_blank" href="<%= complete_url(dferg.user.linkedin) %>" class="p-2 text-dark">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-              <% end %>
-
-            </div>
-
-          </td>
-
-          <% if @edfeg.registration_type?([NameValues::RegistrationsType::SPEAKER]) %>
-          <td>
-            <% if dferg.speaker_resource %>
-            <div>
-              <%= wrap_url_anchor(simple_format(dferg.speaker_resource.session_details_links)) %>
-            </div>
-            <% end %>
-          </td>
-
-          <% end %>
-
-          <% @edfeg.data_form_entities.each do |dfe| %>
-          <% dfe.data_form.questions.with_deleted.each do |question| %>
-          <% dferg.data_form_entity_responses.each do |dfer| %>
-
-
-
-          <td class="pt-2 pb-0">
-
-            <p>
-              <%= wrap_url_anchor(DataFormEntityResponseValue.get_response_text(question, dfer)) %>
-            </p>
-
-          </td>
-
-
-          <% end %>
-          <% end %>
-          <% end %>
-
-          <td class="pt-2 pb-0">
-
-          </td>
-        </tr>
-
-        <% end %>
 
 
         </tbody>
@@ -181,5 +93,17 @@
 
   </div>
 
+  <script>
+
+      function getFormResponses(registrationStatus, kommunity, eventDataFormEntityGroupId, page){
+          $.getScript( `/${kommunity}/form-responses-data?event_data_form_entity_group_id=${eventDataFormEntityGroupId}&page=${page}&registration_status=${registrationStatus}` )
+              .done(function( script, textStatus ) {
+                  console.log('*');
+              });
+      }
+
+
+      getFormResponses('<%= @selected_status %>', '<%= @kommunity.slug %>', '<%= @edfeg.id %>', '<%= @page %>');
+  </script>
 
 </section>

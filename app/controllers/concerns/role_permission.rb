@@ -28,7 +28,7 @@ module RolePermission
 
         data_form_entities: {
             organizer: (
-            [:form_responses] if (!event.blank? && user_signed_in? && current_user.role?(:organizer, event.kommunity_id))
+            [:form_responses, :form_responses_data] if (!event.blank? && user_signed_in? && current_user.role?(:organizer, event.kommunity_id))
             ).to_a
         },
 

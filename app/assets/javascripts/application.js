@@ -74,11 +74,12 @@ function showImage(input, displayContainerId, displayType='image_tag') {
 }
 
 
-function updateRegistrationStatusCounter(edfegId, kommunity, event_id){
-    $.getScript( `/${kommunity}/events/${event_id}/update-registration-status-counter?event_data_form_entity_group_id=${edfegId}` )
+function updateRegistrationStatusCounter(edfegId, kommunity, eventId){
+    var selectedStatusId = $('.registration-status-counter ul>li.active').attr('data-regstatus');
+    $.getScript( `/${kommunity}/events/${eventId}/update-registration-status-counter?event_data_form_entity_group_id=${edfegId}&selected_status_id=${selectedStatusId}` )
         .done(function( script, textStatus ) {
             console.log('counter refreshed');
-        })
+        });
 }
 
 

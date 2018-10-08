@@ -60,9 +60,12 @@ class DataFormEntityResponseGroup < ApplicationRecord
     if(fixed_emails.map(&:mail_type).include? type)
       return true, fixed_emails.length
     end
-
-
     return false, 0
+  end
+
+
+  def fixed_emails_delivered_types
+    return self.fixed_emails.map(&:mail_type)
   end
 
 

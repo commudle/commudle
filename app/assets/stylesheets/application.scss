@@ -87,8 +87,6 @@ body{
       .speaker-display-card{
         width: 200px;
 
-
-
         .speaker-avatar{
           margin: 0 auto;
           width: 175px;
@@ -113,7 +111,9 @@ body{
           .designation{
             margin-bottom: 5px;
             height: 75px;
-            overflow-y: scroll;
+            overflow-y: hidden;
+            line-height: 20px;
+            font-size: 14px;
           }
         }
       }

@@ -57,7 +57,7 @@ class EventDataFormEntityGroupsController < ApplicationController
   # method to update the counter for a specific event data form entity group
   # this will return a script to the browser which will updated the counter every time this route is called
   def update_registration_status_counter
-
+    @selected_status = params[:selected_status_id]
   end
 
 

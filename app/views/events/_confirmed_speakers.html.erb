@@ -2,7 +2,7 @@
 <h3>The Speakers</h3>
   <ul class="list-group d-flex flex-row flex-wrap justify-content-around p-3 bg-white shortlisted-speakers-list">
     <% event.confirmed_speaker_registrations.shuffle.each do |evs| %>
-      <li class="list-group-item shadow-sm">
+      <li class="list-group-item shadow-sm mb-3">
         <div class="speaker-display-card">
           <div class="speaker-avatar">
             <%= image_tag url_for(evs.user.avatar), width: 35, class: 'mr-2' %>

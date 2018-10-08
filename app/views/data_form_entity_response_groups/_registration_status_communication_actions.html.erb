@@ -11,6 +11,15 @@
 
   <% end %>
 
+  <p class="text-info">
+    <% if !dferg.fixed_emails_delivered_types.empty? %>
+    <small><strong>Emails Sent</strong>: <%= dferg.fixed_emails_delivered_types.uniq.join(', ') %></small>
+    <% end %>
+  </p>
+
+
+
+
 </div>
 
 <!--Change the status to confirmed as soon as an entry pass is sent-->

@@ -105,6 +105,7 @@ Rails.application.routes.draw do
         as: :update_response_registration_status
 
 
+
     get 'update-rsvp',
         to: 'data_form_entity_response_groups#update_rsvp',
         as: :update_rsvp
@@ -115,6 +116,10 @@ Rails.application.routes.draw do
     get 'form-responses',
         to: 'data_form_entities#form_responses',
         as: :form_responses
+
+    get 'form-responses-data',
+        to: 'data_form_entities#form_responses_data',
+        as: :form_responses_data
 
 
     # data_form_entity_responses_controller
