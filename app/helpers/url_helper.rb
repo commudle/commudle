@@ -18,7 +18,8 @@ module UrlHelper
 
   # wrap urls in a text with <a> tag
   def wrap_url_anchor text_string
-    regexp = /\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/?)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s\`!()\[\]{};:\'\".,<>?«»“”‘’]))/i
+
+    regexp = /(https?:\/\/)?\w*\.\w+(\.\w+)*(\/\w+)*(\.\w*)?/
 
 
     return text_string.gsub(regexp){|url| "<a target='_blank' href=#{complete_url(url)}>#{url}</a>"}.html_safe

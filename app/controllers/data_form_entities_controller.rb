@@ -18,9 +18,7 @@ class DataFormEntitiesController < ApplicationController
 
 
   def form_responses_data
-    Rails.logger.info "*******************************************"
-    Rails.logger.info "#{@page} * #{@count}"
-    Rails.logger.info "*******************************************"
+
     if !params[:registration_status].blank? && params[:registration_status] != 'all'
 
       @responses = @edfeg.data_form_entity_response_groups.where('registration_status_id = ?', params[:registration_status].to_i).order(:created_at).offset(@count * (@page - 1)).limit(@count)
@@ -55,7 +53,7 @@ class DataFormEntitiesController < ApplicationController
 
   def set_page_numbers
     @page = params[:page].blank? ? 1 : params[:page].to_i
-    @count = params[:count].blank? ? 1 : params[:count].to_i
+    @count = params[:count].blank? ? 25 : params[:count].to_i
   end
 
 end
