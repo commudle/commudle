@@ -34,6 +34,12 @@ class DataFormEntitiesController < ApplicationController
 
 
     @pending_data = @responses.length == @count ? true : false
+
+    Rails.logger.info "*******************************************"
+    Rails.logger.info "#{@page} * #{@count}"
+    Rails.logger.info "#{@responses}"
+    Rails.logger.info "*******************************************"
+
   end
 
 
