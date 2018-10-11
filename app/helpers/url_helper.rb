@@ -11,6 +11,7 @@ module UrlHelper
   # convert a handle (@) to twitter url
   def twitter_url handle
     if handle[0] == '@'
+      handle[0] = ''
       url_string = "http://twitter.com/#{handle}"
     end
     return url_string
