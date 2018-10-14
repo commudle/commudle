@@ -1,6 +1,6 @@
 <div>
   <ul class="list-group list-group-flush text-dark track-slots-list">
-    <% event_location_track.track_slots.each do |ts| %>
+    <% event_location_track.track_slots.order('start_time').each do |ts| %>
     <li class="list-group-item" id="track-slot-<%= ts.id %>">
       <div class="row">
         <p class="col-4">
