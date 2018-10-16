@@ -1,12 +1,12 @@
 <section id="all-responses">
   <div id="email-entry-pass-filter" class="form-group mt-5 col-md-4 offset-md-4">
-    <input type="text" class="form-control" placeholder="Enter Email or Entry Pass Code">
+    <input type="text" class="form-control" id="responses-filter" placeholder="Enter Email or Entry Pass Code">
 
   </div>
 
   <ul class="list-group col-md-8 offset-md-2">
     <% @all_response_groups.group_by(&:user_id).each do |user_id, responses| %>
-    <li class="list-group-item">
+    <li class="list-group-item user-info">
       <div class="d-flex">
         <div class="col-3 user-info-container">
           <div>
@@ -14,7 +14,7 @@
               <%= image_tag url_for(responses[0].user.avatar), width: 35, class: 'mr-2' %>
             </div>
             <p><%= responses[0].user.name %></p>
-            <p><%= responses[0].user.email %></p>
+            <p class="user-email"><%= responses[0].user.email %></p>
           </div>
 
         </div>

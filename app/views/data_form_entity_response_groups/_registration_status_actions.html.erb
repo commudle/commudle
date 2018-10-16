@@ -27,7 +27,7 @@
   <div class="event-entry-pass-actions d-flex justify-content-space-around">
     <% if dferg.registration_status.confirmed? && !entry_pass.blank? %>
     <p class="m-1">
-      Entry Pass Code: <strong><%= entry_pass.unique_code %></strong>
+      Entry Pass Code: <strong class="user-entry-pass-code"><%= entry_pass.unique_code %></strong>
     </p>
 
     <p class="m-1">
