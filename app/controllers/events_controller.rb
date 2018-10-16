@@ -76,7 +76,7 @@ class EventsController < ApplicationController
 
   # currently using this for all attendees only
   def all_responses
-    @all_response_groups = DataFormEntityResponseGroup.joins(:registration_status, event_data_form_entity_group: {event: :event_entry_passes}).where('event_data_form_entity_groups.event_id = ? and registration_statuses.name = ?', @event.id, NameValues::RegistrationStatusType::CONFIRMED).joins(:event_data_form_entity_group).includes(:user, event_data_form_entity_group: :event)
+    @all_response_groups = DataFormEntityResponseGroup.joins(:registration_status, event_data_form_entity_group: {event: :event_entry_passes}).where('event_data_form_entity_groups.event_id = ? and registration_statuses.name = ?', @event.id, NameValues::RegistrationStatusType::CONFIRMED).joins(:event_data_form_entity_group).includes(:user, event_data_form_entity_group: :event).uniq
 
     @entry_passes = EventEntryPass.where(event_id: @event.id)
 
