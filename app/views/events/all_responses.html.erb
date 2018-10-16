@@ -1,4 +1,12 @@
 <section id="all-responses">
+  <% if @entry_passes %>
+  <h1 class="text-center"><%= @entry_passes[0].event.name %></h1>
+  <div class="text-center">
+    <span class="badge badge-info">Confirmations: <%= @entry_passes.length %></span>
+    <span class="badge badge-success">Attendees: <%= @entry_passes.select{|ep| ep.attendance == true}.length %></span>
+    <span class="badge badge-dark">Uninvited: <%= @entry_passes.select{|ep| ep.uninvited == true}.length %></span>
+  </div>
+  <% end %>
   <div id="email-entry-pass-filter" class="form-group mt-5 col-md-4 offset-md-4">
     <input type="text" class="form-control" id="responses-filter" placeholder="Enter Email or Entry Pass Code">
 
