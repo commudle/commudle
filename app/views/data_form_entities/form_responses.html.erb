@@ -107,7 +107,7 @@
       }
 
       $('#responses-table').scroll(function(){
-          if (this.scrollTop > initialScroll + 20 && responsesAjax == undefined){
+          if (this.scrollTop > initialScroll + 200 && responsesAjax == undefined){
               getFormResponses('<%= @selected_status %>', '<%= @kommunity.slug %>', '<%= @edfeg.id %>', localStorage.page);
               initialScroll = window.scrollY;
 
