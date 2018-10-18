@@ -1,5 +1,9 @@
+require 'resque/server'
 Rails.application.routes.draw do
 
+  authenticate :user do
+    mount Resque::Server => "/resque"
+  end
 
   resources :kommunities, only: [:new, :create, :edit, :update]
 
@@ -152,16 +156,9 @@ Rails.application.routes.draw do
 
 
 
-
-
   match '*all', to: proc { [204, {}, ['']] }, via: :options
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-
-
-
-
-
 
 
 
