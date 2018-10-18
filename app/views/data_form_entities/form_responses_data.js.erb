@@ -4,9 +4,8 @@
     $('#form-responses-container').append($('<%= escape_javascript render "data_form_entities/form_response_row", dferg: response, index: index %>'));
 
   <% end %>
-  localStorage.page = parseInt(localStorage.page) + 1;
 
-  if('<%= @pending_data %>' != 'true'){
-      pendingData = false;
+  if('<%= @pending_data %>' == 'true'){
+      getFormResponses('<%= @selected_status %>', '<%= @kommunity.slug %>', '<%= @edfeg.id %>', '<%= @page + 1 %>');
   }
 }

@@ -34,7 +34,7 @@
     </div>
 
 
-    <div class="table-responsive" id="responses-table">
+    <div class="table-responsive">
       <table class="table table-hover table-fixed">
         <thead>
         <tr>
@@ -94,26 +94,16 @@
   </div>
 
   <script>
-      localStorage.page = 1;
-      initialScroll = 0;
-      var responsesAjax;
-      var pendingData = true;
 
       function getFormResponses(registrationStatus, kommunity, eventDataFormEntityGroupId, page){
-          responsesAjax = $.getScript( `/${kommunity}/form-responses-data?event_data_form_entity_group_id=${eventDataFormEntityGroupId}&page=${page}&registration_status=${registrationStatus}` )
+          $.getScript( `/${kommunity}/form-responses-data?event_data_form_entity_group_id=${eventDataFormEntityGroupId}&page=${page}&registration_status=${registrationStatus}` )
               .done(function( script, textStatus ) {
-                  responsesAjax = undefined;
+                  console.log('*');
               });
       }
 
-      $('#responses-table').scroll(function(){
-          if (this.scrollTop > initialScroll + 200 && responsesAjax == undefined){
-              getFormResponses('<%= @selected_status %>', '<%= @kommunity.slug %>', '<%= @edfeg.id %>', localStorage.page);
-              initialScroll = window.scrollY;
 
-          }
-      });
-      getFormResponses('<%= @selected_status %>', '<%= @kommunity.slug %>', '<%= @edfeg.id %>', localStorage.page);
+      getFormResponses('<%= @selected_status %>', '<%= @kommunity.slug %>', '<%= @edfeg.id %>', '<%= @page %>');
   </script>
 
 </section>
