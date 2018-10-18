@@ -54,7 +54,7 @@
   <td>
     <% if dferg.speaker_resource %>
     <div>
-      <%= simple_format(dferg.speaker_resource.session_details_links) %>
+      <%= wrap_url_anchor(simple_format(dferg.speaker_resource.session_details_links)) %>
     </div>
     <% end %>
   </td>
@@ -70,7 +70,7 @@
   <td class="pt-2 pb-0">
 
     <p>
-      <%= DataFormEntityResponseValue.get_response_text(question, dfer) %>
+      <%= wrap_url_anchor(DataFormEntityResponseValue.get_response_text(question, dfer)) %>
     </p>
   </td>
 
