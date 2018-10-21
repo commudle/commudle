@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     mount Resque::Server => "/resque"
   end
 
+  # specifically for devfest
+  get '/devfest', to: redirect('gdg-new-delhi/fill-form?data_form_entity_id=13')
+
   resources :kommunities, only: [:new, :create, :edit, :update]
 
   scope ':kommunity' do
@@ -151,8 +154,6 @@ Rails.application.routes.draw do
     end
 
   end
-
-
 
 
 
