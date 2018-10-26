@@ -83,7 +83,8 @@ module RolePermission
         event_entry_passes: {
             organizer: (
             ([:create, :toggle_attendance, :toggle_uninvited, :auto_attendance, :mark_attendance] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
-            )
+            ),
+            attendance_manager: (([:auto_attendance, :mark_attendance] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a)
         },
 
         event_location_tracks: {
