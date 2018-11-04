@@ -4,6 +4,7 @@ group :production do
   gem 'unicorn', '~> 5.2'
 end
 
+gem 'rest-client'
 
 gem 'aws-sdk-s3', require: false
 

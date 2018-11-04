@@ -1,0 +1,40 @@
+<% content_for :page_title do %>
+Slides, Content & Pictures | <%= @event.name %> | <%= @kommunity.name %>
+<% end %>
+
+<section id="public-resources">
+  <div class="text-center">
+    <h1>
+      <span class="badge badge-primary"><%= @event.name %></span>
+    </h1>
+    <p class="p-0">
+      Resources
+    </p>
+  </div>
+
+  <table class="table table-striped col-md-10 offset-md-1">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Speaker</th>
+      <th scope="col">Session Details / Link To Slides</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @speaker_resources.each.with_index(1) do |sr, index| %>
+    <tr>
+      <th scope="row"><%= index %></th>
+      <td>
+        <div>
+          <%= render 'speaker_display_card', user: sr.data_form_entity_response_group.user %>
+
+        </div>
+
+      </td>
+      <td><%= simple_format(sr.session_details_links) %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</section>

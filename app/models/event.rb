@@ -135,5 +135,18 @@ class Event < ApplicationRecord
   end
 
 
+  # TODO add photos link
+  # def get_photos
+  #   album_id = 'AF1QipNohy1dAsIrw9zq8KBr6_3dODJwIf38v5Bwj47hRivWtUGKkp4bI1EGi-_5H3C41w'
+  #   response = RestClient.post(
+  #       'https://photoslibrary.googleapis.com/v1/mediaItems:search',
+  #       {albumId: album_id},
+  #       headers={
+  #           'Authorization': "Bearer #{ENV["GDG_GOOGLE_CLIENT_ID"]}"
+  #       }
+  #   )
+  # end
+
+
 
 end

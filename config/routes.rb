@@ -59,6 +59,11 @@ Rails.application.routes.draw do
             to: 'events#all_responses',
             as: :all_responses
 
+
+        get 'resources',
+            to: 'events#public_resources',
+            as: :public_resources
+
         resources :event_location_tracks, path: 'event-location-tracks', only: [:create, :destroy], shallow: true do
           resources :track_slots, path: 'track-slots', only: [:create, :destroy], shallow: true
         end

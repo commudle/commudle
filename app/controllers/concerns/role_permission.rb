@@ -51,7 +51,7 @@ module RolePermission
         },
 
         events: {
-            all: [:index, :show],
+            all: [:index, :show, :public_resources],
             organizer: (
             [:new, :create] + ([:edit, :update, :update_event_status, :update_header_image, :all_responses] if (!event.blank? && user_signed_in? && current_user.role?(:organizer, event.kommunity_id))).to_a
             )

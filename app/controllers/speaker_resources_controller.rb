@@ -21,6 +21,7 @@ class SpeakerResourcesController < ApplicationController
   end
 
 
+
   private
 
 

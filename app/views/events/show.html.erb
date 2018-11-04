@@ -83,6 +83,14 @@
 
   <% end %>
 
+  <div>
+    <%= link_to public_resources_event_path(id: @event) do %>
+      <p class="btn btn-info">
+        <i class="fas fa-project-diagram "></i> &nbsp Slides from all Sessions!
+      </p>
+    <% end %>
+  </div>
+
 
   <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
 
