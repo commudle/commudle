@@ -146,9 +146,21 @@ body{
   }
 }
 
+.horizontal-cards{
+  overflow-x: auto;
+}
+
+
+#kommunity-list{
+  background: #6998e4;
+  box-shadow: 1px 1px 1px 1px lightgrey;
+  padding: 15px;
+
+}
 
 .event-mini-card{
   position: relative;
+  width: 350px;
 
   .card-header{
     border: 1px solid #4368b1;
@@ -157,23 +169,22 @@ body{
   }
 
   .event-timing {
+    font-size: 12px;
     span:first-child {
       background-color: lightgrey;
       padding: 5px;
+      border-radius: 15px;
     }
   }
 
-    .clickable-card{
-    position: absolute;
-    top: 0; left: 0;
-    height: 100%; width: 100%;
-    z-index: 100;
-    box-shadow: 1px 1px 1px 1px lightgrey;
+  .card-text{
+    height: 200px;
+    overflow: hidden;
+  }
 
-
-    &:hover{
-      box-shadow: 1px 1px 4px 2px #ababab;
-    }
+  .clickable-card{
+    text-decoration: none;
+    color: inherit;
   }
 
 }
@@ -231,4 +242,38 @@ body{
 .active-registration-status{
   color: green;
   font-weight: bold;
+}
+
+
+
+
+
+.kommunity-display-card{
+
+  .clickable-card.full-size{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-header{
+    //border: none;
+
+    position: relative;
+
+
+  }
+  .card-body{
+    height: 120px;
+    overflow-y: hidden;
+
+    position: relative;
+
+  }
+
+  .card-footer{
+    border: 0;
+  }
 }

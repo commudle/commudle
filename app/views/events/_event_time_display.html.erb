@@ -10,8 +10,10 @@
                 </span>
   <% else %>
   <span>
-                  <span><%= event.start_time.strftime("%A") %>, <%= event.start_time.strftime("%d-%b-%Y") %></span> <span class=""> <%= event.start_time.strftime('%I:%M %p') %> To <%= event.end_time.strftime('%I:%M %p') %></span>
-                </span>
+    <span><%= event.start_time.strftime("%A") %>, <%= event.start_time.strftime("%d-%b-%Y") %></span>
+    <span class=""> <%= event.start_time.strftime('%I:%M %p') %> To <%= event.end_time.strftime('%I:%M %p') %></span>
+
+  </span>
   <% end %>
 
 </div>

@@ -68,6 +68,20 @@ class Event < ApplicationRecord
 
   end
 
+  def self.recent_past(kommunity_id: nil, count: 5)
+    if kommunity_id.blank?
+      return Event.joins(:event_status, :kommunity).where(
+          "event_statuses.name = ? and start_time <= ?",
+          NameValues::EventStatusType::COMPLETED, Time.now
+      ).order("start_time desc").limit(count)
+    else
+      return Event.joins(:event_status).where(
+          "event_statuses.name = ? and kommunity_id = ? and start_time <= ?",
+          NameValues::EventStatusType::COMPLETED, kommunity_id, Time.now
+      ).order("start_time desc").limit(count)
+    end
+  end
+
 
   def status? (event_status_names)
     return event_status_names.include? self.event_status.name

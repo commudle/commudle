@@ -9,10 +9,16 @@ Prerequisites
 * Database Used: Postgres (both development and production)
 
   * Setting up postgres
-    * create role myapp with createdb login password 'password1';
+    * create role kommunity with createdb login password 'password1';
     
 * bundle install --deployment
    
+
+Setup DB Backup
+* gem install backup -v5.0.0.beta.1
+
+
+
 
 
 Clone/Download

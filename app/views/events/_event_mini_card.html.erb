@@ -1,56 +1,51 @@
 <div class="card event event-mini-card">
-  <%= link_to "", event_path(event.kommunity, event), class: "clickable-card" %>
+
 
   <% if controller_name.to_sym != :events %>
-  <h5 class="card-header d-flex align-items-center">
+  <%= link_to kommunity_show_path(event.kommunity), class: "clickable-card" do %>
+  <h5 class="card-header d-flex align-items-center justify-content-between p-1 px-3">
+
+    <p class="mb-0 ml-3">
+      <%= event.kommunity.name %>
+    </p>
     <div class="kommunity-logo-image">
       <img  alt="<%= event.kommunity.name %> Logo" src="<%= event.kommunity.logo_image.attached? ?  url_for(event.kommunity.logo_image) : '' %>">
 
     </div>
-    <p class="mb-0 ml-3">
-      <%= event.kommunity.name %>
-    </p>
+
+
   </h5>
   <% end %>
-
-  <div class="card-body">
+  <% end %>
+  <%= link_to event_path(event.kommunity, event), class: "clickable-card" do %>
+  <div class="card-body pb-0">
 
     <h5 class="card-title"><%= event.name %></h5>
 
     <div class="event-timing">
-      <% if event.start_time.to_date != event.end_time.to_date %>
-      <span>
-                  <span>
-                    <%= event.start_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= event.start_time.strftime('%I:%M %p') %></span> -
-
-                  <span><%= event.end_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= event.end_time.strftime('%I:%M %p') %></span>
-
-                </span>
-      <% else %>
-      <span>
-                  <span><%= event.start_time.strftime("%d-%b-%Y") %></span> <span class="badge badge-secondary badge-pill"> <%= event.start_time.strftime('%I:%M %p') %> To <%= event.end_time.strftime('%I:%M %p') %></span>
-                </span>
-      <% end %>
+      <%= render 'events/event_time_display', event: event %>
 
     </div>
 
     <div class="card-text">
-      <div class="description">
-        <%= truncate(event.description, :length => 2030, :omission => "" , :escape => false) %>
+      <div class="description ">
+        <%= truncate(event.description, length: 350, escape: false) %>
       </div>
 
 
-      <h6 class="text-info">Details</h6>
+
 
 
     </div>
 
 
   </div>
-  <div class="">
+  <div class="card-footer text-muted mt-0">
 
+    <h6 class="text-info">Details</h6>
 
 
   </div>
+  <% end %>
 
 </div>

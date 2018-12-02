@@ -6,9 +6,13 @@
 
   <div class="row justify-content-center">
 
-    <div class="col-md-9 ">
 
-      <div class="row d-flex flex-md-row flex-sm-column flex-wrap justify-content-center">
+    <% if !@upcoming_events.empty? %>
+    <div class="col-md-9 horizontal-cards">
+      <div>
+        <h3 class="border-bottom text-secondary">Upcoming Events</h3>
+      </div>
+      <div class="row d-flex flex-md-row flex-sm-column flex-nowrap">
         <% @upcoming_events.each do |event| %>
 
         <div class="col-md-4 m-2 p-0">
@@ -21,6 +25,51 @@
       </div>
 
     </div>
+    <% end %>
+
+
+
+    <% if !@kommunities.empty? %>
+    <div id="kommunity-list" class="col-md-9 horizontal-cards mb-5">
+      <div>
+        <h3 class="border-bottom text-white">Communities!</h3>
+      </div>
+      <div class="row d-flex flex-md-row flex-sm-column flex-nowrap ">
+        <% @kommunities.each do |kommunity| %>
+
+        <div class="col-md-4 m-2 p-0">
+          <%= render 'kommunities/display_card', kommunity: kommunity %>
+        </div>
+
+
+        <% end %>
+
+      </div>
+
+    </div>
+    <% end %>
+
+
+    <% if !@recent_past_events.empty? %>
+    <div class="col-md-9 horizontal-cards">
+      <div>
+        <h3 class="border-bottom text-secondary">Recent Past Events</h3>
+      </div>
+      <div class="row d-flex flex-md-row flex-sm-column flex-nowrap">
+        <% @recent_past_events.each do |event| %>
+
+        <div class="m-2 p-0">
+          <%= render 'events/event_mini_card', event: event %>
+        </div>
+
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <% end %>
 
   </div>
 
