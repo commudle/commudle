@@ -2,7 +2,29 @@
 <%= @kommunity.name %>
 <% end %>
 <section id="kommunity-<%= @kommunity.id %>">
-  <h1 class="bg-info p-3 text-white"><%= @kommunity.name %></h1>
+  <div class="bg-white p-3 d-flex flex-row flex-wrap">
+    <div class="col-md-3 d-flex flex-column align-items-center">
+      <% if @kommunity.logo_image.attached? %>
+      <div class="kommunity-logo-image-large">
+        <img  alt="<%= @kommunity.name %> Logo" src="<%= url_for(@kommunity.logo_image)%>">
+      </div>
+      <% end %>
+      <h4 class="text-secondary mt-3">
+        <%= @kommunity.name %>
+      </h4>
+      <div class="mt-0">
+        <div class="badge badge-pill badge-info"><%= @kommunity.member_count %> Members</div>
+      </div>
+    </div>
+
+
+    <div class="col-md-9" id="about-community">
+      <div class="pl-5 pt-3">
+        <%= @kommunity.about.html_safe %>
+      </div>
+    </div>
+
+  </div>
   <% if allowed_view?(:events, :create) %>
   <div class="card my-4 p-3 d-flex flex-row justify-content-start">
     <%=  link_to new_event_path, class: 'mr-4 btn btn-outline-secondary', target: "_blank" do %>

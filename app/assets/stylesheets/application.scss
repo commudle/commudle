@@ -140,9 +140,18 @@ body{
 .kommunity-logo-image{
   width: 50px;
   overflow: hidden;
-  max-height: 75px;
+
   img{
     width: 100%;
+  }
+}
+
+.kommunity-logo-image-large{
+  width: 150px;
+  overflow: hidden;
+
+  img{
+    max-width: 100%;
   }
 }
 
@@ -274,6 +283,9 @@ body{
   }
 
   .card-footer{
+    position: relative;
     border: 0;
   }
 }
+
+

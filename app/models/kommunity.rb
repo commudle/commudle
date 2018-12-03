@@ -10,7 +10,7 @@ class Kommunity < ApplicationRecord
 
 
   # get the nearest event which took place or has to take place
-  def nearest_events
+  def nearest_time_events
 
     events = Event.upcoming(kommunity_id: self.id)
     if events.blank?
@@ -19,6 +19,14 @@ class Kommunity < ApplicationRecord
 
     return events
   end
+
+
+  def member_count
+    return self.user_roles_users.distinct(:user_id).length
+  end
+
+
+
 
 
 end
