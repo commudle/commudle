@@ -1,0 +1,34 @@
+
+<table style="width: 550px; margin: 0 auto; background-color: white; border-radius: 5px; padding: 25px;">
+  <tbody>
+
+  <tr>
+    <td>
+      <p>Hi <%= @user.name %>!</p>
+      <div style="text-align: center">
+      </div>
+      <div>
+        <h1><%= @event.name %></h1>
+        <%= render 'mailers/event_communication_mailer/event_details_options' %>
+
+        <hr>
+
+        <div>
+          <h1>Click Here to Fill The <%= @dfeg.name %> : <%= @dfeg.registration_type.name %> Form</h1>
+        </div>
+
+        <% if !@message.blank? %>
+        <h3 style="text-align: center;">The Organizers have included a message</h3>
+        <blockquote style="border: 1px dashed lightgrey; border-radius: 5px; padding: 5px;">
+          <%= @message.html_safe %>
+        </blockquote>
+        <% end %>
+
+      </div>
+
+    </td>
+  </tr>
+
+  </tbody>
+
+</table>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_143204) do
+ActiveRecord::Schema.define(version: 2018_12_08_020726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -227,6 +227,17 @@ ActiveRecord::Schema.define(version: 2018_12_02_143204) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["fixed_email_id"], name: "index_fixed_email_dfe_response_groups_on_fixed_email_id"
+  end
+
+  create_table "fixed_email_edfeg", force: :cascade do |t|
+    t.bigint "fixed_email_id"
+    t.bigint "user_id"
+    t.bigint "event_data_form_entity_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_data_form_entity_group_id"], name: "index_fixed_email_edfeg_on_event_data_form_entity_group_id"
+    t.index ["fixed_email_id"], name: "index_fixed_email_edfeg_on_fixed_email_id"
+    t.index ["user_id"], name: "index_fixed_email_edfeg_on_user_id"
   end
 
   create_table "fixed_email_event_entry_passes", force: :cascade do |t|
@@ -450,6 +461,9 @@ ActiveRecord::Schema.define(version: 2018_12_02_143204) do
   add_foreign_key "events", "users"
   add_foreign_key "fixed_email_dfe_response_groups", "data_form_entity_response_groups", name: "index_fixed_email_dfe_group"
   add_foreign_key "fixed_email_dfe_response_groups", "fixed_emails"
+  add_foreign_key "fixed_email_edfeg", "event_data_form_entity_groups"
+  add_foreign_key "fixed_email_edfeg", "fixed_emails"
+  add_foreign_key "fixed_email_edfeg", "users"
   add_foreign_key "fixed_email_event_entry_passes", "event_entry_passes"
   add_foreign_key "fixed_email_event_entry_passes", "fixed_emails"
   add_foreign_key "kommunities", "users"

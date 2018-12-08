@@ -1,6 +1,6 @@
 class KommunitiesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :access_allowed?, unless: :devise_controller?
+  before_action :access_allowed?
 
 
   def show

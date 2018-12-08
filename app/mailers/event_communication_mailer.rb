@@ -2,6 +2,37 @@ class EventCommunicationMailer < ApplicationMailer
 
   default template_path: 'mailers/event_communication_mailer'
 
+
+  # send out registration emails for either speaker or attendees (using the same template for now, subjects would be different)
+  def registration_email(event_data_form_entity_group, subject, message, event_details_options = {}, user)
+    fixed_email = FixedEmail.find_or_create_by(
+                        mail_type: (data_form_entity.entity.registration_type.name == NameValues::RegistrationsType::SPEAKER ? NameValues::FixedEmailType::REGISTRATION_SPEAKER : NameValues::FixedEmailType::REGISTRATION_ATTENDEE),
+                        subject: subject,
+                        message: message
+                  )
+
+  #   Create a table: FixedEmailEdfeGroup and also save user_id in it
+    fixed_email_edfeg = FixedEmailEdfeg.create(
+                                           fixed_email: fixed_email,
+                                           user: user,
+                                           event_data_form_entity_group: event_data_form_entity_group
+    )
+
+
+    @message = message.html_safe
+    @event = event_data_form_entity_group.event
+    @event_details_options = event_details_options
+    @user = user
+    mail(
+        to: @user.email,
+        subject: subject,
+    )
+
+  end
+
+
+
+
   def rsvp_email(data_form_entity_response_group, subject, message, event_details_options = {})
     @dferg = data_form_entity_response_group
 

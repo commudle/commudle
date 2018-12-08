@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fixed_email: one
+  user: one
+  event_data_form_entity_group: one
+
+two:
+  fixed_email: two
+  user: two
+  event_data_form_entity_group: two

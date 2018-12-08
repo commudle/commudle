@@ -25,7 +25,7 @@ module NameValues
   # end
 
 
-  class   RegistrationStatusType
+  class RegistrationStatusType
     REGISTERED = "registered"
     WAITING = "waiting"
     SHORTLISTED = "shortlisted"
@@ -48,6 +48,8 @@ module NameValues
 
 
   class FixedEmailType
+    REGISTRATION_ATTENDEE = "attendee_registration"
+    REGISTRATION_SPEAKER = "speaker_registration"
     RSVP = "rsvp"
     ENTRY_PASS = "entry_pass"
     FEEDBACK = "feedback"
