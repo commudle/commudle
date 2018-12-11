@@ -1,6 +1,5 @@
 class KommunitiesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :access_allowed?
 
 
   def show
@@ -26,13 +25,12 @@ class KommunitiesController < ApplicationController
 
 
   def edit
-    @kommunity = Kommunity.friendly.find(params[:id])
 
   end
 
 
   def update
-    @kommunity = Kommunity.friendly.find(params[:id])
+
     @kommunity.update(kommunity_params)
     redirect_to kommunity_show_path(@kommunity.slug)
   end

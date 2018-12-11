@@ -1,0 +1,47 @@
+<div id="event-feedback-email">
+
+
+  <h4>Event: <%= @event.name %></h4>
+
+  <p>Send <%= @registration_type.name %> Emails</p>
+
+
+
+  <div class="email-format-container">
+    <%= form_with url: send_registration_email_event_communication_mailers_path(dfe: @data_form_entity), method: :post, remote: true do |f| %>
+    <h5>Subject and Any Specific Message to Embed</h5>
+    <fieldset>
+      <div class="field email-subject form-group">
+        <%= f.label :to %>
+        <%= f.text_field :to, placeholder: "Enter an email id or write ALL for sending to every member", required: true, class: 'form-control' %>
+        <%= f.hidden_field :force, value: @force %>
+      </div>
+      <div class="field email-subject form-group">
+        <%= f.label :subject %>
+        <%= f.text_field :subject, value: "#{@event.kommunity.name} :: #{@registration_type.name.upcase} :: #{@edfeg.name} :: #{@event.name}", required: true, class: 'form-control' %>
+        <%= f.hidden_field :force, value: @force %>
+      </div>
+
+      <div class="field form-group">
+        <%= render 'event_details_options', f: f %>
+      </div>
+      <div class="field form-group">
+        <%= f.label :message, "Add Some Message (Optional)" %>
+        <%= f.text_area :message, :class => "tinymce editor", :rows => 3, :cols => 50 %>
+
+      </div>
+      <div class="form-group d-flex justify-content-center">
+        <%= f.submit "Send Emails", class: "btn-outline-primary" %>
+      </div>
+
+    </fieldset>
+
+    <% end %>
+
+
+
+
+  </div>
+
+
+</div>

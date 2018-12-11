@@ -2,7 +2,7 @@ class DataFormsController < ApplicationController
   # before_action :set_kommunity
   before_action :set_data_form, only: [:edit, :update]
   before_action :access_permissions, only: [:edit, :update]
-  before_action :access_allowed?, unless: :devise_controller?
+  before_action :access_allowed?
 
 
 

@@ -3,7 +3,7 @@ class EventDataFormEntityGroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event
   before_action :set_event_data_form_entity_group, only: [:assign_data_form_entity, :destroy, :update_registration_status_counter]
-  before_action :access_allowed?, unless: :devise_controller?
+  before_action :access_allowed?
 
 
 

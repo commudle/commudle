@@ -70,7 +70,10 @@ module RolePermission
               :event_data_form_entity_group_entry_pass_email,
               :send_event_data_form_entity_group_entry_pass_email,
               :feedback_email,
-              :send_feedback_email] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
+              :send_feedback_email,
+              :registration_email,
+              :send_registration_email
+            ] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
             )
         },
 
@@ -131,30 +134,33 @@ module RolePermission
 
 
   def has_permission(controller = nil, action = nil)
-    controller = controller.blank? ? controller_name : controller
-    action = action.blank? ? action_name : action
-    controller_permissions = permissions[controller.to_sym]
-    roles = user_signed_in? ? (current_user.user_roles.pluck(:name).map &:to_sym) : []
-    roles << :all
-    if (controller_permissions)
-      available_permissions = controller_permissions.keys & roles
-      if !available_permissions.empty?
+    if !devise_controller?
+      controller = controller.blank? ? controller_name : controller
+      action = action.blank? ? action_name : action
+      controller_permissions = permissions[controller.to_sym]
+      roles = user_signed_in? ? (current_user.user_roles.pluck(:name).map &:to_sym) : []
+      roles << :all
+      if (controller_permissions)
+        available_permissions = controller_permissions.keys & roles
+        if !available_permissions.empty?
 
-        actions = []
-        available_permissions.each do |ap|
+          actions = []
+          available_permissions.each do |ap|
 
-          actions << controller_permissions[ap.to_sym]
-        end
-        actions.flatten!
+            actions << controller_permissions[ap.to_sym]
+          end
+          actions.flatten!
 
 
-        if actions.include?(action.to_sym)
-          return true
+          if actions.include?(action.to_sym)
+            return true
 
+          end
         end
       end
+      return false
     end
-    return false
+
   end
 
 

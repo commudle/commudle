@@ -1,0 +1,22 @@
+{
+    let form = $("<%= escape_javascript render 'registration_email_form' %>");
+
+    let modal = $('<%= escape_javascript render 'email_modal' %>');
+
+    $(' .modal-title', modal).html("Send <%= @registration_type.name %> Email");
+
+    $(' .modal-body', modal).empty().append(form);
+
+
+    $('#modal-mail-form').remove();
+    $(modal).attr('id', 'modal-mail-form');
+
+    $('body').append(modal);
+
+    tinyMCE.init({
+        selector: '.tinymce.editor'
+    });
+
+    modal.modal('show');
+
+}

@@ -1,6 +1,6 @@
 class TrackSlotsController < ApplicationController
   before_action :authenticate_user!
-  before_action :access_allowed?, unless: :devise_controller?
+  before_action :access_allowed?
 
 
   def create

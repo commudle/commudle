@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :access_allowed?, unless: :devise_controller?
+  before_action :access_allowed?
 
 
 

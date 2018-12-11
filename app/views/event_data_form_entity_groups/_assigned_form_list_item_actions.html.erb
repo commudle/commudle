@@ -17,6 +17,10 @@
     <%= link_to "Resend Feedback Emails", feedback_email_event_communication_mailers_path(event: dfe.entity.event, form: dfe, force: true), remote: true %>
   </div>
 
+  <% elsif dfe.entity.registration_type?([NameValues::RegistrationsType::ATTENDEE, NameValues::RegistrationsType::SPEAKER]) %>
+  <div class="ml-2">
+    <%= link_to "Send #{dfe.entity.registration_type.name} Emails", registration_email_event_communication_mailers_path(dfe: dfe), remote: true %>
+  </div>
 
 
   <% end %>

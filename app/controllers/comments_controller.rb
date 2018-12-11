@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_parent
-  before_action :access_allowed?, unless: :devise_controller?
+  before_action :access_allowed?
 
 
   def create

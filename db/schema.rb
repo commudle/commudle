@@ -229,15 +229,15 @@ ActiveRecord::Schema.define(version: 2018_12_08_020726) do
     t.index ["fixed_email_id"], name: "index_fixed_email_dfe_response_groups_on_fixed_email_id"
   end
 
-  create_table "fixed_email_edfeg", force: :cascade do |t|
+  create_table "fixed_email_edfegs", force: :cascade do |t|
     t.bigint "fixed_email_id"
     t.bigint "user_id"
     t.bigint "event_data_form_entity_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_data_form_entity_group_id"], name: "index_fixed_email_edfeg_on_event_data_form_entity_group_id"
-    t.index ["fixed_email_id"], name: "index_fixed_email_edfeg_on_fixed_email_id"
-    t.index ["user_id"], name: "index_fixed_email_edfeg_on_user_id"
+    t.index ["event_data_form_entity_group_id"], name: "index_fixed_email_edfegs_on_event_data_form_entity_group_id"
+    t.index ["fixed_email_id"], name: "index_fixed_email_edfegs_on_fixed_email_id"
+    t.index ["user_id"], name: "index_fixed_email_edfegs_on_user_id"
   end
 
   create_table "fixed_email_event_entry_passes", force: :cascade do |t|
@@ -461,9 +461,9 @@ ActiveRecord::Schema.define(version: 2018_12_08_020726) do
   add_foreign_key "events", "users"
   add_foreign_key "fixed_email_dfe_response_groups", "data_form_entity_response_groups", name: "index_fixed_email_dfe_group"
   add_foreign_key "fixed_email_dfe_response_groups", "fixed_emails"
-  add_foreign_key "fixed_email_edfeg", "event_data_form_entity_groups"
-  add_foreign_key "fixed_email_edfeg", "fixed_emails"
-  add_foreign_key "fixed_email_edfeg", "users"
+  add_foreign_key "fixed_email_edfegs", "event_data_form_entity_groups"
+  add_foreign_key "fixed_email_edfegs", "fixed_emails"
+  add_foreign_key "fixed_email_edfegs", "users"
   add_foreign_key "fixed_email_event_entry_passes", "event_entry_passes"
   add_foreign_key "fixed_email_event_entry_passes", "fixed_emails"
   add_foreign_key "kommunities", "users"

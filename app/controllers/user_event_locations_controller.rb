@@ -1,7 +1,7 @@
 class UserEventLocationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_dferg_entry_pass
-  before_action :access_allowed?, unless: :devise_controller?
+  before_action :access_allowed?
 
 
   def update_selected_location

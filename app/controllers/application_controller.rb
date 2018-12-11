@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   helper_method :allowed_view?
 
 
+
   def set_current_user
     CurrentAccess.user = current_user
     yield
@@ -52,6 +53,15 @@ class ApplicationController < ActionController::Base
     Time.zone = ActiveSupport::TimeZone[-min.minutes]
   end
 
+
+  # def default_url_options(options={})
+  #   if (!params[:kommunity].blank?)
+  #     options.merge({:kommunity => params[:kommunity] })
+  #
+  #   end
+  #
+  #   return options
+  # end
   def set_kommunity
     if (params[:kommunity])
       begin
@@ -63,16 +73,6 @@ class ApplicationController < ActionController::Base
     end
 
   end
-
-  # def default_url_options(options={})
-  #   if (!params[:kommunity].blank?)
-  #     options.merge({:kommunity => params[:kommunity] })
-  #
-  #   end
-  #
-  #   return options
-  # end
-
 
 
 

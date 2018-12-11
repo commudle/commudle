@@ -3,7 +3,7 @@ class DataFormEntitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event_data_form_entity_group, only: [:form_responses, :form_responses_data]
   before_action :set_page_numbers, only: [:form_responses, :form_responses_data]
-  before_action :access_allowed?, unless: :devise_controller?
+  before_action :access_allowed?
 
 
 

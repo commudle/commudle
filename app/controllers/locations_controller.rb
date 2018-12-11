@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_event
-  before_action :access_allowed?, unless: :devise_controller?
+  before_action :access_allowed?
 
 
 

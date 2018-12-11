@@ -14,7 +14,12 @@
         <hr>
 
         <div>
-          <h1>Click Here to Fill The <%= @dfeg.name %> : <%= @dfeg.registration_type.name %> Form</h1>
+          <p style="text-align: center; font-size: 16px;">
+            <a href="<%=  fill_form_response_url(kommunity: @event.kommunity, data_form_entity_id: @dfe.id).html_safe %>">
+              Click Here to Fill The <%= @edfeg.name %> : <%= @edfeg.registration_type.name %> Form</p>
+            </a>
+
+
         </div>
 
         <% if !@message.blank? %>

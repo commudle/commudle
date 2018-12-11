@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # specifically for devfest
   get '/devfest', to: redirect('/gdg-new-delhi/events/devfest-18')
 
-  resources :kommunities, only: [:new, :create, :edit, :update]
+  resources :kommunities, only: [:new, :create, :edit, :update], param: :kommunity
 
   scope ':kommunity' do
 
@@ -155,6 +155,9 @@ Rails.application.routes.draw do
 
         get :feedback_email, path: "feedback-email"
         post :send_feedback_email, path: "send-feedback-email"
+
+        get :registration_email, path: "registration-email"
+        post :send_registration_email, path: "send-registration-email"
       end
     end
 

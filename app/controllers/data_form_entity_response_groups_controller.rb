@@ -1,7 +1,7 @@
 class DataFormEntityResponseGroupsController < ApplicationController
   before_action :authenticate_user!, except: [:update_rsvp]
   before_action :set_data_form_entity_response_group, only: [:update_registration_status]
-  before_action :access_allowed?, unless: :devise_controller?
+  before_action :access_allowed?
 
 
 
