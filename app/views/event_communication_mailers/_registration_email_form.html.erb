@@ -13,7 +13,7 @@
     <fieldset>
       <div class="field email-subject form-group">
         <%= f.label :to %>
-        <%= f.text_field :to, placeholder: "Enter an email id or write ALL for sending to every member", required: true, class: 'form-control' %>
+        <%= f.text_field :to, placeholder: "Enter 1 email id or write ALL for sending to every member", required: true, class: 'form-control' %>
         <%= f.hidden_field :force, value: @force %>
       </div>
       <div class="field email-subject form-group">
