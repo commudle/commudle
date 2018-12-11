@@ -13,9 +13,9 @@ class EventCommunicationMailersController < ApplicationController
   end
 
   def send_registration_email
-    # Resque.enqueue(RegistrationMailerWorker, params[:dfe], params[:to], params[:subject], params[:message], @event_details_options)
+    Resque.enqueue(RegistrationMailerWorker, params[:dfe], params[:to], params[:subject], params[:message], @event_details_options)
 
-    RegistrationMailerWorker.perform(params[:dfe], params[:to], params[:subject], params[:message], @event_details_options)
+    # RegistrationMailerWorker.perform(params[:dfe], params[:to], params[:subject], params[:message], @event_details_options)
   end
 
 
