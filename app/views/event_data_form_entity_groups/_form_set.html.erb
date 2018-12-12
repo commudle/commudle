@@ -30,7 +30,7 @@
       <h6>Select Form</h6>
       <div class="form-group">
         <%= f.label :data_form %>
-        <%= f.select :data_form_id, options_for_select(edfeg.event.user.data_forms.all.collect{|m| [m.name, m.id]}), {required: true}, class: 'form-control' %>
+        <%= f.select :data_form_id, options_for_select(edfeg.event.kommunity.data_forms.all.collect{|m| [m.name, m.id]}), {required: true}, class: 'form-control' %>
         <%= f.submit "Assign Form", class: 'btn btn-info' %>
       </div>
 
