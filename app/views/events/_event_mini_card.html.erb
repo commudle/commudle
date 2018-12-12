@@ -3,7 +3,7 @@
 
   <% if controller_name.to_sym != :events %>
   <%= link_to kommunity_show_path(event.kommunity), class: "clickable-card" do %>
-  <div class="card-header d-flex align-items-center justify-content-between p-1 px-3">
+  <d class="card-header d-flex align-items-center justify-content-between p-1 px-3">
 
     <p class="mb-0 ml-3">
       <%= event.kommunity.name %>
@@ -14,7 +14,7 @@
     </div>
 
 
-  </div>
+  </d>
   <% end %>
   <% end %>
   <%= link_to event_path(event.kommunity, event), class: "clickable-card" do %>
@@ -29,7 +29,7 @@
 
     <div class="card-text">
       <div class="description ">
-        <%= truncate(event.description, length: 350, escape: false) %>
+        <%= truncate_html(event.description, length: 350, omission: '...')%>
       </div>
 
 

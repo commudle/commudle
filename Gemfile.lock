@@ -272,6 +272,7 @@ GEM
     tilt (2.0.8)
     tinymce-rails (4.8.2)
       railties (>= 3.1.1)
+    truncate_html (0.9.3)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.16)
@@ -328,6 +329,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   tinymce-rails
+  truncate_html
   tzinfo-data
   uglifier (>= 1.3.0)
   unicorn (~> 5.2)

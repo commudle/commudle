@@ -16,6 +16,7 @@
         <% @upcoming_events.each do |event| %>
 
         <div class="col-md-4 m-2 p-0">
+          <%= render 'events/event_mini_card', event: event %>
         </div>
 
 
