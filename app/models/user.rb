@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :user_event_locations
   has_many :fixed_email_edfegs
+  has_many :event_updates
 
   has_one_attached :profile_image
 
@@ -68,6 +69,13 @@ class User < ApplicationRecord
     !designation.blank? ? (user.update(designation: designation)) : ''
 
     return user
+  end
+
+
+  def organizer_kommunities
+    roles = self.user_roles_users.joins(:user_role).where('user_roles.name = ?', NameValues::UserRoleType::ORGANIZER)
+
+    return Kommunity.where(id: roles.map(&:kommunity_id))
   end
 
 

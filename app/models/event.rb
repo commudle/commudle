@@ -13,6 +13,7 @@ class Event < ApplicationRecord
   has_many :user_event_locations, :through => :event_locations
   has_many :locations, through: :event_locations
   has_many :comments, as: :commentable
+  has_many :event_updates
 
   has_one_attached :header_image
 

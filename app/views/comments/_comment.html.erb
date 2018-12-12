@@ -2,7 +2,9 @@
   <div>
     <div class="d-flex">
       <p class="mb-0">
-        <%= image_tag comment.user.default_image, width: 45, class: 'mr-2' %>
+        <% if comment.user.avatar %>
+        <%= image_tag comment.user.avatar, width: 45, class: 'mr-2' %>
+        <% end %>
       </p>
       <div>
         <p class="mb-0 text-muted">
