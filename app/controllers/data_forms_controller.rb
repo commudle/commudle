@@ -64,9 +64,9 @@ class DataFormsController < ApplicationController
 
 
   def access_permissions
-    if @data_form.user_id != current_user.id
-      error_response(ErrorNotification::ResponseTypes::HTML, ErrorNotification::ErrorCodes::UNAUTHORIZED, "Unauthorized")
-    end
+    # if @data_form.user_id != current_user.id
+    #   error_response(ErrorNotification::ResponseTypes::HTML, ErrorNotification::ErrorCodes::UNAUTHORIZED, "Unauthorized")
+    # end
   end
 
   def data_form_params
