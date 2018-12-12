@@ -83,6 +83,7 @@
 
   <% end %>
 
+  <% if @event.status? ([NameValues::EventStatusType::COMPLETED]) %>
   <div>
     <%= link_to public_resources_event_path(id: @event) do %>
       <p class="btn btn-info">
@@ -90,6 +91,7 @@
       </p>
     <% end %>
   </div>
+  <% end %>
 
 
   <%= render 'events/locations_tracks_slots', event: @event, track_slot: @track_slot, event_location_track: @event_location_track %>
