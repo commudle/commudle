@@ -97,7 +97,7 @@ module RolePermission
         },
         event_updates: {
           organizer: (
-            ([:create, :destroy] if (!kommunity.blank? && user_sign_in? && current_user.role?(:organizer, kommunity_id))).to_a
+            ([:create, :destroy] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity_id))).to_a
           )
         },
         home: {
