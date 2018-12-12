@@ -1,4 +1,4 @@
-<%= form_for @kommunity do |f| %>
+<%= form_with model: @kommunity, scope: :kommunity_form, local: true do |f| %>
 
 <div class="form-group">
   <%= f.label :name %>
@@ -13,6 +13,11 @@
   <%= f.label :logo_image, 'Logo Image', for: 'logo-image', class: 'custom-file-label' %>
   <%= f.file_field :logo_image, class: 'custom-file-input', id: 'logo-image', onchange: 'showImage(this, "logo-image-show");', accept: "image/*" %>
 
+</div>
+
+<div class="form-group">
+  <%= f.label :mini_description %>
+  <%= f.text_field :mini_description, required: true, class: 'form-control' %>
 </div>
 
 <div class="form-group">
