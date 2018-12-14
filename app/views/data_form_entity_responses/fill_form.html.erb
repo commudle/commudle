@@ -26,6 +26,12 @@
           </div>
 
         </div>
+        <div>
+          <div class="">
+            <%= render 'events/event_description', event: @event, new_event_update: @new_event_update %>
+          </div>
+
+        </div>
         <div class="">
           <% if @data_form_entity.entity.registration_type?([NameValues::RegistrationsType::FEEDBACK]) %>
 

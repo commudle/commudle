@@ -104,14 +104,8 @@
 
 
   <div class="d-flex flex-md-row flex-sm-column flex-wrap justify-content-md-around mt-5">
-    <div class="p-3 m-1 bg-white col-md-6 col-sm-12 event-description">
-      <h5>
-        Details
-      </h5>
-
-      <%= render 'event_updates/display_card', event: @event, new_event_update: @new_event_update %>
-
-      <%= @event.description.html_safe %>
+    <div class="col-md-6 col-sm-12">
+      <%= render 'events/event_description', event: @event, new_event_update: @new_event_update %>
     </div>
 
     <div class="m-1 col-md-5 col-sm-12 ">

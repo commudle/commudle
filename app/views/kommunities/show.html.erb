@@ -41,6 +41,9 @@
     <% end %>
   </div>
   <% end %>
+
+
+  <% if user_signed_in? && current_user.organizer?(@kommunity.id) %>
   <div class="row">
     <div class="accordion col-md-4" id="kommunity-events">
       <!--upcoming events-->
@@ -128,6 +131,48 @@
       </ul>
     </div>
   </div>
+  <% end %>
+
+  <% if !@upcoming_events.empty? %>
+  <div class="col-md-9 horizontal-cards mb-5">
+    <div>
+      <h3 class="border-bottom text-secondary">Upcoming Events</h3>
+    </div>
+    <div class="row d-flex flex-md-row flex-sm-column flex-nowrap">
+      <% @upcoming_events.each do |event| %>
+
+      <div class="col-md-4 m-2 p-0">
+        <%= render 'events/event_mini_card', event: event %>
+      </div>
+
+
+      <% end %>
+
+    </div>
+
+  </div>
+  <% end %>
+
+  <% if !@recent_past_events.empty? %>
+  <div class="col-md-9 horizontal-cards">
+    <div>
+      <h3 class="border-bottom text-secondary">Recent Past Events</h3>
+    </div>
+    <div class="row d-flex flex-md-row flex-sm-column flex-nowrap">
+      <% @recent_past_events.each do |event| %>
+
+      <div class="m-2 p-0">
+        <%= render 'events/event_mini_card', event: event %>
+      </div>
+
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+  <% end %>
 
 
 </section>

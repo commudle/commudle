@@ -4,6 +4,10 @@ class KommunitiesController < ApplicationController
 
   def show
     @events = Event.where(kommunity_id: @kommunity.id)
+
+    @upcoming_events = Event.includes(event_data_form_entity_groups: :data_form_entities).upcoming(kommunity_id: @kommunity.id)
+    @recent_past_events = Event.includes(event_data_form_entity_groups: :data_form_entities).recent_past(kommunity_id: @kommunity.id)
+
   end
 
   def new
