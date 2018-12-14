@@ -1,0 +1,15 @@
+{
+    let eventUpdateList = $('#event-update-display-list-<%= @event_update.event_id %>');
+
+    let newUpdate = $("<%= escape_javascript render 'event_updates/event_update_list_item', event: @event_update.event, event_update: @event_update %>");
+
+    eventUpdateList.append(newUpdate);
+
+    let notification = new Noty({
+        text: 'Update Added!',
+        theme: 'relax',
+        type: 'success',
+        timeout: 1500
+    }).show();
+
+}

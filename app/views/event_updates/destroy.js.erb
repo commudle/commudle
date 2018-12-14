@@ -1,0 +1,20 @@
+{
+
+    function removeEventUpdate(){
+        let eu = $('#event-update-display-card-<%= @event_update.event_id %> #event-update-<%= @event_update.id %>');
+
+        eu.remove();
+
+        let notification = new Noty({
+            text: 'Update Removed',
+            theme: 'relax',
+            type: 'warning',
+            timeout: 1500
+        }).show();
+    }
+
+
+    removeEventUpdate();
+
+}
+

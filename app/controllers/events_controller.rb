@@ -19,6 +19,7 @@ class EventsController < ApplicationController
     @track_slot = TrackSlot.new
     @location = Location.new
     @new_comment = Comment.new
+    @new_event_update = EventUpdate.new
 
   end
 

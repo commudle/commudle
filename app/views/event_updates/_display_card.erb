@@ -1,0 +1,27 @@
+<section class="event-update-display-card" id="event-update-display-card-<%= event.id %>">
+  <% if allowed_view?(:event_updates, :create) %>
+  <%= form_with model: new_event_update, url: event_event_updates_path(event_id: event), html: {class: 'row event-update-form', id: "event-update-form-#{event.id}"}, remote: true, method: :post do |f| %>
+
+      <div class="col-10">
+        <%= f.text_field :details, class: 'form-control height-100pc', placeholder: 'Post an update about this event', rows: 1, required: true %>
+      </div>
+      <div class="col-2">
+        <%= button_tag type: 'submit', class: "btn btn-secondary p-2 comment-submit-button" do %>
+            <i class='fas fa-arrow-alt-circle-right fa-2x text-white'></i>
+        <% end %>
+      </div>
+
+
+  <% end %>
+  <% end %>
+
+  <div>
+    <ul class="event-update-display-list" id="event-update-display-list-<%= event.id %>">
+      <% event.event_updates.each do |eu| %>
+        <%= render 'event_updates/event_update_list_item', event_update: eu %>
+      <% end %>
+    </ul>
+  </div>
+
+
+</section>

@@ -80,6 +80,9 @@ Rails.application.routes.draw do
       end
 
       resources :locations, only: [:create, :destroy]
+
+      resources :event_updates, only: [:create, :destroy]
+
     end
 
     resources :data_forms, path: 'data-forms', only: [:new, :create, :edit, :update]

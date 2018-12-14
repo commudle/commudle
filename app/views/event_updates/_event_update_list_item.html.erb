@@ -1,0 +1,13 @@
+<li id="event-update-<%= event_update.id %>">
+  <p>
+    [<%= event_update.created_at.strftime('%d-%m-%Y') %>] ::
+    <%= event_update.details %>
+
+    <% if allowed_view?(:event_updates, :destroy) %>
+    <%= link_to event_event_update_path(event_id: event_update.event, id: event_update.id), remote: true, method: :delete, class: "close ml-2 text-danger", 'aria-label': 'Remove' do %>
+
+    <span aria-hidden="true">&times;</span>
+    <% end %>
+    <% end %>
+  </p>
+</li>

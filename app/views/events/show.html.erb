@@ -108,6 +108,9 @@
       <h5>
         Details
       </h5>
+
+      <%= render 'event_updates/display_card', event: @event, new_event_update: @new_event_update %>
+
       <%= @event.description.html_safe %>
     </div>
 

@@ -55,4 +55,19 @@ section#events-show{
 }
 
 
+section.event-update-display-card{
+  .event-update-display-list{
+    margin-top: 10px;
+    list-style: none;
+    padding-left: 5px;
+    li{
+      padding: 3px;
+      border-bottom: 1px solid lightgrey;
+      p{
+        margin: 5px 0;
+      }
+    }
+  }
+}
+
 
