@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_12_020236) do
+ActiveRecord::Schema.define(version: 2018_12_16_155256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,27 @@ ActiveRecord::Schema.define(version: 2018_12_12_020236) do
     t.string "slug"
     t.index ["kommunity_id"], name: "index_data_forms_on_kommunity_id"
     t.index ["user_id"], name: "index_data_forms_on_user_id"
+  end
+
+  create_table "discussion_followers", force: :cascade do |t|
+    t.bigint "discussion_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discussion_id"], name: "index_discussion_followers_on_discussion_id"
+    t.index ["user_id"], name: "index_discussion_followers_on_user_id"
+  end
+
+  create_table "discussions", force: :cascade do |t|
+    t.string "topic", null: false
+    t.text "description", null: false
+    t.string "parent_type"
+    t.bigint "parent_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_type", "parent_id"], name: "index_discussions_on_parent_type_and_parent_id"
+    t.index ["user_id"], name: "index_discussions_on_user_id"
   end
 
   create_table "event_data_form_entity_groups", force: :cascade do |t|
@@ -384,6 +405,17 @@ ActiveRecord::Schema.define(version: 2018_12_12_020236) do
     t.index ["user_id"], name: "index_user_event_locations_on_user_id"
   end
 
+  create_table "user_messages", force: :cascade do |t|
+    t.string "parent_type", null: false
+    t.bigint "parent_id", null: false
+    t.bigint "user_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_type", "parent_id"], name: "index_user_messages_on_parent_type_and_parent_id"
+    t.index ["user_id"], name: "index_user_messages_on_user_id"
+  end
+
   create_table "user_roles", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -453,6 +485,8 @@ ActiveRecord::Schema.define(version: 2018_12_12_020236) do
   add_foreign_key "data_form_entity_responses", "data_form_entity_response_groups", name: "index_user_repsponse_group_event_dfe_group"
   add_foreign_key "data_forms", "kommunities"
   add_foreign_key "data_forms", "users"
+  add_foreign_key "discussion_followers", "discussions"
+  add_foreign_key "discussions", "users"
   add_foreign_key "event_data_form_entity_groups", "events"
   add_foreign_key "event_data_form_entity_groups", "registration_types"
   add_foreign_key "event_data_form_entity_groups", "users"
@@ -489,5 +523,6 @@ ActiveRecord::Schema.define(version: 2018_12_12_020236) do
   add_foreign_key "track_slots", "event_location_tracks"
   add_foreign_key "user_event_locations", "event_locations"
   add_foreign_key "user_event_locations", "users"
+  add_foreign_key "user_messages", "users"
   add_foreign_key "user_roles_users", "kommunities"
 end
