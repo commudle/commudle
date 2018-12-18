@@ -40,7 +40,7 @@ class SpeakerResourcesController < ApplicationController
 
       spr = SpeakerResource.find_or_create_by(data_form_entity_response_group_id: @dferg.id)
 
-      spr.update(session_details_links: params[:speaker_resource][:session_details_links])
+      spr.update(title: params[:speaker_resource][:title], session_details_links: params[:speaker_resource][:session_details_links])
 
     else
       return error_response(

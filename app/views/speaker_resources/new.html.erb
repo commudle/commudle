@@ -29,6 +29,7 @@
 
     <% end %>
     <%= f.hidden_field :token, value: @dferg.rsvp_token %>
+    <%= f.text_field :title, required: true, class: 'form-control', placeholder: 'Final Title of Your Talk*', required: true %>
     <%= f.text_area :session_details_links, required: true, class: 'form-control', rows: 10, placeholder: 'Start typing here [This is a required field]!', required: true %>
   </div>
 

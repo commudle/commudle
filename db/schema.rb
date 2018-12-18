@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_16_155256) do
+ActiveRecord::Schema.define(version: 2018_12_18_010416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -379,6 +379,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_155256) do
     t.text "session_details_links"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
     t.index ["data_form_entity_response_group_id"], name: "index_speaker_resources_on_data_form_entity_response_group_id"
   end
 
@@ -486,6 +487,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_155256) do
   add_foreign_key "data_forms", "kommunities"
   add_foreign_key "data_forms", "users"
   add_foreign_key "discussion_followers", "discussions"
+  add_foreign_key "discussion_followers", "users"
   add_foreign_key "discussions", "users"
   add_foreign_key "event_data_form_entity_groups", "events"
   add_foreign_key "event_data_form_entity_groups", "registration_types"

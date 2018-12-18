@@ -18,6 +18,12 @@ class TrackSlotsController < ApplicationController
   end
 
 
+  def session_discussion
+    # @session =
+
+  end
+
+
   private
 
   def track_slot_params

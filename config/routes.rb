@@ -64,6 +64,12 @@ Rails.application.routes.draw do
             to: 'events#public_resources',
             as: :public_resources
 
+
+        get 'speaker-discussion',
+            to: 'events#session_discussion',
+            as: :session_discussion
+
+
         resources :event_location_tracks, path: 'event-location-tracks', only: [:create, :destroy], shallow: true do
           resources :track_slots, path: 'track-slots', only: [:create, :destroy], shallow: true
         end
