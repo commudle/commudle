@@ -1,6 +1,6 @@
 class SpeakerResourcesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_data_form_entity_response_group
+  before_action :set_data_form_entity_response_group, except: [:session_discussions]
   before_action :access_allowed?
 
 
@@ -19,6 +19,17 @@ class SpeakerResourcesController < ApplicationController
   def update
     return create_or_update_record
   end
+
+
+
+  def session_discussions
+    @resource = SpeakerResource.includes(:discussions, data_form_entity_response_group: [:user, event_data_form_entity_group: :event]).find(params[:speaker_resource])
+    @discussion = Discussion.new
+
+    @discussions = @resource.discussions
+
+  end
+
 
 
 
@@ -52,7 +63,6 @@ class SpeakerResourcesController < ApplicationController
     end
 
   end
-
 
 
 end

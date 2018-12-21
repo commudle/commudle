@@ -50,6 +50,11 @@ module RolePermission
             ).to_a
         },
 
+        discussions: {
+          member: [:create],
+          organizer: [:create]
+        },
+
         events: {
             all: [:index, :show, :public_resources],
             organizer: (
@@ -118,7 +123,7 @@ module RolePermission
             )
         },
         speaker_resources: {
-            all: [:new],
+            all: [:new, :session_discussions],
             member: [:create, :update]
 
         },
@@ -127,10 +132,13 @@ module RolePermission
             ([:create, :destroy] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
             )
         },
-        user_event_locations:{
+        user_event_locations: {
             organizer: (
             ([:update_selected_location] if (!kommunity.blank? && user_signed_in? && current_user.role?(:organizer, kommunity.id))).to_a
             )
+        },
+        user_messages: {
+            member: [:create]
         }
 
 

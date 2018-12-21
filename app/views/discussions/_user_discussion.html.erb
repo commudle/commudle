@@ -1,0 +1,46 @@
+<div id="discussion-card-<%= discussion.id %>" class="card user-discussion-card">
+  <div class="card-header text-left pt-2 px-3 pb-1">
+    <h5 class="m-0">
+      <%= discussion.topic %>
+    </h5>
+    <div class="d-flex">
+      <div class="existing-profile-image mt-1">
+        <img id="user-profile-image" alt="Your Profile Image" src="<%= url_for(discussion.user.avatar) %>">
+      </div>
+      <p class="ml-2 pt-1 mb-0"><%= discussion.user.name %></p>
+    </div>
+
+  </div>
+  <div class="discussion-description">
+    <%= discussion.description.html_safe %>
+  </div>
+  <div class="card-body py-1 px-3">
+    <div class="discussion-messages">
+      <ul class="discussion-messages-list list-group">
+        <% discussion.user_messages.each do |dum| %>
+          <li class="list-group-item">
+            <div>
+              <%= dum.content %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="discussion-new-message">
+        <%= form_with model: discussion.user_messages.new, url: user_messages_path, html: {class: "d-flex flex-nowrap"} do |f| %>
+        <%= f.hidden_field :parent_id, value: discussion.id %>
+        <%= f.hidden_field :parent_type, value: 'Discussion' %>
+        <div class="form-group p-0 col-10">
+          <%= f.text_area :content, class: 'form-control', rows: 1, placeholder: "Comment", onkeydown: 'textAreaRowIncrementor(event, this);' %>
+
+        </div>
+        <div class="col-2">
+          <%= button_tag type: 'submit', class: "btn btn-info p-0 ml-1" do %>
+          <i class='fas fa-arrow-alt-circle-right fa-2x text-white'></i>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

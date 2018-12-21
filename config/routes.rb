@@ -65,8 +65,8 @@ Rails.application.routes.draw do
             as: :public_resources
 
 
-        get 'speaker-discussion',
-            to: 'events#session_discussion',
+        get 'session-discussions',
+            to: 'speaker_resources#session_discussions',
             as: :session_discussion
 
 
@@ -170,7 +170,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :discussions, only: [:create]
+
   end
+
+
+  resources :user_messages, only: [:create]
 
 
 

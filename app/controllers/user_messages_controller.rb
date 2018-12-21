@@ -1,10 +1,13 @@
 class UserMessagesController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_user!
   before_action :access_allowed?
 
 
   def create
+    um = UserMessage.new(user_message_params)
+    um.user = current_user
 
+    um.save
   end
 
 
@@ -12,6 +15,13 @@ class UserMessagesController < ApplicationController
   # Yet to create database changes for it
   def def flag
 
+  end
+
+
+  private
+
+  def user_message_params
+    params.require(:user_message).permit(:content, :parent_type, :parent_id)
   end
 
 

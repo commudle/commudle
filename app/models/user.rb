@@ -48,8 +48,8 @@ class User < ApplicationRecord
           password: password,
       )
     end
-    (user.name != name && !user.name.blank?) ? user.update(name: name) : user.name
-    (user.default_image != image && !user.default_image.blank?) ? user.update(default_image: image) : user.default_image
+    (user.name != name && (!user.name.blank? || !name.blank?)) ? user.update(name: name) : user.name
+    (user.default_image != image && (!user.default_image.blank? || !image.blank?)) ? user.update(default_image: image) : user.default_image
 
 
 

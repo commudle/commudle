@@ -1,0 +1,10 @@
+{
+
+    let newDiscussion = $("<%= escape_javascript render 'discussions/user_discussion', discussion: @discussion %>");
+
+
+    $('#new-discussion-form').trigger('reset');
+    $('#new-discussion-modal').modal('hide');
+
+    $('#discussions-list-<%= @discussion.parent_id %>').append(newDiscussion);
+}

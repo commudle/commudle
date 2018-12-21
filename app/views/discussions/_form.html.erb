@@ -1,0 +1,17 @@
+<%= form_with model: discussion, url: discussions_path, remote: true, html: {id: "new-discussion-form"} do |f| %>
+<div class="form-group">
+  <%= f.label :topic %>
+  <%= f.text_field :topic, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'form-control tinymce editor', rows: 10 %>
+</div>
+<div>
+  <%= f.hidden_field :parent_type, value: parent_type %>
+  <%= f.hidden_field :parent_id, value: parent_id %>
+</div>
+<div class="form-group">
+  <%= f.submit 'Submit', class: 'btn btn-outline-info' %>
+</div>
+<% end %>
