@@ -108,10 +108,10 @@ Rails.application.configure do
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-      user_name:            ENV["GDG_SENDGRID_USERNAME"],
-      password:             ENV["GDG_SENDGRID_PASSWORD"],
+      user_name:            ENV["GDG_EMAIL_USERNAME"],
+      password:             ENV["GDG_EMAIL_PASSWORD"],
       domain:               'gdgnd.org',
-      address:              'smtp.sendgrid.net',
+      address:              ENV["GDG_EMAIL_SENDER"],
       port:                 587,
       authentication:       'plain',
       enable_starttls_auto: true
