@@ -4,10 +4,10 @@ class UserMessagesController < ApplicationController
 
 
   def create
-    um = UserMessage.new(user_message_params)
-    um.user = current_user
+    @user_message = UserMessage.new(user_message_params)
+    @user_message.user = current_user
 
-    um.save
+    @user_message.save
   end
 
 
