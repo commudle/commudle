@@ -1,7 +1,48 @@
 <section id="session-discussion-<%= @resource.id %>">
 
 
-  <div class="header"></div>
+  <div class="header d-flex mb-3">
+    <div class="card p-2 col-md-2 col-12">
+      <%= render 'events/speaker_display_card', user: @resource.user %>
+    </div>
+    <div class="card col-md-4 col-12">
+      <div class="card-header">
+        <h5>
+          <%= @resource.data_form_entity_response_group.event_data_form_entity_group.event.name %>
+        </h5>
+        <div>
+          <%= render 'events/event_time_display', event: @resource.data_form_entity_response_group.event_data_form_entity_group.event %>
+        </div>
+      </div>
+      <div class="card-body">
+        <h5>
+          <%= @resource.title %>
+        </h5>
+        <div>
+          <%= @resource.session_details_links.html_safe %>
+        </div>
+      </div>
+    </div>
+    <div class="card col-md-6 col-12">
+      <% if !@other_sessions.empty? %>
+      <div class="card-header">
+        Other Sessions
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <% @other_sessions.each do |session| %>
+          <li class="list-group-item ">
+            <%= link_to session.data_form_entity_response_group.event_data_form_entity_group.event.name, session_discussion_event_path(speaker_resource: session.id) %>
+          </li>
+          <% end %>
+        </ul>
+
+      </div>
+      <% end %>
+    </div>
+
+
+  </div>
 
   <div class="other-sessions d-flex justify-content-start">
 
@@ -9,7 +50,7 @@
 
   <div class="current-discussions">
     <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#new-discussion-modal">
-      Start A Discussion
+      Ask The Speaker
     </button>
 
     <div class="d-flex justify-content-start flex-wrap">

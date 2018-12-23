@@ -82,46 +82,43 @@ body{
   }
 
 
-  .shortlisted-speakers-container{
-    .shortlisted-speakers-list{
-      .speaker-display-card{
-        width: 200px;
 
-        .speaker-avatar{
-          margin: 0 auto;
-          width: 175px;
-          height: 175px;
-          overflow: hidden;
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          background: #4368b121;
 
-          img{
-            width: 100%;
-          }
-        }
-        .speaker-details{
-          text-align: center;
+}
 
-          .name{
-            margin-bottom: 2px;
-          }
 
-          .designation{
-            margin-bottom: 5px;
-            height: 75px;
-            overflow-y: hidden;
-            line-height: 20px;
-            font-size: 14px;
-          }
-        }
-      }
+.speaker-display-card{
+  width: 200px;
+
+  .speaker-avatar{
+    margin: 0 auto;
+    width: 175px;
+    height: 175px;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #4368b121;
+
+    img{
+      width: 100%;
+    }
+  }
+  .speaker-details{
+    text-align: center;
+
+    .name{
+      margin-bottom: 2px;
     }
 
+    .designation{
+      margin-bottom: 5px;
+      height: 75px;
+      overflow-y: hidden;
+      line-height: 20px;
+      font-size: 14px;
+    }
   }
-
-
 }
 
 

@@ -28,6 +28,10 @@ class SpeakerResourcesController < ApplicationController
 
     @discussions = @resource.discussions
 
+    # get the other sessions of this speaker
+    @other_sessions = SpeakerResource.joins(:data_form_entity_response_group).where('speaker_resources.id != ? and data_form_entity_response_groups.user_id = ?', @resource.id, @resource.user.id)
+
+
   end
 
 

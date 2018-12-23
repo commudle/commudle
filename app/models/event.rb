@@ -73,12 +73,12 @@ class Event < ApplicationRecord
     if kommunity_id.blank?
       return Event.joins(:event_status, :kommunity).where(
           "event_statuses.name = ? and start_time <= ?",
-          NameValues::EventStatusType::COMPLETED, Time.now
+          NameValues::EventStatusType::COMPLETED, Time.now.end_of_day
       ).order("start_time desc").limit(count)
     else
       return Event.joins(:event_status).where(
           "event_statuses.name = ? and kommunity_id = ? and start_time <= ?",
-          NameValues::EventStatusType::COMPLETED, kommunity_id, Time.now
+          NameValues::EventStatusType::COMPLETED, kommunity_id, Time.now.end_of_day
       ).order("start_time desc").limit(count)
     end
   end
