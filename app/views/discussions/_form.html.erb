@@ -1,10 +1,10 @@
 <%= form_with model: discussion, url: discussions_path, remote: true, html: {id: "new-discussion-form"} do |f| %>
 <div class="form-group">
   <%= f.label :topic %>
-  <%= f.text_field :topic, class: 'form-control' %>
+  <%= f.text_field :topic, class: 'form-control', required: true %>
 </div>
 <div class="form-group">
-  <%= f.label :description %>
+  <%= f.label :description, 'Description*' %>
   <%= f.text_area :description, class: 'form-control tinymce editor', rows: 10 %>
 </div>
 <div>

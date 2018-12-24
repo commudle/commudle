@@ -1,5 +1,5 @@
 class SpeakerResourcesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:session_discussions]
   before_action :set_data_form_entity_response_group, except: [:session_discussions]
   before_action :access_allowed?
 

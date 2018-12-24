@@ -6,5 +6,5 @@
     $('#new-discussion-form').trigger('reset');
     $('#new-discussion-modal').modal('hide');
 
-    $('#discussions-list-<%= @discussion.parent_id %>').append(newDiscussion);
+    $('#discussions-list-<%= @discussion.parent_id %>').prepend(newDiscussion);
 }

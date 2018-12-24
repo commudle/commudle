@@ -1,5 +1,24 @@
-<li class="list-group-item">
-  <div>
-    <%= user_message.content.html_safe %>
+<li class="list-group-item py-2">
+  <div class="mx-2 d-flex <%= user_signed_in? && current_user.id == user_message.user_id ? 'justify-content-end' : 'justify-content-start' %>">
+    <div class="user-details col-3 p-0 mx-2 text-center <%= user_signed_in? &&  current_user.id == user_message.user_id ? 'order-2' : 'order-1' %>">
+      <div>
+        <% if user_message.user.avatar %>
+        <%= image_tag user_message.user.avatar, width: 15, class: 'mr-2' %>
+        <% end %>
+      </div>
+      <p class="mb-0 text-muted">
+        <small>
+          <%= user_message.user.name %>
+        </small>
+      </p>
+
+
+    </div>
+    <div class="user-message col-8 p-0 <%= user_signed_in? && current_user.id == user_message.user_id ? 'text-right' : '' %>">
+      <small>
+        <%= simple_format(user_message.content, class: 'm-0') %>
+      </small>
+      <small class="comment-timestamp text-muted"><%= time_ago_in_words(user_message.created_at) %></small>
+    </div>
   </div>
 </li>

@@ -1,11 +1,11 @@
 <section id="session-discussion-<%= @resource.id %>">
 
 
-  <div class="header d-flex mb-3">
-    <div class="card p-2 col-md-2 col-12">
+  <div class="header d-flex mb-3 flex-wrap">
+    <div class="card p-2 col-md-2 col-12 text-center mb-2">
       <%= render 'events/speaker_display_card', user: @resource.user %>
     </div>
-    <div class="card col-md-4 col-12">
+    <div class="card col-md-4 col-12 mb-2">
       <div class="card-header">
         <h5>
           <%= @resource.data_form_entity_response_group.event_data_form_entity_group.event.name %>
@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <div class="card col-md-6 col-12">
+    <div class="card col-md-6 col-12 mb-2">
       <% if !@other_sessions.empty? %>
       <div class="card-header">
         Other Sessions
@@ -49,13 +49,17 @@
   </div>
 
   <div class="current-discussions">
+    <% if allowed_view?(:discussions, :create) %>
     <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#new-discussion-modal">
       Ask The Speaker
     </button>
+    <% else %>
+    <%= link_to "Sign In / Sign Up To Create Discussion", user_google_oauth2_omniauth_authorize_path, class: 'btn btn-primary mb-3' %>
+    <% end %>
 
-    <div class="d-flex justify-content-start flex-wrap">
+    <div id="discussions-list-<%= @resource.id %>" class="card-columns">
       <% @discussions.each do |disc| %>
-      <div id="discussions-list-<%= @resource.id %>" class="mx-2 mb-3">
+      <div class="mx-2 mb-3">
         <%= render 'discussions/user_discussion', discussion: disc %>
       </div>
 
