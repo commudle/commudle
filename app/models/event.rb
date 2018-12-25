@@ -149,6 +149,11 @@ class Event < ApplicationRecord
 
   end
 
+  # sort alphabetically by the name of the speakers
+  def public_resources
+    return SpeakerResource.joins(data_form_entity_response_group: [:user, {event_data_form_entity_group: :event}]).where('events.id = ?', self.id).order('lower(users.name)')
+  end
+
 
   # TODO add photos link
   # def get_photos
