@@ -10,6 +10,13 @@ class DiscussionsController < ApplicationController
     @discussion.user = current_user
 
     @discussion.save
+
+    DiscussionFollower.find_or_create_by(user_id: current_user.id, discussion_id: @discussion.id)
+
+    if (@discussion.parent_type == 'SpeakerResource')
+      DiscussionFollower.find_or_create_by(user_id: @discussion.parent.user.id, discussion_id: @discussion.id)
+    end
+
   end
 
 

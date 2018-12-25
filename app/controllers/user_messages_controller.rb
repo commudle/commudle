@@ -8,6 +8,13 @@ class UserMessagesController < ApplicationController
     @user_message.user = current_user
 
     @user_message.save
+
+    if (@user_message.parent_type == 'Discussion')
+      #   add the user to follow that discussion
+      DiscussionFollower.find_or_create_by(user_id: current_user.id, discussion_id: @user_message.parent_id)
+
+    end
+
   end
 
 

@@ -51,7 +51,7 @@
   <div class="current-discussions">
     <% if allowed_view?(:discussions, :create) %>
     <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#new-discussion-modal">
-      Ask The Speaker
+      Ask <%= @resource.user.name %>!
     </button>
     <% else %>
     <%= link_to "Sign In / Sign Up To Create Discussion", user_google_oauth2_omniauth_authorize_path, class: 'btn btn-primary mb-3' %>

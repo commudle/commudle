@@ -1,0 +1,50 @@
+
+<table style="width: 550px; margin: 0 auto; background-color: white; border-radius: 5px; padding: 25px;">
+  <tbody>
+
+  <tr>
+    <td>
+      <p>Hi <%= @user.name %>!</p>
+      <p>
+        Here's the list of your followed discussions which have updates!
+      </p>
+      <div style="text-align: center">
+      </div>
+      <div>
+        <ul style="padding: 0 2px;">
+          <% @discussions.group_by(&:parent).each do |parent, discussions| %>
+            <li style="list-style: none; padding: 3px; background: #84f1ff12;">
+              <h4> Session :: <%= parent.title.blank? ? parent.event.name : parent.title %></h4>
+              <ul style="padding: 0;">
+                <% discussions.each do |discussion| %>
+                <li style="list-style: none; padding: 5px; background: #d3d3d33b; border-bottom: 1px dotted lightgrey;">
+                  <p style="font-weight: bold; margin: 0;">
+                    <%= discussion.topic %>
+                    <br>
+                    <small style="background-color: #f99952; color: white; border-radius: 15px; padding: 2px 5px;">
+                      <% if discussion.discussion_followers.length == 1 %>
+                      New!
+                      <% else %>
+                      <%= discussion.discussion_followers.length %> Followers
+                      <% end %>
+                    </small>
+                  </p>
+                  <p style="margin: 0;">
+                    <small>
+                      <%= simple_format(discussion.description) %>
+                    </small>
+                  </p>
+                </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+    </td>
+  </tr>
+
+  </tbody>
+
+</table>

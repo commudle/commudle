@@ -46,4 +46,10 @@ class EventCommunicationMailerPreview < ActionMailer::Preview
     )
   end
 
+
+  def discussions_updated_email
+    EventCommunicationMailer.discussions_updated_email(SpeakerResource.last.user, Discussion.all.limit(25))
+
+  end
+
 end

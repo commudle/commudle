@@ -4,6 +4,7 @@ class Discussion < ApplicationRecord
 
 
   has_many :user_messages, as: :parent
+  has_many :discussion_followers
 
 
 end

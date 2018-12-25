@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :user_event_locations
   has_many :fixed_email_edfegs
   has_many :event_updates
+  has_many :discussion_followers
 
   has_one_attached :profile_image
 

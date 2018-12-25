@@ -128,6 +128,18 @@ class EventCommunicationMailer < ApplicationMailer
         to: @user.email,
         subject: "#{@event.name} :: #{@replying_user.name} :: New Comment"
     )
+  end
+
+
+  def discussions_updated_email(user, discussions)
+
+    @user = user
+    @discussions = discussions
+
+    mail(
+        to: @user.email,
+        subject: 'Communities :: Discussion Updates On Sessions You Follow'
+    )
 
   end
 

@@ -5,5 +5,7 @@ class SpeakerResource < ApplicationRecord
 
 
   delegate :user, :to => :data_form_entity_response_group, :allow_nil => true
+  delegate :event, :to => :data_form_entity_response_group, :allow_nil => true
+
 
 end

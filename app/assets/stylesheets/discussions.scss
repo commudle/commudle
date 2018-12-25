@@ -1,5 +1,10 @@
 .user-discussion-card{
   width: 100%;
+
+  &:hover{
+    box-shadow: 1px 1px 1px 1px lightgrey;
+  }
+
   .existing-profile-image{
     width: 18px;
 
@@ -21,6 +26,8 @@
 
   .discussion-messages-list{
     margin-bottom: 5px;
+    max-height: 250px;
+    overflow-y: scroll;
 
     li{
       padding: 0;
