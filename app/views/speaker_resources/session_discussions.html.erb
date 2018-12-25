@@ -32,7 +32,7 @@
         <ul class="list-group">
           <% @other_sessions.each do |session| %>
           <li class="list-group-item ">
-            <%= link_to session.data_form_entity_response_group.event_data_form_entity_group.event.name, session_discussion_event_path(speaker_resource: session.id) %>
+            <%= link_to session.event.name, session_discussion_event_path(kommunity: @kommunity, id: session.event, speaker_resource: session.id) %>
           </li>
           <% end %>
         </ul>
