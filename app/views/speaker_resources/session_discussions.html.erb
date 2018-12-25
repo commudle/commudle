@@ -19,7 +19,7 @@
           <%= @resource.title %>
         </h5>
         <div>
-          <%= @resource.session_details_links.html_safe %>
+          <%= simple_format(@resource.session_details_links) %>
         </div>
       </div>
     </div>
