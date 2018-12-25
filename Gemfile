@@ -11,6 +11,8 @@ gem 'aws-sdk-s3', require: false
 
 gem 'resque'
 
+gem 'resque-scheduler'
+
 gem 'font-awesome-rails'
 
 gem 'momentjs-rails'
