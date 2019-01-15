@@ -11,7 +11,7 @@
 
   <div class="form-group">
     <%= f.label :kommunity, "Community" %>
-    <%= f.select :kommunity_id, options_for_select(current_user.kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id), {}, class: 'form-control' %>
+    <%= f.select :kommunity_id, options_for_select(current_user.organizer_kommunities.collect{|m| [m.name, m.id]}, f.object.kommunity_id), {}, class: 'form-control' %>
   </div>
 
 
