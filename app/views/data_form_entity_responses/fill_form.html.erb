@@ -115,6 +115,13 @@
 
                   <div class="form-group">
                     <h5><%= question.title %><%if question.required%><strong class="text-info">*</strong><% end %></h5>
+                    <% if !question.description.blank? %>
+                    <p>
+                      <small>
+                        <%= simple_format(question.description) %>
+                      </small>
+                    </p>
+                    <% end %>
 
 
                     <% case question.question_type.name %>
