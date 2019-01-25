@@ -1,0 +1,17 @@
+<section id="event-resources-<%= event.id %>" class="bg-white p-2">
+  <h3>Slides and Details from Talks</h3>
+
+  <ul class="list-group d-flex p-0 flex-row flex-wrap">
+    <% event.public_resources.each do |pr| %>
+    <li class="card list-group-item m-2 col-sm-2 col-1 shadow-sm  text-center">
+      <%= link_to session_discussion_event_path(speaker_resource: pr.id) do %>
+      <p class="m-0">
+        <%= pr.data_form_entity_response_group.user.name %>
+      </p>
+      <% end %>
+    </li>
+    <% end %>
+
+  </ul>
+
+</section>

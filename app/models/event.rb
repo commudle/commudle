@@ -58,12 +58,12 @@ class Event < ApplicationRecord
     if(kommunity_id.blank?)
       return Event.joins(:event_status, :kommunity).where(
                       "event_statuses.name = ? and start_time >= ?",
-                      NameValues::EventStatusType::ANNOUNCED, Time.now
+                      NameValues::EventStatusType::ANNOUNCED, Time.now.beginning_of_day
       ).order("start_time asc")
     else
       return Event.joins(:event_status).where(
           "event_statuses.name = ? and kommunity_id = ? and start_time >= ?",
-          NameValues::EventStatusType::ANNOUNCED, kommunity_id, Time.now
+          NameValues::EventStatusType::ANNOUNCED, kommunity_id, Time.now.beginning_of_day
       ).order("start_time asc")
     end
 
@@ -73,12 +73,12 @@ class Event < ApplicationRecord
     if kommunity_id.blank?
       return Event.joins(:event_status, :kommunity).where(
           "event_statuses.name = ? and start_time <= ?",
-          NameValues::EventStatusType::COMPLETED, Time.now
+          NameValues::EventStatusType::COMPLETED, Time.now.end_of_day
       ).order("start_time desc").limit(count)
     else
       return Event.joins(:event_status).where(
           "event_statuses.name = ? and kommunity_id = ? and start_time <= ?",
-          NameValues::EventStatusType::COMPLETED, kommunity_id, Time.now
+          NameValues::EventStatusType::COMPLETED, kommunity_id, Time.now.end_of_day
       ).order("start_time desc").limit(count)
     end
   end
@@ -147,6 +147,11 @@ class Event < ApplicationRecord
     end
 
 
+  end
+
+  # sort alphabetically by the name of the speakers
+  def public_resources
+    return SpeakerResource.joins(data_form_entity_response_group: [:user, {event_data_form_entity_group: :event}]).where('events.id = ?', self.id).order('lower(users.name)')
   end
 
 

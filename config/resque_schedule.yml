@@ -1,0 +1,4 @@
+session_discussion_update_midnight:
+  cron: "0 0 * * * Asia/Kolkata"
+  class: SessionDiscussionUpdate
+  queue: discussion_messages_mails

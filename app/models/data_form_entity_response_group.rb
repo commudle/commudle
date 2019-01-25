@@ -11,6 +11,9 @@ class DataFormEntityResponseGroup < ApplicationRecord
   has_one :speaker_resource
 
 
+  delegate :event, :to => :event_data_form_entity_group, :allow_nil => true
+
+
   # setting the default value of registration_status
   attribute :registration_status_id, :integer, default: RegistrationStatus.find_by(name: "registered").id
 

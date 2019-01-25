@@ -1,0 +1,6 @@
+{
+    let um = $("<%= escape_javascript render 'user_messages/discussion_user_message', user_message: @user_message  %>");
+
+    $('#discussion-card-<%= @user_message.parent_id %> .discussion-new-message textarea').val('');
+    $('#discussion-card-<%= @user_message.parent_id %> .discussion-messages-list').append(um);
+}

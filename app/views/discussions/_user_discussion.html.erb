@@ -16,29 +16,35 @@
   </div>
   <div class="card-body py-1 px-3">
     <div class="discussion-messages">
-      <ul class="discussion-messages-list list-group">
-        <% discussion.user_messages.each do |dum| %>
-          <li class="list-group-item">
-            <div>
-              <%= dum.content %>
-            </div>
-          </li>
+      <ul class="discussion-messages-list list-group list-group-flush">
+        <% discussion.user_messages.order('created_at').each do |dum| %>
+            <%= render 'user_messages/discussion_user_message', user_message: dum %>
         <% end %>
       </ul>
 
       <div class="discussion-new-message">
+        <% if allowed_view?(:user_messages, :create) %>
         <%= form_with model: discussion.user_messages.new, url: user_messages_path, html: {class: "d-flex flex-nowrap"} do |f| %>
         <%= f.hidden_field :parent_id, value: discussion.id %>
         <%= f.hidden_field :parent_type, value: 'Discussion' %>
         <div class="form-group p-0 col-10">
           <%= f.text_area :content, class: 'form-control', rows: 1, placeholder: "Comment", onkeydown: 'textAreaRowIncrementor(event, this);' %>
-
         </div>
         <div class="col-2">
           <%= button_tag type: 'submit', class: "btn btn-info p-0 ml-1" do %>
           <i class='fas fa-arrow-alt-circle-right fa-2x text-white'></i>
           <% end %>
         </div>
+        <% end %>
+
+        <% else %>
+
+        <small>
+          <%= link_to "Sign In / Sign Up To Comment", user_google_oauth2_omniauth_authorize_path %>
+
+        </small>
+
+
         <% end %>
       </div>
     </div>

@@ -1,20 +1,65 @@
 <section id="session-discussion-<%= @resource.id %>">
 
 
-  <div class="header"></div>
+  <div class="header d-flex mb-3 flex-wrap">
+    <div class="card p-2 col-md-2 col-12 text-center mb-2">
+      <%= render 'events/speaker_display_card', user: @resource.user %>
+    </div>
+    <div class="card col-md-4 col-12 mb-2">
+      <div class="card-header">
+        <h5>
+          <%= @resource.data_form_entity_response_group.event_data_form_entity_group.event.name %>
+        </h5>
+        <div>
+          <%= render 'events/event_time_display', event: @resource.data_form_entity_response_group.event_data_form_entity_group.event %>
+        </div>
+      </div>
+      <div class="card-body">
+        <h5>
+          <%= @resource.title %>
+        </h5>
+        <div>
+          <%= simple_format(@resource.session_details_links) %>
+        </div>
+      </div>
+    </div>
+    <div class="card col-md-6 col-12 mb-2">
+      <% if !@other_sessions.empty? %>
+      <div class="card-header">
+        Other Sessions
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <% @other_sessions.each do |session| %>
+          <li class="list-group-item ">
+            <%= link_to session.event.name, session_discussion_event_path(kommunity: @kommunity, id: session.event, speaker_resource: session.id) %>
+          </li>
+          <% end %>
+        </ul>
+
+      </div>
+      <% end %>
+    </div>
+
+
+  </div>
 
   <div class="other-sessions d-flex justify-content-start">
 
   </div>
 
   <div class="current-discussions">
+    <% if allowed_view?(:discussions, :create) %>
     <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#new-discussion-modal">
-      Start A Discussion
+      Ask <%= @resource.user.name %>!
     </button>
+    <% else %>
+    <%= link_to "Sign In / Sign Up To Create Discussion", user_google_oauth2_omniauth_authorize_path, class: 'btn btn-primary mb-3' %>
+    <% end %>
 
-    <div class="d-flex justify-content-start flex-wrap">
+    <div id="discussions-list-<%= @resource.id %>" class="card-columns">
       <% @discussions.each do |disc| %>
-      <div id="discussions-list-<%= @resource.id %>" class="mx-2 mb-3">
+      <div class="mx-2 mb-3">
         <%= render 'discussions/user_discussion', discussion: disc %>
       </div>
 
@@ -58,5 +103,14 @@
     </div>
     <% end %>
   </div>
+  <script>
+      let notification = new Noty({
+          text: '*This is a Beta Feature! <br>Updates will be delivered on email, every midnight!',
+          theme: 'relax',
+          type: 'warning',
+          timeout: 2500,
+          layout: 'top'
+      }).show();
+  </script>
 
 </section>

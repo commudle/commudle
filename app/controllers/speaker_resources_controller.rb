@@ -1,5 +1,5 @@
 class SpeakerResourcesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:session_discussions]
   before_action :set_data_form_entity_response_group, except: [:session_discussions]
   before_action :access_allowed?
 
@@ -27,6 +27,10 @@ class SpeakerResourcesController < ApplicationController
     @discussion = Discussion.new
 
     @discussions = @resource.discussions
+
+    # get the other sessions of this speaker
+    @other_sessions = SpeakerResource.joins(:data_form_entity_response_group).where('speaker_resources.id != ? and data_form_entity_response_groups.user_id = ?', @resource.id, @resource.user.id)
+
 
   end
 
