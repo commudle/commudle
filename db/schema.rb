@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_24_154449) do
+ActiveRecord::Schema.define(version: 2019_01_25_160219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -346,6 +346,7 @@ ActiveRecord::Schema.define(version: 2018_12_24_154449) do
     t.datetime "updated_at", null: false
     t.boolean "required", default: false, null: false
     t.datetime "deleted_at"
+    t.text "description"
     t.index ["data_form_id"], name: "index_questions_on_data_form_id"
     t.index ["deleted_at"], name: "index_questions_on_deleted_at"
     t.index ["question_type_id"], name: "index_questions_on_question_type_id"

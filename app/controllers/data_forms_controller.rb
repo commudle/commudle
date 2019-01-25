@@ -70,7 +70,7 @@ class DataFormsController < ApplicationController
   end
 
   def data_form_params
-    params.require(:data_form).permit(:name, :kommunity_id, questions_attributes: [:id, :title, :question_type_id, :required, :_destroy, question_choices_attributes: [:id, :title, :_destroy]])
+    params.require(:data_form).permit(:name, :kommunity_id, questions_attributes: [:id, :title, :description, :question_type_id, :required, :_destroy, question_choices_attributes: [:id, :title, :_destroy]])
   end
 
 end
