@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 
-.idea/
+/.idea
 erd.pdf
 # Ignore bundler config.
 /.bundle
