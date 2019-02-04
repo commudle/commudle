@@ -1,50 +1,54 @@
-# README
+#Commudle
+---
 
-Prerequisites
+This is a platform for all the tech communities around the world, which is focussed on managing the communities efficiently. It's a direct result of the personal experiences and feedbacks from different tech community organizers. The uniqueness lies in the process flows incorporated.
 
-* Ruby version: 2.5.0
+Looking for contributions from the community and full time maintainers/contributors who can take this forward.
 
-* Rails version: 5.2.0
+---
+###Index
+- [Why Commudle](#why-commudle)
+- [What makes this different](#what-makes-this-different)
+- [Installation/Setup](project-setup.md)
+- [Contributions]
+- [Support & Communications]
+---
 
-* Database Used: Postgres (both development and production)
+## Why Commudle
+ We have been able to successfully manage more than 5 events in the past 6 months with one of them having 2200+ registrations, >600 attendees, 6 tracks and 30+ speakers.
 
-  * Setting up postgres
-    * create role kommunity with createdb login password 'password1';
-    
-* bundle install --deployment
-   
+ We have about 5000 members signed up already!
+ 
+ The name's explaination remains a secret which we'll reveal soon. Till then, whenever we are oranizing tech events (which we believe for smaller communities is more about spreading awareness, sharing knowledge and networking), they are free. But as organizers, a lot of effort still goes in and yes, the members are always on the lookout for more and more events and things to learn.
 
-Setup DB Backup
-* gem install backup -v5.0.0.beta.1
+Taking from the personal experiences of how some well managed, free communities have evolved such that they are able to generate good excitement and footfall, we have tried to incorporate the process flows for the following till now:
+- Easy community & event setup and management
+  - Reusable forms
+  - Support for Multiple locations and Multiple Tracks
+- Centralizing the registration and shortlisting process
+  - Inbuilt forms
+  - One click status update for each registration
+  - RSVP emails where users can confirm
+  - Real time tracking of attendance by unique codes
+There's a lot of things coming up in the pipeline!
 
-
-
-
-
-Clone/Download
-
-* bundle install
-
-* rails db:setup (though this will load the seed as well, but you can run rake db:seed, just in case)
-
-* rails active_storage:install
-
-* rails db:migrate
-
-* rails s
-
-* Run: gem pristine --all
-
-* https://gist.github.com/dhoelzgen/cd7126b8652229d32eb4
+---
 
 
+## What makes this different
+It's created to solve the problem of the creators. Being at a very stable yet young stage, it can be modified majorly to incorporate as many use cases for different communities across the world.
 
-Setting up auto generation of uuid in psql
-* add superuser permission to the postgres user 'gdgapp'
+We will soon be able to track actual ROI in terms of skills imparted by actually interacting with users automatically to track if they have been using the technologies introduced to them.
 
+It's free to use, will always be!
 
-Defining User Permissions
-* create a permission in role_permission.rb for each controller and user_role
-* if the permission is conditional, that is, requires an object to check where it is owned by a user, pass that object into an thread_mattr_accessor by calling RolePermission.<object_name>
+---
+
+## Contributions
+
+---
+
+## Support & Communications
+
 
 
