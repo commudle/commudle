@@ -10,7 +10,7 @@ Looking for contributions from the community and full time maintainers/contribut
 - [Why Commudle](#why-commudle)
 - [What makes this different](#what-makes-this-different)
 - [Installation/Setup](project-setup.md)
-- [Contributions]
+- [Contributions](contributions.md)
 - [Support & Communications]
 ---
 
@@ -41,10 +41,6 @@ It's created to solve the problem of the creators. Being at a very stable yet yo
 We will soon be able to track actual ROI in terms of skills imparted by actually interacting with users automatically to track if they have been using the technologies introduced to them.
 
 It's free to use, will always be!
-
----
-
-## Contributions
 
 ---
 
