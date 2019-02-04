@@ -11,7 +11,8 @@ Looking for contributions from the community and full time maintainers/contribut
 - [What makes this different](#what-makes-this-different)
 - [Installation/Setup](project-setup.md)
 - [Contributions](contributions.md)
-- [Support & Communications]
+- [Support & Communications](#support-and-communications)
+- [Code Of Conduct](code-of-conduct.md)
 ---
 
 ## Why Commudle
@@ -44,7 +45,17 @@ It's free to use, will always be!
 
 ---
 
-## Support & Communications
+## Support and communications
+- Mailing List (ask to join and we'll always say Yes): https://groups.google.com/d/forum/commudle
+
+- Slack (join and ask for commudle channel access!): https://gdgndslackinvite.herokuapp.com/
+- Gitter (It's new for us, join and Introduce Yourself!): https://gitter.im/commudle/
+
+
+---
+---
+
+Summing it all up, we're looking at creating more and more projects soon, this being at the center of them all, you'll soon be able to host every project you create, with us!
 
 
 
