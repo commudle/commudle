@@ -6,6 +6,7 @@ This is a platform for all the tech communities around the world, which is focus
 Looking for contributions from the community and full time maintainers/contributors who can take this forward.
 
 ---
+
 ###Index
 - [Why Commudle](#why-commudle)
 - [What makes this different](#what-makes-this-different)
