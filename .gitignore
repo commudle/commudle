@@ -29,3 +29,7 @@ erd.pdf
 
 
 .idea
+
+*/.DS_Store
+
+dump.rdb
