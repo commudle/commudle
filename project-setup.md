@@ -32,7 +32,7 @@
 
 
 ### Resque (for background jobs, mostly emails!)
-* `QUEUE=* rake resque:work
+* `QUEUE=* rake resque:work`
 
 
 
