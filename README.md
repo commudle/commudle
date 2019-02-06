@@ -1,4 +1,4 @@
-#Commudle
+# Commudle
 ---
 
 This is a platform for all the tech communities around the world, which is focussed on managing the communities efficiently. It's a direct result of the personal experiences and feedbacks from different tech community organizers. The uniqueness lies in the process flows incorporated.
@@ -7,12 +7,13 @@ Looking for contributions from the community and full time maintainers/contribut
 
 ---
 
-###Index
-- [#Commudle](#commudle)
+### Index
 - [Why Commudle](#why-commudle)
 - [What makes this different](#what-makes-this-different)
-- [Support and communications](#support-and-communications)
-- [---](#)
+- [Installation/Setup](project-setup.md)
+- [Contributions](contributions.md)
+- [Support & Communications](#support-and-communications)
+- [Code Of Conduct](code-of-conduct.md)
 
 
 ---
