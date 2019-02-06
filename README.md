@@ -8,12 +8,13 @@ Looking for contributions from the community and full time maintainers/contribut
 ---
 
 ###Index
+- [#Commudle](#commudle)
 - [Why Commudle](#why-commudle)
 - [What makes this different](#what-makes-this-different)
-- [Installation/Setup](project-setup.md)
-- [Contributions](contributions.md)
-- [Support & Communications](#support-and-communications)
-- [Code Of Conduct](code-of-conduct.md)
+- [Support and communications](#support-and-communications)
+- [---](#)
+
+
 ---
 
 ## Why Commudle
