@@ -1,5 +1,4 @@
 # Commudle
----
 
 This is a platform for all the tech communities around the world, which is focussed on managing the communities efficiently. It's a direct result of the personal experiences and feedbacks from different tech community organizers. The uniqueness lies in the process flows incorporated.
 
@@ -56,9 +55,12 @@ It's free to use, will always be!
 
 
 ---
----
 
 Summing it all up, we're looking at creating more and more projects soon, this being at the center of them all, you'll soon be able to host every project you create, with us!
+
+---
+
+License ((project-setup.md))
 
 
 

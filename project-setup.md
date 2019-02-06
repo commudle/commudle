@@ -1,7 +1,7 @@
-#Project Setup Setups (Development Mode)
+# Project Setup Setups (Development Mode)
 
 
-###Prerequisites
+### Prerequisites
 * Ruby version: 2.5.0
 * Rails version: 5.2.0
 * Database Used: Postgres (for both development and production)
@@ -19,14 +19,14 @@
 
 
 
-###Clone/Download
+### Clone/Download
 * `bundle install --deployment`
 * `rails db:setup` (though this will load the seed as well, but you can run rake db:seed, just in case)
 * `rails active_storage:install`
 * `rails db:setup` 
 * Create an ER Diagram `rails db:migrate`
 
-###Run the Server
+### Run the Server
 * `rails s`
 * Run: `gem pristine --all`
 
