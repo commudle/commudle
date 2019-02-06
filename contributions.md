@@ -1,4 +1,4 @@
-#Contributing to Commudler
+# Contributing to Commudler
 ---
 
 
@@ -19,7 +19,7 @@ Issues can be of the following types majorly:
 - Feature request (always begins with a discussion)
 - Code refactoring/cleaning/optimization
 
-#####Creating an issue
+##### Creating an issue
 - First browse through our issues from **[THIS PAGE](https://github.com/gdgnewdelhi/commudle/issues)**, if you find an existing issue, then you can take it up or start helping the person solving it depending on the status.
 - For bugs: 
   - Write as much clear details as possible about the issue
