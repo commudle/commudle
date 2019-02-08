@@ -1,6 +1,6 @@
 # Commudle
 
-##[https://www.gdgnd.org](https://www.gdgnd.org)
+## [https://www.gdgnd.org](https://www.gdgnd.org)
 
 (Moving soon to the name commudle(dot)com!)
 
