@@ -1,6 +1,6 @@
 # Commudle
 
-## [GDG New Delhi](https://www.gdgnd.org)
+## [GDG New Delhi](https://www.gdgnd.org)My Name is Rahul Chandra
 
 (Moving soon to the name commudle(dot)com!)
 
