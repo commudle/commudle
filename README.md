@@ -13,6 +13,7 @@ Looking for contributions from the community and full time maintainers/contribut
 ### Index
 - [Why Commudle](#why-commudle)
 - [What makes this different](#what-makes-this-different)
+- **[How It Works](how-it-works.md)**
 - [Installation/Setup](project-setup.md)
 - [Contributions](contributions.md)
 - [Support & Communications](#support-and-communications)
