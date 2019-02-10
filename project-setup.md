@@ -7,7 +7,7 @@
 * Database Used: Postgres (for both development and production)
   * Set up postgres
     * Login to postgres and create a superuser  **(we need it because we're enabling a couple of extensions)**
-      * `create role gdgapp with createdb login password ==your-password==;`   
+      * `create role gdgapp with createdb login password your-password;`   
 
 ### Setup the environment
 * Open bash profile set the following
@@ -23,7 +23,9 @@
 * `bundle install --deployment`
 * `rails db:setup` (though this will load the seed as well, but you can run rake db:seed, just in case)
 * `rails active_storage:install`
-* `rails db:setup` 
+* `rails db:setup`
+* `rails db:seed` 
+(this will setup the data for roles, question_types, registration status and event status)
 * Create an ER Diagram `rails db:migrate`
 
 ### Run the Server
