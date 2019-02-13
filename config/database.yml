@@ -21,7 +21,7 @@ development:
 test:
   <<: *default
   database: gdgapptest
-  username: kommunity
+  username: gdgapp
   password: <%= ENV["GDG_APP_DEV_PASS"] %>
 
 production:
