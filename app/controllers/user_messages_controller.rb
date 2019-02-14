@@ -20,7 +20,7 @@ class UserMessagesController < ApplicationController
 
   # TODO, allow people to flag a discussion message (as soon as a set number of people flag a message, it gets hidden)
   # Yet to create database changes for it
-  def def flag
+  def flag
 
   end
 
