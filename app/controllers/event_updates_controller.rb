@@ -1,6 +1,7 @@
 class EventUpdatesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_event_update, only: [:destroy]
+  before_action :set_event, only: :create
   before_action :access_allowed?
 
   def create
