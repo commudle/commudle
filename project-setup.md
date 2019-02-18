@@ -1,4 +1,4 @@
-# Project Setup Setups (Development Mode)
+# Project Setup Steps (Development Mode)
 
 
 ### Prerequisites
