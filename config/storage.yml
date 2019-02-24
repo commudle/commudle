@@ -5,7 +5,7 @@ test:
   root: <%= Rails.root.join("tmp/storage") %>
   
   
-\\ When Building Locally (rails db:migrate may give errors) 
+\\ When Building Locally
 
 local:
   service: Disk
