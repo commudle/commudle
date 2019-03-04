@@ -1,6 +1,8 @@
 # Contributing to Commudler
 ---
 
+### Please make all the pull requests for **development** branch only. We'll rebase into that and then once tested, will be rebased into master!
+
 
 #### General practices for contribution
 - Always add comments for any block of code you introduce for reviewing

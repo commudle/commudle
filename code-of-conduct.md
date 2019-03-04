@@ -1,4 +1,4 @@
-#Code Of Conduct
+# Code Of Conduct
 
 - It's very important to keep up the spirit of the community
   - Respect fellow developers, everyone might be at a different stage of skill levels
