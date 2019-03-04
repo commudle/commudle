@@ -23,7 +23,7 @@
 * `bundle install --deployment`
 * `rails db:setup` (though this will load the seed as well, but you can run rake db:seed, just in case)
 * `rails active_storage:install`
-* `rails db:setup` 
+* `rails db:seed
 * Create an ER Diagram `rails db:migrate`
 
 ### Run the Server
