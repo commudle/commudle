@@ -65,7 +65,7 @@ Summing it all up, we're looking at creating more and more projects soon, this b
 
 ---
 
-[License](project-setup.md)
+[License](LICENSE.md)
 
 
 
