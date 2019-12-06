@@ -180,7 +180,7 @@ GEM
     pg (1.0.0)
     popper_js (1.12.9)
     public_suffix (3.0.2)
-    puma (3.12.0)
+    puma (3.12.2)
     raabro (1.1.6)
     rack (2.0.5)
     rack-cors (1.0.2)
@@ -330,7 +330,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   paranoia (~> 2.2)
   pg
-  puma (~> 3.7)
+  puma (~> 3.12)
   rack-cors
   rails (~> 5.2.0)
   rails-erd
