@@ -1,3 +1,5 @@
+### [This further developed source code of this project is now private. We've shifted the front end to the latest version of Angular. You can continue making contributions to it!]
+
 # Commudle
 
 ## [https://www.gdgnd.org](https://www.gdgnd.org)
