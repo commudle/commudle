@@ -29,7 +29,7 @@ Looking for contributions from the community and full time maintainers/contribut
 
  We have about 5000 members signed up already!
  
- The name's explaination remains a secret which we'll reveal soon. Till then, whenever we are oranizing tech events (which we believe for smaller communities is more about spreading awareness, sharing knowledge and networking), they are free. But as organizers, a lot of effort still goes in and yes, the members are always on the lookout for more and more events and things to learn.
+ The name's explanation remains a secret which we'll reveal soon. Till then, whenever we are organizing tech events (which we believe for smaller communities is more about spreading awareness, sharing knowledge and networking), they are free. But as organizers, a lot of effort still goes in and yes, the members are always on the lookout for more and more events and things to learn.
 
 Taking from the personal experiences of how some well managed, free communities have evolved such that they are able to generate good excitement and footfall, we have tried to incorporate the process flows for the following till now:
 - Easy community & event setup and management
@@ -63,11 +63,13 @@ It's free to use, will always be!
 
 ---
 
-Summing it all up, we're looking at creating more and more projects soon, this being at the center of them all, you'll soon be able to host every project you create, with us!
+Summing it all up, we're looking at creating more and more projects soon, this being at the centre of them all, you'll soon be able to host every project you create, with us!
 
 ---
 
 [License](project-setup.md)
+
+
 
 
 
