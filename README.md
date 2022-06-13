@@ -2,9 +2,7 @@
 
 # Commudle
 
-## [https://www.gdgnd.org](https://www.gdgnd.org)
-
-(Moving soon to the name commudle(dot)com!)
+## [https://www.commudle.com/](https://www.commudle.com/)
 
 This is a platform for all the tech communities around the world, which is focussed on managing the communities efficiently. It's a direct result of the personal experiences and feedbacks from different tech community organizers. The uniqueness lies in the process flows incorporated.
 
