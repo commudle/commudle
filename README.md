@@ -1,4 +1,4 @@
-### [This further developed source code of this project is now private. We've shifted the front end to the latest version of Angular. You can continue making contributions to it!]
+### [The further developed source code of this Rails project is now private. We've shifted the front end to the latest version of Angular under https://github.com/commudle/commudle-ng. You can continue making contributions to it!]
 
 # Commudle
 
